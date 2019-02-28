@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>API Reference</title>
+    <title>Beyond Pay Gateway API Reference</title>
 
     <style>
       .highlight table td { padding: 5px; }
@@ -201,7 +201,7 @@
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;,&quot;javascript&quot;]">
+  <body class="index" data-languages="[]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -210,295 +210,1113 @@
     </a>
     <div class="toc-wrapper">
       <img src="images/logo.png" class="logo" alt="Logo" />
-        <div class="lang-selector">
-              <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="ruby">ruby</a>
-              <a href="#" data-language-name="python">python</a>
-              <a href="#" data-language-name="javascript">javascript</a>
-        </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
         </div>
         <ul class="search-results"></ul>
       <ul id="toc" class="toc-list-h1">
           <li>
-            <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
+            <a href="#introduction-to-beyond-pay" class="toc-h1 toc-link" data-title="Introduction to Beyond Pay">Introduction to Beyond Pay</a>
           </li>
           <li>
-            <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
-          </li>
-          <li>
-            <a href="#kittens" class="toc-h1 toc-link" data-title="Kittens">Kittens</a>
+            <a href="#online-payments" class="toc-h1 toc-link" data-title="Online Payments">Online Payments</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#get-all-kittens" class="toc-h2 toc-link" data-title="Get All Kittens">Get All Kittens</a>
+                    <a href="#getting-started" class="toc-h2 toc-link" data-title="Getting Started">Getting Started</a>
                   </li>
                   <li>
-                    <a href="#get-a-specific-kitten" class="toc-h2 toc-link" data-title="Get a Specific Kitten">Get a Specific Kitten</a>
+                    <a href="#create-a-payment-form" class="toc-h2 toc-link" data-title="Create a Payment Form">Create a Payment Form</a>
                   </li>
                   <li>
-                    <a href="#delete-a-specific-kitten" class="toc-h2 toc-link" data-title="Delete a Specific Kitten">Delete a Specific Kitten</a>
+                    <a href="#obtain-a-token" class="toc-h2 toc-link" data-title="Obtain a Token">Obtain a Token</a>
+                  </li>
+                  <li>
+                    <a href="#create-a-sale-transaction" class="toc-h2 toc-link" data-title="Create a Sale Transaction">Create a Sale Transaction</a>
                   </li>
               </ul>
           </li>
           <li>
-            <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
+            <a href="#in-person-payments" class="toc-h1 toc-link" data-title="In-Person Payments">In-Person Payments</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#payguardian" class="toc-h2 toc-link" data-title="PayGuardian">PayGuardian</a>
+                  </li>
+                  <li>
+                    <a href="#payguardian-desktop" class="toc-h2 toc-link" data-title="PayGuardian Desktop">PayGuardian Desktop</a>
+                  </li>
+                  <li>
+                    <a href="#payguardian-ios-sdk" class="toc-h2 toc-link" data-title="PayGuardian iOS SDK">PayGuardian iOS SDK</a>
+                  </li>
+                  <li>
+                    <a href="#payguardian-android-sdk" class="toc-h2 toc-link" data-title="PayGuardian Android SDK">PayGuardian Android SDK</a>
+                  </li>
+                  <li>
+                    <a href="#payguardian-cloud" class="toc-h2 toc-link" data-title="PayGuardian Cloud">PayGuardian Cloud</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#transaction-reporting" class="toc-h1 toc-link" data-title="Transaction Reporting">Transaction Reporting</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#transactionrowfilter" class="toc-h2 toc-link" data-title="TransactionRowFilter">TransactionRowFilter</a>
+                  </li>
+                  <li>
+                    <a href="#transactionset" class="toc-h2 toc-link" data-title="TransactionSet">TransactionSet</a>
+                  </li>
+                  <li>
+                    <a href="#transactionrow" class="toc-h2 toc-link" data-title="TransactionRow">TransactionRow</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#response-codes" class="toc-h1 toc-link" data-title="Response Codes">Response Codes</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#payguardian-response-codes" class="toc-h2 toc-link" data-title="PayGuardian Response Codes">PayGuardian Response Codes</a>
+                  </li>
+                  <li>
+                    <a href="#gateway-response-codes" class="toc-h2 toc-link" data-title="Gateway Response Codes">Gateway Response Codes</a>
+                  </li>
+                  <li>
+                    <a href="#avs-response-codes" class="toc-h2 toc-link" data-title="AVS Response Codes">AVS Response Codes</a>
+                  </li>
+                  <li>
+                    <a href="#cvv-response-codes" class="toc-h2 toc-link" data-title="CVV Response Codes">CVV Response Codes</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#testing-amp-certification" class="toc-h1 toc-link" data-title="Testing &amp; Certification">Testing &amp; Certification</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#certification" class="toc-h2 toc-link" data-title="Certification">Certification</a>
+                  </li>
+                  <li>
+                    <a href="#test-cards-and-checks" class="toc-h2 toc-link" data-title="Test Cards and Checks">Test Cards and Checks</a>
+                  </li>
+                  <li>
+                    <a href="#trigger-amounts" class="toc-h2 toc-link" data-title="Trigger Amounts">Trigger Amounts</a>
+                  </li>
+              </ul>
           </li>
       </ul>
         <ul class="toc-footer">
-            <li><a href='#'>Sign Up for a Developer Key</a></li>
-            <li><a href='https://github.com/lord/slate'>Documentation Powered by Slate</a></li>
+            <li><a href='mailto:BeyondPay@getBeyond.com'>Get an API Key</a></li>
+            <li>______________</li>
+            <li><a href='https://www.getbeyond.com/'>www.getbeyond.com</a></li>
+            <li>©2019 Above & Beyond - Business Tools and Services for Entrepreneurs, Inc. All Rights Reserved.</li>
+            <li><a href='https://www.getbeyond.com/privacy-policy/'>Privacy Policy</a></li>
+            <li><a href='https://www.getbeyond.com/ccpa/'>CCPA Consumer Privacy</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id='introduction'>Introduction</h1>
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
-
-<p>We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
-
-<p>This example API documentation page was created with <a href="https://github.com/lord/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&#39;s documentation.</p>
-<h1 id='authentication'>Authentication</h1>
+        <h1 id='introduction-to-beyond-pay'>Introduction to Beyond Pay</h1>
 <blockquote>
-<p>To authorize, use this code:</p>
+<p><a href="mailto:BeyondPay@getBeyond.com">Get your API keys</a> and get moving!</p>
 </blockquote>
-<pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+<p>Welcome to the Beyond Pay Gateway API! Beyond Pay is a powerful gateway that enables you to securely accept many different payment types. Plus, by processing through Beyond Pay, you are supporting Beyond&#39;s commitment to our philanthropic cause.</p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
+<p>The primary integration options offered by the Beyond Pay Gateway include:</p>
 
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
+<ul>
+<li><strong>TokenPay</strong> – is an extension of Beyond Pay that combines client-side and server-side technologies for PCI-compliant online or mobile payment capture.</li>
+<li><strong>PayGuardian</strong> – a lightweight middleware application that integrates seamlessly into Point of Sale (POS) software and facilitates the secure collection of cardholder data insulating the integrator from the scope of PA-DSS and the requirements of EMV certification</li>
+<li><strong>BridgeComm</strong> – a set of robust web service APIs for payment processing</li>
+</ul>
+<h1 id='online-payments'>Online Payments</h1><h2 id='getting-started'>Getting Started</h2>
+<blockquote>
+<p>To get started, include this script on your checkout page:</p>
+</blockquote>
+<pre class="highlight html tab-html"><code><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span> 
+<span class="nt">&lt;script
+  </span><span class="na">src=</span><span class="s">"https://api-test.getbeyondpay.com/Bridgepay.WebSecurity/TokenPay/js/tokenPay.js"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/script&gt;</span>
 </code></pre>
 <blockquote>
-<p>Make sure to replace <code>meowmeowmeow</code> with your API key.</p>
+<p>Next, create an instance of TokenPay:</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">tokenpay</span> <span class="o">=</span> <span class="nx">TokenPay</span><span class="p">(</span><span class="s1">'your-public-key'</span><span class="p">);</span>
+</code></pre>
+<blockquote>
+<p>Replace <code>your-public-key</code> with your publishable public key.</p>
 </blockquote>
 
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
+<p>TokenPay maximizes the user experience by allowing for the capture of sensitive card data within the payment form of the merchant’s website or mobile application. The consumer remains on the merchant’s payment page at all times during the checkout process.</p>
 
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
+<p>TokenPay is an integration interface for Beyond Pay Gateway which facilitates online card payments in a manner that ensures that no sensitive card data ever touches your servers so your integration can operate with minimized scope of PCI.</p>
 
-<p><code>Authorization: meowmeowmeow</code></p>
+<p>To ensure that merchants are eligible for the simplest PCI validation method, Self-Assessment Questionnaire A (SAQ-A), TokenPay utilizes</p>
+
+<ul>
+<li><strong>Isolation</strong> – Beyond Pay Gateway hosts the sensitive cardholder data input fields. The fields are injected into your form as an HTML iframe thus isolating your page and your server from card sensitive data.</li>
+<li><strong>Tokenization</strong> – in order to execute transactions against the user’s card, TokenPay replaces the sensitive cardholder data with a non-sensitive surrogate value (token). The token is generated via the use of the TokenPay JavaScript library and your payment form.</li>
+<li><strong>Segregation</strong> – Requests for charges against the user’s card are made server-to-server – not in the browser or mobile app where it is publicly visible. The tokenized card data is submitted to your server where a secure server-to-server request is made to execute the transaction.</li>
+<li><strong>Public/Private Keys</strong> – The injection of the TokenPay hosted input fields and card tokenization is authenticated via a public key assigned to the merchant. API requests to execute charges against the tokenized card are made by the backend server and are authenticated with a private key assigned to the merchant.</li>
+</ul>
+<h3 id='tokenpay-js'>TokenPay.js</h3>
+<blockquote>
+<p><b>Sandbox (Testing):</b></p>
+</blockquote>
+<pre class="highlight html tab-html"><code>https://api-test.getbeyondpay.com/Bridgepay.WebSecurity/TokenPay/js/tokenPay.js
+</code></pre>
+<blockquote>
+<p><b>Live (Production):</b></p>
+</blockquote>
+<pre class="highlight html tab-html"><code>https://api.getbeyondpay.com/WebSecurity/TokenPay/js/tokenPay.js
+</code></pre>
+<p>TokenPay.js is the JavaScript library for building online or mobile checkout flows with Beyond Pay Gateway. With it, you can collect sensitive data from the cardholder and create tokens for securely sending the data to your server.</p>
+
+<p>TokenPay.js provides a ready-made UI component for collecting the sensitive card data from the user. TokenPay.js then tokenizes the information without ever having to touch your server.</p>
+
+<p>The TokenPay.js UI component includes:</p>
+
+<ul>
+<li>Automatic formatting of card information as it is entered</li>
+<li>Validation of card information as it is entered</li>
+<li>Responsive design that works on user’s screen or mobile device</li>
+<li>Customizable styling to match your website&#39;s look and feel</li>
+</ul>
+<h3 id='https-requirements'>HTTPS Requirements</h3>
+<p>All submission of payment information using TokenPay.js is made via a secure HTTPS connection. However, to protect yourself from man-in-the-middle attacks and to prevent your users from experiencing mixed content warnings in their browser, you <b>MUST</b> serve the page with your payment form over HTTPS.</p>
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+You must replace <code>your-public-key</code> with your publishable public API key.
 </aside>
-<h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">kittens</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">();</span>
+<h2 id='create-a-payment-form'>Create a Payment Form</h2>
+<blockquote>
+<p>To determine where to insert the UI components, create empty DOM elements with unique IDs within your payment form.</p>
+</blockquote>
+<pre class="highlight html tab-html"><code><span class="nt">&lt;form</span> <span class="na">id=</span><span class="s">"paymentForm"</span> <span class="na">action=</span><span class="s">"/charge"</span> <span class="na">method=</span><span class="s">"post"</span><span class="nt">&gt;</span> 
+  <span class="nt">&lt;select</span> <span class="na">class=</span><span class="s">"form-control"</span> <span class="na">name=</span><span class="s">"amount"</span> <span class="na">id=</span><span class="s">"amount"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">"25"</span><span class="nt">&gt;</span>$25<span class="nt">&lt;/option&gt;</span>
+    <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">"50"</span><span class="nt">&gt;</span>$50<span class="nt">&lt;/option&gt;</span> 
+  <span class="nt">&lt;/select&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"card"</span><span class="nt">&gt;&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"errorMessage"</span><span class="nt">&gt;&lt;/div&gt;</span>
+  <span class="nt">&lt;button</span> <span class="na">type=</span><span class="s">"submit"</span><span class="nt">&gt;</span>Submit<span class="nt">&lt;/button&gt;</span>
+<span class="nt">&lt;/form&gt;</span>
 </code></pre>
 <blockquote>
-<p>The above command returns JSON structured like this:</p>
+<p>If you want to customize the style of the card entry area, create a hidden <code>&lt;div&gt;</code> element to contain your styling. The <code>id</code> of this element MUST be <code>customStyles</code>.</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span></code></pre>
-<p>This endpoint retrieves all kittens.</p>
-<h3 id='http-request'>HTTP Request</h3>
-<p><code>GET http://example.com/api/kittens</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
-</tr>
-<tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
-</tr>
-</tbody></table>
+<pre class="highlight html tab-html"><code><span class="nt">&lt;div</span> <span class="na">style=</span><span class="s">"display: none"</span> <span class="na">id=</span><span class="s">"customStyles"</span><span class="nt">&gt;</span> 
+  body {
+    margin: 8px 0;
+    }
+#payment-form {
+  border: 2px solid #003b5c; 
+  padding: 5px 10px; 
+  border-radius: 5px; 
+  background: white;
+  color: #333;
+}
+<span class="nt">&lt;/div&gt;</span>
+</code></pre>
+<blockquote>
+<p>When the form is loaded, initialize the Pay element:</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="nx">tokenpay</span><span class="p">.</span><span class="nx">initialize</span><span class="p">({</span>
+  <span class="na">dataElement</span><span class="p">:</span> <span class="s1">'#card'</span><span class="p">,</span> 
+  <span class="na">errorElement</span><span class="p">:</span> <span class="s1">'#errorMessage'</span><span class="p">,</span> 
+  <span class="na">useStyles</span><span class="p">:</span> <span class="kc">false</span>
+<span class="p">});</span>
+</code></pre>
+<blockquote>
+<p>If you have created the <code>customStyles</code> element to style the card entry area, change the value of <code>useStyles</code> to <code>true</code>.</p>
+</blockquote>
+
+<p>To securely collect sensitive card details from your users, TokenPay.js creates UI components for you that are hosted by Beyond Pay Gateway. These are then inserted into your payment form.</p>
+
+<p>The TokenPay element simplifies the form and minimizes the fields required by inserting a single input field that securely collects all needed card data.</p>
+<h2 id='obtain-a-token'>Obtain a Token</h2><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">form</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'paymentForm'</span><span class="p">);</span> 
+<span class="nx">$</span><span class="p">(</span><span class="s1">'#paymentForm'</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'submit'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span> 
+  <span class="nx">tokenpay</span><span class="p">.</span><span class="nx">createToken</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">hiddenInput</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">'input'</span><span class="p">);</span> 
+    <span class="nx">hiddenInput</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s1">'type'</span><span class="p">,</span> <span class="s1">'hidden'</span><span class="p">);</span> 
+    <span class="nx">hiddenInput</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s1">'name'</span><span class="p">,</span> <span class="s1">'token'</span><span class="p">);</span> 
+    <span class="nx">hiddenInput</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s1">'value'</span><span class="p">,</span> <span class="nx">result</span><span class="p">.</span><span class="nx">token</span><span class="p">);</span> 
+    <span class="nx">form</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">hiddenInput</span><span class="p">);</span>
+    <span class="nx">form</span><span class="p">.</span><span class="nx">submit</span><span class="p">();</span>
+  <span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"error: "</span> <span class="o">+</span> <span class="nx">result</span><span class="p">);</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</code></pre>
+<p>The card data collected by the TokenPay element is converted into a token. If there are any errors in the collection of the card data or creation of the token, information is automatically displayed in the <code>errorElement</code> of your payment form.</p>
+<h2 id='create-a-sale-transaction'>Create a Sale Transaction</h2>
+<blockquote>
+<p><b>Sandbox (Testing):</b></p>
+</blockquote>
+<pre class="highlight html tab-html"><code>https://api-test.getbeyondpay.com/PaymentService/RequestHandler.svc
+</code></pre>
+<blockquote>
+<p><b>Live (Production):</b></p>
+</blockquote>
+<pre class="highlight html tab-html"><code>https://api.getbeyondpay.com/PaymentService/RequestHandler.svc
+</code></pre>
+<blockquote>
+<p>The following XML sample message is to be posted to the <code>RequestHandler.postRequest</code> method, according to the <a href='https://www.dropbox.com/s/1tg479a9n8e3dvt/BridgeComm%20Communication%20Interface%20API%20Guide.pdf?dl=0'>BridgeComm Interface API Guide</a>:</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;requestHeader&gt;&lt;ClientIdentifier&gt;</span>SOAP<span class="nt">&lt;/ClientIdentifier&gt;</span>
+<span class="nt">&lt;TransactionId&gt;</span>{transactionId}<span class="nt">&lt;/TransactionId&gt;</span>
+<span class="nt">&lt;RequestDateTime&gt;</span>{requestDateTime}<span class="nt">&lt;/RequestDateTime&gt;</span>
+<span class="nt">&lt;PrivateKey&gt;</span>{yourPrivateKey}<span class="nt">&lt;/PrivateKey&gt;</span>
+<span class="nt">&lt;AuthenticationTokenId&gt;</span>{token}<span class="nt">&lt;/AuthenticationTokenId&gt;</span>
+<span class="nt">&lt;RequestType&gt;</span>004<span class="nt">&lt;/RequestType&gt;</span>
+<span class="nt">&lt;requestMessage&gt;</span> 
+<span class="nt">&lt;TransIndustryType&gt;</span>EC<span class="nt">&lt;/TransIndustryType&gt;</span>
+<span class="nt">&lt;TransactionType&gt;</span>sale<span class="nt">&lt;/TransactionType&gt;</span> 
+<span class="nt">&lt;Amount&gt;</span>{amountInPennies}<span class="nt">&lt;/Amount&gt;</span> 
+<span class="nt">&lt;HolderType&gt;</span>P<span class="nt">&lt;/HolderType&gt;</span> 
+<span class="nt">&lt;AcctType&gt;</span>R<span class="nt">&lt;/AcctType&gt;</span> 
+<span class="nt">&lt;CurrencyCode&gt;</span>USD<span class="nt">&lt;/CurrencyCode&gt;</span> 
+<span class="nt">&lt;/requestMessage&gt;</span>
+<span class="nt">&lt;/requestHeader&gt;</span>
+</code></pre>
+<p>Once you have securely collected and tokenized your user’s card data using TokenPay.js, you can charge the card or save the token for future use. Charges against the cards that are tokenized in the browser or mobile app, are <em>ONLY</em> made from your server.</p>
+
+<p>On your server, collect the token information and the form POST parameters submitted by your form.</p>
+
+<p>Now submit the token and parameters according to the <a href='https://www.dropbox.com/s/1tg479a9n8e3dvt/BridgeComm%20Communication%20Interface%20API%20Guide.pdf?dl=0'>BridgeComm Interface API Guide</a>, with the following substitutions:</p>
+
+<ul>
+<li><code>{transactionId}</code> - unique transaction ID generated by your backend for tracking purposes</li>
+<li><code>{requestDateTime}</code> - date and time of the transaction in <code>yyyMMddHHmmss</code> format</li>
+<li><code>{yourPrivateKey}</code> - your private API key</li>
+<li><code>{token}</code> - token delivered in the submission of your payment form</li>
+<li><code>{amountInPennies}</code> - transaction amount in pennies ($1.25 would be 125)</li>
+</ul>
+<h1 id='in-person-payments'>In-Person Payments</h1><h2 id='payguardian'>PayGuardian</h2>
+<blockquote>
+<p><a href='https://www.dropbox.com/s/31515dk9s1hptpu/BridgePay%20Gateway%20Certified%20Device%20Matrix.pdf?dl=0'>CERTIFIED DEVICES</a></p>
+</blockquote>
+
+<p>Point‐of‐Sale (POS) systems that process sensitive payment information are required to certify their payment applications to the Payment Application Data Security Standard (PA‐DSS). The addition of EMV certification and continued need for both encryption and tokenization has become a concern for both merchants and integrators. Instituting and maintaining these standards requires significant financial and employee resources in order to adhere to the Payments Card Industry Data Security Standards (PCI DSS) compliance requirements. Subsequently, any changes made in the POS system, may require a partial or full recertification, which increases the cost and time to market. Beyond has engaged these issues through our product line, the PayGuardian suite, to better serve the needs of our integrators and merchants.</p>
+
+<p>PayGuardian is a lightweight, highly secure client application that integrates seamlessly into POS applications. PayGuardian facilitates the transaction process by handling the collection and transmission of sensitive payment information as an out of scope PA-DSS solution, thereby offloading the certification responsibility from merchants and integrators. PayGuardian is EMV enabled, handles point to point encryption, and tokenizes all transactions to ensure transaction processing is seamless and secure.</p>
+<h2 id='payguardian-desktop'>PayGuardian Desktop</h2>
+<blockquote>
+<p><a href='https://www.dropbox.com/s/9mhfffnqknd2q7y/PayGuardian-2.4.4.zip?dl=0'>Download PayGuardian Desktop v 2.4.4</a></p>
+
+<p><a href='https://www.dropbox.com/s/2oczvikko1olz1a/PayGuardian%20Developer%20Guide.pdf?dl=0'>PayGuardian Desktop Developer Guide</a></p>
+
+<p><a href='https://www.dropbox.com/s/o7itaspp454c5al/PayGuardian%20Installation%20Guide%20v2.4.3.pdf?dl=0'>PayGuardian Desktop Installation Guide</a></p>
+
+<p><a href='https://www.dropbox.com/s/lq6l4lpmj05f29p/PayGuardian%20User%20Guide%20v2.4.1.pdf?dl=0'>PayGuardian Desktop User Guide</a></p>
+
+<p>Sample C# DLL integration:</p>
+</blockquote>
+<pre class="highlight csharp"><code><span class="k">private</span> <span class="k">void</span> <span class="nf">ProcessCreditCard_Click</span><span class="p">(</span><span class="kt">object</span> <span class="n">sender</span><span class="p">,</span> <span class="n">EventArgs</span> <span class="n">e</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="c1">// 1. First create a Payment Page</span>
+    <span class="n">hostName</span><span class="p">=</span><span class="n">hostname</span><span class="p">.</span><span class="n">Text</span><span class="p">;</span>
+    <span class="n">PaymentPage</span> <span class="n">pg</span><span class="p">=</span><span class="nf">newPaymentPage</span><span class="p">();</span>
+    <span class="n">PaymentRequest</span> <span class="n">paymentRequest</span><span class="p">=</span><span class="n">pg</span><span class="p">.</span><span class="n">PaymentRequest</span><span class="p">;</span>
+    <span class="n">paymentRequest</span><span class="p">.</span><span class="n">TenderType</span><span class="p">=</span><span class="n">PaymentRequest</span><span class="p">.</span><span class="nf">ParseTenderType</span><span class="p">(</span><span class="n">TenderType</span><span class="p">.</span><span class="n">Text</span><span class="p">);</span>
+    <span class="n">paymentRequest</span><span class="p">.</span><span class="n">TransType</span><span class="p">=</span><span class="n">PaymentRequest</span><span class="p">.</span><span class="nf">ParseTransType</span><span class="p">(</span><span class="n">TransType</span><span class="p">.</span><span class="n">Text</span><span class="p">);</span>
+
+    <span class="c1">// 2. Next, set the PayLink Properties</span>
+    <span class="err">#</span><span class="n">regionSetPayLinkProperties</span>
+
+    <span class="c1">// Set the only required field (Amount)</span>
+    <span class="n">paymentRequest</span><span class="p">.</span><span class="n">Amount</span> <span class="p">=</span> <span class="k">this</span><span class="p">.</span><span class="n">Amount</span><span class="p">.</span><span class="n">Text</span><span class="p">.</span><span class="nf">ToString</span><span class="p">();</span>
+
+    <span class="c1">// 3. Display the payment processing page</span>
+    <span class="n">ShowPageResult</span> <span class="n">result</span> <span class="p">=</span> <span class="k">null</span><span class="p">;</span>
+    <span class="k">try</span>
+    <span class="p">{</span>
+      <span class="n">Result</span> <span class="p">=</span> <span class="n">pg</span><span class="p">.</span><span class="nf">ShowPage</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="c1">// Error while processing payment</span>
+      <span class="n">MessageBox</span><span class="p">.</span><span class="nf">Show</span><span class="p">(</span><span class="s">"Error Processing Payment"</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="n">PaymentResponse</span> <span class="n">paymentResponse</span> <span class="p">=</span> <span class="n">pg</span><span class="p">.</span><span class="n">PaymentResponse</span><span class="p">;</span>
+
+    <span class="c1">// 4. Display the result of the transaction</span>
+    <span class="err">#</span><span class="n">region</span> <span class="n">Show</span> <span class="n">the</span> <span class="n">PayLink</span> <span class="n">Result</span>
+
+    <span class="nf">If</span> <span class="p">(</span><span class="n">result</span> <span class="p">!=</span> <span class="k">null</span> <span class="p">&amp;&amp;</span> <span class="n">result</span><span class="p">.</span><span class="n">code</span> <span class="p">==</span> <span class="n">ShowPageResultCode</span><span class="p">.</span><span class="n">OK</span><span class="p">)</span>
+
+   <span class="c1">//TO DO - finish</span>
+
+</code></pre>
+<p>PayGuardian Desktop (for Windows) comes with an executable installer file that integrators may incorporate into their Point-of-Sale system installation. A Windows object library has also been included to facilitate easy integrations with POS applications. The object library is accessible using Component Object Model (COM) or .NET technology.When invoked, PayGuardian displays a basic frame that encapsulates the browser, fetching and rendering the Virtual Terminal (VT)page. The object window is configurable, and integrators can brand the user interface using cascading style sheets. The VT object window holds focus, floating on top of all other running applications.</p>
 
 <aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+For development and testing, use this sandbox registration key: <b><code>H75RCGRV</code></b>. A new registration key will be required for live/production transaction processing.
 </aside>
-<h2 id='get-a-specific-kitten'>Get a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<h2 id='payguardian-ios-sdk'>PayGuardian iOS SDK</h2>
+<blockquote>
+<p><a href='https://www.dropbox.com/s/g340i0bsp4tjo01/PayGuardian-iOS-2.5.zip?dl=0'>iOS Framework</a></p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+<p><a href='https://www.dropbox.com/s/ffdc90z7thgnxw0/PayGuardian%20iOS%20Framework%20Developer%20Guide%20v2.5.0.pdf?dl=0'>iOS Developer Guide</a></p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
+<p><a href='https://www.dropbox.com/s/0wt5jp013fszfnd/PayGuardian-iOS-Test.zip?dl=0'>Test iOS App</a></p>
 
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<p>Create a BPNPaymentRequest object:</p>
+</blockquote>
+<pre class="highlight objective_c tab-objective_c"><code><span class="k">-</span><span class="p">(</span><span class="n">instancetype</span><span class="p">)</span> <span class="nf">initInvoiceNumber</span><span class="p">:(</span><span class="n">NSString</span> <span class="o">*</span><span class="n">_Nonnull</span><span class="p">)</span> <span class="n">invoiceNumber</span>
+<span class="n">pnRefNum</span><span class="o">:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="n">_Nullable</span><span class="p">)</span> <span class="n">pnRefNum</span> 
+<span class="n">amount</span><span class="o">:</span><span class="p">(</span><span class="n">NSDecimalNumber</span> <span class="o">*</span><span class="n">_Nullable</span><span class="p">)</span> <span class="n">amount</span> 
+<span class="n">tipAmount</span><span class="o">:</span><span class="p">(</span><span class="n">NSDecimalNumber</span> <span class="o">*</span><span class="n">_Nullable</span><span class="p">)</span> <span class="n">tipAmount</span> 
+<span class="n">cashBackAmount</span><span class="o">:</span><span class="p">(</span><span class="n">NSDecimalNumber</span> <span class="o">*</span><span class="n">_Nullable</span><span class="p">)</span> <span class="n">cashBackAmount</span> 
+<span class="n">tenderType</span><span class="o">:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="n">_Nonnull</span><span class="p">)</span> <span class="n">tenderType</span> 
+<span class="n">transactionType</span><span class="o">:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="n">_Nonnull</span><span class="p">)</span> <span class="n">transactionType</span> 
+<span class="n">username</span><span class="o">:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="n">_Nonnull</span><span class="p">)</span> <span class="n">username</span> 
+<span class="n">password</span><span class="o">:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="n">_Nonnull</span><span class="p">)</span> <span class="n">password</span> 
+<span class="n">merchantCode</span><span class="o">:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="n">_Nonnull</span><span class="p">)</span> <span class="n">merchantCode</span> 
+<span class="n">merchantAccountCode</span><span class="o">:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="n">_Nonnull</span><span class="p">)</span> <span class="n">merchantAccountCode</span> 
+<span class="n">paymentAccountNumber</span><span class="o">:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="n">_Nullable</span><span class="p">)</span> <span class="n">paymentAccountNumber</span> 
+<span class="n">token</span><span class="o">:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="n">_Nullable</span><span class="p">)</span> <span class="n">token</span> 
+<span class="n">expirationDate</span><span class="o">:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="n">_Nullable</span><span class="p">)</span> <span class="n">expirationDate</span> 
+<span class="n">terminalCommConfig</span><span class="o">:</span><span class="p">(</span><span class="n">TerminalCommConfig</span> <span class="o">*</span><span class="n">_Nonnull</span><span class="p">)</span> <span class="n">terminalCommConfig</span>
+<span class="n">industryType</span><span class="o">:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="n">_Nonnull</span><span class="p">)</span> <span class="n">industryType</span> 
+<span class="n">healthCareData</span><span class="o">:</span><span class="p">(</span><span class="n">BPNHealthCare</span> <span class="o">*</span><span class="n">_Nullable</span><span class="p">)</span> <span class="n">healthCareData</span> 
+<span class="n">bankAccountNumber</span><span class="o">:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="n">_Nullable</span><span class="p">)</span> <span class="n">bankAccountNumber</span>
+<span class="n">routingNumber</span><span class="o">:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="n">_Nullable</span><span class="p">)</span> <span class="n">routingNumber</span>
+<span class="n">partialApproval</span><span class="o">:</span><span class="p">(</span><span class="n">BOOL</span><span class="p">)</span> <span class="n">partialApproval</span>
+<span class="n">enableTpi</span><span class="o">:</span><span class="p">(</span><span class="n">BOOL</span><span class="p">)</span> <span class="n">enableTpi</span>
+<span class="n">signatureData</span><span class="o">:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="n">_Nullable</span><span class="p">)</span> <span class="n">signatureData</span>
+<span class="n">disableAmountConfirmation</span><span class="o">:</span><span class="p">(</span><span class="n">BOOL</span><span class="p">)</span> <span class="n">disableAmountConfirmation</span>
+<span class="n">testMode</span><span class="o">:</span><span class="p">(</span><span class="n">BOOL</span><span class="p">)</span> <span class="n">testMode</span><span class="p">;</span>
 </code></pre>
 <blockquote>
-<p>The above command returns JSON structured like this:</p>
+<p>Construct the PayGuardianTransaction object:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>This endpoint retrieves a specific kitten.</p>
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-<h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters'>URL Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>ID</td>
-<td>The ID of the kitten to retrieve</td>
-</tr>
-</tbody></table>
-<h2 id='delete-a-specific-kitten'>Delete a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -X DELETE
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<pre class="highlight objective_c tab-objective_c"><code><span class="nl">initWithPaymentRequest:</span><span class="p">(</span><span class="n">BPNPaymentRequest</span> <span class="o">*</span><span class="p">)</span><span class="n">request</span><span class="p">;</span>
 </code></pre>
 <blockquote>
-<p>The above command returns JSON structured like this:</p>
+<p>The run method with completion is:</p>
+</blockquote>
+<pre class="highlight objective_c tab-objective_c"><code><span class="k">-</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">runOnCompletion</span><span class="p">:(</span><span class="kt">void</span> <span class="p">(</span><span class="o">^</span><span class="p">)(</span><span class="n">BPNPayment</span> <span class="o">*</span><span class="n">payment</span><span class="p">,</span> <span class="n">NSError</span> <span class="o">*</span><span class="n">error</span><span class="p">))</span> <span class="n">onCompletion</span> <span class="n">onStateChanged</span><span class="o">:</span><span class="p">(</span><span class="kt">void</span> <span class="p">(</span><span class="o">^</span><span class="p">)(</span><span class="n">PayGuardianTransactionState</span> <span class="n">state</span><span class="p">))</span> <span class="n">onStateChanged</span><span class="p">;</span>
+</code></pre>
+<blockquote>
+<p>Implement a handler for the returned BPNPayment response:</p>
+</blockquote>
+<pre class="highlight objective_c tab-objective_c"><code><span class="n">BPNPayment</span><span class="p">.</span><span class="n">BridgeCommResponse</span><span class="o">:</span>
+<span class="n">transactionID</span><span class="o">:</span> <span class="mi">8888</span>
+<span class="n">requestType</span><span class="o">:</span> <span class="mo">004</span>
+<span class="n">responseCode</span><span class="o">:</span> <span class="mi">0</span>
+<span class="n">responseDescription</span><span class="o">:</span> <span class="n">Successful</span> <span class="n">Request</span>
+<span class="n">token</span><span class="o">:</span> <span class="mi">11110000000068530608</span>
+<span class="n">expirationDate</span><span class="o">:</span> <span class="mi">1225</span>
+<span class="n">authorizationCode</span><span class="o">:</span> <span class="mi">290144</span>
+<span class="n">originalReferenceNumber</span><span class="o">:</span> <span class="n">MCC7754741020</span>
+<span class="n">authorizedAmount</span><span class="o">:</span> <span class="err">$</span><span class="mi">5</span><span class="p">.</span><span class="mi">50</span>
+<span class="n">originalAmount</span><span class="o">:</span> <span class="err">$</span><span class="mi">5</span><span class="p">.</span><span class="mi">50</span>
+<span class="n">gatewayTransactionID</span><span class="o">:</span> <span class="mi">214973401</span>
+<span class="n">gatewayMessage</span><span class="o">:</span> <span class="n">A01</span> <span class="o">-</span><span class="n">Approved</span>
+<span class="n">internalMessage</span><span class="o">:</span> <span class="n">Approved</span><span class="o">:</span> <span class="mi">290144</span> <span class="p">(</span><span class="n">approval</span> <span class="n">code</span><span class="p">)</span>
+<span class="n">gatewayResult</span><span class="o">:</span> <span class="mo">00000</span>
+<span class="n">AVSMessage</span><span class="o">:</span>
+<span class="n">AVSResponse</span><span class="o">:</span>
+<span class="n">CVMessage</span><span class="o">:</span>
+<span class="n">CVResult</span><span class="o">:</span>
+<span class="n">transactionCode</span><span class="o">:</span> <span class="p">(</span><span class="n">null</span><span class="p">)</span>
+<span class="n">transactionDate</span><span class="o">:</span> <span class="mi">20161020</span>
+<span class="n">remainingAmount</span><span class="o">:</span> <span class="err">$</span><span class="mi">0</span><span class="p">.</span><span class="mo">00</span>
+<span class="n">ISOCountryCode</span><span class="o">:</span> <span class="p">(</span><span class="n">null</span><span class="p">)</span>
+<span class="n">ISOCurrencyCode</span><span class="o">:</span> <span class="n">USD</span>
+<span class="n">ISOTransactionDate</span><span class="o">:</span> <span class="mi">2016</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">20</span> <span class="mi">14</span><span class="o">:</span><span class="mi">32</span><span class="o">:</span><span class="mi">47</span><span class="p">.</span><span class="mi">86</span>
+<span class="n">ISORequestDate</span><span class="o">:</span> <span class="mi">2016</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">20</span> <span class="mi">14</span><span class="o">:</span><span class="mi">32</span><span class="o">:</span><span class="mi">47</span><span class="p">.</span><span class="mi">86</span>
+<span class="n">networkReferenceNumber</span><span class="o">:</span> <span class="n">MCC7754741020</span>
+<span class="n">merchantCategoryCode</span><span class="o">:</span>
+<span class="n">networkMerchantID</span><span class="o">:</span> <span class="mi">518564010126944</span>
+<span class="n">networkTerminalID</span><span class="o">:</span> <span class="n">PPB01</span><span class="p">.</span>
+<span class="n">cardType</span><span class="o">:</span> <span class="n">Mastercard</span>
+<span class="n">maskedPAN</span><span class="o">:</span> <span class="mi">5</span><span class="o">***********</span><span class="mo">060</span><span class="mi">8</span>
+<span class="n">responseTypeDescription</span><span class="o">:</span> <span class="n">sale</span>
+<span class="n">isCommercialCard</span><span class="o">:</span> <span class="n">False</span>
+<span class="n">streetMatchMessage</span><span class="o">:</span>
+<span class="n">secondsRemaining</span><span class="o">:</span> <span class="p">(</span><span class="n">null</span><span class="p">)</span>
+<span class="n">merchantCode</span><span class="o">:</span> <span class="p">(</span><span class="n">null</span><span class="p">)</span>
+<span class="n">merchantAccountCode</span><span class="o">:</span> <span class="p">(</span><span class="n">null</span><span class="p">)</span>
+<span class="n">merchantName</span><span class="o">:</span> <span class="p">(</span><span class="n">null</span><span class="p">)</span>
+<span class="n">receiptTagData</span><span class="o">:</span> <span class="p">(</span><span class="n">null</span><span class="p">)</span>
+<span class="n">issuerTagData</span><span class="o">:</span> <span class="p">(</span><span class="n">null</span><span class="p">)</span>
+<span class="n">applicationIdentifier</span><span class="o">:</span> <span class="p">(</span><span class="n">null</span><span class="p">)</span>
+<span class="n">terminalVerificationResults</span><span class="o">:</span> <span class="p">(</span><span class="n">null</span><span class="p">)</span>
+<span class="n">issuerApplicationData</span><span class="o">:</span> <span class="p">(</span><span class="n">null</span><span class="p">)</span>
+<span class="n">transactionStatusInformation</span><span class="o">:</span> <span class="p">(</span><span class="n">null</span><span class="p">)</span>
+</code></pre>
+<p>PayGuardian iOS is a lightweight, highly secure iOS framework library that integrates seamlessly into mPOS applications. PayGuardian iOS facilitates the transaction process by handling the collection and transmission of sensitive payment information as an out of scope PA-DSS solution, thereby offloading the certification responsibility from merchants and integrators. PayGuardian iOS is EMV enabled, handles point to point encryption, and tokenizes all transactions to ensure transaction processing is seamless and secure.</p>
+
+<p>Programmatically, a PayGuardian iOS transaction is comprised of a four step process:</p>
+
+<ul>
+<li>Create a BPNPaymentRequest object.</li>
+<li>Pass the BPNPaymentRequest object to the constructor of a PayGuardianTransaction object.</li>
+<li>Call the runOnCompletion method and provide an implementation for the completion.</li>
+<li>Implement a handler for the returned BPNPayment and/or NSError.</li>
+</ul>
+
+<aside class="success">
+For development and testing, use this sandbox registration key: <b><code>H75RCGRV</code></b>. A new registration key will be required for live/production transaction processing.
+</aside>
+<h2 id='payguardian-android-sdk'>PayGuardian Android SDK</h2>
+<blockquote>
+<p><a href='https://www.dropbox.com/s/zoa1s4n9s8cleob/PGAndroid-2.5.zip?dl=0'>PayGuardian for Android</a></p>
+
+<p><a href='https://www.dropbox.com/s/wem8vf780lffxfx/PayGuardian%20Android%20Developer%20Guide%20%20v2.5.0.pdf?dl=0'>Android Developer Guide</a></p>
+
+<p><a href='https://www.dropbox.com/s/35d2k95ltrrw7nm/App2AppSampleProject.zip?dl=0'>Android app-to-app sample project</a></p>
+
+<p>Java sample (App-to-App method):</p>
+</blockquote>
+<pre class="highlight java tab-java"><code><span class="kd">public</span> <span class="kt">void</span> <span class="nf">processTransaction</span><span class="o">(</span><span class="n">String</span> <span class="n">paymentRequestXml</span><span class="o">)</span>
+  <span class="o">{</span>
+    <span class="kd">final</span> <span class="kt">int</span> <span class="n">PAYGUARDIAN_REQUEST_CODE</span> <span class="o">=</span> <span class="mi">102</span><span class="o">;</span>
+    <span class="n">Intent</span> <span class="n">sendIntent</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Intent</span><span class="o">(</span><span class="n">android</span><span class="o">.</span><span class="na">content</span><span class="o">.</span><span class="na">Intent</span><span class="o">.</span><span class="na">ACTION_SEND</span><span class="o">);</span>
+    <span class="n">sendIntent</span><span class="o">.</span><span class="na">setType</span><span class="o">(</span><span class="s">"text/plain"</span><span class="o">);</span>
+    <span class="n">sendIntent</span><span class="o">.</span><span class="na">putExtra</span><span class="o">(</span><span class="n">Intent</span><span class="o">.</span><span class="na">EXTRA_TEXT</span><span class="o">,</span> <span class="n">paymentInputXml</span><span class="o">);</span>
+
+    <span class="n">PackageManager</span> <span class="n">pm</span> <span class="o">=</span> <span class="n">getApplicationContext</span><span class="o">().</span><span class="na">getPackageManager</span><span class="o">();</span>
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">ResolveInfo</span><span class="o">&gt;</span> <span class="n">activityList</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="na">queryIntentActivities</span><span class="o">(</span><span class="n">sendIntent</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+
+    <span class="k">for</span> <span class="o">(</span><span class="kd">final</span> <span class="n">ResolveInfo</span> <span class="n">app</span> <span class="o">:</span> <span class="n">activityList</span><span class="o">)</span>
+    <span class="o">{</span>
+      <span class="k">if</span> <span class="o">((</span><span class="n">app</span><span class="o">.</span><span class="na">activityInfo</span><span class="o">.</span><span class="na">name</span><span class="o">).</span><span class="na">contains</span><span class="o">(</span><span class="s">"ProcessSecurelyActivity"</span><span class="o">))</span>
+      <span class="o">{</span>
+        <span class="kd">final</span> <span class="n">ActivityInfo</span> <span class="n">activity</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="na">activityInfo</span><span class="o">;</span>
+        <span class="kd">final</span> <span class="n">ComponentName</span> <span class="n">name</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ComponentName</span><span class="o">(</span><span class="n">activity</span><span class="o">.</span><span class="na">applicationInfo</span><span class="o">.</span><span class="na">packageName</span><span class="o">,</span> <span class="n">activity</span><span class="o">.</span><span class="na">name</span><span class="o">);</span>
+
+        <span class="n">sendIntent</span><span class="o">.</span><span class="na">setComponent</span><span class="o">(</span><span class="n">name</span><span class="o">);</span>
+
+        <span class="n">startActivityForResult</span><span class="o">(</span><span class="n">sendIntent</span><span class="o">,</span> <span class="n">PAYGUARDIAN_REQUEST_CODE</span><span class="o">);</span>
+
+        <span class="k">break</span><span class="o">;</span>
+      <span class="o">}</span>
+    <span class="o">}</span>
+</code></pre>
+<p>PayGuardian Android is a lightweight, highly secure Android application that integrates seamlessly into mobile POS (mPOS) applications. PayGuardian Android facilitates the transaction process by handling the collection and transmission of sensitive payment information as an out of scope PA-DSS solution, thereby offloading the certification responsibility from merchants and integrators. PayGuardian Android is EMV enabled, handles point to point encryption, and tokenizes all transactions to ensure transaction processing is seamless and secure.</p>
+<h3 id='process-flow'>Process Flow</h3>
+<ul>
+<li>The mPOS application collects transaction data, such as the dollar amount, invoice number, tender type, transaction type, merchant account information, etc.</li>
+<li>The mPOS application constructs the transaction requesting an XML format upon the selection of the Process button.</li>
+<li>PayGuardian obtains the card information via the claiming of the mPOS device using the Device USB Host connection and validates the transaction request object.</li>
+<li>The mPOS device prompts to swipe or insert the card and transmits the card information to the PayGuardian application, which captures the card data as a swiped or EMV transaction respectively.</li>
+<li>PayGuardian constructs the payload request and transmits the transaction request to the Beyond Pay Gateway.</li>
+<li>PayGuardian transmits the transaction response returned from the Gateway back to the mPOS application.</li>
+<li>The mPOS application implementation responds accordingly to the transaction response.</li>
+</ul>
+
+<p>For the App-to-App integration method, the PayGuardian Android application is accessed by starting an activity with an intent which encapsulates a request payload.</p>
+
+<aside class="success">
+For development and testing, use this sandbox registration key: <b><code>H75RCGRV</code></b>. A new registration key will be required for live/production transaction processing.
+</aside>
+<h2 id='payguardian-cloud'>PayGuardian Cloud</h2>
+<blockquote>
+<p><a href='https://pgc.bridgepaynetsecuretx.com/'>PayGuardian Cloud API</a></p>
+
+<p><code>POST https://pgc.bridgepaynetsecuretest.com/req/payment</code></p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"deleted"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">":("</span><span class="w">
+</span><span class="s2">"locationID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your-locationID"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"terminalID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00000000-0000-0000-0000-000000000000"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your_user_name"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your_password"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"merchantAccountCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your_merchantAccountCode"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"merchantCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your_merchantCode"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UAT"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.00"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"softwareVendor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your_POS_name"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"tenderType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CREDIT"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"transType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SALE"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint deletes a specific kitten.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
-<p><code>DELETE http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters-2'>URL Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>ID</td>
-<td>The ID of the kitten to delete</td>
-</tr>
-</tbody></table>
-<h1 id='errors'>Errors</h1>
+<p>PayGuardian Cloud is designed for cloud-based Point-of-Sale systems, and delivers the same scope removal and easy EMV acceptance as other versions of PayGuardian. PayGuardian Cloud is operating system independent, and is installed on the merchant&#39;s router as a network appliance.</p>
+
 <aside class="notice">
-This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
+PayGuardian Cloud is currently in limited beta testing. <a href='mailto:BeyondPay@getBeyond.com'>Contact us</a> if you are interested!
 </aside>
+<h1 id='transaction-reporting'>Transaction Reporting</h1>
+<blockquote>
+<p><a href='https://www.dropbox.com/s/h7ih2g47w8b8v39/BridgePay%20Public%20Reporting%20API%20v1%200%201.pdf?dl=0'>Reporting Developer Guide</a></p>
 
-<p>The Kittn API uses the following error codes:</p>
+<p><a href='https://www.dropbox.com/s/epf9jhj5swi5q68/BridgePay_Reporting%20_API.zip?dl=0'>Reporting API (Visual Studio)</a></p>
 
+<p>Service: <a href='https://www.bridgepaynetsecuretest.com/Bridgepay.Reporting.API/ReportingAPI.svc'>https://www.bridgepaynetsecuretest.com/Bridgepay.Reporting.API/ReportingAPI.svc</a></p>
+
+<p>C# sample implementation:</p>
+</blockquote>
+<pre class="highlight csharp"><code><span class="k">class</span> <span class="nc">Program</span>
+<span class="p">{</span>
+  <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">ReportingAPI</span><span class="p">.</span><span class="n">Credentials</span> <span class="n">credentials</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ReportingAPI</span><span class="p">.</span><span class="nf">Credentials</span><span class="p">();</span>
+
+    <span class="n">credentials</span><span class="p">.</span><span class="n">UserName</span> <span class="p">=</span> <span class="s">"username"</span><span class="p">;</span>
+    <span class="n">credentials</span><span class="p">.</span><span class="n">Password</span> <span class="p">=</span> <span class="s">"password"</span><span class="p">;</span>
+
+    <span class="n">ReportingAPI</span><span class="p">.</span><span class="n">ReportingAPIV1Client</span> <span class="n">client</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ReportingAPI</span><span class="p">.</span><span class="nf">ReportingAPIV1Client</span><span class="p">();</span>
+    <span class="n">ReportingAPI</span><span class="p">.</span><span class="n">TransactionRowFilter</span> <span class="n">filter</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ReportingAPI</span><span class="p">.</span><span class="nf">TransactionRowFilter</span><span class="p">();</span>
+
+    <span class="n">filter</span><span class="p">.</span><span class="n">MerchantID</span> <span class="p">=</span> <span class="m">2000</span><span class="p">;</span>
+    <span class="n">filter</span><span class="p">.</span><span class="n">MerchantAccountID</span> <span class="p">=</span> <span class="m">2001</span><span class="p">;</span>
+
+    <span class="n">filter</span><span class="p">.</span><span class="n">DateRangeFrom</span> <span class="p">=</span> <span class="n">DateTime</span><span class="p">.</span><span class="n">Now</span><span class="p">.</span><span class="nf">AddMonths</span><span class="p">(-</span><span class="m">2</span><span class="p">);</span>
+    <span class="n">filter</span><span class="p">.</span><span class="n">DateRangeTo</span> <span class="p">=</span> <span class="n">DateTime</span><span class="p">.</span><span class="n">Now</span><span class="p">;</span>
+
+    <span class="n">filter</span><span class="p">.</span><span class="n">Skip</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
+    <span class="n">filter</span><span class="p">.</span><span class="n">Take</span> <span class="p">=</span> <span class="m">20</span><span class="p">;</span>
+
+    <span class="n">ReportingAPI</span><span class="p">.</span><span class="n">TransactionSet</span> <span class="n">ts</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ReportingAPI</span><span class="p">.</span><span class="nf">TransactionSet</span><span class="p">();</span>
+
+    <span class="n">Ts</span> <span class="p">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">PublicGetTransactionsByFilter</span><span class="p">(</span><span class="n">credentials</span><span class="p">,</span> <span class="n">filter</span><span class="p">);</span>
+
+    <span class="k">foreach</span> <span class="p">(</span><span class="n">ReportingAPI</span><span class="p">.</span><span class="n">TransactionRow</span> <span class="n">tr</span> <span class="k">in</span> <span class="n">ts</span><span class="p">.</span><span class="n">TransactionList</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"Transaction ID: "</span> <span class="p">+</span> <span class="n">tr</span><span class="p">.</span><span class="n">TransactionId</span><span class="p">);</span> 
+      <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"Sale Date / Time: "</span> <span class="p">+</span> <span class="n">tr</span><span class="p">.</span><span class="n">SaleDateTime</span><span class="p">);</span> 
+      <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"Merchant Name: "</span> <span class="p">+</span> <span class="n">tr</span><span class="p">.</span><span class="n">MerchantName</span><span class="p">);</span> 
+      <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"Card Holder Name: "</span> <span class="p">+</span> <span class="n">tr</span><span class="p">.</span><span class="n">FirstName</span> <span class="p">+</span> <span class="s">" "</span> <span class="p">+</span> <span class="n">tr</span><span class="p">.</span><span class="n">LastName</span><span class="p">);</span> 
+      <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"Invoice Number: "</span> <span class="p">+</span> <span class="n">tr</span><span class="p">.</span><span class="n">InvoiceNumber</span><span class="p">);</span> 
+      <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"Auth Code: "</span> <span class="p">+</span> <span class="n">tr</span><span class="p">.</span><span class="n">AuthCode</span><span class="p">);</span> 
+      <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"Requested Amount: "</span> <span class="p">+</span> <span class="n">tr</span><span class="p">.</span><span class="n">RequestedAmount</span><span class="p">);</span> 
+      <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"Authorized Amount: "</span> <span class="p">+</span> <span class="n">tr</span><span class="p">.</span><span class="n">AuthorizedAmount</span><span class="p">);</span> 
+      <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"Remaining Amount: "</span> <span class="p">+</span> <span class="n">tr</span><span class="p">.</span><span class="n">RemainingAmount</span><span class="p">);</span> 
+      <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"Settle Anmount: "</span> <span class="p">+</span> <span class="n">tr</span><span class="p">.</span><span class="n">SettleAmnount</span><span class="p">);</span> 
+      <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"--------------------------------------------"</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<p>The Beyond Pay Reporting API provides integrators with the ability to request transaction data via a SOAP request made to the service.  The user must provide data they wish to use as a filter in the parameter to the SOAP method and will receive a response containing the data they requested.</p>
+
+<p>The Reporting API provides three data contracts.  One for the incoming request and two for the response to the request.  When making a request, the consumer must provide a TransctionRowFilter object. When receiving the response, the consumer will get a TransactionSet object which will contain a collection of TransactionRow objects.  The data contracts are described in more detail below.</p>
+<h3 id='transactionrowfilter'>TransactionRowFilter</h3>
 <table><thead>
 <tr>
-<th>Error Code</th>
-<th>Meaning</th>
+<th>Parameter Name</th>
+<th>Data Type</th>
+<th>Validations</th>
+<th>Comparison Type</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>400</td>
-<td>Bad Request -- Your request is invalid.</td>
+<td>AmountRangeFrom</td>
+<td>Implied Integer</td>
+<td>Optional</td>
+<td>GTE</td>
 </tr>
 <tr>
-<td>401</td>
-<td>Unauthorized -- Your API key is wrong.</td>
+<td>AmountRangeTo</td>
+<td>Implied Integer</td>
+<td>Optional</td>
+<td></td>
 </tr>
 <tr>
-<td>403</td>
-<td>Forbidden -- The kitten requested is hidden for administrators only.</td>
+<td>AuthorizationCode</td>
+<td>String</td>
+<td>Optional, Exact Match</td>
+<td>EQUIV</td>
 </tr>
 <tr>
-<td>404</td>
-<td>Not Found -- The specified kitten could not be found.</td>
+<td>BatchID</td>
+<td>Integer</td>
+<td>Optional</td>
+<td>EQUIV</td>
 </tr>
 <tr>
-<td>405</td>
-<td>Method Not Allowed -- You tried to access a kitten with an invalid method.</td>
+<td>CardBrand</td>
+<td>String</td>
+<td>Optional, Must match known card brands</td>
+<td>EQUIV</td>
 </tr>
 <tr>
-<td>406</td>
-<td>Not Acceptable -- You requested a format that isn&#39;t json.</td>
+<td>CardholderFirstName</td>
+<td>String</td>
+<td>Optional, Exact Match</td>
+<td>EQUIV</td>
 </tr>
 <tr>
-<td>410</td>
-<td>Gone -- The kitten requested has been removed from our servers.</td>
+<td>CardholderLastName</td>
+<td>String</td>
+<td>Optional, Partial Match</td>
+<td>CONTAINS</td>
 </tr>
 <tr>
-<td>418</td>
-<td>I&#39;m a teapot.</td>
+<td>ClerkId</td>
+<td>String</td>
+<td>Optional, Exact Match</td>
+<td>EQUIV</td>
 </tr>
 <tr>
-<td>429</td>
-<td>Too Many Requests -- You&#39;re requesting too many kittens! Slow down!</td>
+<td>CustomerNumber</td>
+<td>String</td>
+<td>Optional, Exact Match</td>
+<td>EQUIV</td>
 </tr>
 <tr>
-<td>500</td>
-<td>Internal Server Error -- We had a problem with our server. Try again later.</td>
+<td>DateRangeFrom</td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
-<td>503</td>
-<td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
+<td>DateRangeTo</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>EndPartialAccountNumber</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ExcludeTransResults</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ExcludeVoid</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ID</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>InvoiceNumber</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>MerchantAccountId</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>MerchantId</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>PaymentMethodID</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>PurchaseOrderNumber</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ResellerID</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ResponseCode</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>SettlementStatus</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Skip</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Take</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>TransactionSourceIP</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>TransactionStatus</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>TransResults</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p>The TransResults field works by mapping the BridgeComm 5-digit response code back to the gateway response code (the ResponseCode field in this contract).  In some cases, more than one mapping may exist for a given code.  It is recommended that you use the ResponseCode field for more granular filtering. The ExcludeTransResults field can modify the behavior of the TransResults field by establishing a “not in” condition.</p>
+<h3 id='transactionset'>TransactionSet</h3>
+<p>TODO: finish</p>
+<h3 id='transactionrow'>TransactionRow</h3>
+<p>TODO: finish</p>
+<h1 id='response-codes'>Response Codes</h1><h2 id='payguardian-response-codes'>PayGuardian Response Codes</h2>
+<table><thead>
+<tr>
+<th>Response Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>0</td>
+<td>Approved</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Declined</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Error</td>
+</tr>
+<tr>
+<td>12</td>
+<td>EMV Chip Declined</td>
+</tr>
+</tbody></table>
+<h2 id='gateway-response-codes'>Gateway Response Codes</h2>
+<table><thead>
+<tr>
+<th>Response Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>00000</td>
+<td>Successful request</td>
+</tr>
+<tr>
+<td>00001</td>
+<td>Partial Authorization</td>
+</tr>
+<tr>
+<td>TODO</td>
+<td>FINISH TABLE + include A01 codes</td>
+</tr>
+</tbody></table>
+<h2 id='avs-response-codes'>AVS Response Codes</h2>
+<table><thead>
+<tr>
+<th>Response Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>A</td>
+<td>Street addresses match, but postal/ZIP does not or was not provided</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Street addresses match, but postal/ZIP code is not verified due to incompatible formats</td>
+</tr>
+<tr>
+<td>TODO</td>
+<td>FINISH TABLE</td>
+</tr>
+</tbody></table>
+<h2 id='cvv-response-codes'>CVV Response Codes</h2>
+<table><thead>
+<tr>
+<th>Response Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>(blank)</td>
+<td>CVV was not verified</td>
+</tr>
+<tr>
+<td>1</td>
+<td>CVV failed verification</td>
+</tr>
+<tr>
+<td>TODO</td>
+<td>FINISH TABLE</td>
+</tr>
+</tbody></table>
+<h1 id='testing-amp-certification'>Testing &amp; Certification</h1><h2 id='certification'>Certification</h2>
+<p>When you are finished developing your interface to one of the Beyond Pay solutions, please <a href='mailto:BeyondPay@getBeyond.com'>contact us</a> to get certified and obtain your production keys!</p>
+<h2 id='test-cards-and-checks'>Test Cards and Checks</h2>
+<p>You can use the following card numbers for testing. CVV numbers are 1234 or 1111 for Amex; all others are 111 or 999.</p>
+
+<table><thead>
+<tr>
+<th>Card Type</th>
+<th>Card Brand</th>
+<th>Card Number</th>
+<th>Expiration Date</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Credit</td>
+<td>Visa</td>
+<td>4111111111111111</td>
+<td>10/25</td>
+</tr>
+<tr>
+<td>Credit</td>
+<td>MasterCard</td>
+<td>5499740000000057</td>
+<td>10/25</td>
+</tr>
+<tr>
+<td>Credit</td>
+<td>Discover</td>
+<td>6011000991001201</td>
+<td>10/25</td>
+</tr>
+<tr>
+<td>Credit</td>
+<td>Amex</td>
+<td>371449635392376</td>
+<td>10/25</td>
+</tr>
+<tr>
+<td>Debit</td>
+<td>Visa</td>
+<td>4217651111111119</td>
+<td>10/25</td>
+</tr>
+<tr>
+<td>Debit</td>
+<td>MasterCard</td>
+<td>5149612222222229</td>
+<td>10/25</td>
+</tr>
+</tbody></table>
+
+<p>The following information may be used for ACH / eCheck testing:</p>
+
+<table><thead>
+<tr>
+<th>Bank Account Number</th>
+<th>Routing Number</th>
+<th>Account Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>4099999992</td>
+<td>021000021</td>
+<td>Checking</td>
+</tr>
+</tbody></table>
+<h2 id='trigger-amounts'>Trigger Amounts</h2>
+<p>As part of your development and testing efforts, the amount ranges specified below can be used to trigger specific response codes from the server. These test ranges may be used with any valid card number.</p>
+<h3 id='card-response-triggers'>Card Response Triggers</h3>
+<table><thead>
+<tr>
+<th>Amount</th>
+<th>Response Code</th>
+<th>Response Message</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>0.01 - 0.99</td>
+<td>D01</td>
+<td>Denied by customer&#39;s bank (Do Not Honor)</td>
+</tr>
+<tr>
+<td>1.00</td>
+<td>A01</td>
+<td>Approved</td>
+</tr>
+<tr>
+<td>1.01 - 4.98</td>
+<td>D01</td>
+<td>Denied by customer&#39;s bank (Do Not Honor)</td>
+</tr>
+<tr>
+<td>4.99</td>
+<td>20002</td>
+<td>Internal ServerError</td>
+</tr>
+<tr>
+<td>5.00 - 69.99</td>
+<td>A01</td>
+<td>Approved</td>
+</tr>
+<tr>
+<td>70.00 - 79.99</td>
+<td>D05</td>
+<td>Invalid card number</td>
+</tr>
+<tr>
+<td>80.00 - 89.99</td>
+<td>D10</td>
+<td>Card reported lost/stolen</td>
+</tr>
+<tr>
+<td>90.00 - 99.99</td>
+<td>D30</td>
+<td>Call for authorization</td>
+</tr>
+<tr>
+<td>100.00 - 109.99</td>
+<td>D04</td>
+<td>Pick up card</td>
+</tr>
+<tr>
+<td>110.00 - 119.99</td>
+<td>D08</td>
+<td>Invalid security code</td>
+</tr>
+<tr>
+<td>120.00 - 129.99</td>
+<td>D03</td>
+<td>Insufficient funds</td>
+</tr>
+<tr>
+<td>130.00 - 139.99</td>
+<td>E02</td>
+<td>Processing network unavailable</td>
+</tr>
+<tr>
+<td>140.00 - 149.99</td>
+<td>E09</td>
+<td>Internal ServerError</td>
+</tr>
+<tr>
+<td>150.00 - 159.99</td>
+<td>A05</td>
+<td>Partially approved [approved amount will be $10 less than the requested amount]</td>
+</tr>
+<tr>
+<td>170.00 - 181.99</td>
+<td>A01</td>
+<td>Approved</td>
+</tr>
+<tr>
+<td>182.00 - 1999.99</td>
+<td>D01</td>
+<td>Denied by customer&#39;s bank (Do Not Honor)</td>
+</tr>
+</tbody></table>
+<h3 id='ach-echeck-response-triggers'>ACH/eCheck Response Triggers</h3>
+<table><thead>
+<tr>
+<th>Amount</th>
+<th>Response Code</th>
+<th>Response Message</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>170.00 - 171.99</td>
+<td>C01</td>
+<td>Customer&#39;s account number is incorrect</td>
+</tr>
+<tr>
+<td>172.00 - 173.99</td>
+<td>C02</td>
+<td>Customer&#39;s routing number is incorrect</td>
+</tr>
+<tr>
+<td>174.00 - 175.99</td>
+<td>C03</td>
+<td>Customer&#39;s routing number and DFI account numbers are incorrect</td>
+</tr>
+<tr>
+<td>176.00 - 177.99</td>
+<td>C04</td>
+<td>Customer&#39;s name is incorrect</td>
+</tr>
+<tr>
+<td>178.00 - 179.00</td>
+<td>C05</td>
+<td>Customer&#39;s account type (Savings/Checking) is incorrect</td>
+</tr>
+<tr>
+<td>180.00 - 181.99</td>
+<td>C06</td>
+<td>Account number is incorrect and transaction is being routed to the wrong type of account</td>
+</tr>
+</tbody></table>
+<h3 id='avs-response-triggers'>AVS Response Triggers</h3>
+<table><thead>
+<tr>
+<th>ZIP Code</th>
+<th>AVS Response Code</th>
+<th>AVS Response Message</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>11111</td>
+<td>00</td>
+<td>AVS Error - Retry, System unavailable, or Timed out</td>
+</tr>
+<tr>
+<td>22222</td>
+<td>46</td>
+<td>Street address doesn&#39;t match, 5-digit ZIP matches</td>
+</tr>
+<tr>
+<td>33333</td>
+<td>43</td>
+<td>Street address not available (not verified), ZIP matches</td>
+</tr>
+<tr>
+<td>44444</td>
+<td>40</td>
+<td>Address failed</td>
+</tr>
+<tr>
+<td>55555</td>
+<td>4F</td>
+<td>Street address and ZIP match</td>
+</tr>
+</tbody></table>
+<h3 id='refund-quot-blind-credit-quot-response-triggers'>Refund (&quot;Blind Credit&quot;) Response Triggers</h3>
+<table><thead>
+<tr>
+<th>Amount</th>
+<th>Response Code</th>
+<th>Response Message</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>0.01 - 4.99</td>
+<td>D01</td>
+<td>Denied by customer&#39;s bank (Do Not Honor)</td>
+</tr>
+<tr>
+<td>5.00 - 69.99</td>
+<td>A02</td>
+<td>Credit Posted</td>
+</tr>
+<tr>
+<td>70.00+</td>
+<td>D01</td>
+<td>Denied by customer&#39;s bank (Do Not Honor)</td>
 </tr>
 </tbody></table>
 
       </div>
       <div class="dark-box">
-          <div class="lang-selector">
-                <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="ruby">ruby</a>
-                <a href="#" data-language-name="python">python</a>
-                <a href="#" data-language-name="javascript">javascript</a>
-          </div>
       </div>
     </div>
   </body>
