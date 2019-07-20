@@ -302,7 +302,7 @@
           </li>
       </ul>
         <ul class="toc-footer">
-            <li><a href='mailto:BeyondPay@getBeyond.com'>Get an API Key</a></li>
+            <li><a href='https://forms.gle/AMxdRZTsS6skq2DEA'>Get an API Key</a></li>
             <li>______________</li>
             <li><a href='https://www.getbeyond.com/'>www.getbeyond.com</a></li>
             <li>©2019 Above & Beyond - Business Tools and Services for Entrepreneurs, Inc. All Rights Reserved.</li>
@@ -318,18 +318,18 @@
 <p><a href="mailto:BeyondPay@getBeyond.com">Get your API keys</a> and get moving!</p>
 </blockquote>
 
-<p>Welcome to the Beyond Pay Gateway API! Beyond Pay is a powerful gateway that enables you to securely accept many different payment types. Plus, by processing through Beyond Pay, you are supporting Beyond&#39;s commitment to our philanthropic cause.</p>
+<p>Welcome to the Beyond Pay Gateway API! Beyond Pay is a powerful gateway that enables you to securely accept many different payment types. Plus, by processing through Beyond Pay, you help put disadvantaged kids through college just by getting paid!</p>
 
-<p>The primary integration options offered by the Beyond Pay Gateway include:</p>
+<p>The primary integration options offered by the Beyond Pay platform include:</p>
 
 <ul>
-<li><strong>TokenPay</strong> – is an extension of Beyond Pay that combines client-side and server-side technologies for PCI-compliant online or mobile payment capture.</li>
+<li><strong>TokenPay.js</strong> – is an extension of Beyond Pay that combines client-side and server-side technologies for PCI-compliant online payment capture</li>
+<li><strong>Beyond Pay API</strong> - a set of robust web service APIs offering support for credit cards, ACH/checks, tokenization, and more</li>
 <li><strong>PayGuardian</strong> – a lightweight middleware application that integrates seamlessly into Point of Sale (POS) software and facilitates the secure collection of cardholder data insulating the integrator from the scope of PA-DSS and the requirements of EMV certification</li>
-<li><strong>BridgeComm</strong> – a set of robust web service APIs for payment processing</li>
 </ul>
 <h1 id='online-payments'>Online Payments</h1><h2 id='getting-started'>Getting Started</h2>
 <blockquote>
-<p>To get started, include this script on your checkout page:</p>
+<p>To get started, include these scripts on your checkout page:</p>
 </blockquote>
 <pre class="highlight html tab-html"><code><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span> 
 <span class="nt">&lt;script
@@ -342,7 +342,7 @@
 <pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">tokenpay</span> <span class="o">=</span> <span class="nx">TokenPay</span><span class="p">(</span><span class="s1">'your-public-key'</span><span class="p">);</span>
 </code></pre>
 <blockquote>
-<p>Replace <code>your-public-key</code> with your publishable public key.</p>
+<p>Replace <code>your-public-key</code> with your publishable <a href='https://forms.gle/AMxdRZTsS6skq2DEA'>public key</a>.</p>
 </blockquote>
 
 <p>TokenPay maximizes the user experience by allowing for the capture of sensitive card data within the payment form of the merchant’s website or mobile application. The consumer remains on the merchant’s payment page at all times during the checkout process.</p>
@@ -370,7 +370,7 @@
 </code></pre>
 <p>TokenPay.js is the JavaScript library for building online or mobile checkout flows with Beyond Pay Gateway. With it, you can collect sensitive data from the cardholder and create tokens for securely sending the data to your server.</p>
 
-<p>TokenPay.js provides a ready-made UI component for collecting the sensitive card data from the user. TokenPay.js then tokenizes the information without ever having to touch your server.</p>
+<p>TokenPay.js provides a ready-made UI component for collecting the sensitive card data from the user. TokenPay.js then tokenizes the information without it ever having to touch your server.</p>
 
 <p>The TokenPay.js UI component includes:</p>
 
@@ -384,7 +384,7 @@
 <p>All submission of payment information using TokenPay.js is made via a secure HTTPS connection. However, to protect yourself from man-in-the-middle attacks and to prevent your users from experiencing mixed content warnings in their browser, you <b>MUST</b> serve the page with your payment form over HTTPS.</p>
 
 <aside class="notice">
-You must replace <code>your-public-key</code> with your publishable public API key.
+You must replace <code>your-public-key</code> with your publishable <a href='https://forms.gle/AMxdRZTsS6skq2DEA'>public API key</a>.
 </aside>
 <h2 id='create-a-payment-form'>Create a Payment Form</h2>
 <blockquote>
@@ -447,9 +447,47 @@ You must replace <code>your-public-key</code> with your publishable public API k
   <span class="p">});</span>
 <span class="p">});</span>
 </code></pre>
-<p>The card data collected by the TokenPay element is converted into a token. If there are any errors in the collection of the card data or creation of the token, information is automatically displayed in the <code>errorElement</code> of your payment form.</p>
+<p>The card data collected by the TokenPay element is posted from the client browser to Beyond Pay Gateway where it is converted into a token. If there are any errors in the collection of the card data or creation of the token, information is automatically displayed in the <code>errorElement</code> of your payment form.</p>
+
+<p>The token is stored as a hidden input value and passed to your server on form submission.</p>
 <h2 id='create-a-sale-transaction'>Create a Sale Transaction</h2>
 <blockquote>
+<p>With the token and other form fields obtained, now construct the XML payload:</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;requestHeader&gt;</span>
+    <span class="nt">&lt;ClientIdentifier&gt;</span>SOAP<span class="nt">&lt;/ClientIdentifier&gt;</span>
+    <span class="nt">&lt;TransactionID&gt;</span>{transactionId}<span class="nt">&lt;/TransactionID&gt;</span>
+    <span class="nt">&lt;RequestType&gt;</span>004<span class="nt">&lt;/RequestType&gt;</span>
+    <span class="nt">&lt;RequestDateTime&gt;</span>{requestDateTime}<span class="nt">&lt;/RequestDateTime&gt;</span>
+    <span class="nt">&lt;PrivateKey&gt;</span>{yourPrivateKey}<span class="nt">&lt;/PrivateKey&gt;</span>
+    <span class="nt">&lt;AuthenticationTokenId&gt;</span>{token}<span class="nt">&lt;/AuthenticationTokenId&gt;</span>
+    <span class="nt">&lt;requestMessage&gt;</span>                                        
+        <span class="nt">&lt;SoftwareVendor&gt;</span>{yourSoftwareName}<span class="nt">&lt;/SoftwareVendor&gt;</span>
+        <span class="nt">&lt;TransIndustryType&gt;</span>EC<span class="nt">&lt;/TransIndustryType&gt;</span>
+        <span class="nt">&lt;TransactionType&gt;</span>sale<span class="nt">&lt;/TransactionType&gt;</span>
+        <span class="nt">&lt;AcctType&gt;</span>R<span class="nt">&lt;/AcctType&gt;</span>
+        <span class="nt">&lt;HolderType&gt;</span>P<span class="nt">&lt;/HolderType&gt;</span>
+        <span class="nt">&lt;Amount&gt;</span>{amountInCents}<span class="nt">&lt;/Amount&gt;</span>
+        <span class="nt">&lt;CurrencyCode&gt;</span>USD<span class="nt">&lt;/CurrencyCode&gt;</span>
+    <span class="nt">&lt;/requestMessage&gt;</span>
+<span class="nt">&lt;/requestHeader&gt;</span>';
+
+</code></pre>
+<blockquote>
+<p>Encode the XML payload in Base-64 and package it within a SOAP envelope:</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;soapenv:Envelope</span> <span class="na">xmlns:soapenv=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> <span class="na">xmlns:req=</span><span class="s">"http://bridgepaynetsecuretx.com/requesthandler"</span><span class="nt">&gt;</span>
+                    <span class="nt">&lt;soapenv:Header/&gt;</span>
+                        <span class="nt">&lt;soapenv:Body&gt;</span>
+                            <span class="nt">&lt;req:ProcessRequest&gt;</span>
+                                <span class="nt">&lt;req:requestMsg&gt;</span>{Base-64 encoded XML payload}<span class="nt">&lt;/req:requestMsg&gt;</span>
+                            <span class="nt">&lt;/req:ProcessRequest&gt;</span>
+                        <span class="nt">&lt;/soapenv:Body&gt;</span>
+                    <span class="nt">&lt;/soapenv:Envelope&gt;</span>
+</code></pre>
+<blockquote>
+<p>POST the SOAP envelope to the appropriate endpoint:</p>
+
 <p><b>Sandbox (Testing):</b></p>
 </blockquote>
 <pre class="highlight html tab-html"><code>https://api-test.getbeyondpay.com/PaymentService/RequestHandler.svc
@@ -459,38 +497,38 @@ You must replace <code>your-public-key</code> with your publishable public API k
 </blockquote>
 <pre class="highlight html tab-html"><code>https://api.getbeyondpay.com/PaymentService/RequestHandler.svc
 </code></pre>
-<blockquote>
-<p>The following XML sample message is to be posted to the <code>RequestHandler.postRequest</code> method, according to the <a href='https://www.dropbox.com/s/1tg479a9n8e3dvt/BridgeComm%20Communication%20Interface%20API%20Guide.pdf?dl=0'>BridgeComm Interface API Guide</a>:</p>
-</blockquote>
-<pre class="highlight xml tab-xml"><code><span class="nt">&lt;requestHeader&gt;&lt;ClientIdentifier&gt;</span>SOAP<span class="nt">&lt;/ClientIdentifier&gt;</span>
-<span class="nt">&lt;TransactionId&gt;</span>{transactionId}<span class="nt">&lt;/TransactionId&gt;</span>
-<span class="nt">&lt;RequestDateTime&gt;</span>{requestDateTime}<span class="nt">&lt;/RequestDateTime&gt;</span>
-<span class="nt">&lt;PrivateKey&gt;</span>{yourPrivateKey}<span class="nt">&lt;/PrivateKey&gt;</span>
-<span class="nt">&lt;AuthenticationTokenId&gt;</span>{token}<span class="nt">&lt;/AuthenticationTokenId&gt;</span>
-<span class="nt">&lt;RequestType&gt;</span>004<span class="nt">&lt;/RequestType&gt;</span>
-<span class="nt">&lt;requestMessage&gt;</span> 
-<span class="nt">&lt;TransIndustryType&gt;</span>EC<span class="nt">&lt;/TransIndustryType&gt;</span>
-<span class="nt">&lt;TransactionType&gt;</span>sale<span class="nt">&lt;/TransactionType&gt;</span> 
-<span class="nt">&lt;Amount&gt;</span>{amountInPennies}<span class="nt">&lt;/Amount&gt;</span> 
-<span class="nt">&lt;HolderType&gt;</span>P<span class="nt">&lt;/HolderType&gt;</span> 
-<span class="nt">&lt;AcctType&gt;</span>R<span class="nt">&lt;/AcctType&gt;</span> 
-<span class="nt">&lt;CurrencyCode&gt;</span>USD<span class="nt">&lt;/CurrencyCode&gt;</span> 
-<span class="nt">&lt;/requestMessage&gt;</span>
-<span class="nt">&lt;/requestHeader&gt;</span>
-</code></pre>
-<p>Once you have securely collected and tokenized your user’s card data using TokenPay.js, you can charge the card or save the token for future use. Charges against the cards that are tokenized in the browser or mobile app, are <em>ONLY</em> made from your server.</p>
+<p>Once you have securely collected and tokenized your user’s card data using TokenPay.js, you can charge the card or save the token for future use. Charges against cards that are tokenized in the browser using TokenPay.js must <em>ONLY</em> made from your server.</p>
 
 <p>On your server, collect the token information and the form POST parameters submitted by your form.</p>
 
-<p>Now submit the token and parameters according to the <a href='https://www.dropbox.com/s/1tg479a9n8e3dvt/BridgeComm%20Communication%20Interface%20API%20Guide.pdf?dl=0'>BridgeComm Interface API Guide</a>, with the following substitutions:</p>
+<p>Now submit the token and parameters according to the <a href='https://drive.google.com/file/d/1wH6xioSc2x2itloTQfoYcD3CQ1TtvUmi/view?usp=sharing'>Beyond Pay Gateway API Guide</a>, with the following substitutions:</p>
 
 <ul>
-<li><code>{transactionId}</code> - unique transaction ID generated by your backend for tracking purposes</li>
+<li><code>{transactionId}</code> - unique transaction ID generated by your application for tracking purposes</li>
 <li><code>{requestDateTime}</code> - date and time of the transaction in <code>yyyMMddHHmmss</code> format</li>
-<li><code>{yourPrivateKey}</code> - your private API key</li>
+<li><code>{yourPrivateKey}</code> - your private API key, obtainable <a href='https://forms.gle/AMxdRZTsS6skq2DEA'>here.</a></li>
 <li><code>{token}</code> - token delivered in the submission of your payment form</li>
-<li><code>{amountInPennies}</code> - transaction amount in pennies ($1.25 would be 125)</li>
+<li><code>{amountInCents}</code> - transaction amount in cents ($1.25 would be 125)</li>
+<li><code>{yourSoftwareName}</code> - the name and version number of your software application</li>
 </ul>
+
+<p>After your transaction has been successfully submitted to the gateway, make sure you inspect the response message. Specifically, look at:</p>
+
+<ul>
+<li><code>ResponseCode</code> - a 5 digit response code indicating the status of the transaction request</li>
+<li><code>ResponseDescription</code>- a verbose description of the ResponseCode</li>
+<li><code>GatewayResult</code> - an additional response code that may provide additional information on the status of the transaction</li>
+<li><code>GatewayMessage</code> - a verbose description of the GatewayResult</li>
+<li><code>AVSResult</code> - a code indicating the status of the Address Verification System request, if any</li>
+<li><code>AVSMessage</code> - a verbose description of the AVSResult code meaning</li>
+<li><code>CVResult</code> - a code indicating the status of the Card Security Code (aka CVV2, CID) sent in the request message</li>
+<li><code>CVMessage</code> - a verbose description of the CVResult code meaning</li>
+<li><code>Token</code> - a non-sensitive representation of the card number used in the transaction. The last four digits are the same as the last four digits of the card number. This value can be persisted and used for future recurring transactions from the same cardholder. </li>
+</ul>
+
+<aside class="warning">
+You should always inspect the AVSResult and CVResult fields as these can be good indicators of potential fraud. If you see a AVSResult or CVResult code that you do not want to accept because it may be too risky (such as "No Match" on the submitted Zip code), then you should submit a void transaction to cancel the authorization and advise the cardholder that their transaction has been declined.
+</aside>
 <h1 id='in-person-payments'>In-Person Payments</h1><h2 id='payguardian'>PayGuardian</h2>
 <blockquote>
 <p><a href='https://www.dropbox.com/s/31515dk9s1hptpu/BridgePay%20Gateway%20Certified%20Device%20Matrix.pdf?dl=0'>CERTIFIED DEVICES</a></p>
