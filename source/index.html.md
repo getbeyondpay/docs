@@ -230,7 +230,7 @@ Now submit the token and parameters according to the <a href='https://drive.goog
 * `{yourSoftwareName}` - the name and version number of your software application
 
 After your transaction has been successfully submitted to the gateway, make sure you inspect the response message. Specifically, look at:
-
+ 
 * `ResponseCode` - a 5 digit response code indicating the status of the transaction request
 * `ResponseDescription`- a verbose description of the ResponseCode
 * `GatewayResult` - an additional response code that may provide additional information on the status of the transaction
