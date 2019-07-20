@@ -239,7 +239,7 @@ After your transaction has been successfully submitted to the gateway, make sure
 * `AVSMessage` - a verbose description of the AVSResult code meaning
 * `CVResult` - a code indicating the status of the Card Security Code (aka CVV2, CID) sent in the request message
 * `CVMessage` - a verbose description of the CVResult code meaning
-* `Token` - a non-sensitive representation of the card number used in the transaction. The last four digits are the same as the last four digits of the card number. This value can be persisted and used for future recurring transactions from the same cardholder.
+* `Token` - a non-sensitive representation of the card number used in the transaction. The last four digits are the same as the last four digits of the card number. This value can be persisted and used for future recurring transactions from the same cardholder. 
 
 <aside class="warning">
 You should always inspect the AVSResult and CVResult fields as these can be good indicators of potential fraud. If you see a AVSResult or CVResult code that you do not want to accept because it may be too risky (such as "No Match" on the submitted Zip code), then you should submit a void transaction to cancel the authorization and advise the cardholder that their transaction has been declined.
