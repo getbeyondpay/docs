@@ -231,7 +231,13 @@
                     <a href="#obtain-a-token" class="toc-h2 toc-link" data-title="Obtain a Token">Obtain a Token</a>
                   </li>
                   <li>
-                    <a href="#create-a-sale-transaction" class="toc-h2 toc-link" data-title="Create a Sale Transaction">Create a Sale Transaction</a>
+                    <a href="#perform-a-sale-transaction" class="toc-h2 toc-link" data-title="Perform a Sale Transaction">Perform a Sale Transaction</a>
+                  </li>
+                  <li>
+                    <a href="#perform-an-authorization-only" class="toc-h2 toc-link" data-title="Perform an Authorization Only">Perform an Authorization Only</a>
+                  </li>
+                  <li>
+                    <a href="#tokenization-and-repeat-sales" class="toc-h2 toc-link" data-title="Tokenization and repeat sales">Tokenization and repeat sales</a>
                   </li>
               </ul>
           </li>
@@ -315,7 +321,9 @@
       <div class="content">
         <h1 id='introduction-to-beyond-pay'>Introduction to Beyond Pay</h1>
 <blockquote>
-<p><a href="mailto:BeyondPay@getBeyond.com">Get your API keys</a> and get moving!</p>
+<p><a href='https://forms.gle/AMxdRZTsS6skq2DEA'>Get your API keys</a> and get moving!</p>
+
+<p>Contact us if you have questions or need any help! <a href='mailto:BeyondPayIntegrations@getbeyond.com'>BeyondPayIntegrations@getbeyond.com</a></p>
 </blockquote>
 
 <p>Welcome to the Beyond Pay Gateway API! Beyond Pay is a powerful gateway that enables you to securely accept many different payment types. Plus, by processing through Beyond Pay, you help put disadvantaged kids through college just by getting paid!</p>
@@ -450,7 +458,7 @@ You must replace <code>your-public-key</code> with your publishable <a href='htt
 <p>The card data collected by the TokenPay element is posted from the client browser to Beyond Pay Gateway where it is converted into a token. If there are any errors in the collection of the card data or creation of the token, information is automatically displayed in the <code>errorElement</code> of your payment form.</p>
 
 <p>The token is stored as a hidden input value and passed to your server on form submission.</p>
-<h2 id='create-a-sale-transaction'>Create a Sale Transaction</h2>
+<h2 id='perform-a-sale-transaction'>Perform a Sale Transaction</h2>
 <blockquote>
 <p>With the token and other form fields obtained, now construct the XML payload:</p>
 </blockquote>
@@ -529,6 +537,87 @@ You must replace <code>your-public-key</code> with your publishable <a href='htt
 <aside class="warning">
 You should always inspect the AVSResult and CVResult fields as these can be good indicators of potential fraud. If you see a AVSResult or CVResult code that you do not want to accept because it may be too risky (such as "No Match" on the submitted Zip code), then you should submit a void transaction to cancel the authorization and advise the cardholder that their transaction has been declined.
 </aside>
+<h2 id='perform-an-authorization-only'>Perform an Authorization Only</h2>
+<blockquote>
+<p>To change from a &quot;sale&quot; transaction to an &quot;authorize&quot; transaction, simply set <code>TransactionType</code> to <code>sale-auth</code>:</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;requestHeader&gt;</span>
+    <span class="nt">&lt;ClientIdentifier&gt;</span>SOAP<span class="nt">&lt;/ClientIdentifier&gt;</span>
+    <span class="nt">&lt;TransactionID&gt;</span>{transactionId}<span class="nt">&lt;/TransactionID&gt;</span>
+    <span class="nt">&lt;RequestType&gt;</span>004<span class="nt">&lt;/RequestType&gt;</span>
+    <span class="nt">&lt;RequestDateTime&gt;</span>{requestDateTime}<span class="nt">&lt;/RequestDateTime&gt;</span>
+    <span class="nt">&lt;PrivateKey&gt;</span>{yourPrivateKey}<span class="nt">&lt;/PrivateKey&gt;</span>
+    <span class="nt">&lt;AuthenticationTokenId&gt;</span>{token}<span class="nt">&lt;/AuthenticationTokenId&gt;</span>
+    <span class="nt">&lt;requestMessage&gt;</span>                    
+        <span class="nt">&lt;SoftwareVendor&gt;</span>{yourSoftwareName}<span class="nt">&lt;/SoftwareVendor&gt;</span>
+        <span class="nt">&lt;TransIndustryType&gt;</span>EC<span class="nt">&lt;/TransIndustryType&gt;</span>
+        <span class="nt">&lt;TransactionType&gt;</span>sale-auth<span class="nt">&lt;/TransactionType&gt;</span>
+        <span class="nt">&lt;AcctType&gt;</span>R<span class="nt">&lt;/AcctType&gt;</span>
+        <span class="nt">&lt;HolderType&gt;</span>P<span class="nt">&lt;/HolderType&gt;</span>
+        <span class="nt">&lt;Amount&gt;</span>{amountInCents}<span class="nt">&lt;/Amount&gt;</span>
+        <span class="nt">&lt;CurrencyCode&gt;</span>USD<span class="nt">&lt;/CurrencyCode&gt;</span>
+        <span class="nt">&lt;SettlementDelay&gt;</span>{daysToDelay}<span class="nt">&lt;/SettlementDelay&gt;</span>
+    <span class="nt">&lt;/requestMessage&gt;</span>
+<span class="nt">&lt;/requestHeader&gt;</span>';
+
+</code></pre>
+<blockquote>
+<p>In order to actually capture that authorization and charge the card, you must submit 019 capture <code>RequestType</code>, passing the original sale-auth <code>ReferenceNumber</code>, and using the <code>User</code> and <code>Password</code> credentials instead of <code>AuthenticationTokenId</code> and <code>PrivateKey</code> to authenticate:</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;requestHeader&gt;</span>
+    <span class="nt">&lt;ClientIdentifier&gt;</span>SOAP<span class="nt">&lt;/ClientIdentifier&gt;</span>
+    <span class="nt">&lt;TransactionID&gt;</span>{transactionId}<span class="nt">&lt;/TransactionID&gt;</span>
+    <span class="nt">&lt;RequestType&gt;</span>019<span class="nt">&lt;/RequestType&gt;</span>
+    <span class="nt">&lt;RequestDateTime&gt;</span>{requestDateTime}<span class="nt">&lt;/RequestDateTime&gt;</span>
+    <span class="nt">&lt;User&gt;</span>{Beyond-assigned username}<span class="nt">&lt;/User&gt;</span>
+    <span class="nt">&lt;Password&gt;</span>{Beyond-assigned password}<span class="nt">&lt;/Password&gt;</span>
+    <span class="nt">&lt;requestMessage&gt;</span>                    
+        <span class="nt">&lt;TransactionCode&gt;</span>{must match header transaction ID}<span class="nt">&lt;/TransactionCode&gt;</span>
+        <span class="nt">&lt;SoftwareVendor&gt;</span>{yourSoftwareName}<span class="nt">&lt;/SoftwareVendor&gt;</span>
+        <span class="nt">&lt;TransactionType&gt;</span>capture<span class="nt">&lt;/TransactionType&gt;</span>
+        <span class="nt">&lt;ReferenceNumber&gt;</span>{original sale-auth ReferenceNumber from response}<span class="nt">&lt;/ReferenceNumber&gt;</span>
+        <span class="nt">&lt;Amount&gt;</span>{amountInCents}<span class="nt">&lt;/Amount&gt;</span>
+    <span class="nt">&lt;/requestMessage&gt;</span>
+<span class="nt">&lt;/requestHeader&gt;</span>';
+</code></pre>
+<p>Sometimes you may not want to accept payment right away for a transaction, such as when shipping physical goods. The normal practice in this scenario is to first authorize a card which will place a hold on the funds, and then to later &quot;capture&quot; that authorization when the order is fulfilled.</p>
+
+<p>The <code>SettlementDelay</code> tag can be added for sale-auth transactions, and designates te number of batch cycles that the authorization remains &quot;open&quot; (or unsettled). If the sale-auth transaction is not captured before completion of the designated number of batches, then the original authorization will be automatically voided and not captured.</p>
+
+<p>To capture an authorization (sometimes called a &quot;pre-auth&quot;), simply submit a <code>RequestType</code> of <code>019</code> for capture, along with passing the reference number of the original authorization as shown here.</p>
+
+<aside class="notice">
+This capture request and several other API requests described here may take differing credentials in order to authenticate the client. All such credentials will be provided by Beyond for testing and production.</a>.
+</aside>
+<h2 id='tokenization-and-repeat-sales'>Tokenization and repeat sales</h2>
+<blockquote>
+<p>The <code>Token</code> element represents a card number, can be used multiple times, and does not expire. It may be used as input in a transaction in lieu of the <code>PaymentAccountNumber</code> or the <code>AuthenticationTokenId</code>, and still requires the <code>ExpirationDate</code> field as well.</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;requestHeader&gt;</span>
+    <span class="nt">&lt;ClientIdentifier&gt;</span>SOAP<span class="nt">&lt;/ClientIdentifier&gt;</span>
+    <span class="nt">&lt;TransactionID&gt;</span>{transactionId}<span class="nt">&lt;/TransactionID&gt;</span>
+    <span class="nt">&lt;RequestType&gt;</span>004<span class="nt">&lt;/RequestType&gt;</span>
+    <span class="nt">&lt;RequestDateTime&gt;</span>{requestDateTime}<span class="nt">&lt;/RequestDateTime&gt;</span>
+    <span class="nt">&lt;User&gt;</span>{Beyond-assigned username}<span class="nt">&lt;/User&gt;</span>
+    <span class="nt">&lt;Password&gt;</span>{Beyond-assigned password}<span class="nt">&lt;/Password&gt;</span>
+    <span class="nt">&lt;requestMessage&gt;</span>
+        <span class="nt">&lt;SoftwareVendor&gt;</span>{yourSoftwareName}<span class="nt">&lt;/SoftwareVendor&gt;</span>                    
+        <span class="nt">&lt;Token&gt;</span>{token - not to be confused with AuthenticationTokenId}<span class="nt">&lt;/Token&gt;</span>
+        <span class="nt">&lt;ExpirationDate&gt;</span>{expirationDate}<span class="nt">&lt;/ExpirationDate&gt;</span>
+        <span class="nt">&lt;TransactionType&gt;</span>sale<span class="nt">&lt;/TransactionType&gt;</span>
+        <span class="nt">&lt;TransIndustryType&gt;</span>EC<span class="nt">&lt;/TransIndustryType&gt;</span>
+        <span class="nt">&lt;AcctType&gt;</span>R<span class="nt">&lt;/AcctType&gt;</span>
+        <span class="nt">&lt;HolderType&gt;</span>P<span class="nt">&lt;/HolderType&gt;</span>
+        <span class="nt">&lt;Amount&gt;</span>{amountInCents}<span class="nt">&lt;/Amount&gt;</span>
+        <span class="nt">&lt;CurrencyCode&gt;</span>USD<span class="nt">&lt;/CurrencyCode&gt;</span>
+    <span class="nt">&lt;/requestMessage&gt;</span>
+<span class="nt">&lt;/requestHeader&gt;</span>
+</code></pre>
+<p>Every API response message from Beyond Pay contains a <code>Token</code> element. This Token represents the card number used in the original transaction, but is not considered a sensitive data element per the PCI DSS. To ease in identifying the original card, however, the last four digits of the <code>Token</code> are the same as the last four digits ot the card number.</p>
+
+<p>This Token value may be persisted and, with the cardholder&#39;s permission, associated with their user account in your application in order to make future purchases with the same card (&quot;card-on-file&quot;).</p>
+
+<p>Submitting a sale or sale-auth transaction with the Token as input requires use of the User and Password credentials in the request message, and also requires that the card <code>ExpirationDate</code> value be persisted and stored with the <code>Token</code> (the <code>ExpirationDate</code> value is returned in the original response message along with the <code>Token</code>).</p>
 <h1 id='in-person-payments'>In-Person Payments</h1><h2 id='payguardian'>PayGuardian</h2>
 <blockquote>
 <p><a href='https://www.dropbox.com/s/31515dk9s1hptpu/BridgePay%20Gateway%20Certified%20Device%20Matrix.pdf?dl=0'>CERTIFIED DEVICES</a></p>
@@ -684,7 +773,7 @@ For development and testing, use this sandbox registration key: <b><code>H75RCGR
 <span class="n">issuerApplicationData</span><span class="o">:</span> <span class="p">(</span><span class="n">null</span><span class="p">)</span>
 <span class="n">transactionStatusInformation</span><span class="o">:</span> <span class="p">(</span><span class="n">null</span><span class="p">)</span>
 </code></pre>
-<p>PayGuardian iOS is a lightweight, highly secure iOS framework library that integrates seamlessly into mPOS applications. PayGuardian iOS facilitates the transaction process by handling the collection and transmission of sensitive payment information as an out of scope PA-DSS solution, thereby offloading the certification responsibility from merchants and integrators. PayGuardian iOS is EMV enabled, handles point to point encryption, and tokenizes all transactions to ensure transaction processing is seamless and secure.</p>
+<p>PayGuardian iOS is a secure iOS framework library that integrates seamlessly into iOS applications. PayGuardian iOS facilitates the transaction process by handling the collection and transmission of sensitive payment information as an out of scope PA-DSS solution, thereby offloading the certification responsibility from merchants and integrators. PayGuardian iOS is EMV enabled, handles point to point encryption, and tokenizes all transactions to ensure transaction processing is seamless and secure.</p>
 
 <p>Programmatically, a PayGuardian iOS transaction is comprised of a four step process:</p>
 
@@ -895,117 +984,117 @@ PayGuardian Cloud is currently in limited beta testing. <a href='mailto:BeyondPa
 </tr>
 <tr>
 <td>DateRangeFrom</td>
-<td></td>
-<td></td>
-<td></td>
+<td>DateTime</td>
+<td>Optional</td>
+<td>GTE</td>
 </tr>
 <tr>
 <td>DateRangeTo</td>
-<td></td>
-<td></td>
-<td></td>
+<td>DateTime</td>
+<td>Optional</td>
+<td>LTE</td>
 </tr>
 <tr>
 <td>EndPartialAccountNumber</td>
-<td></td>
-<td></td>
-<td></td>
+<td>String</td>
+<td>Optional</td>
+<td>EQUIV</td>
 </tr>
 <tr>
-<td>ExcludeTransResults</td>
-<td></td>
-<td></td>
-<td></td>
+<td>ExcludeTransResults*</td>
+<td>Boolean</td>
+<td>Optional (1 or 0)</td>
+<td>N/A</td>
 </tr>
 <tr>
 <td>ExcludeVoid</td>
-<td></td>
-<td></td>
-<td></td>
+<td>Boolean</td>
+<td>Optional (1 or 0)</td>
+<td>N/A</td>
 </tr>
 <tr>
 <td>ID</td>
-<td></td>
-<td></td>
-<td></td>
+<td>Integer</td>
+<td>Optional, Exact Match</td>
+<td>EQUIV</td>
 </tr>
 <tr>
 <td>InvoiceNumber</td>
-<td></td>
-<td></td>
-<td></td>
+<td>String</td>
+<td>Optional, Exact Match</td>
+<td>EQUIV</td>
 </tr>
 <tr>
 <td>MerchantAccountId</td>
-<td></td>
-<td></td>
-<td></td>
+<td>Integer</td>
+<td>Optional</td>
+<td>EQUIV</td>
 </tr>
 <tr>
 <td>MerchantId</td>
-<td></td>
-<td></td>
-<td></td>
+<td>Integer</td>
+<td>Optional</td>
+<td>EQUIV</td>
 </tr>
 <tr>
 <td>PaymentMethodID</td>
-<td></td>
-<td></td>
-<td></td>
+<td>String</td>
+<td>Optional, Exact Match</td>
+<td>EQUIV</td>
 </tr>
 <tr>
 <td>PurchaseOrderNumber</td>
-<td></td>
-<td></td>
-<td></td>
+<td>String</td>
+<td>Optional, Exact Match</td>
+<td>EQUIV</td>
 </tr>
 <tr>
 <td>ResellerID</td>
-<td></td>
-<td></td>
-<td></td>
+<td>Integer</td>
+<td>Optional</td>
+<td>EQUIV</td>
 </tr>
 <tr>
 <td>ResponseCode</td>
-<td></td>
-<td></td>
-<td></td>
+<td>String</td>
+<td>Optional, Partial Match</td>
+<td>CONTAINS</td>
 </tr>
 <tr>
 <td>SettlementStatus</td>
-<td></td>
-<td></td>
-<td></td>
+<td>String</td>
+<td>Optional, Exact Match</td>
+<td>EQUIV</td>
 </tr>
 <tr>
 <td>Skip</td>
-<td></td>
-<td></td>
-<td></td>
+<td>Integer</td>
+<td>Required</td>
+<td>N/A</td>
 </tr>
 <tr>
 <td>Take</td>
-<td></td>
-<td></td>
-<td></td>
+<td>Integer</td>
+<td>Required</td>
+<td>N/A</td>
 </tr>
 <tr>
 <td>TransactionSourceIP</td>
-<td></td>
-<td></td>
-<td></td>
+<td>String</td>
+<td>Optional, Exact Match</td>
+<td>EQUIV</td>
 </tr>
 <tr>
 <td>TransactionStatus</td>
-<td></td>
-<td></td>
-<td></td>
+<td>String</td>
+<td>Optional, Exact Match</td>
+<td>EQUIV</td>
 </tr>
 <tr>
-<td>TransResults</td>
-<td></td>
-<td></td>
-<td></td>
+<td>TransResults*</td>
+<td>String</td>
+<td>Optional, Multi-Match (comma separated list)</td>
+<td>INLIST</td>
 </tr>
 </tbody></table>
 
@@ -1046,7 +1135,7 @@ PayGuardian Cloud is currently in limited beta testing. <a href='mailto:BeyondPa
 </tr>
 </thead><tbody>
 <tr>
-<td>00000</td>
+<td>000</td>
 <td>Successful request</td>
 </tr>
 <tr>
@@ -1054,8 +1143,512 @@ PayGuardian Cloud is currently in limited beta testing. <a href='mailto:BeyondPa
 <td>Partial Authorization</td>
 </tr>
 <tr>
-<td>TODO</td>
-<td>FINISH TABLE + include A01 codes</td>
+<td>10001</td>
+<td>Missing Reference Number</td>
+</tr>
+<tr>
+<td>10002</td>
+<td>Invalid Card Number - Blank/Null</td>
+</tr>
+<tr>
+<td>10003</td>
+<td>Invalid Card Type - Doesn&#39;t match accepted card types</td>
+</tr>
+<tr>
+<td>10004</td>
+<td>Invalid Expiration Date - Blank/Null</td>
+</tr>
+<tr>
+<td>10005</td>
+<td>Invalid Security Code - Blank/Null</td>
+</tr>
+<tr>
+<td>10007</td>
+<td>Invalid Card Number - Not Numeric</td>
+</tr>
+<tr>
+<td>10008</td>
+<td>Invalid Length for card type</td>
+</tr>
+<tr>
+<td>10009</td>
+<td>Invalid Expiration Date - Card Expired</td>
+</tr>
+<tr>
+<td>10010</td>
+<td>Invalid Security Code - Not Numeric</td>
+</tr>
+<tr>
+<td>10011</td>
+<td>Invalid Transaction ID</td>
+</tr>
+<tr>
+<td>10012</td>
+<td>Invalid Card Number - Failed Mod10</td>
+</tr>
+<tr>
+<td>10013</td>
+<td>Invalid Expiration Date Value</td>
+</tr>
+<tr>
+<td>10014</td>
+<td>Invalid Security Code Length</td>
+</tr>
+<tr>
+<td>10017</td>
+<td>Invalid Expiration Date - Invalid Month</td>
+</tr>
+<tr>
+<td>10018</td>
+<td>Invalid Expiration Date - Invalid Year</td>
+</tr>
+<tr>
+<td>10019</td>
+<td>Invalid Expiration Date</td>
+</tr>
+<tr>
+<td>10020</td>
+<td>Invalid Client Identifier</td>
+</tr>
+<tr>
+<td>10021</td>
+<td>Invalid Request Element – Missing Element</td>
+</tr>
+<tr>
+<td>10022</td>
+<td>Invalid Request Type</td>
+</tr>
+<tr>
+<td>10023</td>
+<td>Password Expired</td>
+</tr>
+<tr>
+<td>10024</td>
+<td>Invalid Credentials</td>
+</tr>
+<tr>
+<td>10025</td>
+<td>Invalid Zip – Not Numeric</td>
+</tr>
+<tr>
+<td>10026</td>
+<td>Invalid Zip – Wrong Length</td>
+</tr>
+<tr>
+<td>10027</td>
+<td>Invalid Amount – Blank/Null</td>
+</tr>
+<tr>
+<td>10028</td>
+<td>Invalid Amount – Not Numeric</td>
+</tr>
+<tr>
+<td>10029</td>
+<td>Invalid Request Date/Time</td>
+</tr>
+<tr>
+<td>10030</td>
+<td>Invalid Token</td>
+</tr>
+<tr>
+<td>10031</td>
+<td>Invalid Track</td>
+</tr>
+<tr>
+<td>10032</td>
+<td>Invalid Track Identifier</td>
+</tr>
+<tr>
+<td>10033</td>
+<td>Invalid Void Request</td>
+</tr>
+<tr>
+<td>10034</td>
+<td>Invalid Encryption ID</td>
+</tr>
+<tr>
+<td>10035</td>
+<td>Invalid Account Number – Blank/Null</td>
+</tr>
+<tr>
+<td>10036</td>
+<td>Invalid Account Number – Not Numeric</td>
+</tr>
+<tr>
+<td>10037</td>
+<td>Invalid Payment Type – Blank/Null</td>
+</tr>
+<tr>
+<td>10038</td>
+<td>Invalid Payment Type – Unrecognized Payment Type</td>
+</tr>
+<tr>
+<td>10039</td>
+<td>Invalid Account Number – Account Number Does Not Exist</td>
+</tr>
+<tr>
+<td>10040</td>
+<td>Missing Required Pass-Thru Data Element</td>
+</tr>
+<tr>
+<td>10041</td>
+<td>Missing / Invalid BIN</td>
+</tr>
+<tr>
+<td>10042</td>
+<td>Already Voided</td>
+</tr>
+<tr>
+<td>10050</td>
+<td>Incorrect Trace Number</td>
+</tr>
+<tr>
+<td>10051</td>
+<td>Incorrect Merchant Setup</td>
+</tr>
+<tr>
+<td>10052</td>
+<td>Processing Network Error</td>
+</tr>
+<tr>
+<td>10053</td>
+<td>Credit Card Entry Refused by Receiver</td>
+</tr>
+<tr>
+<td>10054</td>
+<td>Mandatory Field Error</td>
+</tr>
+<tr>
+<td>20001</td>
+<td>Tokenization Service Connection Error</td>
+</tr>
+<tr>
+<td>20002</td>
+<td>Beyond Pay Internal Server Error</td>
+</tr>
+<tr>
+<td>20003</td>
+<td>Client Service Unavailable</td>
+</tr>
+<tr>
+<td>20004</td>
+<td>Payment Service Sensitive Data Timeout</td>
+</tr>
+<tr>
+<td>30004</td>
+<td>Invalid Request Message</td>
+</tr>
+<tr>
+<td>30005</td>
+<td>Invalid Response Message</td>
+</tr>
+<tr>
+<td>30006</td>
+<td>New Password Doesn&#39;t Match Confirmation Password</td>
+</tr>
+<tr>
+<td>30007</td>
+<td>New Password Too Weak</td>
+</tr>
+<tr>
+<td>30008</td>
+<td>Missing Payment Card Data</td>
+</tr>
+<tr>
+<td>30009</td>
+<td>Internal Payment Card Data Error</td>
+</tr>
+<tr>
+<td>30010</td>
+<td>Invalid Record Format</td>
+</tr>
+<tr>
+<td>30011</td>
+<td>Invalid Merchant Number (from Gateway)</td>
+</tr>
+<tr>
+<td>30012</td>
+<td>Bad Card Number (from Gateway)</td>
+</tr>
+<tr>
+<td>30013</td>
+<td>Invalid Store Number</td>
+</tr>
+<tr>
+<td>30020</td>
+<td>Invalid Transaction Industry Type</td>
+</tr>
+<tr>
+<td>30021</td>
+<td>Missing Transaction Industry Type</td>
+</tr>
+<tr>
+<td>30022</td>
+<td>Processing Network Unavailable</td>
+</tr>
+<tr>
+<td>30023</td>
+<td>Invalid Account Number</td>
+</tr>
+<tr>
+<td>30024</td>
+<td>No Account</td>
+</tr>
+<tr>
+<td>30025</td>
+<td>Invalid Security Code</td>
+</tr>
+<tr>
+<td>30026</td>
+<td>Invalid Amount</td>
+</tr>
+<tr>
+<td>30027</td>
+<td>Refund limit is reached for the day (occurs when merchant has reached the refund limit allowed per day on the account)</td>
+</tr>
+<tr>
+<td>30028</td>
+<td>Settlement Failed</td>
+</tr>
+<tr>
+<td>30029</td>
+<td>Transaction Error</td>
+</tr>
+<tr>
+<td>30030</td>
+<td>Transaction data integrity validation error</td>
+</tr>
+<tr>
+<td>30032</td>
+<td>Denied by customer’s bank</td>
+</tr>
+<tr>
+<td>30033</td>
+<td>Insufficient funds</td>
+</tr>
+<tr>
+<td>30034</td>
+<td>Hold - Pick up card</td>
+</tr>
+<tr>
+<td>30035</td>
+<td>Incorrect PIN</td>
+</tr>
+<tr>
+<td>30036</td>
+<td>Duplicate Transaction</td>
+</tr>
+<tr>
+<td>30037</td>
+<td>Card reported lost</td>
+</tr>
+<tr>
+<td>30038</td>
+<td>Card reported stolen</td>
+</tr>
+<tr>
+<td>30039</td>
+<td>Service not allowed</td>
+</tr>
+<tr>
+<td>30040</td>
+<td>Stop Recurring</td>
+</tr>
+<tr>
+<td>30041</td>
+<td>Unattempted Batch Decline</td>
+</tr>
+<tr>
+<td>30042</td>
+<td>Maximum transaction limit is exceeded at the moment. Try processing your transaction tomorrow.</td>
+</tr>
+<tr>
+<td>30043</td>
+<td>Re-enter Transaction</td>
+</tr>
+<tr>
+<td>30044</td>
+<td>Unmapped decline</td>
+</tr>
+<tr>
+<td>30045</td>
+<td>Billing profile configuration error</td>
+</tr>
+<tr>
+<td>30046</td>
+<td>Pin Try Exceeded</td>
+</tr>
+<tr>
+<td>30047</td>
+<td>Refund was not processed/received</td>
+</tr>
+<tr>
+<td>30048</td>
+<td>Chargeback received</td>
+</tr>
+<tr>
+<td>30049</td>
+<td>Processing Canceled by User</td>
+</tr>
+<tr>
+<td>30050</td>
+<td>Invalid Transaction Category</td>
+</tr>
+<tr>
+<td>30051</td>
+<td>Invalid Verification Status</td>
+</tr>
+<tr>
+<td>30052</td>
+<td>Invalid Terminal Type</td>
+</tr>
+<tr>
+<td>30053</td>
+<td>Invalid Petroleum Product Type</td>
+</tr>
+<tr>
+<td>30060</td>
+<td>Invalid IApp User Id</td>
+</tr>
+<tr>
+<td>30061</td>
+<td>Account insert failed</td>
+</tr>
+<tr>
+<td>30062</td>
+<td>Merchant insert failed</td>
+</tr>
+<tr>
+<td>30070</td>
+<td>New Password Previously Used</td>
+</tr>
+<tr>
+<td>30071</td>
+<td>Missing Clerk Id</td>
+</tr>
+<tr>
+<td>30072</td>
+<td>Call for Authorization</td>
+</tr>
+<tr>
+<td>30073</td>
+<td>Card is Restricted</td>
+</tr>
+<tr>
+<td>30074</td>
+<td>Declined due to fraud rules</td>
+</tr>
+<tr>
+<td>30075</td>
+<td>Bank Account Blacklisted</td>
+</tr>
+<tr>
+<td>30076</td>
+<td>Declined due to insufficient information</td>
+</tr>
+<tr>
+<td>30077</td>
+<td>Rejected by the processor</td>
+</tr>
+<tr>
+<td>30078</td>
+<td>Account Closed</td>
+</tr>
+<tr>
+<td>30079</td>
+<td>Invalid Account</td>
+</tr>
+<tr>
+<td>30080</td>
+<td>Account can not process ACH</td>
+</tr>
+<tr>
+<td>30082</td>
+<td>Invalid MICR</td>
+</tr>
+<tr>
+<td>30083</td>
+<td>Customer opt out check Conversion</td>
+</tr>
+<tr>
+<td>30100</td>
+<td>Invalid Account Data – Blank/Null</td>
+</tr>
+<tr>
+<td>30101</td>
+<td>Invalid EMV Tag Data – Blank/Null</td>
+</tr>
+<tr>
+<td>40001</td>
+<td>Lodging Reauth Failed</td>
+</tr>
+<tr>
+<td>40002</td>
+<td>Missing Lodging Folio Number</td>
+</tr>
+<tr>
+<td>80000</td>
+<td>Gateway Services Available</td>
+</tr>
+<tr>
+<td>80001</td>
+<td>Gateway Services Unavailable</td>
+</tr>
+<tr>
+<td>80002</td>
+<td>Invalid Purchase Token</td>
+</tr>
+<tr>
+<td>80003</td>
+<td>More than one result found for search criteria</td>
+</tr>
+<tr>
+<td>80004</td>
+<td>More than one service fee block received in request message</td>
+</tr>
+<tr>
+<td>80005</td>
+<td>Cascade Void. Indicates that the transaction was successfully authorized (fully or partially) and then voided due to an auto-void policy setting.  Only occurs on principal transactions and only when the accompanying service fee was either declined or voided due to an auto-void policy setting.</td>
+</tr>
+<tr>
+<td>80006</td>
+<td>Partial Auto Void. Indicates that the transaction was partially authorized and then voided due to an auto-void policy setting.  Can occur on a service fee or principal transaction.</td>
+</tr>
+<tr>
+<td>80007</td>
+<td>Database query processing error.  Can occur on a Find Transaction request if the data requested is unavailable.</td>
+</tr>
+<tr>
+<td>80008</td>
+<td>Invalid GatewayTransID</td>
+</tr>
+<tr>
+<td>80009</td>
+<td>Invalid MerchantCode</td>
+</tr>
+<tr>
+<td>800010</td>
+<td>Invalid MerchantAccountCode</td>
+</tr>
+<tr>
+<td>800011</td>
+<td>Transaction not found</td>
+</tr>
+<tr>
+<td>800012</td>
+<td>Invalid Length for PersistData</td>
+</tr>
+<tr>
+<td>90000</td>
+<td>Token Store failed to encrypt a token</td>
+</tr>
+<tr>
+<td>90001</td>
+<td>Token Store failed to decrypt a token</td>
+</tr>
+<tr>
+<td>99999</td>
+<td>Unknown Error</td>
 </tr>
 </tbody></table>
 <h2 id='avs-response-codes'>AVS Response Codes</h2>
@@ -1066,16 +1659,84 @@ PayGuardian Cloud is currently in limited beta testing. <a href='mailto:BeyondPa
 </tr>
 </thead><tbody>
 <tr>
-<td>A</td>
-<td>Street addresses match, but postal/ZIP does not or was not provided</td>
+<td>00</td>
+<td>AVS Error - Retry, System unavailable or Timed out</td>
 </tr>
 <tr>
-<td>B</td>
-<td>Street addresses match, but postal/ZIP code is not verified due to incompatible formats</td>
+<td>40</td>
+<td>Address not available (Address not verified)</td>
 </tr>
 <tr>
-<td>TODO</td>
-<td>FINISH TABLE</td>
+<td>43</td>
+<td>Street address not available (not verified), ZIP matches</td>
+</tr>
+<tr>
+<td>44</td>
+<td>Address failed</td>
+</tr>
+<tr>
+<td>45</td>
+<td>Street address and ZIP don&#39;t match</td>
+</tr>
+<tr>
+<td>46</td>
+<td>Street address doesn&#39;t match, 5-digit ZIP matches</td>
+</tr>
+<tr>
+<td>47</td>
+<td>Street address doesn&#39;t match, 9-digit ZIP matches</td>
+</tr>
+<tr>
+<td>4A</td>
+<td>Street address or ZIP doesn&#39;t match</td>
+</tr>
+<tr>
+<td>4D</td>
+<td>Street address matches, ZIP does not</td>
+</tr>
+<tr>
+<td>4E</td>
+<td>Street address and 5-digit ZIP match</td>
+</tr>
+<tr>
+<td>4F</td>
+<td>Street address and ZIP match</td>
+</tr>
+<tr>
+<td>53</td>
+<td>Account holder name incorrect, billing postal code matches</td>
+</tr>
+<tr>
+<td>55</td>
+<td>Unrecognized response</td>
+</tr>
+<tr>
+<td>5C</td>
+<td>Account holder name incorrect, billing address matches</td>
+</tr>
+<tr>
+<td>5F</td>
+<td>Account holder name incorrect, billing address and postal code match</td>
+</tr>
+<tr>
+<td>70</td>
+<td>Account holder name matches</td>
+</tr>
+<tr>
+<td>73</td>
+<td>Account holder name and billing postal code match</td>
+</tr>
+<tr>
+<td>7C</td>
+<td>Account holder name and billing address match</td>
+</tr>
+<tr>
+<td>7F</td>
+<td>Account holder name, billing address and postal code match</td>
+</tr>
+<tr>
+<td>80</td>
+<td>AVS service not supported by issuer - Issuer doesn&#39;t participate in AVS</td>
 </tr>
 </tbody></table>
 <h2 id='cvv-response-codes'>CVV Response Codes</h2>
@@ -1086,20 +1747,32 @@ PayGuardian Cloud is currently in limited beta testing. <a href='mailto:BeyondPa
 </tr>
 </thead><tbody>
 <tr>
-<td>(blank)</td>
-<td>CVV was not verified</td>
+<td>M</td>
+<td>Matches</td>
 </tr>
 <tr>
-<td>1</td>
-<td>CVV failed verification</td>
+<td>N</td>
+<td>No match</td>
 </tr>
 <tr>
-<td>TODO</td>
-<td>FINISH TABLE</td>
+<td>P</td>
+<td>Not processed</td>
+</tr>
+<tr>
+<td>S</td>
+<td>Should be present</td>
+</tr>
+<tr>
+<td>U</td>
+<td>Issuer is not certified</td>
+</tr>
+<tr>
+<td>X</td>
+<td>Unrecognized reason</td>
 </tr>
 </tbody></table>
 <h1 id='testing-amp-certification'>Testing &amp; Certification</h1><h2 id='certification'>Certification</h2>
-<p>When you are finished developing your interface to one of the Beyond Pay solutions, please <a href='mailto:BeyondPay@getBeyond.com'>contact us</a> to get certified and obtain your production keys!</p>
+<p>When you are finished developing your interface to one of the Beyond Pay solutions, please <a href='mailto:BeyondPayIntegrations@getBeyond.com'>contact us</a> to get certified and obtain your production keys!</p>
 <h2 id='test-cards-and-checks'>Test Cards and Checks</h2>
 <p>You can use the following card numbers for testing. CVV numbers are 1234 or 1111 for Amex; all others are 111 or 999.</p>
 
