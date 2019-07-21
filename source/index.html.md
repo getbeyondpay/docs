@@ -14,7 +14,9 @@ search: true
 
 # Introduction to Beyond Pay
 
-> <a href="mailto:BeyondPay@getBeyond.com">Get your API keys</a> and get moving!
+> <a href='https://forms.gle/AMxdRZTsS6skq2DEA'>Get your API keys</a> and get moving!
+
+> Contact us if you have questions or need any help! <a href='mailto:BeyondPayIntegrations@getbeyond.com'>BeyondPayIntegrations@getbeyond.com</a>
 
 Welcome to the Beyond Pay Gateway API! Beyond Pay is a powerful gateway that enables you to securely accept many different payment types. Plus, by processing through Beyond Pay, you help put disadvantaged kids through college just by getting paid!
 
@@ -165,7 +167,7 @@ The card data collected by the TokenPay element is posted from the client browse
 
 The token is stored as a hidden input value and passed to your server on form submission.
 
-## Create a Sale Transaction
+## Perform a Sale Transaction
 
 > With the token and other form fields obtained, now construct the XML payload:
 
@@ -244,6 +246,96 @@ After your transaction has been successfully submitted to the gateway, make sure
 <aside class="warning">
 You should always inspect the AVSResult and CVResult fields as these can be good indicators of potential fraud. If you see a AVSResult or CVResult code that you do not want to accept because it may be too risky (such as "No Match" on the submitted Zip code), then you should submit a void transaction to cancel the authorization and advise the cardholder that their transaction has been declined.
 </aside>
+
+## Perform an Authorization Only
+
+> To change from a "sale" transaction to an "authorize" transaction, simply set `TransactionType` to `sale-auth`:
+
+```xml
+<requestHeader>
+    <ClientIdentifier>SOAP</ClientIdentifier>
+    <TransactionID>{transactionId}</TransactionID>
+    <RequestType>004</RequestType>
+    <RequestDateTime>{requestDateTime}</RequestDateTime>
+    <PrivateKey>{yourPrivateKey}</PrivateKey>
+    <AuthenticationTokenId>{token}</AuthenticationTokenId>
+    <requestMessage>                    
+        <SoftwareVendor>{yourSoftwareName}</SoftwareVendor>
+        <TransIndustryType>EC</TransIndustryType>
+        <TransactionType>sale-auth</TransactionType>
+        <AcctType>R</AcctType>
+        <HolderType>P</HolderType>
+        <Amount>{amountInCents}</Amount>
+        <CurrencyCode>USD</CurrencyCode>
+        <SettlementDelay>{daysToDelay}</SettlementDelay>
+    </requestMessage>
+</requestHeader>';
+
+```
+
+> In order to actually capture that authorization and charge the card, you must submit 019 capture `RequestType`, passing the original sale-auth `ReferenceNumber`, and using the `User` and `Password` credentials instead of `AuthenticationTokenId` and `PrivateKey` to authenticate:
+
+```xml
+<requestHeader>
+    <ClientIdentifier>SOAP</ClientIdentifier>
+    <TransactionID>{transactionId}</TransactionID>
+    <RequestType>019</RequestType>
+    <RequestDateTime>{requestDateTime}</RequestDateTime>
+    <User>{Beyond-assigned username}</User>
+    <Password>{Beyond-assigned password}</Password>
+    <requestMessage>                    
+        <TransactionCode>{must match header transaction ID}</TransactionCode>
+        <SoftwareVendor>{yourSoftwareName}</SoftwareVendor>
+        <TransactionType>capture</TransactionType>
+        <ReferenceNumber>{original sale-auth ReferenceNumber from response}</ReferenceNumber>
+        <Amount>{amountInCents}</Amount>
+    </requestMessage>
+</requestHeader>';
+```
+
+
+Sometimes you may not want to accept payment right away for a transaction, such as when shipping physical goods. The normal practice in this scenario is to first authorize a card which will place a hold on the funds, and then to later "capture" that authorization when the order is fulfilled.
+
+The `SettlementDelay` tag can be added for sale-auth transactions, and designates te number of batch cycles that the authorization remains "open" (or unsettled). If the sale-auth transaction is not captured before completion of the designated number of batches, then the original authorization will be automatically voided and not captured.
+
+To capture an authorization (sometimes called a "pre-auth"), simply submit a `RequestType` of `019` for capture, along with passing the reference number of the original authorization as shown here.
+
+<aside class="notice">
+This capture request and several other API requests described here may take differing credentials in order to authenticate the client. All such credentials will be provided by Beyond for testing and production.</a>.
+</aside>
+
+## Tokenization and repeat sales
+
+> The `Token` element represents a card number, can be used multiple times, and does not expire. It may be used as input in a transaction in lieu of the `PaymentAccountNumber` or the `AuthenticationTokenId`, and still requires the `ExpirationDate` field as well.
+
+```xml
+<requestHeader>
+    <ClientIdentifier>SOAP</ClientIdentifier>
+    <TransactionID>{transactionId}</TransactionID>
+    <RequestType>004</RequestType>
+    <RequestDateTime>{requestDateTime}</RequestDateTime>
+    <User>{Beyond-assigned username}</User>
+    <Password>{Beyond-assigned password}</Password>
+    <requestMessage>
+        <SoftwareVendor>{yourSoftwareName}</SoftwareVendor>                    
+        <Token>{token - not to be confused with AuthenticationTokenId}</Token>
+        <ExpirationDate>{expirationDate}</ExpirationDate>
+        <TransactionType>sale</TransactionType>
+        <TransIndustryType>EC</TransIndustryType>
+        <AcctType>R</AcctType>
+        <HolderType>P</HolderType>
+        <Amount>{amountInCents}</Amount>
+        <CurrencyCode>USD</CurrencyCode>
+    </requestMessage>
+</requestHeader>
+```
+
+Every API response message from Beyond Pay contains a `Token` element. This Token represents the card number used in the original transaction, but is not considered a sensitive data element per the PCI DSS. To ease in identifying the original card, however, the last four digits of the `Token` are the same as the last four digits ot the card number.
+
+This Token value may be persisted and, with the cardholder's permission, associated with their user account in your application in order to make future purchases with the same card ("card-on-file").
+
+Submitting a sale or sale-auth transaction with the Token as input requires use of the User and Password credentials in the request message, and also requires that the card `ExpirationDate` value be persisted and stored with the `Token` (the `ExpirationDate` value is returned in the original response message along with the `Token`).
+
 
 # In-Person Payments
 
@@ -410,7 +502,7 @@ issuerApplicationData: (null)
 transactionStatusInformation: (null)
 ```
 
-PayGuardian iOS is a lightweight, highly secure iOS framework library that integrates seamlessly into mPOS applications. PayGuardian iOS facilitates the transaction process by handling the collection and transmission of sensitive payment information as an out of scope PA-DSS solution, thereby offloading the certification responsibility from merchants and integrators. PayGuardian iOS is EMV enabled, handles point to point encryption, and tokenizes all transactions to ensure transaction processing is seamless and secure.
+PayGuardian iOS is a secure iOS framework library that integrates seamlessly into iOS applications. PayGuardian iOS facilitates the transaction process by handling the collection and transmission of sensitive payment information as an out of scope PA-DSS solution, thereby offloading the certification responsibility from merchants and integrators. PayGuardian iOS is EMV enabled, handles point to point encryption, and tokenizes all transactions to ensure transaction processing is seamless and secure.
 
 Programmatically, a PayGuardian iOS transaction is comprised of a four step process:
 
@@ -577,25 +669,25 @@ CardholderFirstName | String | Optional, Exact Match | EQUIV
 CardholderLastName | String | Optional, Partial Match | CONTAINS
 ClerkId | String | Optional, Exact Match | EQUIV
 CustomerNumber | String | Optional, Exact Match | EQUIV
-DateRangeFrom |
-DateRangeTo |
-EndPartialAccountNumber |
-ExcludeTransResults |
-ExcludeVoid |
-ID |
-InvoiceNumber |
-MerchantAccountId |
-MerchantId |
-PaymentMethodID |
-PurchaseOrderNumber |
-ResellerID |
-ResponseCode |
-SettlementStatus |
-Skip |
-Take |
-TransactionSourceIP |
-TransactionStatus |
-TransResults |
+DateRangeFrom | DateTime | Optional | GTE
+DateRangeTo | DateTime | Optional | LTE
+EndPartialAccountNumber | String | Optional | EQUIV
+ExcludeTransResults* | Boolean | Optional (1 or 0) | N/A
+ExcludeVoid | Boolean | Optional (1 or 0) | N/A
+ID | Integer | Optional, Exact Match | EQUIV
+InvoiceNumber | String | Optional, Exact Match | EQUIV
+MerchantAccountId | Integer | Optional | EQUIV
+MerchantId | Integer | Optional | EQUIV
+PaymentMethodID | String | Optional, Exact Match | EQUIV
+PurchaseOrderNumber | String | Optional, Exact Match | EQUIV
+ResellerID | Integer | Optional | EQUIV
+ResponseCode | String | Optional, Partial Match | CONTAINS
+SettlementStatus | String | Optional, Exact Match | EQUIV
+Skip | Integer | Required | N/A
+Take | Integer | Required | N/A
+TransactionSourceIP | String | Optional, Exact Match | EQUIV
+TransactionStatus | String | Optional, Exact Match | EQUIV
+TransResults* | String | Optional, Multi-Match (comma separated list) | INLIST
 
 The TransResults field works by mapping the BridgeComm 5-digit response code back to the gateway response code (the ResponseCode field in this contract).  In some cases, more than one mapping may exist for a given code.  It is recommended that you use the ResponseCode field for more granular filtering. The ExcludeTransResults field can modify the behavior of the TransResults field by establishing a “not in” condition.
 
@@ -622,32 +714,178 @@ Response Code | Description
 
 Response Code | Description
 ------------- | -----------
-00000 | Successful request
+000 | Successful request
 00001 | Partial Authorization
-TODO | FINISH TABLE + include A01 codes
+10001 | Missing Reference Number
+10002 | Invalid Card Number - Blank/Null
+10003 | Invalid Card Type - Doesn't match accepted card types
+10004 | Invalid Expiration Date - Blank/Null
+10005 | Invalid Security Code - Blank/Null
+10007 | Invalid Card Number - Not Numeric
+10008 | Invalid Length for card type 
+10009 | Invalid Expiration Date - Card Expired
+10010 | Invalid Security Code - Not Numeric
+10011 | Invalid Transaction ID 
+10012 | Invalid Card Number - Failed Mod10
+10013 | Invalid Expiration Date Value
+10014 | Invalid Security Code Length
+10017 | Invalid Expiration Date - Invalid Month
+10018 | Invalid Expiration Date - Invalid Year
+10019 | Invalid Expiration Date
+10020 | Invalid Client Identifier
+10021 | Invalid Request Element – Missing Element
+10022 | Invalid Request Type
+10023 | Password Expired
+10024 | Invalid Credentials
+10025 | Invalid Zip – Not Numeric
+10026 | Invalid Zip – Wrong Length
+10027 | Invalid Amount – Blank/Null
+10028 | Invalid Amount – Not Numeric
+10029 | Invalid Request Date/Time
+10030 | Invalid Token
+10031 | Invalid Track
+10032 | Invalid Track Identifier
+10033 | Invalid Void Request
+10034 | Invalid Encryption ID
+10035 | Invalid Account Number – Blank/Null
+10036 | Invalid Account Number – Not Numeric
+10037 | Invalid Payment Type – Blank/Null
+10038 | Invalid Payment Type – Unrecognized Payment Type
+10039 | Invalid Account Number – Account Number Does Not Exist
+10040 | Missing Required Pass-Thru Data Element
+10041 | Missing / Invalid BIN
+10042 | Already Voided
+10050 | Incorrect Trace Number
+10051 | Incorrect Merchant Setup
+10052 | Processing Network Error
+10053 | Credit Card Entry Refused by Receiver
+10054 | Mandatory Field Error
+20001 | Tokenization Service Connection Error
+20002 | Beyond Pay Internal Server Error
+20003 | Client Service Unavailable
+20004 | Payment Service Sensitive Data Timeout
+30004 | Invalid Request Message
+30005 | Invalid Response Message
+30006 | New Password Doesn't Match Confirmation Password
+30007 | New Password Too Weak
+30008 | Missing Payment Card Data
+30009 | Internal Payment Card Data Error
+30010 | Invalid Record Format
+30011 | Invalid Merchant Number (from Gateway)
+30012 | Bad Card Number (from Gateway)
+30013 | Invalid Store Number
+30020 | Invalid Transaction Industry Type
+30021 | Missing Transaction Industry Type
+30022 | Processing Network Unavailable
+30023 | Invalid Account Number
+30024 | No Account
+30025 | Invalid Security Code
+30026 | Invalid Amount
+30027 | Refund limit is reached for the day (occurs when merchant has reached the refund limit allowed per day on the account)
+30028 | Settlement Failed
+30029 | Transaction Error
+30030 | Transaction data integrity validation error
+30032 | Denied by customer’s bank
+30033 | Insufficient funds
+30034 | Hold - Pick up card
+30035 | Incorrect PIN
+30036 | Duplicate Transaction
+30037 | Card reported lost
+30038 | Card reported stolen
+30039 | Service not allowed
+30040 | Stop Recurring
+30041 | Unattempted Batch Decline
+30042 | Maximum transaction limit is exceeded at the moment. Try processing your transaction tomorrow.
+30043 | Re-enter Transaction
+30044 | Unmapped decline
+30045 | Billing profile configuration error
+30046 | Pin Try Exceeded
+30047 | Refund was not processed/received
+30048 | Chargeback received
+30049 | Processing Canceled by User
+30050 | Invalid Transaction Category
+30051 | Invalid Verification Status
+30052 | Invalid Terminal Type
+30053 | Invalid Petroleum Product Type
+30060 | Invalid IApp User Id
+30061 | Account insert failed
+30062 | Merchant insert failed
+30070 | New Password Previously Used
+30071 | Missing Clerk Id
+30072 | Call for Authorization
+30073 | Card is Restricted
+30074 | Declined due to fraud rules
+30075 | Bank Account Blacklisted
+30076 | Declined due to insufficient information
+30077 | Rejected by the processor
+30078 | Account Closed
+30079 | Invalid Account
+30080 | Account can not process ACH
+30082 | Invalid MICR
+30083 | Customer opt out check Conversion
+30100 | Invalid Account Data – Blank/Null
+30101 | Invalid EMV Tag Data – Blank/Null
+40001 | Lodging Reauth Failed
+40002 | Missing Lodging Folio Number
+80000 | Gateway Services Available
+80001 | Gateway Services Unavailable
+80002 | Invalid Purchase Token
+80003 | More than one result found for search criteria
+80004 | More than one service fee block received in request message
+80005 | Cascade Void. Indicates that the transaction was successfully authorized (fully or partially) and then voided due to an auto-void policy setting.  Only occurs on principal transactions and only when the accompanying service fee was either declined or voided due to an auto-void policy setting.
+80006 | Partial Auto Void. Indicates that the transaction was partially authorized and then voided due to an auto-void policy setting.  Can occur on a service fee or principal transaction.
+80007 | Database query processing error.  Can occur on a Find Transaction request if the data requested is unavailable.
+80008 | Invalid GatewayTransID
+80009 | Invalid MerchantCode
+800010 | Invalid MerchantAccountCode
+800011 | Transaction not found
+800012 | Invalid Length for PersistData
+90000 | Token Store failed to encrypt a token
+90001 | Token Store failed to decrypt a token
+99999 | Unknown Error
 
 
 ## AVS Response Codes
 
 Response Code | Description
 ------------- | -----------
-A | Street addresses match, but postal/ZIP does not or was not provided
-B | Street addresses match, but postal/ZIP code is not verified due to incompatible formats
-TODO | FINISH TABLE
+00 | AVS Error - Retry, System unavailable or Timed out
+40 | Address not available (Address not verified)
+43 | Street address not available (not verified), ZIP matches
+44 | Address failed
+45 | Street address and ZIP don't match
+46 | Street address doesn't match, 5-digit ZIP matches
+47 | Street address doesn't match, 9-digit ZIP matches
+4A | Street address or ZIP doesn't match
+4D | Street address matches, ZIP does not
+4E | Street address and 5-digit ZIP match
+4F | Street address and ZIP match
+53 | Account holder name incorrect, billing postal code matches
+55 | Unrecognized response
+5C | Account holder name incorrect, billing address matches
+5F | Account holder name incorrect, billing address and postal code match
+70 | Account holder name matches
+73 | Account holder name and billing postal code match
+7C | Account holder name and billing address match
+7F | Account holder name, billing address and postal code match
+80 | AVS service not supported by issuer - Issuer doesn't participate in AVS
 
 ## CVV Response Codes
 
 Response Code | Description
 ------------- | -----------
-(blank) | CVV was not verified
-1 | CVV failed verification
-TODO | FINISH TABLE
+M | Matches
+N | No match
+P | Not processed
+S | Should be present
+U | Issuer is not certified
+X | Unrecognized reason
 
 # Testing & Certification
 
 ## Certification
 
-When you are finished developing your interface to one of the Beyond Pay solutions, please <a href='mailto:BeyondPay@getBeyond.com'>contact us</a> to get certified and obtain your production keys!
+When you are finished developing your interface to one of the Beyond Pay solutions, please <a href='mailto:BeyondPayIntegrations@getBeyond.com'>contact us</a> to get certified and obtain your production keys!
 
 ## Test Cards and Checks
 
