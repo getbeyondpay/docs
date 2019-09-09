@@ -269,6 +269,9 @@
             <a href="#transaction-reporting" class="toc-h1 toc-link" data-title="Transaction Reporting">Transaction Reporting</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#transactionrowfilter" class="toc-h2 toc-link" data-title="TransactionRowFilter">TransactionRowFilter</a>
+                  </li>
+                  <li>
                     <a href="#transactionset" class="toc-h2 toc-link" data-title="TransactionSet">TransactionSet</a>
                   </li>
                   <li>
@@ -898,7 +901,7 @@ PayGuardian Cloud is currently in limited beta testing. <a href='mailto:BeyondPa
 
 <p><a href='https://www.dropbox.com/s/epf9jhj5swi5q68/BridgePay_Reporting%20_API.zip?dl=0'>Reporting SDK (C#)</a></p>
 
-<p>Service / WSDL: <a href='https://api.getbeyondpay.com/Reporting.API/ReportingAPI.svc</a></p>
+<p>Web Service: <a href='https://api.getbeyondpay.com/Reporting.API/ReportingAPI.svc'>https://api.getbeyondpay.com/Reporting.API/ReportingAPI.svc</a></p>
 
 <p>C# sample implementation:</p>
 </blockquote>
@@ -1126,7 +1129,7 @@ PayGuardian Cloud is currently in limited beta testing. <a href='mailto:BeyondPa
 </tr>
 </tbody></table>
 
-<p>The TransResults field works by mapping the Beyond Pay 5-digit response code back to the gateway response code (the ResponseCode field in this contract).  In some cases, more than one mapping may exist for a given code.  It is recommended that you use the ResponseCode field for more granular filtering. The ExcludeTransResults field can modify the behavior of the TransResults field by establishing a “not in” condition.</p>
+<p>The TransResults field works by mapping the Beyond Pay 5-digit response code back to the gateway response code (the ResponseCode field in this contract).  In some cases, more than one mapping may exist for a given code.  It is recommended that you use the ResponseCode field for more granular filtering. The ExcludeTransResults field can modify the behavior of the TransResults field by establishing a &quot;not in&quot; condition.</p>
 <h3 id='transactionset'>TransactionSet</h3>
 <p>TODO: finish</p>
 <h3 id='transactionrow'>TransactionRow</h3>
