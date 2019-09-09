@@ -228,7 +228,7 @@
                     <a href="#create-a-payment-form" class="toc-h2 toc-link" data-title="Create a Payment Form">Create a Payment Form</a>
                   </li>
                   <li>
-                    <a href="#obtain-an-a-single-use-token" class="toc-h2 toc-link" data-title="Obtain an a Single-Use Token">Obtain an a Single-Use Token</a>
+                    <a href="#obtain-a-single-use-token" class="toc-h2 toc-link" data-title="Obtain a Single-Use Token">Obtain a Single-Use Token</a>
                   </li>
                   <li>
                     <a href="#submit-a-sale-using-the-single-use-token" class="toc-h2 toc-link" data-title="Submit a Sale using the Single-Use Token">Submit a Sale using the Single-Use Token</a>
@@ -374,12 +374,12 @@
 </ul>
 <h3 id='tokenpay-js'>TokenPay.js</h3>
 <blockquote>
-<p><b>Sandbox (Testing):</b></p>
+<p><b>Sandbox Script (Testing):</b></p>
 </blockquote>
 <pre class="highlight html tab-html"><code>https://api-test.getbeyondpay.com/Bridgepay.WebSecurity/TokenPay/js/tokenPay.js
 </code></pre>
 <blockquote>
-<p><b>Live (Production):</b></p>
+<p><b>Live Script (Production):</b></p>
 </blockquote>
 <pre class="highlight html tab-html"><code>https://api.getbeyondpay.com/WebSecurity/TokenPay/js/tokenPay.js
 </code></pre>
@@ -447,7 +447,7 @@ You must replace <code>your-public-key</code> with your publishable <a href='htt
 <p>To securely collect sensitive card details from your users, TokenPay.js creates UI components for you that are hosted by Beyond Pay Gateway. These are then inserted into your payment form.</p>
 
 <p>The TokenPay element simplifies the form and minimizes the fields required by inserting a single input field that securely collects all needed card data.</p>
-<h2 id='obtain-an-a-single-use-token'>Obtain an a Single-Use Token</h2><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">form</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'paymentForm'</span><span class="p">);</span> 
+<h2 id='obtain-a-single-use-token'>Obtain a Single-Use Token</h2><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">form</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'paymentForm'</span><span class="p">);</span> 
 <span class="nx">$</span><span class="p">(</span><span class="s1">'#paymentForm'</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'submit'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span> 
   <span class="nx">tokenpay</span><span class="p">.</span><span class="nx">createToken</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
@@ -569,7 +569,7 @@ You should always inspect the AVSResult and CVResult fields as these can be good
 
 </code></pre>
 <blockquote>
-<p>In order to actually capture that authorization and charge the card, you must submit 019 capture <code>RequestType</code>, passing the original sale-auth <code>ReferenceNumber</code>, and using the <code>User</code> and <code>Password</code> credentials instead of <code>AuthenticationTokenId</code> and <code>PrivateKey</code> to authenticate:</p>
+<p>In order to actually capture that authorization and charge the card, you must submit 019 capture <code>RequestType</code>, passing the original sale-auth <code>GatewayTransId</code> in the &#39;ReferenceNumber&#39; field, and using the <code>User</code> and <code>Password</code> credentials instead of <code>AuthenticationTokenId</code> and <code>PrivateKey</code> to authenticate:</p>
 </blockquote>
 <pre class="highlight xml tab-xml"><code><span class="nt">&lt;requestHeader&gt;</span>
     <span class="nt">&lt;ClientIdentifier&gt;</span>SOAP<span class="nt">&lt;/ClientIdentifier&gt;</span>
@@ -578,11 +578,10 @@ You should always inspect the AVSResult and CVResult fields as these can be good
     <span class="nt">&lt;RequestDateTime&gt;</span>{requestDateTime}<span class="nt">&lt;/RequestDateTime&gt;</span>
     <span class="nt">&lt;User&gt;</span>{Beyond-assigned username}<span class="nt">&lt;/User&gt;</span>
     <span class="nt">&lt;Password&gt;</span>{Beyond-assigned password}<span class="nt">&lt;/Password&gt;</span>
-    <span class="nt">&lt;requestMessage&gt;</span>                    
-        <span class="nt">&lt;TransactionCode&gt;</span>{must match header transaction ID}<span class="nt">&lt;/TransactionCode&gt;</span>
+    <span class="nt">&lt;requestMessage&gt;</span>
         <span class="nt">&lt;SoftwareVendor&gt;</span>{yourSoftwareName}<span class="nt">&lt;/SoftwareVendor&gt;</span>
         <span class="nt">&lt;TransactionType&gt;</span>capture<span class="nt">&lt;/TransactionType&gt;</span>
-        <span class="nt">&lt;ReferenceNumber&gt;</span>{original sale-auth ReferenceNumber from response}<span class="nt">&lt;/ReferenceNumber&gt;</span>
+        <span class="nt">&lt;ReferenceNumber&gt;</span>{original sale-auth GatewayTransId from response}<span class="nt">&lt;/ReferenceNumber&gt;</span>
         <span class="nt">&lt;Amount&gt;</span>{amountInCents}<span class="nt">&lt;/Amount&gt;</span>
     <span class="nt">&lt;/requestMessage&gt;</span>
 <span class="nt">&lt;/requestHeader&gt;</span>';
@@ -598,7 +597,7 @@ This capture request and several other API requests described here may take diff
 </aside>
 <h2 id='tokenization-and-repeat-sales-from-cards-on-file'>Tokenization and Repeat Sales from Cards-on-File</h2>
 <blockquote>
-<p>The <code>Token</code> element represents a card number, is idempotent, and is valid so long a the card is valid. It may be used as input in a transaction in lieu of the <code>PaymentAccountNumber</code> or the <code>AuthenticationTokenId</code>, and also requires the <code>ExpirationDate</code> field to be submitted with it.</p>
+<p>The <code>Token</code> element represents a card number and is valid so long a the card is valid. It may be used as input in a transaction in lieu of the <code>PaymentAccountNumber</code> or the <code>AuthenticationTokenId</code>, and also requires the <code>ExpirationDate</code> field to be submitted with it.</p>
 </blockquote>
 <pre class="highlight xml tab-xml"><code><span class="nt">&lt;requestHeader&gt;</span>
     <span class="nt">&lt;ClientIdentifier&gt;</span>SOAP<span class="nt">&lt;/ClientIdentifier&gt;</span>
@@ -620,36 +619,35 @@ This capture request and several other API requests described here may take diff
     <span class="nt">&lt;/requestMessage&gt;</span>
 <span class="nt">&lt;/requestHeader&gt;</span>
 </code></pre>
-<p>Every API response message from Beyond Pay contains a <code>Token</code> element. This Token represents the card number used in the original transaction, but is not considered a sensitive data element per the PCI DSS. To ease in identifying the original card, however, the last four digits of the <code>Token</code> are the same as the last four digits ot the card number.</p>
+<p>Every API response message from Beyond Pay contains a <code>Token</code> element. This Token represents the card number used in the original transaction, but is not considered a sensitive data element per the PCI DSS. To ease in identifying the original card, however, the last four digits of the <code>Token</code> are the same as the last four digits of the card number.</p>
 
 <p>This Token value may be persisted and, with the cardholder&#39;s permission, associated with their user account in your application in order to make future purchases with the same card (&quot;card-on-file&quot;).</p>
 
 <p>Submitting a sale or sale-auth transaction with the Token as input requires use of the User and Password credentials in the request message, and also requires that the card <code>ExpirationDate</code> value be persisted and stored with the <code>Token</code> (the <code>ExpirationDate</code> value is returned in the original response message along with the <code>Token</code>).</p>
 <h2 id='refunds-and-voids'>Refunds and Voids</h2>
 <blockquote>
-<p>The `</p>
+<p>The &#39;GatewayTransId&#39; is returned in the response to a previous &#39;sale&#39; or &#39;sale-auth&#39; request and may be used as input to refund or void that original transaction.</p>
 </blockquote>
 <pre class="highlight xml tab-xml"><code><span class="nt">&lt;requestHeader&gt;</span>
     <span class="nt">&lt;ClientIdentifier&gt;</span>SOAP<span class="nt">&lt;/ClientIdentifier&gt;</span>
     <span class="nt">&lt;TransactionID&gt;</span>{transactionId}<span class="nt">&lt;/TransactionID&gt;</span>
-    <span class="nt">&lt;RequestType&gt;</span>.   <span class="nt">&lt;/RequestType&gt;</span>
+    <span class="nt">&lt;RequestType&gt;</span>012<span class="nt">&lt;/RequestType&gt;</span>
     <span class="nt">&lt;RequestDateTime&gt;</span>{requestDateTime}<span class="nt">&lt;/RequestDateTime&gt;</span>
     <span class="nt">&lt;User&gt;</span>{Beyond-assigned username}<span class="nt">&lt;/User&gt;</span>
     <span class="nt">&lt;Password&gt;</span>{Beyond-assigned password}<span class="nt">&lt;/Password&gt;</span>
-    <span class="nt">&lt;requestMessage&gt;</span>
-        <span class="nt">&lt;SoftwareVendor&gt;</span>{yourSoftwareName}<span class="nt">&lt;/SoftwareVendor&gt;</span>                    
-        <span class="nt">&lt;Token&gt;</span>{token - not to be confused with AuthenticationTokenId}<span class="nt">&lt;/Token&gt;</span>
-        <span class="nt">&lt;ExpirationDate&gt;</span>{expirationDate}<span class="nt">&lt;/ExpirationDate&gt;</span>
-        <span class="nt">&lt;TransactionType&gt;</span>sale<span class="nt">&lt;/TransactionType&gt;</span>
-        <span class="nt">&lt;TransIndustryType&gt;</span>EC<span class="nt">&lt;/TransIndustryType&gt;</span>
-        <span class="nt">&lt;AcctType&gt;</span>R<span class="nt">&lt;/AcctType&gt;</span>
-        <span class="nt">&lt;HolderType&gt;</span>P<span class="nt">&lt;/HolderType&gt;</span>
+    <span class="nt">&lt;requestMessage&gt;</span>                    
+        <span class="nt">&lt;SoftwareVendor&gt;</span>{yourSoftwareName}<span class="nt">&lt;/SoftwareVendor&gt;</span>
+        <span class="nt">&lt;TransactionType&gt;</span>refund<span class="nt">&lt;/TransactionType&gt;</span>
+        <span class="nt">&lt;ReferenceNumber&gt;</span>{original sale or sale-auth GatewayTransId}<span class="nt">&lt;/ReferenceNumber&gt;</span>
         <span class="nt">&lt;Amount&gt;</span>{amountInCents}<span class="nt">&lt;/Amount&gt;</span>
-        <span class="nt">&lt;CurrencyCode&gt;</span>USD<span class="nt">&lt;/CurrencyCode&gt;</span>
     <span class="nt">&lt;/requestMessage&gt;</span>
-<span class="nt">&lt;/requestHeader&gt;</span>
+<span class="nt">&lt;/requestHeader&gt;</span>'
 </code></pre>
-<p>Every API response</p>
+<p>In order to refund or void a previous &#39;sale&#39; or &#39;sale-auth&#39; transaction, simply construct an XML message with &#39;RequestType&#39; of &#39;012&#39; and &#39;TransactionType&#39; of &#39;refund&#39;. Note that if the original transaction is still in an unsettled batch, the gateway will perform a void/reversal transaction. If the original transaction has already settled, then the gateway will perform a refund to the original card.</p>
+
+<aside class="notice">
+You may refund/void the full amount of an original transaction or only part of the amount (a "partial refund" or "partial reversal"). If the transaction is in the current open (unsettled) batch, then only a single void (for the full amount or partial amount) may be performed. If the transaction has settled, the refund request transaction may be repeated for multiple partial refunds up to the amount of the original transaction.
+</aside>
 <h1 id='in-person-payments'>In-Person Payments</h1><h2 id='payguardian'>PayGuardian</h2>
 <blockquote>
 <p><a href='https://www.dropbox.com/s/31515dk9s1hptpu/BridgePay%20Gateway%20Certified%20Device%20Matrix.pdf?dl=0'>CERTIFIED DEVICES</a></p>
@@ -706,10 +704,10 @@ This capture request and several other API requests described here may take diff
    <span class="c1">//TO DO - finish</span>
 
 </code></pre>
-<p>PayGuardian Desktop (for Windows) comes with an executable installer file that integrators may incorporate into their Point-of-Sale system installation. A Windows object library has also been included to facilitate easy integrations with POS applications. The object library is accessible using Component Object Model (COM) or .NET technology.When invoked, PayGuardian displays a basic frame that encapsulates the browser, fetching and rendering the Virtual Terminal (VT)page. The object window is configurable, and integrators can brand the user interface using cascading style sheets. The VT object window holds focus, floating on top of all other running applications.</p>
+<p>PayGuardian Desktop (for Windows) comes with an executable installer file that integrators may incorporate into their Point-of-Sale system installation. A Windows object library has also been included to enable easy integrations with POS applications. The object library is accessible using Component Object Model (COM) or .NET technology.When invoked, PayGuardian displays a basic frame that encapsulates the browser, fetching and rendering the Virtual Terminal (VT)page. The object window is configurable, and integrators can brand the user interface using cascading style sheets. The VT object window holds focus, floating on top of all other running applications.</p>
 
 <aside class="success">
-For development and testing, use this sandbox registration key: <b><code>H75RCGRV</code></b>. A new registration key will be required for live/production transaction processing.
+For development and testing, use this sandbox registration key: <b><code>H75RCGRV</code></b>. A new registration key will be provided for live/production transaction processing.
 </aside>
 <h2 id='payguardian-ios-sdk'>PayGuardian iOS SDK</h2>
 <blockquote>
@@ -817,7 +815,7 @@ For development and testing, use this sandbox registration key: <b><code>H75RCGR
 </ul>
 
 <aside class="success">
-For development and testing, use this sandbox registration key: <b><code>H75RCGRV</code></b>. A new registration key will be required for live/production transaction processing.
+For development and testing, use this sandbox registration key: <b><code>H75RCGRV</code></b>. A new registration key will be provided for live/production transaction processing.
 </aside>
 <h2 id='payguardian-android-sdk'>PayGuardian Android SDK</h2>
 <blockquote>
@@ -869,7 +867,7 @@ For development and testing, use this sandbox registration key: <b><code>H75RCGR
 <p>For the App-to-App integration method, the PayGuardian Android application is accessed by starting an activity with an intent which encapsulates a request payload.</p>
 
 <aside class="success">
-For development and testing, use this sandbox registration key: <b><code>H75RCGRV</code></b>. A new registration key will be required for live/production transaction processing.
+For development and testing, use this sandbox registration key: <b><code>H75RCGRV</code></b>. A new registration key will be provided for live/production transaction processing.
 </aside>
 <h2 id='payguardian-cloud'>PayGuardian Cloud</h2>
 <blockquote>
@@ -1684,6 +1682,10 @@ PayGuardian Cloud is currently in limited beta testing. <a href='mailto:BeyondPa
 </tr>
 </tbody></table>
 <h2 id='avs-response-codes'>AVS Response Codes</h2>
+<aside class="warning">
+You should always inspect the AVSResult and CVResult fields as these can be good indicators of potential fraud. If you see a AVSResult or CVResult code that you do not want to accept because it may be too risky (such as "No Match" on the submitted Zip code), then you should submit a void transaction to cancel the authorization and advise the cardholder that their transaction has been declined.
+</aside>
+
 <table><thead>
 <tr>
 <th>Response Code</th>
@@ -1772,6 +1774,10 @@ PayGuardian Cloud is currently in limited beta testing. <a href='mailto:BeyondPa
 </tr>
 </tbody></table>
 <h2 id='cvv-response-codes'>CVV Response Codes</h2>
+<aside class="warning">
+You should always inspect the AVSResult and CVResult fields as these can be good indicators of potential fraud. If you see a AVSResult or CVResult code that you do not want to accept because it may be too risky (such as "No Match" on the submitted Zip code), then you should submit a void transaction to cancel the authorization and advise the cardholder that their transaction has been declined.
+</aside>
+
 <table><thead>
 <tr>
 <th>Response Code</th>
