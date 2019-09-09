@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>Beyond Pay Gateway API Reference</title>
+    <title>Beyond Pay Gateway</title>
 
     <style>
       .highlight table td { padding: 5px; }
@@ -216,7 +216,7 @@
         <ul class="search-results"></ul>
       <ul id="toc" class="toc-list-h1">
           <li>
-            <a href="#introduction-to-beyond-pay" class="toc-h1 toc-link" data-title="Introduction to Beyond Pay">Introduction to Beyond Pay</a>
+            <a href="#beyond-pay-gateway" class="toc-h1 toc-link" data-title="Beyond Pay Gateway">Beyond Pay Gateway</a>
           </li>
           <li>
             <a href="#online-payments" class="toc-h1 toc-link" data-title="Online Payments">Online Payments</a>
@@ -228,16 +228,19 @@
                     <a href="#create-a-payment-form" class="toc-h2 toc-link" data-title="Create a Payment Form">Create a Payment Form</a>
                   </li>
                   <li>
-                    <a href="#obtain-a-token" class="toc-h2 toc-link" data-title="Obtain a Token">Obtain a Token</a>
+                    <a href="#obtain-an-a-single-use-token" class="toc-h2 toc-link" data-title="Obtain an a Single-Use Token">Obtain an a Single-Use Token</a>
                   </li>
                   <li>
-                    <a href="#perform-a-sale-transaction" class="toc-h2 toc-link" data-title="Perform a Sale Transaction">Perform a Sale Transaction</a>
+                    <a href="#submit-a-sale-using-the-single-use-token" class="toc-h2 toc-link" data-title="Submit a Sale using the Single-Use Token">Submit a Sale using the Single-Use Token</a>
                   </li>
                   <li>
-                    <a href="#perform-an-authorization-only" class="toc-h2 toc-link" data-title="Perform an Authorization Only">Perform an Authorization Only</a>
+                    <a href="#perform-an-quot-auth-only-quot-or-quot-pre-auth-quot" class="toc-h2 toc-link" data-title="Perform an "Auth-Only" or "Pre-Auth"">Perform an "Auth-Only" or "Pre-Auth"</a>
                   </li>
                   <li>
-                    <a href="#tokenization-and-repeat-sales" class="toc-h2 toc-link" data-title="Tokenization and repeat sales">Tokenization and repeat sales</a>
+                    <a href="#tokenization-and-repeat-sales-from-cards-on-file" class="toc-h2 toc-link" data-title="Tokenization and Repeat Sales from Cards-on-File">Tokenization and Repeat Sales from Cards-on-File</a>
+                  </li>
+                  <li>
+                    <a href="#refunds-and-voids" class="toc-h2 toc-link" data-title="Refunds and Voids">Refunds and Voids</a>
                   </li>
               </ul>
           </li>
@@ -311,7 +314,11 @@
             <li><a href='https://forms.gle/AMxdRZTsS6skq2DEA'>Get an API Key</a></li>
             <li>______________</li>
             <li><a href='https://www.getbeyond.com/'>www.getbeyond.com</a></li>
-            <li>©2019 Above & Beyond - Business Tools and Services for Entrepreneurs, Inc. All Rights Reserved.</li>
+            <li>©2019 Above & Beyond -</li>
+            <li>Business Tools and</li>
+            <li>Services for</li>
+            <li>Entrepreneurs, Inc.</li>
+            <li>All Rights Reserved.</li>
             <li><a href='https://www.getbeyond.com/privacy-policy/'>Privacy Policy</a></li>
             <li><a href='https://www.getbeyond.com/ccpa/'>CCPA Consumer Privacy</a></li>
         </ul>
@@ -319,14 +326,14 @@
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id='introduction-to-beyond-pay'>Introduction to Beyond Pay</h1>
+        <h1 id='beyond-pay-gateway'>Beyond Pay Gateway</h1>
 <blockquote>
-<p><a href='https://forms.gle/AMxdRZTsS6skq2DEA'>Get your API keys</a> and get moving!</p>
+<p><a href='https://forms.gle/AMxdRZTsS6skq2DEA'>Get your API keys</a> and get coding!</p>
 
 <p>Contact us if you have questions or need any help! <a href='mailto:BeyondPayIntegrations@getbeyond.com'>BeyondPayIntegrations@getbeyond.com</a></p>
 </blockquote>
 
-<p>Welcome to the Beyond Pay Gateway API! Beyond Pay is a powerful gateway that enables you to securely accept many different payment types. Plus, by processing through Beyond Pay, you help put disadvantaged kids through college just by getting paid!</p>
+<p>Welcome to the Beyond Pay Gateway API! Beyond Pay is a powerful payment gateway that enables you to securely accept many different payment types. Plus, by processing through Beyond Pay, you support <a href="https://www.giveback.ngo/">the philanthropic cause at the heart of Beyond&#39;s mission</a>!</p>
 
 <p>The primary integration options offered by the Beyond Pay platform include:</p>
 
@@ -363,7 +370,7 @@
 <li><strong>Isolation</strong> – Beyond Pay Gateway hosts the sensitive cardholder data input fields. The fields are injected into your form as an HTML iframe thus isolating your page and your server from card sensitive data.</li>
 <li><strong>Tokenization</strong> – in order to execute transactions against the user’s card, TokenPay replaces the sensitive cardholder data with a non-sensitive surrogate value (token). The token is generated via the use of the TokenPay JavaScript library and your payment form.</li>
 <li><strong>Segregation</strong> – Requests for charges against the user’s card are made server-to-server – not in the browser or mobile app where it is publicly visible. The tokenized card data is submitted to your server where a secure server-to-server request is made to execute the transaction.</li>
-<li><strong>Public/Private Keys</strong> – The injection of the TokenPay hosted input fields and card tokenization is authenticated via a public key assigned to the merchant. API requests to execute charges against the tokenized card are made by the backend server and are authenticated with a private key assigned to the merchant.</li>
+<li><strong>Authentication</strong> – The injection of the TokenPay hosted input fields and card tokenization is authenticated via a public key assigned to the merchant. API requests to execute charges against the tokenized card are made by the backend server and are authenticated with a private key assigned to the merchant.</li>
 </ul>
 <h3 id='tokenpay-js'>TokenPay.js</h3>
 <blockquote>
@@ -376,7 +383,7 @@
 </blockquote>
 <pre class="highlight html tab-html"><code>https://api.getbeyondpay.com/WebSecurity/TokenPay/js/tokenPay.js
 </code></pre>
-<p>TokenPay.js is the JavaScript library for building online or mobile checkout flows with Beyond Pay Gateway. With it, you can collect sensitive data from the cardholder and create tokens for securely sending the data to your server.</p>
+<p>TokenPay.js is the JavaScript library for building online or mobile browser checkout flows with Beyond Pay Gateway. With it, you can collect sensitive data from the cardholder and create tokens for securely sending the data to your webserver.</p>
 
 <p>TokenPay.js provides a ready-made UI component for collecting the sensitive card data from the user. TokenPay.js then tokenizes the information without it ever having to touch your server.</p>
 
@@ -440,7 +447,7 @@ You must replace <code>your-public-key</code> with your publishable <a href='htt
 <p>To securely collect sensitive card details from your users, TokenPay.js creates UI components for you that are hosted by Beyond Pay Gateway. These are then inserted into your payment form.</p>
 
 <p>The TokenPay element simplifies the form and minimizes the fields required by inserting a single input field that securely collects all needed card data.</p>
-<h2 id='obtain-a-token'>Obtain a Token</h2><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">form</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'paymentForm'</span><span class="p">);</span> 
+<h2 id='obtain-an-a-single-use-token'>Obtain an a Single-Use Token</h2><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">form</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'paymentForm'</span><span class="p">);</span> 
 <span class="nx">$</span><span class="p">(</span><span class="s1">'#paymentForm'</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'submit'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span> 
   <span class="nx">tokenpay</span><span class="p">.</span><span class="nx">createToken</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
@@ -458,9 +465,9 @@ You must replace <code>your-public-key</code> with your publishable <a href='htt
 <p>The card data collected by the TokenPay element is posted from the client browser to Beyond Pay Gateway where it is converted into a token. If there are any errors in the collection of the card data or creation of the token, information is automatically displayed in the <code>errorElement</code> of your payment form.</p>
 
 <p>The token is stored as a hidden input value and passed to your server on form submission.</p>
-<h2 id='perform-a-sale-transaction'>Perform a Sale Transaction</h2>
+<h2 id='submit-a-sale-using-the-single-use-token'>Submit a Sale using the Single-Use Token</h2>
 <blockquote>
-<p>With the token and other form fields obtained, now construct the XML payload:</p>
+<p>With the token and other key form fields obtained, now construct the XML payload from your server application:</p>
 </blockquote>
 <pre class="highlight xml tab-xml"><code><span class="nt">&lt;requestHeader&gt;</span>
     <span class="nt">&lt;ClientIdentifier&gt;</span>SOAP<span class="nt">&lt;/ClientIdentifier&gt;</span>
@@ -537,7 +544,7 @@ You must replace <code>your-public-key</code> with your publishable <a href='htt
 <aside class="warning">
 You should always inspect the AVSResult and CVResult fields as these can be good indicators of potential fraud. If you see a AVSResult or CVResult code that you do not want to accept because it may be too risky (such as "No Match" on the submitted Zip code), then you should submit a void transaction to cancel the authorization and advise the cardholder that their transaction has been declined.
 </aside>
-<h2 id='perform-an-authorization-only'>Perform an Authorization Only</h2>
+<h2 id='perform-an-quot-auth-only-quot-or-quot-pre-auth-quot'>Perform an &quot;Auth-Only&quot; or &quot;Pre-Auth&quot;</h2>
 <blockquote>
 <p>To change from a &quot;sale&quot; transaction to an &quot;authorize&quot; transaction, simply set <code>TransactionType</code> to <code>sale-auth</code>:</p>
 </blockquote>
@@ -589,9 +596,9 @@ You should always inspect the AVSResult and CVResult fields as these can be good
 <aside class="notice">
 This capture request and several other API requests described here may take differing credentials in order to authenticate the client. All such credentials will be provided by Beyond for testing and production.</a>.
 </aside>
-<h2 id='tokenization-and-repeat-sales'>Tokenization and repeat sales</h2>
+<h2 id='tokenization-and-repeat-sales-from-cards-on-file'>Tokenization and Repeat Sales from Cards-on-File</h2>
 <blockquote>
-<p>The <code>Token</code> element represents a card number, can be used multiple times, and does not expire. It may be used as input in a transaction in lieu of the <code>PaymentAccountNumber</code> or the <code>AuthenticationTokenId</code>, and still requires the <code>ExpirationDate</code> field as well.</p>
+<p>The <code>Token</code> element represents a card number, is idempotent, and is valid so long a the card is valid. It may be used as input in a transaction in lieu of the <code>PaymentAccountNumber</code> or the <code>AuthenticationTokenId</code>, and also requires the <code>ExpirationDate</code> field to be submitted with it.</p>
 </blockquote>
 <pre class="highlight xml tab-xml"><code><span class="nt">&lt;requestHeader&gt;</span>
     <span class="nt">&lt;ClientIdentifier&gt;</span>SOAP<span class="nt">&lt;/ClientIdentifier&gt;</span>
@@ -618,6 +625,31 @@ This capture request and several other API requests described here may take diff
 <p>This Token value may be persisted and, with the cardholder&#39;s permission, associated with their user account in your application in order to make future purchases with the same card (&quot;card-on-file&quot;).</p>
 
 <p>Submitting a sale or sale-auth transaction with the Token as input requires use of the User and Password credentials in the request message, and also requires that the card <code>ExpirationDate</code> value be persisted and stored with the <code>Token</code> (the <code>ExpirationDate</code> value is returned in the original response message along with the <code>Token</code>).</p>
+<h2 id='refunds-and-voids'>Refunds and Voids</h2>
+<blockquote>
+<p>The `</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;requestHeader&gt;</span>
+    <span class="nt">&lt;ClientIdentifier&gt;</span>SOAP<span class="nt">&lt;/ClientIdentifier&gt;</span>
+    <span class="nt">&lt;TransactionID&gt;</span>{transactionId}<span class="nt">&lt;/TransactionID&gt;</span>
+    <span class="nt">&lt;RequestType&gt;</span>.   <span class="nt">&lt;/RequestType&gt;</span>
+    <span class="nt">&lt;RequestDateTime&gt;</span>{requestDateTime}<span class="nt">&lt;/RequestDateTime&gt;</span>
+    <span class="nt">&lt;User&gt;</span>{Beyond-assigned username}<span class="nt">&lt;/User&gt;</span>
+    <span class="nt">&lt;Password&gt;</span>{Beyond-assigned password}<span class="nt">&lt;/Password&gt;</span>
+    <span class="nt">&lt;requestMessage&gt;</span>
+        <span class="nt">&lt;SoftwareVendor&gt;</span>{yourSoftwareName}<span class="nt">&lt;/SoftwareVendor&gt;</span>                    
+        <span class="nt">&lt;Token&gt;</span>{token - not to be confused with AuthenticationTokenId}<span class="nt">&lt;/Token&gt;</span>
+        <span class="nt">&lt;ExpirationDate&gt;</span>{expirationDate}<span class="nt">&lt;/ExpirationDate&gt;</span>
+        <span class="nt">&lt;TransactionType&gt;</span>sale<span class="nt">&lt;/TransactionType&gt;</span>
+        <span class="nt">&lt;TransIndustryType&gt;</span>EC<span class="nt">&lt;/TransIndustryType&gt;</span>
+        <span class="nt">&lt;AcctType&gt;</span>R<span class="nt">&lt;/AcctType&gt;</span>
+        <span class="nt">&lt;HolderType&gt;</span>P<span class="nt">&lt;/HolderType&gt;</span>
+        <span class="nt">&lt;Amount&gt;</span>{amountInCents}<span class="nt">&lt;/Amount&gt;</span>
+        <span class="nt">&lt;CurrencyCode&gt;</span>USD<span class="nt">&lt;/CurrencyCode&gt;</span>
+    <span class="nt">&lt;/requestMessage&gt;</span>
+<span class="nt">&lt;/requestHeader&gt;</span>
+</code></pre>
+<p>Every API response</p>
 <h1 id='in-person-payments'>In-Person Payments</h1><h2 id='payguardian'>PayGuardian</h2>
 <blockquote>
 <p><a href='https://www.dropbox.com/s/31515dk9s1hptpu/BridgePay%20Gateway%20Certified%20Device%20Matrix.pdf?dl=0'>CERTIFIED DEVICES</a></p>
@@ -862,7 +894,7 @@ For development and testing, use this sandbox registration key: <b><code>H75RCGR
 <p>PayGuardian Cloud is designed for cloud-based Point-of-Sale systems, and delivers the same scope removal and easy EMV acceptance as other versions of PayGuardian. PayGuardian Cloud is operating system independent, and is installed on the merchant&#39;s router as a network appliance.</p>
 
 <aside class="notice">
-PayGuardian Cloud is currently in limited beta testing. <a href='mailto:BeyondPay@getBeyond.com'>Contact us</a> if you are interested!
+PayGuardian Cloud is currently in limited beta testing. <a href='mailto:BeyondPayIntegrations@getBeyond.com'>Contact us</a> if you are interested!
 </aside>
 <h1 id='transaction-reporting'>Transaction Reporting</h1>
 <blockquote>
