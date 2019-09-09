@@ -338,9 +338,9 @@
 <p>The primary integration options offered by the Beyond Pay platform include:</p>
 
 <ul>
-<li><strong>TokenPay.js</strong> – is an extension of Beyond Pay that combines client-side and server-side technologies for PCI-compliant online payment capture</li>
 <li><strong>Beyond Pay API</strong> - a set of robust web service APIs offering support for credit cards, ACH/checks, tokenization, and more</li>
-<li><strong>PayGuardian</strong> – a lightweight middleware application that integrates seamlessly into Point of Sale (POS) software and facilitates the secure collection of cardholder data insulating the integrator from the scope of PA-DSS and the requirements of EMV certification</li>
+<li><strong>TokenPay.js</strong> – is an extension of Beyond Pay that combines client-side and server-side technologies for PCI-compliant online payment capture</li>
+<li><strong>PayGuardian</strong> – a middleware application and SDK that integrates seamlessly into Point of Sale (POS) software, removing it from the scope of PCI PA-DSS and enabling easy EMV/chip card support</li>
 </ul>
 <h1 id='online-payments'>Online Payments</h1><h2 id='getting-started'>Getting Started</h2>
 <blockquote>
@@ -588,7 +588,7 @@ You should always inspect the AVSResult and CVResult fields as these can be good
 </code></pre>
 <p>Sometimes you may not want to accept payment right away for a transaction, such as when shipping physical goods. The normal practice in this scenario is to first authorize a card which will place a hold on the funds, and then to later &quot;capture&quot; that authorization when the order is fulfilled.</p>
 
-<p>The <code>SettlementDelay</code> tag can be added for sale-auth transactions, and designates te number of batch cycles that the authorization remains &quot;open&quot; (or unsettled). If the sale-auth transaction is not captured before completion of the designated number of batches, then the original authorization will be automatically voided and not captured.</p>
+<p>The <code>SettlementDelay</code> tag can be added for sale-auth transactions, and designates the number of batch cycles that the authorization remains &quot;open&quot; (or unsettled). If the sale-auth transaction is not captured before completion of the designated number of batches, then the original authorization will be automatically voided and not captured.</p>
 
 <p>To capture an authorization (sometimes called a &quot;pre-auth&quot;), simply submit a <code>RequestType</code> of <code>019</code> for capture, along with passing the reference number of the original authorization as shown here.</p>
 
@@ -626,7 +626,7 @@ This capture request and several other API requests described here may take diff
 <p>Submitting a sale or sale-auth transaction with the Token as input requires use of the User and Password credentials in the request message, and also requires that the card <code>ExpirationDate</code> value be persisted and stored with the <code>Token</code> (the <code>ExpirationDate</code> value is returned in the original response message along with the <code>Token</code>).</p>
 <h2 id='refunds-and-voids'>Refunds and Voids</h2>
 <blockquote>
-<p>The &#39;GatewayTransId&#39; is returned in the response to a previous &#39;sale&#39; or &#39;sale-auth&#39; request and may be used as input to refund or void that original transaction.</p>
+<p>The <code>GatewayTransId</code> is returned in the response to a previous sale or sale-auth request and may be used as input to refund or void that original transaction.</p>
 </blockquote>
 <pre class="highlight xml tab-xml"><code><span class="nt">&lt;requestHeader&gt;</span>
     <span class="nt">&lt;ClientIdentifier&gt;</span>SOAP<span class="nt">&lt;/ClientIdentifier&gt;</span>
@@ -643,7 +643,7 @@ This capture request and several other API requests described here may take diff
     <span class="nt">&lt;/requestMessage&gt;</span>
 <span class="nt">&lt;/requestHeader&gt;</span>'
 </code></pre>
-<p>In order to refund or void a previous &#39;sale&#39; or &#39;sale-auth&#39; transaction, simply construct an XML message with &#39;RequestType&#39; of &#39;012&#39; and &#39;TransactionType&#39; of &#39;refund&#39;. Note that if the original transaction is still in an unsettled batch, the gateway will perform a void/reversal transaction. If the original transaction has already settled, then the gateway will perform a refund to the original card.</p>
+<p>In order to refund or void a previous sale or sale-auth transaction, simply construct an XML message with <code>RequestType</code> of <code>012</code> and <code>TransactionType</code> of <code>refund</code>. Note that if the original transaction is still in an unsettled batch, the gateway will perform a void/reversal transaction. If the original transaction has already settled, then the gateway will perform a refund to the original card.</p>
 
 <aside class="notice">
 You may refund/void the full amount of an original transaction or only part of the amount (a "partial refund" or "partial reversal"). If the transaction is in the current open (unsettled) batch, then only a single void (for the full amount or partial amount) may be performed. If the transaction has settled, the refund request transaction may be repeated for multiple partial refunds up to the amount of the original transaction.
