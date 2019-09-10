@@ -1386,6 +1386,22 @@ PayGuardian Cloud is currently in limited beta testing. <a href='mailto:BeyondPa
 
 <p>Filters that are processed directly against the data store also have specific comparison modes that can be utilized for easier queries. Review the comparison modes listed in the <a href="#transactionrowfilter">TransactionRowFilter</a> table for a full list.</p>
 
+<blockquote>
+<p>Examples:
+Returns all transactions of $1.00 or more</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;AmountRangeFrom&gt;</span>100<span class="nt">&lt;/AmountRangeFrom&gt;</span>
+</code></pre>
+<blockquote>
+<p>Returns all transactions of $2.00 or less</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;AmountRangeTo&gt;</span>200<span class="nt">&lt;/AmountRangeTo&gt;</span>
+</code></pre>
+<blockquote>
+<p>Returns all transactions with Invoice Number 2001</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;InoviceNumber&gt;</span>2001<span class="nt">&lt;/InvoiceNumber&gt;</span>
+</code></pre>
 <p><strong>Comparison Types</strong></p>
 
 <ul>
@@ -1397,17 +1413,9 @@ PayGuardian Cloud is currently in limited beta testing. <a href='mailto:BeyondPa
 <li>N/A = The parameter is either a Boolean parameter or does not affect the data filtering process.</li>
 </ul>
 
-<p><strong>EXAMPLES</strong>
-<code>xml
-&lt;AmountRangeFrom&gt;100&lt;/AmountRangeFrom&gt;
-</code>
-Provides all transactions of $1.00 or more</p>
-<pre class="highlight xml tab-xml"><code><span class="nt">&lt;AmountRangeTo&gt;</span>200<span class="nt">&lt;/AmountRangeTo&gt;</span>
-</code></pre>
-<p>Provides all transactions of $2.00 or less</p>
+<p><strong>EXAMPLES</strong></p>
 
 <ul>
-<li><code>&lt;InoviceNumber&gt;2001&lt;/InvoiceNumber&gt;</code> Provides all transactions having Invoice Number 2001</li>
 <li><code>&lt;ResponseCode&gt;D&lt;/ResponseCode&gt;</code> Provides all transactions that were declined.</li>
 <li><code>&lt;ResponseCode&gt;D0&lt;/ResponseCode&gt;</code> Provides all transactions that were declined with <a href="#gateway-message-codes">Gateway Message</a> codes D01–D09</li>
 <li><code>&lt;ResponseCode&gt;D01&lt;/ResponseCode&gt;</code> Provides only those transactions that were declined with <a href="#gateway-message-codes">Gateway Message</a> code D01.</li>
