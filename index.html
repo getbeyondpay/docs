@@ -1387,20 +1387,47 @@ PayGuardian Cloud is currently in limited beta testing. <a href='mailto:BeyondPa
 <p>Filters that are processed directly against the data store also have specific comparison modes that can be utilized for easier queries. Review the comparison modes listed in the <a href="#transactionrowfilter">TransactionRowFilter</a> table for a full list.</p>
 
 <blockquote>
-<p>Examples:
-Returns all transactions of $1.00 or more</p>
+<p>Examples:</p>
+
+<p>Returns all transactions of $1.00 or more:</p>
 </blockquote>
 <pre class="highlight xml tab-xml"><code><span class="nt">&lt;AmountRangeFrom&gt;</span>100<span class="nt">&lt;/AmountRangeFrom&gt;</span>
 </code></pre>
 <blockquote>
-<p>Returns all transactions of $2.00 or less</p>
+<p>Returns all transactions of $2.00 or less:</p>
 </blockquote>
 <pre class="highlight xml tab-xml"><code><span class="nt">&lt;AmountRangeTo&gt;</span>200<span class="nt">&lt;/AmountRangeTo&gt;</span>
 </code></pre>
 <blockquote>
-<p>Returns all transactions with Invoice Number 2001</p>
+<p>Returns all transactions with Invoice Number 2001:</p>
 </blockquote>
 <pre class="highlight xml tab-xml"><code><span class="nt">&lt;InoviceNumber&gt;</span>2001<span class="nt">&lt;/InvoiceNumber&gt;</span>
+</code></pre>
+<blockquote>
+<p>Returns all declined transactions:</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;ResponseCode&gt;</span>D<span class="nt">&lt;/ResponseCode&gt;</span>
+</code></pre>
+<blockquote>
+<p>Returns all declined transactions with <a href="#gateway-message-codes">Gateway Message</a> codes D01–D09:</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;ResponseCode&gt;</span>D0<span class="nt">&lt;/ResponseCode&gt;</span>
+</code></pre>
+<blockquote>
+<p>Returns only those transactions that were declined with <a href="#gateway-message-codes">Gateway Message</a> code D01:</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;ResponseCode&gt;</span>D01<span class="nt">&lt;/ResponseCode&gt;</span>
+</code></pre>
+<blockquote>
+<p>Provides those transactions where the <a href="#gateway-result-codes">Gateway Result code</a> is equal to 00000, 00001, or 10012 only</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;TransResults&gt;</span>00000,00001,10012<span class="nt">&lt;/TransResults&gt;</span>
+</code></pre>
+<blockquote>
+<p>Return all transactions where the <a href="#gateway-result-codes">Gateway Result code</a> is NOT equal to 00000, 00001, or 10012:</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;TransResults&gt;</span>00000,00001,10012<span class="nt">&lt;/TransResults&gt;</span>
+<span class="nt">&lt;ExcludeTransResults&gt;</span>1<span class="nt">&lt;/ExcludeTransResults&gt;</span>
 </code></pre>
 <p><strong>Comparison Types</strong></p>
 
@@ -1413,15 +1440,7 @@ Returns all transactions of $1.00 or more</p>
 <li>N/A = The parameter is either a Boolean parameter or does not affect the data filtering process.</li>
 </ul>
 
-<p><strong>EXAMPLES</strong></p>
-
-<ul>
-<li><code>&lt;ResponseCode&gt;D&lt;/ResponseCode&gt;</code> Provides all transactions that were declined.</li>
-<li><code>&lt;ResponseCode&gt;D0&lt;/ResponseCode&gt;</code> Provides all transactions that were declined with <a href="#gateway-message-codes">Gateway Message</a> codes D01–D09</li>
-<li><code>&lt;ResponseCode&gt;D01&lt;/ResponseCode&gt;</code> Provides only those transactions that were declined with <a href="#gateway-message-codes">Gateway Message</a> code D01.</li>
-<li><code>&lt;TransResults&gt;00000,00001,10012&lt;/TransResults&gt;</code> Provides those transactions where the <a href="#gateway-result-codes">Gateway Result code</a> is equal to 00000, 00001, or 10012 only.</li>
-<li><code>&lt;ExcludeTransResults&gt;1&lt;/ExcludeTransResults&gt;</code> must be used with <code>&lt;TransResults&gt;</code>. It modifies the behavior of the TransResults field. For example, if used with the TransResults field listed in the previous bullet, the Reporting API would return those transactions that did NOT get a 00000, 00001, or 10012 <a href="#gateway-result-codes">Gateway Result code</a>.</li>
-</ul>
+<p>NOTE: <code>ExcludeTransResults</code> must be used with <code>TransResults</code>. It modifies the behavior of the TransResults field.</p>
 
 <p><strong>Post-Query Filters</strong></p>
 
