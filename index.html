@@ -667,7 +667,11 @@ You may refund/void the full amount of an original transaction or only part of t
 </aside>
 <h2 id='level-ii-and-level-iii-data'>Level II and Level III Data</h2>
 <p>Some business cards may be eligible for lower interchange rates if you send additional data with the transaction. Beyond Pay supports these additional data fields and can help you or your clients secure <a href="https://www.getbeyond.com/b2b-payment-solutions/">these significantly reduced rates and other B2B benefits</a>.</p>
-<h3 id='level-ii-data'>Level II Data</h3><pre class="highlight xml tab-xml"><code><span class="nt">&lt;requestHeader&gt;</span>
+<h3 id='level-ii-data'>Level II Data</h3>
+<blockquote>
+<p>Sample sale transaction with TokenPay.js and Level II data:</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;requestHeader&gt;</span>
     <span class="nt">&lt;ClientIdentifier&gt;</span>SOAP<span class="nt">&lt;/ClientIdentifier&gt;</span>
     <span class="nt">&lt;TransactionID&gt;</span>{transactionId}<span class="nt">&lt;/TransactionID&gt;</span>
     <span class="nt">&lt;RequestType&gt;</span>004<span class="nt">&lt;/RequestType&gt;</span>
@@ -699,7 +703,11 @@ You may refund/void the full amount of an original transaction or only part of t
 <li><code>LocalTaxAmount</code> - applicable tax amount in cents (implied decimal); must be less than the total transaction <code>Amount</code></li>
 <li><code>LocalTaxIndicator</code> - may be <code>P</code> (Provided), <code>N</code> (Not Provided), or <code>E</code> (Exempt). Use <code>P</code> if you are sending a value in <code>LocalTaxAmount</code>, or <code>E</code> if you or the merchant are tax-exempt</li>
 </ul>
-<h3 id='level-iii-data'>Level III Data</h3><pre class="highlight xml tab-xml"><code><span class="nt">&lt;requestHeader&gt;</span>
+<h3 id='level-iii-data'>Level III Data</h3>
+<blockquote>
+<p>Sample sale transaction with TokenPay.js and Level III line-item details:</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;requestHeader&gt;</span>
     <span class="nt">&lt;ClientIdentifier&gt;</span>SOAP<span class="nt">&lt;/ClientIdentifier&gt;</span>
     <span class="nt">&lt;TransactionID&gt;</span>{transactionId}<span class="nt">&lt;/TransactionID&gt;</span>
     <span class="nt">&lt;RequestType&gt;</span>004<span class="nt">&lt;/RequestType&gt;</span>
@@ -732,7 +740,9 @@ You may refund/void the full amount of an original transaction or only part of t
     <span class="nt">&lt;/requestMessage&gt;</span>
 <span class="nt">&lt;/requestHeader&gt;</span>
 </code></pre>
-<p>Cards that are eligible for Level III interchange rates are typically corporate purchasing or travel cards. If a card is eligible for such, you can achieve a reduced interchange rate by providing the following fields in your gateway request message (in addition to <a href="#level-ii-data">those required for Level II</a> and <a href="#submit-a-sale-using-the-single-use-token">basic sale or &quot;Level I&quot; transactions</a>basic). Note that Level III transactions require line-item details from the purchase. You should send one <code>Item</code> array for each line item on a given invoice; many integrators will dynamically map these required fields into their existing inventory, order management, or ERP systems. Alternatively, if you only sell one type of item, you may consider creating a static mapping of these fields, or &quot;hard-coding&quot; the values specific to your business.</p>
+<p>Cards that are eligible for Level III interchange rates are typically corporate purchasing or travel cards. If a card is eligible for such, you can achieve a reduced interchange rate by providing the following fields in your gateway request message (in addition to <a href="#level-ii-data">those required for Level II</a> and <a href="#submit-a-sale-using-the-single-use-token">basic sale or &quot;Level I&quot; transactions</a>).</p>
+
+<p>Note that Level III transactions require line-item details from the purchase. You should send one <code>Item</code> array for each line item on a given invoice; many integrators will dynamically map these required fields into their existing inventory, order management, or ERP systems. Alternatively, if you only sell one type of item, you may consider creating a static mapping of these fields, or &quot;hard-coding&quot; the values specific to your business.</p>
 
 <ul>
 <li><code>ItemCount</code> - the total number of line items being submitted in this request</li>
