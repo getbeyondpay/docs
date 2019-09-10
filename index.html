@@ -277,7 +277,7 @@
                     <a href="#operation-contract" class="toc-h2 toc-link" data-title="Operation Contract">Operation Contract</a>
                   </li>
                   <li>
-                    <a href="#reporting-tips" class="toc-h2 toc-link" data-title="Reporting Tips">Reporting Tips</a>
+                    <a href="#reporting-tips-and-examples" class="toc-h2 toc-link" data-title="Reporting Tips and Examples">Reporting Tips and Examples</a>
                   </li>
               </ul>
           </li>
@@ -1363,7 +1363,7 @@ PayGuardian Cloud is currently in limited beta testing. <a href='mailto:BeyondPa
 <pre class="highlight csharp"><code><span class="nf">PublicGetTransactionsByFilter</span><span class="p">(</span><span class="n">Credentials</span> <span class="n">credentials</span><span class="p">,</span> <span class="n">TransactionRowFilter</span> <span class="n">filterObject</span><span class="p">)</span>
 </code></pre>
 <p>At this time, the Reporting API provides only one operation contract for retrieving transactional data.</p>
-<h3 id='reporting-tips'>Reporting Tips</h3>
+<h3 id='reporting-tips-and-examples'>Reporting Tips and Examples</h3>
 <p>There are two types of parameters in the TransactionRowFilter object: DBQuery Filters and Post-Query Filters. </p>
 
 <p>Most of the parameters in the filter are DBQuery filters that are used directly against the persisted data store that contains the transactional data. However, some of the filters are Post-Query filters, meaning the filters are not applied until after the persisted data is retrieved. Post-Query filters have transformational logic that is better suited after the bulk of the query has been processed by the data store.</p>
@@ -1381,11 +1381,16 @@ PayGuardian Cloud is currently in limited beta testing. <a href='mailto:BeyondPa
 <li>N/A = The parameter is either a Boolean parameter or does not affect the data filtering process.</li>
 </ul>
 
-<p><strong>EXAMPLES</strong></p>
+<p><strong>EXAMPLES</strong>
+<code>xml
+&lt;AmountRangeFrom&gt;100&lt;/AmountRangeFrom&gt;
+</code>
+Provides all transactions of $1.00 or more</p>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;AmountRangeTo&gt;</span>200<span class="nt">&lt;/AmountRangeTo&gt;</span>
+</code></pre>
+<p>Provides all transactions of $2.00 or less</p>
 
 <ul>
-<li><code>&lt;AmountRangeFrom&gt;100&lt;/AmountRangeFrom&gt;</code> Provides all transactions of $1.00 or more</li>
-<li><code>&lt;AmountRangeTo&gt;200&lt;/AmountRangeTo&gt;</code> Provides all transactions of $2.00 or less</li>
 <li><code>&lt;InoviceNumber&gt;2001&lt;/InvoiceNumber&gt;</code> Provides all transactions having Invoice Number 2001</li>
 <li><code>&lt;ResponseCode&gt;D&lt;/ResponseCode&gt;</code> Provides all transactions that were declined.</li>
 <li><code>&lt;ResponseCode&gt;D0&lt;/ResponseCode&gt;</code> Provides all transactions that were declined with <a href="#gateway-message-codes">Gateway Message</a> codes D01–D09</li>
