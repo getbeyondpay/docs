@@ -243,6 +243,9 @@
                   <li>
                     <a href="#refunds-and-voids" class="toc-h2 toc-link" data-title="Refunds and Voids">Refunds and Voids</a>
                   </li>
+                  <li>
+                    <a href="#level-ii-and-level-iii-data" class="toc-h2 toc-link" data-title="Level II and Level III Data">Level II and Level III Data</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -497,12 +500,11 @@ You must replace <code>your-public-key</code> with your publishable <a href='htt
         <span class="nt">&lt;TransIndustryType&gt;</span>EC<span class="nt">&lt;/TransIndustryType&gt;</span>
         <span class="nt">&lt;TransactionType&gt;</span>sale<span class="nt">&lt;/TransactionType&gt;</span>
         <span class="nt">&lt;AcctType&gt;</span>R<span class="nt">&lt;/AcctType&gt;</span>
-        <span class="nt">&lt;HolderType&gt;</span>P<span class="nt">&lt;/HolderType&gt;</span>
+        <span class="nt">&lt;HolderType&gt;</span>O<span class="nt">&lt;/HolderType&gt;</span>
         <span class="nt">&lt;Amount&gt;</span>{amountInCents}<span class="nt">&lt;/Amount&gt;</span>
         <span class="nt">&lt;CurrencyCode&gt;</span>USD<span class="nt">&lt;/CurrencyCode&gt;</span>
     <span class="nt">&lt;/requestMessage&gt;</span>
-<span class="nt">&lt;/requestHeader&gt;</span>';
-
+<span class="nt">&lt;/requestHeader&gt;</span>
 </code></pre>
 <blockquote>
 <p>Encode the XML payload in Base-64 and package it within a SOAP envelope:</p>
@@ -576,13 +578,12 @@ You should always inspect the AVSResult and CVResult fields as these can be good
         <span class="nt">&lt;TransIndustryType&gt;</span>EC<span class="nt">&lt;/TransIndustryType&gt;</span>
         <span class="nt">&lt;TransactionType&gt;</span>sale-auth<span class="nt">&lt;/TransactionType&gt;</span>
         <span class="nt">&lt;AcctType&gt;</span>R<span class="nt">&lt;/AcctType&gt;</span>
-        <span class="nt">&lt;HolderType&gt;</span>P<span class="nt">&lt;/HolderType&gt;</span>
+        <span class="nt">&lt;HolderType&gt;</span>O<span class="nt">&lt;/HolderType&gt;</span>
         <span class="nt">&lt;Amount&gt;</span>{amountInCents}<span class="nt">&lt;/Amount&gt;</span>
         <span class="nt">&lt;CurrencyCode&gt;</span>USD<span class="nt">&lt;/CurrencyCode&gt;</span>
         <span class="nt">&lt;SettlementDelay&gt;</span>{daysToDelay}<span class="nt">&lt;/SettlementDelay&gt;</span>
     <span class="nt">&lt;/requestMessage&gt;</span>
-<span class="nt">&lt;/requestHeader&gt;</span>';
-
+<span class="nt">&lt;/requestHeader&gt;</span>
 </code></pre>
 <blockquote>
 <p>In order to actually capture that authorization and charge the card, you must submit 019 capture <code>RequestType</code>, passing the original sale-auth <code>GatewayTransId</code> in the &#39;ReferenceNumber&#39; field, and using the <code>User</code> and <code>Password</code> credentials instead of <code>AuthenticationTokenId</code> and <code>PrivateKey</code> to authenticate:</p>
@@ -600,7 +601,7 @@ You should always inspect the AVSResult and CVResult fields as these can be good
         <span class="nt">&lt;ReferenceNumber&gt;</span>{original sale-auth GatewayTransId from response}<span class="nt">&lt;/ReferenceNumber&gt;</span>
         <span class="nt">&lt;Amount&gt;</span>{amountInCents}<span class="nt">&lt;/Amount&gt;</span>
     <span class="nt">&lt;/requestMessage&gt;</span>
-<span class="nt">&lt;/requestHeader&gt;</span>';
+<span class="nt">&lt;/requestHeader&gt;</span>
 </code></pre>
 <p>Sometimes you may not want to accept payment right away for a transaction, such as when shipping physical goods. The normal practice in this scenario is to first authorize a card which will place a hold on the funds, and then to later &quot;capture&quot; that authorization when the order is fulfilled.</p>
 
@@ -629,7 +630,7 @@ This capture request and several other API requests described here may take diff
         <span class="nt">&lt;TransactionType&gt;</span>sale<span class="nt">&lt;/TransactionType&gt;</span>
         <span class="nt">&lt;TransIndustryType&gt;</span>EC<span class="nt">&lt;/TransIndustryType&gt;</span>
         <span class="nt">&lt;AcctType&gt;</span>R<span class="nt">&lt;/AcctType&gt;</span>
-        <span class="nt">&lt;HolderType&gt;</span>P<span class="nt">&lt;/HolderType&gt;</span>
+        <span class="nt">&lt;HolderType&gt;</span>O<span class="nt">&lt;/HolderType&gt;</span>
         <span class="nt">&lt;Amount&gt;</span>{amountInCents}<span class="nt">&lt;/Amount&gt;</span>
         <span class="nt">&lt;CurrencyCode&gt;</span>USD<span class="nt">&lt;/CurrencyCode&gt;</span>
     <span class="nt">&lt;/requestMessage&gt;</span>
@@ -657,12 +658,96 @@ This capture request and several other API requests described here may take diff
         <span class="nt">&lt;ReferenceNumber&gt;</span>{original sale or sale-auth GatewayTransId}<span class="nt">&lt;/ReferenceNumber&gt;</span>
         <span class="nt">&lt;Amount&gt;</span>{amountInCents}<span class="nt">&lt;/Amount&gt;</span>
     <span class="nt">&lt;/requestMessage&gt;</span>
-<span class="nt">&lt;/requestHeader&gt;</span>'
+<span class="nt">&lt;/requestHeader&gt;</span>
 </code></pre>
 <p>In order to refund or void a previous sale or sale-auth transaction, simply construct an XML message with <code>RequestType</code> of <code>012</code> and <code>TransactionType</code> of <code>refund</code>. Note that if the original transaction is still in an unsettled batch, the gateway will perform a void/reversal transaction. If the original transaction has already settled, then the gateway will perform a refund to the original card.</p>
 
 <aside class="notice">
 You may refund/void the full amount of an original transaction or only part of the amount (a "partial refund" or "partial reversal"). If the transaction is in the current open (unsettled) batch, then only a single void (for the full amount or partial amount) may be performed. If the transaction has settled, the refund request transaction may be repeated for multiple partial refunds up to the amount of the original transaction.
+</aside>
+<h2 id='level-ii-and-level-iii-data'>Level II and Level III Data</h2>
+<p>Some business cards may be eligible for lower interchange rates if you send additional data with the transaction. Beyond Pay supports these additional data fields and can help you or your clients secure <a href="https://www.getbeyond.com/b2b-payment-solutions/">these significantly reduced rates and other B2B benefits</a>.</p>
+<h3 id='level-ii-data'>Level II Data</h3><pre class="highlight xml tab-xml"><code><span class="nt">&lt;requestHeader&gt;</span>
+    <span class="nt">&lt;ClientIdentifier&gt;</span>SOAP<span class="nt">&lt;/ClientIdentifier&gt;</span>
+    <span class="nt">&lt;TransactionID&gt;</span>{transactionId}<span class="nt">&lt;/TransactionID&gt;</span>
+    <span class="nt">&lt;RequestType&gt;</span>004<span class="nt">&lt;/RequestType&gt;</span>
+    <span class="nt">&lt;RequestDateTime&gt;</span>{requestDateTime}<span class="nt">&lt;/RequestDateTime&gt;</span>
+    <span class="nt">&lt;PrivateKey&gt;</span>{yourPrivateKey}<span class="nt">&lt;/PrivateKey&gt;</span>
+    <span class="nt">&lt;AuthenticationTokenId&gt;</span>{token}<span class="nt">&lt;/AuthenticationTokenId&gt;</span>
+    <span class="nt">&lt;requestMessage&gt;</span>                    
+        <span class="nt">&lt;SoftwareVendor&gt;</span>{yourSoftwareName}<span class="nt">&lt;/SoftwareVendor&gt;</span>
+        <span class="nt">&lt;TransIndustryType&gt;</span>EC<span class="nt">&lt;/TransIndustryType&gt;</span>
+        <span class="nt">&lt;TransactionType&gt;</span>sale<span class="nt">&lt;/TransactionType&gt;</span>
+        <span class="nt">&lt;AcctType&gt;</span>R<span class="nt">&lt;/AcctType&gt;</span>
+        <span class="nt">&lt;HolderType&gt;</span>O<span class="nt">&lt;/HolderType&gt;</span>
+        <span class="nt">&lt;Amount&gt;</span>{amountInCents}<span class="nt">&lt;/Amount&gt;</span>
+        <span class="nt">&lt;CurrencyCode&gt;</span>USD<span class="nt">&lt;/CurrencyCode&gt;</span>
+        <span class="nt">&lt;InvoiceNum&gt;</span>{yourInvoiceNumber}<span class="nt">&lt;/InvoiceNum&gt;</span>
+        <span class="nt">&lt;PONum&gt;</span>{yourPONumber}<span class="nt">&lt;/PONum&gt;</span>
+        <span class="nt">&lt;CustomerAccountCode&gt;</span>{customerCode}<span class="nt">&lt;/CustomerAccountCode&gt;</span>
+        <span class="nt">&lt;LocalTaxAmount&gt;</span>{taxAmount}<span class="nt">&lt;/LocalTaxAmount&gt;</span>
+        <span class="nt">&lt;LocalTaxIndicator&gt;</span>P<span class="nt">&lt;/LocalTaxIndicator&gt;</span>
+    <span class="nt">&lt;/requestMessage&gt;</span>
+<span class="nt">&lt;/requestHeader&gt;</span>
+</code></pre>
+<p>In order for a transaction to qualify at reduced &quot;Level II&quot; interchange rates, assuming the card is eligible for such, the following fields should be provided in the XML message to the gateway in addition to the basic required fields given in the <a href="#submit-a-sale-using-the-single-use-token">instructions for processing a basic sale transaction</a>:</p>
+
+<ul>
+<li><code>InvoiceNum</code> - may be up to 24 alphanumeric characters and hyphens</li>
+<li><code>PONum</code> - may be up to 24 alphanumeric characters and hyphens</li>
+<li><code>CustomerAccountCode</code> - may be up to 24 alphanumeric characters and hyphens</li>
+<li><code>LocalTaxAmount</code> - applicable tax amount in cents (implied decimal); must be less than the total transaction <code>Amount</code></li>
+<li><code>LocalTaxIndicator</code> - may be <code>P</code> (Provided), <code>N</code> (Not Provided), or <code>E</code> (Exempt). Use <code>P</code> if you are sending a value in <code>LocalTaxAmount</code>, or <code>E</code> if you or the merchant are tax-exempt</li>
+</ul>
+<h3 id='level-iii-data'>Level III Data</h3><pre class="highlight xml tab-xml"><code><span class="nt">&lt;requestHeader&gt;</span>
+    <span class="nt">&lt;ClientIdentifier&gt;</span>SOAP<span class="nt">&lt;/ClientIdentifier&gt;</span>
+    <span class="nt">&lt;TransactionID&gt;</span>{transactionId}<span class="nt">&lt;/TransactionID&gt;</span>
+    <span class="nt">&lt;RequestType&gt;</span>004<span class="nt">&lt;/RequestType&gt;</span>
+    <span class="nt">&lt;RequestDateTime&gt;</span>{requestDateTime}<span class="nt">&lt;/RequestDateTime&gt;</span>
+    <span class="nt">&lt;PrivateKey&gt;</span>{yourPrivateKey}<span class="nt">&lt;/PrivateKey&gt;</span>
+    <span class="nt">&lt;AuthenticationTokenId&gt;</span>{token}<span class="nt">&lt;/AuthenticationTokenId&gt;</span>
+    <span class="nt">&lt;requestMessage&gt;</span>                    
+        <span class="nt">&lt;SoftwareVendor&gt;</span>{yourSoftwareName}<span class="nt">&lt;/SoftwareVendor&gt;</span>
+        <span class="nt">&lt;TransIndustryType&gt;</span>EC<span class="nt">&lt;/TransIndustryType&gt;</span>
+        <span class="nt">&lt;TransactionType&gt;</span>sale<span class="nt">&lt;/TransactionType&gt;</span>
+        <span class="nt">&lt;AcctType&gt;</span>R<span class="nt">&lt;/AcctType&gt;</span>
+        <span class="nt">&lt;HolderType&gt;</span>O<span class="nt">&lt;/HolderType&gt;</span>
+        <span class="nt">&lt;Amount&gt;</span>{amountInCents}<span class="nt">&lt;/Amount&gt;</span>
+        <span class="nt">&lt;CurrencyCode&gt;</span>USD<span class="nt">&lt;/CurrencyCode&gt;</span>
+        <span class="nt">&lt;InvoiceNum&gt;</span>{yourInvoiceNumber}<span class="nt">&lt;/InvoiceNum&gt;</span>
+        <span class="nt">&lt;PONum&gt;</span>{yourPONumber}<span class="nt">&lt;/PONum&gt;</span>
+        <span class="nt">&lt;CustomerAccountCode&gt;</span>{customerCode}<span class="nt">&lt;/CustomerAccountCode&gt;</span>
+        <span class="nt">&lt;LocalTaxAmount&gt;</span>{taxAmount}<span class="nt">&lt;/LocalTaxAmount&gt;</span>
+        <span class="nt">&lt;LocalTaxIndicator&gt;</span>P<span class="nt">&lt;/LocalTaxIndicator&gt;</span>
+        <span class="nt">&lt;ItemCount&gt;</span>1<span class="nt">&lt;/ItemCount&gt;</span>
+        <span class="nt">&lt;Item&gt;</span>
+          <span class="nt">&lt;ItemCode&gt;</span>{itemSKU}<span class="nt">&lt;/ItemCode&gt;</span>
+          <span class="nt">&lt;ItemCommodityCode&gt;</span>{UNSPSC code or merchantCategoryCode}<span class="nt">&lt;/ItemCommodityCode&gt;</span>
+          <span class="nt">&lt;ItemDescription&gt;</span>{shortDescriptionOfItem}<span class="nt">&lt;/ItemDescription&gt;</span>
+          <span class="nt">&lt;ItemQuantity&gt;</span>1<span class="nt">&lt;/ItemQuantity&gt;</span>
+          <span class="nt">&lt;ItemUnitCostAmt&gt;</span>{unitCostPerItem}<span class="nt">&lt;/ItemUnitCostAmt&gt;</span>
+          <span class="nt">&lt;ItemUnitMeasure&gt;</span>EA<span class="nt">&lt;/ItemUnitMeasure&gt;</span>
+          <span class="nt">&lt;ItemTotalAmount&gt;</span>{totalAmountForItem}<span class="nt">&lt;/ItemTotalAmount&gt;</span>
+        <span class="nt">&lt;/Item&gt;</span>
+    <span class="nt">&lt;/requestMessage&gt;</span>
+<span class="nt">&lt;/requestHeader&gt;</span>
+</code></pre>
+<p>Cards that are eligible for Level III interchange rates are typically corporate purchasing or travel cards. If a card is eligible for such, you can achieve a reduced interchange rate by providing the following fields in your gateway request message (in addition to <a href="#level-ii-data">those required for Level II</a> and <a href="#submit-a-sale-using-the-single-use-token">basic sale or &quot;Level I&quot; transactions</a>basic). Note that Level III transactions require line-item details from the purchase. You should send one <code>Item</code> array for each line item on a given invoice; many integrators will dynamically map these required fields into their existing inventory, order management, or ERP systems. Alternatively, if you only sell one type of item, you may consider creating a static mapping of these fields, or &quot;hard-coding&quot; the values specific to your business.</p>
+
+<ul>
+<li><code>ItemCount</code> - the total number of line items being submitted in this request</li>
+<li><code>Item</code> - an array representing each line item in the request, consisting of:</li>
+<li><code>ItemCode</code> - a unique identifier assigned to this item in the merchant&#39;s inventory system (typically a SKU, SKID, or UPC) - 12 character maximum</li>
+<li><code>ItemCommodityCode</code> - a standardized code that classifies the item, such as the <a href="https://catalog.data.gov/dataset/unspsc-codes">UN Standard Products and Services Code (UNSPSC)</a>; many integrators and merchants use the Merchant Category Code in this field</li>
+<li><code>ItemDescription</code> - A short textual description of the item, limited to 35 characters</li>
+<li><code>ItemQuantity</code> - quantity of item units purchased as part of this transaction; supports up to 4 decimal places</li>
+<li><code>ItemUnitCostAmt</code> - cost of a single unit of the item in cents (implied decimal)</li>
+<li><code>ItemUnitMeasure</code> - unit of measure used to quantify the items purchased (e.g.: kg, lb, in, etc.); &quot;EA&quot; for &quot;each&quot; is most commonly used and recommended for single-item merchants</li>
+<li><code>ItemTotalAmount</code> - total amount paid for the item (including tax and any discount)</li>
+</ul>
+
+<aside class="success">
+In general, for most card brands and issuers, the presence of a value in the appropriate Level III field is enough to qualify for the reduced interchange rate. The accuracy of these values is not edited by the card brands in most cases, but may impact the reporting received by the administrator of a given corporate purchasing card program.
 </aside>
 <h1 id='in-person-payments'>In-Person Payments</h1><h2 id='payguardian'>PayGuardian</h2>
 <blockquote>
