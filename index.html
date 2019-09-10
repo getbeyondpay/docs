@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>Beyond Pay Gateway</title>
+    <title>API Documentation</title>
 
     <style>
       .highlight table td { padding: 5px; }
@@ -198,7 +198,7 @@
     </style>
     <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
     <link href="stylesheets/print.css" rel="stylesheet" media="print" />
-      <script src="javascripts/all.js"></script>
+      <script src="javascripts/all_nosearch.js"></script>
     <link href="images/favicon.ico" rel="icon" type="image/ico" />
   </head>
 
@@ -211,10 +211,6 @@
     </a>
     <div class="toc-wrapper">
       <img src="images/logo.png" class="logo" alt="Logo" />
-        <div class="search">
-          <input type="text" class="search" id="input-search" placeholder="Search">
-        </div>
-        <ul class="search-results"></ul>
       <ul id="toc" class="toc-list-h1">
           <li>
             <a href="#beyond-pay-gateway" class="toc-h1 toc-link" data-title="Beyond Pay Gateway">Beyond Pay Gateway</a>
@@ -277,22 +273,31 @@
                   <li>
                     <a href="#transactionrow" class="toc-h2 toc-link" data-title="TransactionRow">TransactionRow</a>
                   </li>
+                  <li>
+                    <a href="#operation-contract" class="toc-h2 toc-link" data-title="Operation Contract">Operation Contract</a>
+                  </li>
+                  <li>
+                    <a href="#reporting-tips" class="toc-h2 toc-link" data-title="Reporting Tips">Reporting Tips</a>
+                  </li>
               </ul>
           </li>
           <li>
             <a href="#response-codes" class="toc-h1 toc-link" data-title="Response Codes">Response Codes</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#payguardian-response-codes" class="toc-h2 toc-link" data-title="PayGuardian Response Codes">PayGuardian Response Codes</a>
-                  </li>
-                  <li>
-                    <a href="#gateway-response-codes" class="toc-h2 toc-link" data-title="Gateway Response Codes">Gateway Response Codes</a>
-                  </li>
-                  <li>
                     <a href="#avs-response-codes" class="toc-h2 toc-link" data-title="AVS Response Codes">AVS Response Codes</a>
                   </li>
                   <li>
                     <a href="#cvv-response-codes" class="toc-h2 toc-link" data-title="CVV Response Codes">CVV Response Codes</a>
+                  </li>
+                  <li>
+                    <a href="#gateway-message-codes" class="toc-h2 toc-link" data-title="Gateway Message Codes">Gateway Message Codes</a>
+                  </li>
+                  <li>
+                    <a href="#gateway-result-codes" class="toc-h2 toc-link" data-title="Gateway Result Codes">Gateway Result Codes</a>
+                  </li>
+                  <li>
+                    <a href="#payguardian-response-codes" class="toc-h2 toc-link" data-title="PayGuardian Response Codes">PayGuardian Response Codes</a>
                   </li>
               </ul>
           </li>
@@ -311,18 +316,6 @@
               </ul>
           </li>
       </ul>
-        <ul class="toc-footer">
-            <li><a href='https://forms.gle/AMxdRZTsS6skq2DEA'>Get an API Key</a></li>
-            <li>______________</li>
-            <li><a href='https://www.getbeyond.com/'>www.getbeyond.com</a></li>
-            <li>©2019 Above & Beyond -</li>
-            <li>Business Tools and</li>
-            <li>Services for</li>
-            <li>Entrepreneurs, Inc.</li>
-            <li>All Rights Reserved.</li>
-            <li><a href='https://www.getbeyond.com/privacy-policy/'>Privacy Policy</a></li>
-            <li><a href='https://www.getbeyond.com/ccpa/'>CCPA Consumer Privacy</a></li>
-        </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
@@ -1129,12 +1122,293 @@ PayGuardian Cloud is currently in limited beta testing. <a href='mailto:BeyondPa
 </tr>
 </tbody></table>
 
-<p>The TransResults field works by mapping the Beyond Pay 5-digit response code back to the gateway response code (the ResponseCode field in this contract).  In some cases, more than one mapping may exist for a given code.  It is recommended that you use the ResponseCode field for more granular filtering. The ExcludeTransResults field can modify the behavior of the TransResults field by establishing a &quot;not in&quot; condition.</p>
+<p>The <code>TransResults</code> field works by mapping theb 5-digit Beyond Pay <a href="#gateway-result-codes">Gateway Result code</a> back to the gateway response code (the <code>ResponseCode</code> or <a href="#gateway-message-codes">Gateway Message code</a> field in this contract).  In some cases, more than one mapping may exist for a given code.  It is recommended that you use the <code>ResponseCode</code> or <a href="#gateway-message-codes">Gateway Message code</a> field for more granular filtering. The <code>ExcludeTransResults</code> field can modify the behavior of the <code>TransResults</code> field by establishing a &quot;not in&quot; condition.</p>
 <h3 id='transactionset'>TransactionSet</h3>
-<p>TODO: finish</p>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Data Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>RecordCount</td>
+<td>Integer</td>
+<td>The total number of records that match the filter, excluding the Take &amp; Skip fields.</td>
+</tr>
+<tr>
+<td>TransactionList</td>
+<td>List<TransactionRow></td>
+<td>A collection of TransactionRow objects.</td>
+</tr>
+</tbody></table>
 <h3 id='transactionrow'>TransactionRow</h3>
-<p>TODO: finish</p>
-<h1 id='response-codes'>Response Codes</h1><h2 id='payguardian-response-codes'>PayGuardian Response Codes</h2>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Data Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Account Type</td>
+<td>String</td>
+<td>1 character identifier that determines the type of account. Valid values are R (Branded Credit Card), E (Branded debit checking card), V (Branded debit savings card), D (Unbranded debit checking card), I (Unbranded debit savings card), S (Bank savings account), C (Bank checking account), F (EBT food stamp), H (EBT cash benefit), G (Gift card), L (Fleet), A (Cash), K (Check)</td>
+</tr>
+<tr>
+<td>AuthCode</td>
+<td>String</td>
+<td>The Authorization Code provided by the card issuer</td>
+</tr>
+<tr>
+<td>AuthorizedAmount</td>
+<td>Implied Integer</td>
+<td>The amount that was actually authorized. This may be different from the requested amount (e.g., partial approvals)</td>
+</tr>
+<tr>
+<td>BatchDateTime</td>
+<td>DateTime</td>
+<td>The close date of the batch that contains the transaction</td>
+</tr>
+<tr>
+<td>BatchId</td>
+<td>Integer</td>
+<td>The gateway Batch ID that contains this transaction</td>
+</tr>
+<tr>
+<td>CardBrand</td>
+<td>String</td>
+<td>Description of the card brand used. Valid values: AMEX, DISCOVER, MASTERCARD, DINERS, and VISA</td>
+</tr>
+<tr>
+<td>ClerkId</td>
+<td>String</td>
+<td>The client-supplied Clerk ID (or the Username used to process the transaction if no Clerk ID was provided)</td>
+</tr>
+<tr>
+<td>ClerkName</td>
+<td>String</td>
+<td>The client-supplied name of the Clerk who processed the transaction</td>
+</tr>
+<tr>
+<td>CustomerAddress</td>
+<td>String</td>
+<td>The client-provided Street Address for the transaction</td>
+</tr>
+<tr>
+<td>CustomerEmail</td>
+<td>String</td>
+<td>The client-provided Email Address for the transaction</td>
+</tr>
+<tr>
+<td>CustomerNumber</td>
+<td>String</td>
+<td>The client-provided Customer ID</td>
+</tr>
+<tr>
+<td>CustomerZip</td>
+<td>String</td>
+<td>The client-provided Zip Code</td>
+</tr>
+<tr>
+<td>EntryModeId</td>
+<td>String</td>
+<td>Identifies how the transaction was processed. Valid valus are T1 (Track 1 Data), T2 (Track 2 Data), T3 (Track 1 and 2 Data), KD (Keyed)</td>
+</tr>
+<tr>
+<td>ExpirationDate</td>
+<td>String</td>
+<td>Month and Year of the card expiry date in MMYY format</td>
+</tr>
+<tr>
+<td>FirstName</td>
+<td>String</td>
+<td>First name of the account holder</td>
+</tr>
+<tr>
+<td>HolderType</td>
+<td>String</td>
+<td>A one-character code identifying if the payment method was a personal account (P) or a business/corporate account (O)</td>
+</tr>
+<tr>
+<td>InvoiceNumber</td>
+<td>String</td>
+<td>The client-provided Invoice Number</td>
+</tr>
+<tr>
+<td>LastFour</td>
+<td>String</td>
+<td>The last four digits of the Primary Account Number (card number)</td>
+</tr>
+<tr>
+<td>LastName</td>
+<td>String</td>
+<td>The last name of the account holder</td>
+</tr>
+<tr>
+<td>MaskedAccount</td>
+<td>String</td>
+<td>A masked version of the account number used to process the transaction</td>
+</tr>
+<tr>
+<td>Memo</td>
+<td>String</td>
+<td>The client-provided &quot;PaymentType&quot; value</td>
+</tr>
+<tr>
+<td>MerchantAccountId</td>
+<td>Integer</td>
+<td>The &quot;MerchantAccountCode&quot; for the transaction</td>
+</tr>
+<tr>
+<td>MerchantAccount</td>
+<td>Integer</td>
+<td>The &quot;MerchantAccount&quot; for the transaction</td>
+</tr>
+<tr>
+<td>PaymentMethodId</td>
+<td>String</td>
+<td>Two letter code that identifies the payment method transaction type. Valid values: AC (Amex), BC (Bank Checking), BD (Bank Card Debit), BS (Bank Savings), DC (Discover Credit), DD (Discover Debit), EC (EBT Cash Benefit), EF (Food Stamps), FL (Fleet One), GF (Fuelman Fleet Wide), GG (General Gift), MC (Master Card Credit), MD (Master Card Debit), MF (Master Card Fleet), MP (Master Card Prepaid), NC (Diner’s Club), VC (Visa Credit), VD (Visa Debit), VF (Voyager), VP (Visa Prepaid), VS (Visa Fleet), WX (Wright Express)</td>
+</tr>
+<tr>
+<td>ProcessorResponse</td>
+<td>String</td>
+<td>Description of the response provided by the account issuer</td>
+</tr>
+<tr>
+<td>PurchaseOrderNumber</td>
+<td>String</td>
+<td>The client-provided Purchase Order Number</td>
+</tr>
+<tr>
+<td>RemainingAmount</td>
+<td>Implied Integer</td>
+<td>The amount of the authorization that is remaining after partial refunds or voids have been applied</td>
+</tr>
+<tr>
+<td>RequestedAmount</td>
+<td>Implied Integer</td>
+<td>The amount that was requested to be authorized when the transaction was processed</td>
+</tr>
+<tr>
+<td>ResellerId</td>
+<td>Integer</td>
+<td>The gateway reseller ID for the transaction</td>
+</tr>
+<tr>
+<td>ResponseCode</td>
+<td>String</td>
+<td>The 3-character <a href="#gateway-message-codes">Gateway Message code</a></td>
+</tr>
+<tr>
+<td>SaleDateTime</td>
+<td>DateTime</td>
+<td>The date and time the transaction was processed</td>
+</tr>
+<tr>
+<td>SettleAmount</td>
+<td>Implied Integer</td>
+<td>The amount of the transaction that was actually settled. This may be different than the requested or authorized amounts.</td>
+</tr>
+<tr>
+<td>SettlementStatus</td>
+<td>String</td>
+<td>Identifies whether the transaction has been settled yet or not. Valid valuies: Settled, Unsettled</td>
+</tr>
+<tr>
+<td>TerminalId</td>
+<td>String</td>
+<td>Reserved for Future Use</td>
+</tr>
+<tr>
+<td>Token</td>
+<td>String</td>
+<td>The tokenized account number</td>
+</tr>
+<tr>
+<td>TransactionId</td>
+<td>Long Integer</td>
+<td>The unique gateway ID for the transaction</td>
+</tr>
+<tr>
+<td>TransactionIndustryType</td>
+<td>String</td>
+<td>A 2-3 character string that identifies what industry or SEC code the transaction was processed under. Valid values: RE (Retail), DM (Direct Marketing), EC (eCommerce), RS (Restaurant), LD (Lodging), PT (Petroleum), POP (Point Of Purchase), PPD (Prearranged Payment and Deposit), CCD (Corporate Credit or Debit), TEL (Telephone Initiated Entry), WEB (Internet Initiated Entry), C21 (Check 21)</td>
+</tr>
+<tr>
+<td>TransactionSourceIP</td>
+<td>String</td>
+<td>The IP Address and Port where the transaction request originated</td>
+</tr>
+<tr>
+<td>TransactionStatus</td>
+<td>String</td>
+<td>Identifies what state the transaction is in. Valid values: Open, Confirmed, or Voided.</td>
+</tr>
+<tr>
+<td>TransactionType</td>
+<td>String</td>
+<td>Identifies the type of transaction that was requested. Valid values: Sale, Sale-Auth (authorization only), Credit, Void, Refund, Increment (incremental authorization).</td>
+</tr>
+<tr>
+<td>VoidIndicator</td>
+<td>Boolean</td>
+<td>Indicates whether or not the transaction was voided before the batch was settled</td>
+</tr>
+</tbody></table>
+<h3 id='operation-contract'>Operation Contract</h3>
+<blockquote>
+<p>This method returns a <code>TransactionSet</code> object as described above:</p>
+</blockquote>
+<pre class="highlight csharp"><code><span class="nf">PublicGetTransactionsByFilter</span><span class="p">(</span><span class="n">Credentials</span> <span class="n">credentials</span><span class="p">,</span> <span class="n">TransactionRowFilter</span> <span class="n">filterObject</span><span class="p">)</span>
+</code></pre>
+<p>At this time, the Reporting API provides only one operation contract for retrieving transactional data.</p>
+<h3 id='reporting-tips'>Reporting Tips</h3>
+<p>There are two types of parameters in the TransactionRowFilter object: DBQuery Filters and Post-Query Filters. </p>
+
+<p>Most of the parameters in the filter are DBQuery filters that are used directly against the persisted data store that contains the transactional data. However, some of the filters are Post-Query filters, meaning the filters are not applied until after the persisted data is retrieved. Post-Query filters have transformational logic that is better suited after the bulk of the query has been processed by the data store.</p>
+
+<p>Filters that are processed directly against the data store also have specific comparison modes that can be utilized for easier queries. Review the comparison modes listed in the <a href="#transactionrowfilter">TransactionRowFilter</a> table for a full list.</p>
+
+<p><strong>Comparison Types</strong></p>
+
+<ul>
+<li>GTE = Greater Than or Equal. The query will look for data that is greater than or equal to the data provided in the filter parameter.</li>
+<li>LTE = Less Than or Equal. The query will look for data that is less than or equal to the data provided in the filter parameter.</li>
+<li>EQUIV = Equals. The query will look for data that exactly matches the data provided in the filter parameter.</li>
+<li>CONTAINS = The query will look for data that contains the data provided in the filter parameter.</li>
+<li>INLIST = The query will look for data where the stored data matches one of the comma-delimited entries in the data provided in the filter parameter.</li>
+<li>N/A = The parameter is either a Boolean parameter or does not affect the data filtering process.</li>
+</ul>
+
+<p><strong>EXAMPLES</strong></p>
+
+<ul>
+<li><code>&lt;AmountRangeFrom&gt;100&lt;/AmountRangeFrom&gt;</code> Provides all transactions of $1.00 or more</li>
+<li><code>&lt;AmountRangeTo&gt;200&lt;/AmountRangeTo&gt;</code> Provides all transactions of $2.00 or less</li>
+<li><code>&lt;InoviceNumber&gt;2001&lt;/InvoiceNumber&gt;</code> Provides all transactions having Invoice Number 2001</li>
+<li><code>&lt;ResponseCode&gt;D&lt;/ResponseCode&gt;</code> Provides all transactions that were declined.</li>
+<li><code>&lt;ResponseCode&gt;D0&lt;/ResponseCode&gt;</code> Provides all transactions that were declined with <a href="#gateway-message-codes">Gateway Message</a> codes D01–D09</li>
+<li><code>&lt;ResponseCode&gt;D01&lt;/ResponseCode&gt;</code> Provides only those transactions that were declined with <a href="#gateway-message-codes">Gateway Message</a> code D01.</li>
+<li><code>&lt;TransResults&gt;00000,00001,10012&lt;/TransResults&gt;</code> Provides those transactions where the <a href="#gateway-result-codes">Gateway Result code</a> is equal to 00000, 00001, or 10012 only.</li>
+<li><code>&lt;ExcludeTransResults&gt;1&lt;/ExcludeTransResults&gt;</code> must be used with <code>&lt;TransResults&gt;</code>. It modifies the behavior of the TransResults field. For example, if used with the TransResults field listed in the previous bullet, the Reporting API would return those transactions that did NOT get a 00000, 00001, or 10012 <a href="#gateway-result-codes">Gateway Result code</a>.</li>
+</ul>
+
+<p><strong>Post-Query Filters</strong></p>
+
+<p>The following fields are Post-Query filters. They will not process until after the initial data store query has completed.</p>
+
+<ul>
+<li><code>TransactionStatus</code></li>
+<li><code>CardBrand</code></li>
+</ul>
+
+<p>The data used to query on these parameters must be transformed before the filter can be applied. The data store resources are too time-consuming for these filters and they are therefore added after the data store query is completed. <strong><em>You should never use a Post-Query Filter without first limiting the data store query with some DBQuery filters such as a date range and/or the merchant account information.</em></strong></p>
+<h1 id='response-codes'>Response Codes</h1><h2 id='avs-response-codes'>AVS Response Codes</h2>
+<aside class="warning">
+You should always inspect the AVSResult and CVResult fields as these can be good indicators of potential fraud. If you see a AVSResult or CVResult code that you do not want to accept because it may be too risky (such as "No Match" on the submitted Zip code), then you should submit a void transaction to cancel the authorization and advise the cardholder that their transaction has been declined.
+</aside>
+
 <table><thead>
 <tr>
 <th>Response Code</th>
@@ -1142,26 +1416,374 @@ PayGuardian Cloud is currently in limited beta testing. <a href='mailto:BeyondPa
 </tr>
 </thead><tbody>
 <tr>
-<td>0</td>
-<td>Approved</td>
+<td>00</td>
+<td>AVS Error - Retry, System unavailable or Timed out</td>
 </tr>
 <tr>
-<td>1</td>
-<td>Declined</td>
+<td>40</td>
+<td>Address not available (Address not verified)</td>
 </tr>
 <tr>
-<td>2</td>
-<td>Error</td>
+<td>43</td>
+<td>Street address not available (not verified), ZIP matches</td>
 </tr>
 <tr>
-<td>12</td>
-<td>EMV Chip Declined</td>
+<td>44</td>
+<td>Address failed</td>
+</tr>
+<tr>
+<td>45</td>
+<td>Street address and ZIP don&#39;t match</td>
+</tr>
+<tr>
+<td>46</td>
+<td>Street address doesn&#39;t match, 5-digit ZIP matches</td>
+</tr>
+<tr>
+<td>47</td>
+<td>Street address doesn&#39;t match, 9-digit ZIP matches</td>
+</tr>
+<tr>
+<td>4A</td>
+<td>Street address or ZIP doesn&#39;t match</td>
+</tr>
+<tr>
+<td>4D</td>
+<td>Street address matches, ZIP does not</td>
+</tr>
+<tr>
+<td>4E</td>
+<td>Street address and 5-digit ZIP match</td>
+</tr>
+<tr>
+<td>4F</td>
+<td>Street address and ZIP match</td>
+</tr>
+<tr>
+<td>53</td>
+<td>Account holder name incorrect, billing postal code matches</td>
+</tr>
+<tr>
+<td>55</td>
+<td>Unrecognized response</td>
+</tr>
+<tr>
+<td>5C</td>
+<td>Account holder name incorrect, billing address matches</td>
+</tr>
+<tr>
+<td>5F</td>
+<td>Account holder name incorrect, billing address and postal code match</td>
+</tr>
+<tr>
+<td>70</td>
+<td>Account holder name matches</td>
+</tr>
+<tr>
+<td>73</td>
+<td>Account holder name and billing postal code match</td>
+</tr>
+<tr>
+<td>7C</td>
+<td>Account holder name and billing address match</td>
+</tr>
+<tr>
+<td>7F</td>
+<td>Account holder name, billing address and postal code match</td>
+</tr>
+<tr>
+<td>80</td>
+<td>AVS service not supported by issuer - Issuer doesn&#39;t participate in AVS</td>
 </tr>
 </tbody></table>
-<h2 id='gateway-response-codes'>Gateway Response Codes</h2>
+<h2 id='cvv-response-codes'>CVV Response Codes</h2>
+<aside class="warning">
+You should always inspect the AVSResult and CVResult fields as these can be good indicators of potential fraud. If you see a AVSResult or CVResult code that you do not want to accept because it may be too risky (such as "No Match" on the submitted Zip code), then you should submit a void transaction to cancel the authorization and advise the cardholder that their transaction has been declined.
+</aside>
+
 <table><thead>
 <tr>
 <th>Response Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>M</td>
+<td>Matches</td>
+</tr>
+<tr>
+<td>N</td>
+<td>No match</td>
+</tr>
+<tr>
+<td>P</td>
+<td>Not processed</td>
+</tr>
+<tr>
+<td>S</td>
+<td>Should be present</td>
+</tr>
+<tr>
+<td>U</td>
+<td>Issuer is not certified</td>
+</tr>
+<tr>
+<td>X</td>
+<td>Unrecognized reason</td>
+</tr>
+</tbody></table>
+<h2 id='gateway-message-codes'>Gateway Message Codes</h2>
+<table><thead>
+<tr>
+<th>Gateway Message Code</th>
+<th>Message</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>A01</td>
+<td>Approved: XXXXXX (approval code)</td>
+</tr>
+<tr>
+<td>A02</td>
+<td>Credit Posted</td>
+</tr>
+<tr>
+<td>A03</td>
+<td>Void Posted (Auth Reversed)</td>
+</tr>
+<tr>
+<td>A04</td>
+<td>No Update</td>
+</tr>
+<tr>
+<td>A05</td>
+<td>Partially Approved</td>
+</tr>
+<tr>
+<td>A06</td>
+<td>Void Posted (Auth Not Reversed)</td>
+</tr>
+<tr>
+<td>A07</td>
+<td>Partial Void Posted</td>
+</tr>
+<tr>
+<td>A08</td>
+<td>Partial Refund Posted</td>
+</tr>
+<tr>
+<td>A09</td>
+<td>Incremental Auth Posted</td>
+</tr>
+<tr>
+<td>A10</td>
+<td>Request Accepted</td>
+</tr>
+<tr>
+<td>A11</td>
+<td>Approval (Reversal failed)</td>
+</tr>
+<tr>
+<td>A60</td>
+<td>Terminal Offline Approval - EMV/Chip</td>
+</tr>
+<tr>
+<td>A61</td>
+<td>Terminal Offline Approval - Swipe</td>
+</tr>
+<tr>
+<td>A62</td>
+<td>Terminal Offline Approval - Credit</td>
+</tr>
+<tr>
+<td>D01</td>
+<td>Denied by customer&#39;s bank</td>
+</tr>
+<tr>
+<td>D02</td>
+<td>Invalid Expiration Date</td>
+</tr>
+<tr>
+<td>D03</td>
+<td>Insufficient funds</td>
+</tr>
+<tr>
+<td>D04</td>
+<td>Hold - Pick up card</td>
+</tr>
+<tr>
+<td>D05</td>
+<td>Invalid card number</td>
+</tr>
+<tr>
+<td>D06</td>
+<td>No account</td>
+</tr>
+<tr>
+<td>D07</td>
+<td>Incorrect PIN</td>
+</tr>
+<tr>
+<td>D08</td>
+<td>CSC is invalid</td>
+</tr>
+<tr>
+<td>D09</td>
+<td>Duplicate Transaction</td>
+</tr>
+<tr>
+<td>D10</td>
+<td>Card reported lost/stolen</td>
+</tr>
+<tr>
+<td>D11</td>
+<td>Card reported stolen</td>
+</tr>
+<tr>
+<td>D12</td>
+<td>Service not allowed</td>
+</tr>
+<tr>
+<td>D13</td>
+<td>Stop Recurring</td>
+</tr>
+<tr>
+<td>D15</td>
+<td>Maximum transaction limit is exceeded</td>
+</tr>
+<tr>
+<td>D16</td>
+<td>Card is expired</td>
+</tr>
+<tr>
+<td>D17</td>
+<td>Re-enter Transaction</td>
+</tr>
+<tr>
+<td>D18</td>
+<td>Bad Amount</td>
+</tr>
+<tr>
+<td>D19</td>
+<td>Unmapped decline</td>
+</tr>
+<tr>
+<td>D20</td>
+<td>Billing profile configuration error</td>
+</tr>
+<tr>
+<td>D21</td>
+<td>PIN try excdeed</td>
+</tr>
+<tr>
+<td>D22</td>
+<td>Refund was not processed/received</td>
+</tr>
+<tr>
+<td>D24</td>
+<td>Chargeback received</td>
+</tr>
+<tr>
+<td>D25</td>
+<td>Refund limit is reached for the day</td>
+</tr>
+<tr>
+<td>D26</td>
+<td>Settlement Failed</td>
+</tr>
+<tr>
+<td>D27</td>
+<td>Transaction Error</td>
+</tr>
+<tr>
+<td>D28</td>
+<td>Cashback limit exceeded/Cashback unavailable</td>
+</tr>
+<tr>
+<td>D29</td>
+<td>Card is restricted</td>
+</tr>
+<tr>
+<td>D30</td>
+<td>Call for Authorization</td>
+</tr>
+<tr>
+<td>D31</td>
+<td>Declined due to fraud rules</td>
+</tr>
+<tr>
+<td>D32</td>
+<td>Declined due to fraud engine decision</td>
+</tr>
+<tr>
+<td>D33</td>
+<td>Incorrect merchant setup</td>
+</tr>
+<tr>
+<td>D34</td>
+<td>Merchant profile configuration issue</td>
+</tr>
+<tr>
+<td>D35</td>
+<td>Card chip decline</td>
+</tr>
+<tr>
+<td>E02</td>
+<td>Processing Network Unavailable</td>
+</tr>
+<tr>
+<td>E03</td>
+<td>Transaction data integrity validation error</td>
+</tr>
+<tr>
+<td>E04</td>
+<td>Refund limit is reached for the day</td>
+</tr>
+<tr>
+<td>E06</td>
+<td>Card is blacklisted</td>
+</tr>
+<tr>
+<td>E07</td>
+<td>Tokenization is not supported</td>
+</tr>
+<tr>
+<td>E08</td>
+<td>Refunds are not allowed</td>
+</tr>
+<tr>
+<td>E09</td>
+<td>Processing Network Error</td>
+</tr>
+<tr>
+<td>E10</td>
+<td>3D Secure Verification Failed</td>
+</tr>
+<tr>
+<td>E31</td>
+<td>Declined due to pre-processing rules</td>
+</tr>
+<tr>
+<td>X01</td>
+<td>Processing Cancelled by User</td>
+</tr>
+<tr>
+<td>X02</td>
+<td>Pending processing</td>
+</tr>
+<tr>
+<td>X03</td>
+<td>3D Secure Verification Required</td>
+</tr>
+<tr>
+<td>X04</td>
+<td>Processing cancelled: the request has expired</td>
+</tr>
+</tbody></table>
+<h2 id='gateway-result-codes'>Gateway Result Codes</h2>
+<table><thead>
+<tr>
+<th>Result Code</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -1682,11 +2304,7 @@ PayGuardian Cloud is currently in limited beta testing. <a href='mailto:BeyondPa
 <td>Unknown Error</td>
 </tr>
 </tbody></table>
-<h2 id='avs-response-codes'>AVS Response Codes</h2>
-<aside class="warning">
-You should always inspect the AVSResult and CVResult fields as these can be good indicators of potential fraud. If you see a AVSResult or CVResult code that you do not want to accept because it may be too risky (such as "No Match" on the submitted Zip code), then you should submit a void transaction to cancel the authorization and advise the cardholder that their transaction has been declined.
-</aside>
-
+<h2 id='payguardian-response-codes'>PayGuardian Response Codes</h2>
 <table><thead>
 <tr>
 <th>Response Code</th>
@@ -1694,120 +2312,20 @@ You should always inspect the AVSResult and CVResult fields as these can be good
 </tr>
 </thead><tbody>
 <tr>
-<td>00</td>
-<td>AVS Error - Retry, System unavailable or Timed out</td>
+<td>0</td>
+<td>Approved</td>
 </tr>
 <tr>
-<td>40</td>
-<td>Address not available (Address not verified)</td>
+<td>1</td>
+<td>Declined</td>
 </tr>
 <tr>
-<td>43</td>
-<td>Street address not available (not verified), ZIP matches</td>
+<td>2</td>
+<td>Error</td>
 </tr>
 <tr>
-<td>44</td>
-<td>Address failed</td>
-</tr>
-<tr>
-<td>45</td>
-<td>Street address and ZIP don&#39;t match</td>
-</tr>
-<tr>
-<td>46</td>
-<td>Street address doesn&#39;t match, 5-digit ZIP matches</td>
-</tr>
-<tr>
-<td>47</td>
-<td>Street address doesn&#39;t match, 9-digit ZIP matches</td>
-</tr>
-<tr>
-<td>4A</td>
-<td>Street address or ZIP doesn&#39;t match</td>
-</tr>
-<tr>
-<td>4D</td>
-<td>Street address matches, ZIP does not</td>
-</tr>
-<tr>
-<td>4E</td>
-<td>Street address and 5-digit ZIP match</td>
-</tr>
-<tr>
-<td>4F</td>
-<td>Street address and ZIP match</td>
-</tr>
-<tr>
-<td>53</td>
-<td>Account holder name incorrect, billing postal code matches</td>
-</tr>
-<tr>
-<td>55</td>
-<td>Unrecognized response</td>
-</tr>
-<tr>
-<td>5C</td>
-<td>Account holder name incorrect, billing address matches</td>
-</tr>
-<tr>
-<td>5F</td>
-<td>Account holder name incorrect, billing address and postal code match</td>
-</tr>
-<tr>
-<td>70</td>
-<td>Account holder name matches</td>
-</tr>
-<tr>
-<td>73</td>
-<td>Account holder name and billing postal code match</td>
-</tr>
-<tr>
-<td>7C</td>
-<td>Account holder name and billing address match</td>
-</tr>
-<tr>
-<td>7F</td>
-<td>Account holder name, billing address and postal code match</td>
-</tr>
-<tr>
-<td>80</td>
-<td>AVS service not supported by issuer - Issuer doesn&#39;t participate in AVS</td>
-</tr>
-</tbody></table>
-<h2 id='cvv-response-codes'>CVV Response Codes</h2>
-<aside class="warning">
-You should always inspect the AVSResult and CVResult fields as these can be good indicators of potential fraud. If you see a AVSResult or CVResult code that you do not want to accept because it may be too risky (such as "No Match" on the submitted Zip code), then you should submit a void transaction to cancel the authorization and advise the cardholder that their transaction has been declined.
-</aside>
-
-<table><thead>
-<tr>
-<th>Response Code</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>M</td>
-<td>Matches</td>
-</tr>
-<tr>
-<td>N</td>
-<td>No match</td>
-</tr>
-<tr>
-<td>P</td>
-<td>Not processed</td>
-</tr>
-<tr>
-<td>S</td>
-<td>Should be present</td>
-</tr>
-<tr>
-<td>U</td>
-<td>Issuer is not certified</td>
-</tr>
-<tr>
-<td>X</td>
-<td>Unrecognized reason</td>
+<td>12</td>
+<td>EMV Chip Declined</td>
 </tr>
 </tbody></table>
 <h1 id='testing-amp-certification'>Testing &amp; Certification</h1><h2 id='certification'>Certification</h2>
