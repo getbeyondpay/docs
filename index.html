@@ -568,7 +568,7 @@ You must replace <code>your-public-key</code> with your publishable <a href='htt
 </ul>
 
 <aside class="warning">
-You should always inspect the [AVSResult]() and [CVResult]() fields as these can be good indicators of potential fraud. If you see a AVSResult or CVResult code that you do not want to accept because it may be too risky (such as "No Match" on the submitted Zip code), then you should submit a void transaction to cancel the authorization and advise the cardholder that their transaction has been declined.
+You should always inspect the AVSResult and CVResult fields as these can be good indicators of potential fraud. If you see a AVSResult or CVResult code that you do not want to accept because it may be too risky (such as "No Match" on the submitted Zip code), then you should submit a void transaction to cancel the authorization and advise the cardholder that their transaction has been declined.
 </aside>
 <h2 id='quot-auth-only-quot-or-quot-pre-auth-quot'>&quot;Auth-Only&quot; or &quot;Pre-Auth&quot;</h2>
 <blockquote>
@@ -797,7 +797,7 @@ In general, for most card brands and card issuers, the presence of a value in th
 </ul>
 
 <aside class="notice">
-Different NACHA SEC codes may require different disclosure notices to your customers. Check the [NACHA Operating Rules](https://www.nachaoperatingrulesonline.org/) to ensure compliance.
+Different NACHA SEC codes may require different disclosure notices to your customers. Check the <a href='https://www.nachaoperatingrulesonline.org'>NACHA Operating Rules</a> to ensure compliance.
 </aside>
 <h1 id='in-person-payments'>In-Person Payments</h1><h2 id='overview'>Overview</h2>
 <p>If you are developing a payment application or point of sale (POS) system for use by only your business, then that application falls in your scope of PCI DSS compliance as a merchant. If you are developing a POS to sell or license to other businesses, that application is in scope for PCI Payment Application Data Security Standard (PA-DSS) if it interacts with card data. If that application is hosted/SaaS-based then you may also be in-scope PCI Service Provider (similar to a gateway provider).</p>
@@ -832,19 +832,20 @@ Different NACHA SEC codes may require different disclosure notices to your custo
 <pre class="highlight html tab-html"><code>https://pgc.bridgepaynetsecuretx.com/req/payment
 </code></pre>
 <blockquote>
-<p>Credit Sale Request
-<code>POST</code>
-<code>json
-{
-&quot;locationID&quot;: &quot;your-locationID&quot;,
-&quot;mode&quot;: &quot;UAT&quot;,
-&quot;amount&quot;: &quot;17.00&quot;,
-&quot;softwareVendor&quot;: &quot;your_POS_name&quot;,
-&quot;tenderType&quot;: &quot;CREDIT&quot;,
-&quot;transType&quot;: &quot;SALE&quot;
-}
-</code></p>
+<p>Credit Sale Request</p>
 
+<p><code>POST</code></p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="s2">"locationID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your-locationID"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UAT"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"17.00"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"softwareVendor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your_POS_name"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"tenderType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CREDIT"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"transType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SALE"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
 <p>Credit Sale Response</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
@@ -931,7 +932,7 @@ You may refund/void the full amount of an original transaction or only part of t
 </aside>
 
 <aside class="notice">
-Additional arguments are presented in the following sections that cover industry-specific use cases and provide more detailed workflows.
+Additional data elements are presented in the following sections that cover industry-specific use cases and provide more detailed workflows.
 </aside>
 <h2 id='basic-sale-options'>Basic Sale Options</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
 </span><span class="s2">"locationID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your-locationID"</span><span class="p">,</span><span class="w">
@@ -960,7 +961,7 @@ Additional arguments are presented in the following sections that cover industry
 </ul>
 
 <aside class="notice">
-Partial authorization support is required for some merchant types and strongly encouraged for all others in order to reduce declines on prepaid open-loop (branded) cards when there are insufficient funds to cover the total amount of the transaction. See the [Visa Partial Authorization Service guide](https://usa.visa.com/dam/VCOM/global/support-legal/documents/visa-partial-authorization-service.pdf) for more details.
+Partial authorization support is required for some merchant types and strongly encouraged for all others in order to reduce declines on prepaid open-loop (branded) cards when there are insufficient funds to cover the total amount of the transaction. See the <a href='https://usa.visa.com/dam/VCOM/global/support-legal/documents/visa-partial-authorization-service.pdf'>Visa Partial Authorization Service Guide</a> for more details.
 </aside>
 <h2 id='tips-amp-gratuities'>Tips &amp; Gratuities</h2>
 <blockquote>
