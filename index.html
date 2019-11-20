@@ -232,13 +232,13 @@
                     <a href="#obtain-a-single-use-token" class="toc-h2 toc-link" data-title="Obtain a Single-Use Token">Obtain a Single-Use Token</a>
                   </li>
                   <li>
-                    <a href="#submit-a-sale-using-the-single-use-token" class="toc-h2 toc-link" data-title="Submit a Sale using the Single-Use Token">Submit a Sale using the Single-Use Token</a>
+                    <a href="#charge-the-single-use-token" class="toc-h2 toc-link" data-title="Charge the Single-Use Token">Charge the Single-Use Token</a>
                   </li>
                   <li>
-                    <a href="#perform-an-quot-auth-only-quot-or-quot-pre-auth-quot" class="toc-h2 toc-link" data-title="Perform an "Auth-Only" or "Pre-Auth"">Perform an "Auth-Only" or "Pre-Auth"</a>
+                    <a href="#quot-auth-only-quot-or-quot-pre-auth-quot" class="toc-h2 toc-link" data-title=""Auth-Only" or "Pre-Auth"">"Auth-Only" or "Pre-Auth"</a>
                   </li>
                   <li>
-                    <a href="#tokenization-and-repeat-sales-from-cards-on-file" class="toc-h2 toc-link" data-title="Tokenization and Repeat Sales from Cards-on-File">Tokenization and Repeat Sales from Cards-on-File</a>
+                    <a href="#repeat-sales-and-cards-on-file" class="toc-h2 toc-link" data-title="Repeat Sales and Cards-on-File">Repeat Sales and Cards-on-File</a>
                   </li>
                   <li>
                     <a href="#refunds-and-voids" class="toc-h2 toc-link" data-title="Refunds and Voids">Refunds and Voids</a>
@@ -246,25 +246,34 @@
                   <li>
                     <a href="#level-ii-and-level-iii-data" class="toc-h2 toc-link" data-title="Level II and Level III Data">Level II and Level III Data</a>
                   </li>
+                  <li>
+                    <a href="#ach-and-echecks" class="toc-h2 toc-link" data-title="ACH and eChecks">ACH and eChecks</a>
+                  </li>
               </ul>
           </li>
           <li>
             <a href="#in-person-payments" class="toc-h1 toc-link" data-title="In-Person Payments">In-Person Payments</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#payguardian" class="toc-h2 toc-link" data-title="PayGuardian">PayGuardian</a>
+                    <a href="#overview" class="toc-h2 toc-link" data-title="Overview">Overview</a>
                   </li>
                   <li>
-                    <a href="#payguardian-desktop" class="toc-h2 toc-link" data-title="PayGuardian Desktop">PayGuardian Desktop</a>
+                    <a href="#supported-devices" class="toc-h2 toc-link" data-title="Supported Devices">Supported Devices</a>
                   </li>
                   <li>
-                    <a href="#payguardian-ios-sdk" class="toc-h2 toc-link" data-title="PayGuardian iOS SDK">PayGuardian iOS SDK</a>
+                    <a href="#getting-started-2" class="toc-h2 toc-link" data-title="Getting Started">Getting Started</a>
                   </li>
                   <li>
-                    <a href="#payguardian-android-sdk" class="toc-h2 toc-link" data-title="PayGuardian Android SDK">PayGuardian Android SDK</a>
+                    <a href="#basic-sale-options" class="toc-h2 toc-link" data-title="Basic Sale Options">Basic Sale Options</a>
                   </li>
                   <li>
-                    <a href="#payguardian-cloud" class="toc-h2 toc-link" data-title="PayGuardian Cloud">PayGuardian Cloud</a>
+                    <a href="#tips-amp-gratuities" class="toc-h2 toc-link" data-title="Tips &amp; Gratuities">Tips &amp; Gratuities</a>
+                  </li>
+                  <li>
+                    <a href="#lodging-amp-hotels" class="toc-h2 toc-link" data-title="Lodging &amp; Hotels">Lodging &amp; Hotels</a>
+                  </li>
+                  <li>
+                    <a href="#pharmacy-amp-healthcare" class="toc-h2 toc-link" data-title="Pharmacy &amp; Healthcare">Pharmacy &amp; Healthcare</a>
                   </li>
               </ul>
           </li>
@@ -343,8 +352,8 @@
         <h1 id='beyond-pay-gateway'>Beyond Pay Gateway</h1><pre class="highlight nginx tab-nginx"><code><span class="k">GET</span> <span class="n">/BeyondPay</span>
 <span class="s">Pricing:</span> <span class="s">Transparent,</span> <span class="s">Protected</span>
 <span class="s">Integration:</span> <span class="s">Easy</span>
-<span class="s">Security:</span> <span class="s">Top-Notch</span>
-<span class="s">Service:</span> <span class="s">World-Class</span>
+<span class="s">Security:</span> <span class="s">World-Class</span>
+<span class="s">Service:</span> <span class="s">Top-Notch</span>
 </code></pre>
 <blockquote>
 <p><a href='https://forms.gle/AMxdRZTsS6skq2DEA'>Get your API keys</a> and get coding now!</p>
@@ -358,8 +367,8 @@
 
 <ul>
 <li><strong>Beyond Pay API</strong> - a set of robust web service APIs offering support for credit cards, ACH/checks, tokenization, and more</li>
-<li><strong>TokenPay.js</strong> – is an extension of Beyond Pay that combines client-side and server-side technologies for PCI-compliant online payment capture</li>
-<li><strong>PayGuardian</strong> – a middleware application and SDK that integrates seamlessly into Point of Sale (POS) software, removing it from the scope of PCI PA-DSS and enabling easy EMV/chip card support</li>
+<li><strong>TokenPay.js</strong> – a library and methodology that combines client-side and server-side technologies for PCI-compliant online payment capture</li>
+<li><strong>PayGuardian</strong> – a cloud-based API for semi-integration with in-person payment devices and easy support for EMV/chip cards</li>
 </ul>
 <h1 id='online-payments'>Online Payments</h1><h2 id='getting-started'>Getting Started</h2>
 <blockquote>
@@ -379,11 +388,11 @@
 <p>Replace <code>your-public-key</code> with your publishable <a href='https://forms.gle/AMxdRZTsS6skq2DEA'>public key</a>.</p>
 </blockquote>
 
-<p>TokenPay maximizes the user experience by allowing for the capture of sensitive card data within the payment form of the merchant’s website or mobile application. The consumer remains on the merchant’s payment page at all times during the checkout process.</p>
+<p>TokenPay captures the sensitive card data within the payment form of your website. The consumer remains on your payment page at all times during the checkout process, reducing potential shopping cart abandonment.</p>
 
 <p>TokenPay is an integration interface for Beyond Pay Gateway which facilitates online card payments in a manner that ensures that no sensitive card data ever touches your servers so your integration can operate with minimized scope of PCI.</p>
 
-<p>To ensure that merchants are eligible for the simplest PCI validation method, Self-Assessment Questionnaire A (SAQ-A), TokenPay utilizes</p>
+<p>To ensure that merchants are eligible for the simplest PCI validation method for eCommerce merchants, Self-Assessment Questionnaire A (SAQ-A), TokenPay utilizes:</p>
 
 <ul>
 <li><strong>Isolation</strong> – Beyond Pay Gateway hosts the sensitive cardholder data input fields. The fields are injected into your form as an HTML iframe thus isolating your page and your server from card sensitive data.</li>
@@ -481,10 +490,10 @@ You must replace <code>your-public-key</code> with your publishable <a href='htt
   <span class="p">});</span>
 <span class="p">});</span>
 </code></pre>
-<p>The card data collected by the TokenPay element is posted from the client browser to Beyond Pay Gateway where it is converted into a token. If there are any errors in the collection of the card data or creation of the token, information is automatically displayed in the <code>errorElement</code> of your payment form.</p>
+<p>The card data collected by the TokenPay element is posted from the client browser to Beyond Pay Gateway where it is converted into a single-use token. If there are any errors in the collection of the card data or creation of this token, information is automatically displayed in the <code>errorElement</code> of your payment form.</p>
 
 <p>The token is stored as a hidden input value and passed to your server on form submission.</p>
-<h2 id='submit-a-sale-using-the-single-use-token'>Submit a Sale using the Single-Use Token</h2>
+<h2 id='charge-the-single-use-token'>Charge the Single-Use Token</h2>
 <blockquote>
 <p>With the token and other key form fields obtained, now construct the XML payload from your server application:</p>
 </blockquote>
@@ -530,11 +539,11 @@ You must replace <code>your-public-key</code> with your publishable <a href='htt
 </blockquote>
 <pre class="highlight html tab-html"><code>https://api.getbeyondpay.com/PaymentService/RequestHandler.svc
 </code></pre>
-<p>Once you have securely collected and tokenized your user’s card data using TokenPay.js, you can charge the card or save the token for future use. Charges against cards that are tokenized in the browser using TokenPay.js must <em>ONLY</em> made from your server.</p>
+<p>Once you have securely collected and tokenized your user’s card data using TokenPay.js you can now use the single-use token to submit a transaction. Authorization or sale requests using single-use tokens must <em>ONLY</em> made from your server and not from the client.</p>
 
-<p>On your server, collect the token information and the form POST parameters submitted by your form.</p>
+<p>On your server application, collect the token information and the form POST parameters submitted by your form.</p>
 
-<p>Now submit the token and parameters according to the <a href='https://drive.google.com/file/d/1wH6xioSc2x2itloTQfoYcD3CQ1TtvUmi/view?usp=sharing'>Beyond Pay Gateway API Guide</a>, with the following substitutions:</p>
+<p>Now submit the token and parameters according to the example XML request, with the following substitutions:</p>
 
 <ul>
 <li><code>{transactionId}</code> - unique transaction ID generated by your application for tracking purposes</li>
@@ -545,24 +554,23 @@ You must replace <code>your-public-key</code> with your publishable <a href='htt
 <li><code>{yourSoftwareName}</code> - the name and version number of your software application</li>
 </ul>
 
-<p>After your transaction has been successfully submitted to the gateway, make sure you inspect the response message. Specifically, look at:</p>
+<p>After your transaction has been successfully submitted to the gateway, make sure you parse and inspect the response message. Specifically, look at:</p>
 
 <ul>
-<li><code>ResponseCode</code> - a 5 digit response code indicating the status of the transaction request</li>
+<li><code>ResponseCode</code> - a 5 digit <a href="#gateway-result-codes">response code</a> indicating the status of the transaction request</li>
 <li><code>ResponseDescription</code>- a verbose description of the ResponseCode</li>
-<li><code>GatewayResult</code> - an additional response code that may provide additional information on the status of the transaction</li>
-<li><code>GatewayMessage</code> - a verbose description of the GatewayResult</li>
-<li><code>AVSResult</code> - a code indicating the status of the Address Verification System request, if any</li>
+<li><code>GatewayMessage</code> - an additional <a href="#gateway-message-codes">response code</a> that may provide further information on the status of the transaction</li>
+<li><code>AVSResult</code> - a <a href="#avs-response-codes">response code</a> indicating the status of the Address Verification System request, if any</li>
 <li><code>AVSMessage</code> - a verbose description of the AVSResult code meaning</li>
-<li><code>CVResult</code> - a code indicating the status of the Card Security Code (aka CVV2, CID) sent in the request message</li>
+<li><code>CVResult</code> - a <a href="#cvv-response-codes">response code</a> indicating the status of the Card Security Code (aka CVV2, CID) sent in the request message</li>
 <li><code>CVMessage</code> - a verbose description of the CVResult code meaning</li>
-<li><code>Token</code> - a non-sensitive representation of the card number used in the transaction. The last four digits are the same as the last four digits of the card number. This value can be persisted and used for future recurring transactions from the same cardholder. </li>
+<li><code>Token</code> - a non-sensitive representation of the card number used in the transaction. The last four digits are the same as the last four digits of the card number. This value may be persisted and used for <a href="#repeat-sales-and-cards-on-file">subsequent card-on-file transactions</a> from the same cardholder. </li>
 </ul>
 
 <aside class="warning">
-You should always inspect the AVSResult and CVResult fields as these can be good indicators of potential fraud. If you see a AVSResult or CVResult code that you do not want to accept because it may be too risky (such as "No Match" on the submitted Zip code), then you should submit a void transaction to cancel the authorization and advise the cardholder that their transaction has been declined.
+You should always inspect the [AVSResult]() and [CVResult]() fields as these can be good indicators of potential fraud. If you see a AVSResult or CVResult code that you do not want to accept because it may be too risky (such as "No Match" on the submitted Zip code), then you should submit a void transaction to cancel the authorization and advise the cardholder that their transaction has been declined.
 </aside>
-<h2 id='perform-an-quot-auth-only-quot-or-quot-pre-auth-quot'>Perform an &quot;Auth-Only&quot; or &quot;Pre-Auth&quot;</h2>
+<h2 id='quot-auth-only-quot-or-quot-pre-auth-quot'>&quot;Auth-Only&quot; or &quot;Pre-Auth&quot;</h2>
 <blockquote>
 <p>To change from a &quot;sale&quot; transaction to an &quot;authorize&quot; transaction, simply set <code>TransactionType</code> to <code>sale-auth</code>:</p>
 </blockquote>
@@ -612,7 +620,7 @@ You should always inspect the AVSResult and CVResult fields as these can be good
 <aside class="notice">
 This capture request and several other API requests described here may take differing credentials in order to authenticate the client. All such credentials will be provided by Beyond for testing and production.</a>.
 </aside>
-<h2 id='tokenization-and-repeat-sales-from-cards-on-file'>Tokenization and Repeat Sales from Cards-on-File</h2>
+<h2 id='repeat-sales-and-cards-on-file'>Repeat Sales and Cards-on-File</h2>
 <blockquote>
 <p>The <code>Token</code> element represents a card number and is valid so long a the card is valid. It may be used as input in a transaction in lieu of the <code>PaymentAccountNumber</code> or the <code>AuthenticationTokenId</code>, and also requires the <code>ExpirationDate</code> field to be submitted with it.</p>
 </blockquote>
@@ -694,14 +702,14 @@ You may refund/void the full amount of an original transaction or only part of t
     <span class="nt">&lt;/requestMessage&gt;</span>
 <span class="nt">&lt;/requestHeader&gt;</span>
 </code></pre>
-<p>In order for a transaction to qualify at reduced &quot;Level II&quot; interchange rates, assuming the card is eligible for such, the following fields should be provided in the XML message to the gateway in addition to the basic required fields given in the <a href="#submit-a-sale-using-the-single-use-token">instructions for processing a basic sale transaction</a>:</p>
+<p>In order for a transaction to qualify at reduced &quot;Level II&quot; interchange rates, assuming the card is eligible for such, the following fields should be provided in the XML message to the gateway in addition to the basic required fields given in the <a href="#charge-the-single-use-token">instructions for processing a basic sale transaction</a>:</p>
 
 <ul>
 <li><code>InvoiceNum</code> - may be up to 24 alphanumeric characters and hyphens</li>
 <li><code>PONum</code> - may be up to 24 alphanumeric characters and hyphens</li>
 <li><code>CustomerAccountCode</code> - may be up to 24 alphanumeric characters and hyphens</li>
 <li><code>LocalTaxAmount</code> - applicable tax amount in cents (implied decimal); must be less than the total transaction <code>Amount</code></li>
-<li><code>LocalTaxIndicator</code> - may be <code>P</code> (Provided), <code>N</code> (Not Provided), or <code>E</code> (Exempt). Use <code>P</code> if you are sending a value in <code>LocalTaxAmount</code>, or <code>E</code> if you or the merchant are tax-exempt</li>
+<li><code>LocalTaxIndicator</code> - may be <code>P</code> (Provided), <code>N</code> (Not Provided), or <code>E</code> (Exempt). Use <code>P</code> if you are sending a value in <code>LocalTaxAmount</code>, or <code>E</code> if you are tax-exempt</li>
 </ul>
 <h3 id='level-iii-data'>Level III Data</h3>
 <blockquote>
@@ -740,7 +748,7 @@ You may refund/void the full amount of an original transaction or only part of t
     <span class="nt">&lt;/requestMessage&gt;</span>
 <span class="nt">&lt;/requestHeader&gt;</span>
 </code></pre>
-<p>Cards that are eligible for Level III interchange rates are typically corporate purchasing or travel cards. If a card is eligible for such, you can achieve a reduced interchange rate by providing the following fields in your gateway request message (in addition to <a href="#level-ii-data">those required for Level II</a> and <a href="#submit-a-sale-using-the-single-use-token">basic sale or &quot;Level I&quot; transactions</a>).</p>
+<p>Cards that are eligible for Level III interchange rates are typically corporate purchasing or some travel cards. If a card is eligible for such, you can achieve a reduced interchange rate by providing the following fields in your gateway request message (in addition to <a href="#level-ii-data">those required for Level II</a> and <a href="#charge-the-single-use-token">basic sale or &quot;Level I&quot; transactions</a>).</p>
 
 <p>Note that Level III transactions require line-item details from the purchase. You should send one <code>Item</code> array for each line item on a given invoice; many integrators will dynamically map these required fields into their existing inventory, order management, or ERP systems. Alternatively, if you only sell one type of item, you may consider creating a static mapping of these fields, or &quot;hard-coding&quot; the values specific to your business.</p>
 
@@ -757,254 +765,309 @@ You may refund/void the full amount of an original transaction or only part of t
 </ul>
 
 <aside class="success">
-In general, for most card brands and issuers, the presence of a value in the appropriate Level III field is enough to qualify for the reduced interchange rate. The accuracy of these values is not edited by the card brands in most cases, but may impact the reporting received by the administrator of a given corporate purchasing card program.
+In general, for most card brands and card issuers, the presence of a value in the appropriate Level III field is enough to qualify for the reduced interchange rate. The accuracy of these values is not validated by the card brands in most cases, but may impact the reporting received by the administrator of a given corporate purchasing card program.
 </aside>
-<h1 id='in-person-payments'>In-Person Payments</h1><h2 id='payguardian'>PayGuardian</h2>
-<blockquote>
-<p><a href='https://www.dropbox.com/s/31515dk9s1hptpu/BridgePay%20Gateway%20Certified%20Device%20Matrix.pdf?dl=0'>CERTIFIED DEVICES</a></p>
-</blockquote>
-
-<p>Point‐of‐Sale (POS) systems that process sensitive payment information are required to certify their payment applications to the Payment Application Data Security Standard (PA‐DSS). The addition of EMV certification and continued need for both encryption and tokenization has become a concern for both merchants and integrators. Instituting and maintaining these standards requires significant financial and employee resources in order to adhere to the Payments Card Industry Data Security Standards (PCI DSS) compliance requirements. Subsequently, any changes made in the POS system, may require a partial or full recertification, which increases the cost and time to market. Beyond has engaged these issues through our product line, the PayGuardian suite, to better serve the needs of our integrators and merchants.</p>
-
-<p>PayGuardian is a lightweight, highly secure client application that integrates seamlessly into POS applications. PayGuardian facilitates the transaction process by handling the collection and transmission of sensitive payment information as an out of scope PA-DSS solution, thereby offloading the certification responsibility from merchants and integrators. PayGuardian is EMV enabled, handles point to point encryption, and tokenizes all transactions to ensure transaction processing is seamless and secure.</p>
-<h2 id='payguardian-desktop'>PayGuardian Desktop</h2>
-<blockquote>
-<p><a href='https://www.dropbox.com/s/9mhfffnqknd2q7y/PayGuardian-2.4.4.zip?dl=0'>Download PayGuardian Desktop v 2.4.4</a></p>
-
-<p><a href='https://www.dropbox.com/s/2oczvikko1olz1a/PayGuardian%20Developer%20Guide.pdf?dl=0'>PayGuardian Desktop Developer Guide</a></p>
-
-<p><a href='https://www.dropbox.com/s/o7itaspp454c5al/PayGuardian%20Installation%20Guide%20v2.4.3.pdf?dl=0'>PayGuardian Desktop Installation Guide</a></p>
-
-<p><a href='https://www.dropbox.com/s/lq6l4lpmj05f29p/PayGuardian%20User%20Guide%20v2.4.1.pdf?dl=0'>PayGuardian Desktop User Guide</a></p>
-
-<p>Sample C# DLL integration:</p>
-</blockquote>
-<pre class="highlight csharp"><code><span class="k">private</span> <span class="k">void</span> <span class="nf">ProcessCreditCard_Click</span><span class="p">(</span><span class="kt">object</span> <span class="n">sender</span><span class="p">,</span> <span class="n">EventArgs</span> <span class="n">e</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="c1">// 1. First create a Payment Page</span>
-    <span class="n">hostName</span><span class="p">=</span><span class="n">hostname</span><span class="p">.</span><span class="n">Text</span><span class="p">;</span>
-    <span class="n">PaymentPage</span> <span class="n">pg</span><span class="p">=</span><span class="nf">newPaymentPage</span><span class="p">();</span>
-    <span class="n">PaymentRequest</span> <span class="n">paymentRequest</span><span class="p">=</span><span class="n">pg</span><span class="p">.</span><span class="n">PaymentRequest</span><span class="p">;</span>
-    <span class="n">paymentRequest</span><span class="p">.</span><span class="n">TenderType</span><span class="p">=</span><span class="n">PaymentRequest</span><span class="p">.</span><span class="nf">ParseTenderType</span><span class="p">(</span><span class="n">TenderType</span><span class="p">.</span><span class="n">Text</span><span class="p">);</span>
-    <span class="n">paymentRequest</span><span class="p">.</span><span class="n">TransType</span><span class="p">=</span><span class="n">PaymentRequest</span><span class="p">.</span><span class="nf">ParseTransType</span><span class="p">(</span><span class="n">TransType</span><span class="p">.</span><span class="n">Text</span><span class="p">);</span>
-
-    <span class="c1">// 2. Next, set the PayLink Properties</span>
-    <span class="err">#</span><span class="n">regionSetPayLinkProperties</span>
-
-    <span class="c1">// Set the only required field (Amount)</span>
-    <span class="n">paymentRequest</span><span class="p">.</span><span class="n">Amount</span> <span class="p">=</span> <span class="k">this</span><span class="p">.</span><span class="n">Amount</span><span class="p">.</span><span class="n">Text</span><span class="p">.</span><span class="nf">ToString</span><span class="p">();</span>
-
-    <span class="c1">// 3. Display the payment processing page</span>
-    <span class="n">ShowPageResult</span> <span class="n">result</span> <span class="p">=</span> <span class="k">null</span><span class="p">;</span>
-    <span class="k">try</span>
-    <span class="p">{</span>
-      <span class="n">Result</span> <span class="p">=</span> <span class="n">pg</span><span class="p">.</span><span class="nf">ShowPage</span><span class="p">();</span>
-    <span class="p">}</span>
-    <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span><span class="p">)</span>
-    <span class="p">{</span>
-      <span class="c1">// Error while processing payment</span>
-      <span class="n">MessageBox</span><span class="p">.</span><span class="nf">Show</span><span class="p">(</span><span class="s">"Error Processing Payment"</span><span class="p">);</span>
-    <span class="p">}</span>
-    <span class="n">PaymentResponse</span> <span class="n">paymentResponse</span> <span class="p">=</span> <span class="n">pg</span><span class="p">.</span><span class="n">PaymentResponse</span><span class="p">;</span>
-
-    <span class="c1">// 4. Display the result of the transaction</span>
-    <span class="err">#</span><span class="n">region</span> <span class="n">Show</span> <span class="n">the</span> <span class="n">PayLink</span> <span class="n">Result</span>
-
-    <span class="nf">If</span> <span class="p">(</span><span class="n">result</span> <span class="p">!=</span> <span class="k">null</span> <span class="p">&amp;&amp;</span> <span class="n">result</span><span class="p">.</span><span class="n">code</span> <span class="p">==</span> <span class="n">ShowPageResultCode</span><span class="p">.</span><span class="n">OK</span><span class="p">)</span>
-
-   <span class="c1">//TO DO - finish</span>
-
+<h2 id='ach-and-echecks'>ACH and eChecks</h2><pre class="highlight xml tab-xml"><code><span class="nt">&lt;requestHeader&gt;</span>
+    <span class="nt">&lt;ClientIdentifier&gt;</span>SOAP<span class="nt">&lt;/ClientIdentifier&gt;</span>
+    <span class="nt">&lt;TransactionID&gt;</span>{transactionId}<span class="nt">&lt;/TransactionID&gt;</span>
+    <span class="nt">&lt;RequestType&gt;</span>004<span class="nt">&lt;/RequestType&gt;</span>
+    <span class="nt">&lt;RequestDateTime&gt;</span>{requestDateTime}<span class="nt">&lt;/RequestDateTime&gt;</span>
+    <span class="nt">&lt;User&gt;</span>{Beyond-assigned username}<span class="nt">&lt;/User&gt;</span>
+    <span class="nt">&lt;Password&gt;</span>{Beyond-assigned password}<span class="nt">&lt;/Password&gt;</span>
+    <span class="nt">&lt;requestMessage&gt;</span>
+        <span class="nt">&lt;SoftwareVendor&gt;</span>{yourSoftwareName}<span class="nt">&lt;/SoftwareVendor&gt;</span>
+        <span class="nt">&lt;TransactionType&gt;</span>sale<span class="nt">&lt;/TransactionType&gt;</span>
+        <span class="nt">&lt;TransIndustryType&gt;</span>{Standard Entry Class code; see below}<span class="nt">&lt;/TransIndustryType&gt;</span>
+        <span class="nt">&lt;RoutingNum&gt;</span>{bankRoutingNumber}<span class="nt">&lt;/RoutingNum&gt;</span>
+        <span class="nt">&lt;BankAccountNum&gt;</span>{bankAccountNumber}<span class="nt">&lt;/BankAccountNum&gt;</span>
+        <span class="nt">&lt;AcctType&gt;</span>{'S' for savings account; 'C' for checking account}<span class="nt">&lt;/AcctType&gt;</span>
+        <span class="nt">&lt;Amount&gt;</span>{amountInCents}<span class="nt">&lt;/Amount&gt;</span>
+    <span class="nt">&lt;/requestMessage&gt;</span>
+<span class="nt">&lt;/requestHeader&gt;</span>
 </code></pre>
-<p>PayGuardian Desktop (for Windows) comes with an executable installer file that integrators may incorporate into their Point-of-Sale system installation. A Windows object library has also been included to enable easy integrations with POS applications. The object library is accessible using Component Object Model (COM) or .NET technology.When invoked, PayGuardian displays a basic frame that encapsulates the browser, fetching and rendering the Virtual Terminal (VT)page. The object window is configurable, and integrators can brand the user interface using cascading style sheets. The VT object window holds focus, floating on top of all other running applications.</p>
+<p>Processing an eCheck/ACH transaction is very similar to processing a credit card transaction. Instead of passing a token to the webservice, you can directly pass the bank&#39;s routing/transit number and the bank account number. These data elements are not considered sensitive to the same degree as card data, and are not covered by the scope of PCI DSS. You should still encrypt said data elements whether at rest or in motion, but they will not impact your scope of PCI compliance.</p>
 
-<aside class="success">
-For development and testing, use this sandbox registration key: <b><code>H75RCGRV</code></b>. A new registration key will be provided for live/production transaction processing.
-</aside>
-<h2 id='payguardian-ios-sdk'>PayGuardian iOS SDK</h2>
-<blockquote>
-<p><a href='https://www.dropbox.com/s/g340i0bsp4tjo01/PayGuardian-iOS-2.5.zip?dl=0'>iOS Framework</a></p>
-
-<p><a href='https://www.dropbox.com/s/ffdc90z7thgnxw0/PayGuardian%20iOS%20Framework%20Developer%20Guide%20v2.5.0.pdf?dl=0'>iOS Developer Guide</a></p>
-
-<p><a href='https://www.dropbox.com/s/0wt5jp013fszfnd/PayGuardian-iOS-Test.zip?dl=0'>Test iOS App</a></p>
-
-<p>Create a BPNPaymentRequest object:</p>
-</blockquote>
-<pre class="highlight objective_c tab-objective_c"><code><span class="k">-</span><span class="p">(</span><span class="n">instancetype</span><span class="p">)</span> <span class="nf">initInvoiceNumber</span><span class="p">:(</span><span class="n">NSString</span> <span class="o">*</span><span class="n">_Nonnull</span><span class="p">)</span> <span class="n">invoiceNumber</span>
-<span class="n">pnRefNum</span><span class="o">:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="n">_Nullable</span><span class="p">)</span> <span class="n">pnRefNum</span> 
-<span class="n">amount</span><span class="o">:</span><span class="p">(</span><span class="n">NSDecimalNumber</span> <span class="o">*</span><span class="n">_Nullable</span><span class="p">)</span> <span class="n">amount</span> 
-<span class="n">tipAmount</span><span class="o">:</span><span class="p">(</span><span class="n">NSDecimalNumber</span> <span class="o">*</span><span class="n">_Nullable</span><span class="p">)</span> <span class="n">tipAmount</span> 
-<span class="n">cashBackAmount</span><span class="o">:</span><span class="p">(</span><span class="n">NSDecimalNumber</span> <span class="o">*</span><span class="n">_Nullable</span><span class="p">)</span> <span class="n">cashBackAmount</span> 
-<span class="n">tenderType</span><span class="o">:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="n">_Nonnull</span><span class="p">)</span> <span class="n">tenderType</span> 
-<span class="n">transactionType</span><span class="o">:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="n">_Nonnull</span><span class="p">)</span> <span class="n">transactionType</span> 
-<span class="n">username</span><span class="o">:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="n">_Nonnull</span><span class="p">)</span> <span class="n">username</span> 
-<span class="n">password</span><span class="o">:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="n">_Nonnull</span><span class="p">)</span> <span class="n">password</span> 
-<span class="n">merchantCode</span><span class="o">:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="n">_Nonnull</span><span class="p">)</span> <span class="n">merchantCode</span> 
-<span class="n">merchantAccountCode</span><span class="o">:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="n">_Nonnull</span><span class="p">)</span> <span class="n">merchantAccountCode</span> 
-<span class="n">paymentAccountNumber</span><span class="o">:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="n">_Nullable</span><span class="p">)</span> <span class="n">paymentAccountNumber</span> 
-<span class="n">token</span><span class="o">:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="n">_Nullable</span><span class="p">)</span> <span class="n">token</span> 
-<span class="n">expirationDate</span><span class="o">:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="n">_Nullable</span><span class="p">)</span> <span class="n">expirationDate</span> 
-<span class="n">terminalCommConfig</span><span class="o">:</span><span class="p">(</span><span class="n">TerminalCommConfig</span> <span class="o">*</span><span class="n">_Nonnull</span><span class="p">)</span> <span class="n">terminalCommConfig</span>
-<span class="n">industryType</span><span class="o">:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="n">_Nonnull</span><span class="p">)</span> <span class="n">industryType</span> 
-<span class="n">healthCareData</span><span class="o">:</span><span class="p">(</span><span class="n">BPNHealthCare</span> <span class="o">*</span><span class="n">_Nullable</span><span class="p">)</span> <span class="n">healthCareData</span> 
-<span class="n">bankAccountNumber</span><span class="o">:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="n">_Nullable</span><span class="p">)</span> <span class="n">bankAccountNumber</span>
-<span class="n">routingNumber</span><span class="o">:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="n">_Nullable</span><span class="p">)</span> <span class="n">routingNumber</span>
-<span class="n">partialApproval</span><span class="o">:</span><span class="p">(</span><span class="n">BOOL</span><span class="p">)</span> <span class="n">partialApproval</span>
-<span class="n">enableTpi</span><span class="o">:</span><span class="p">(</span><span class="n">BOOL</span><span class="p">)</span> <span class="n">enableTpi</span>
-<span class="n">signatureData</span><span class="o">:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="n">_Nullable</span><span class="p">)</span> <span class="n">signatureData</span>
-<span class="n">disableAmountConfirmation</span><span class="o">:</span><span class="p">(</span><span class="n">BOOL</span><span class="p">)</span> <span class="n">disableAmountConfirmation</span>
-<span class="n">testMode</span><span class="o">:</span><span class="p">(</span><span class="n">BOOL</span><span class="p">)</span> <span class="n">testMode</span><span class="p">;</span>
-</code></pre>
-<blockquote>
-<p>Construct the PayGuardianTransaction object:</p>
-</blockquote>
-<pre class="highlight objective_c tab-objective_c"><code><span class="nl">initWithPaymentRequest:</span><span class="p">(</span><span class="n">BPNPaymentRequest</span> <span class="o">*</span><span class="p">)</span><span class="n">request</span><span class="p">;</span>
-</code></pre>
-<blockquote>
-<p>The run method with completion is:</p>
-</blockquote>
-<pre class="highlight objective_c tab-objective_c"><code><span class="k">-</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">runOnCompletion</span><span class="p">:(</span><span class="kt">void</span> <span class="p">(</span><span class="o">^</span><span class="p">)(</span><span class="n">BPNPayment</span> <span class="o">*</span><span class="n">payment</span><span class="p">,</span> <span class="n">NSError</span> <span class="o">*</span><span class="n">error</span><span class="p">))</span> <span class="n">onCompletion</span> <span class="n">onStateChanged</span><span class="o">:</span><span class="p">(</span><span class="kt">void</span> <span class="p">(</span><span class="o">^</span><span class="p">)(</span><span class="n">PayGuardianTransactionState</span> <span class="n">state</span><span class="p">))</span> <span class="n">onStateChanged</span><span class="p">;</span>
-</code></pre>
-<blockquote>
-<p>Implement a handler for the returned BPNPayment response:</p>
-</blockquote>
-<pre class="highlight objective_c tab-objective_c"><code><span class="n">BPNPayment</span><span class="p">.</span><span class="n">BridgeCommResponse</span><span class="o">:</span>
-<span class="n">transactionID</span><span class="o">:</span> <span class="mi">8888</span>
-<span class="n">requestType</span><span class="o">:</span> <span class="mo">004</span>
-<span class="n">responseCode</span><span class="o">:</span> <span class="mi">0</span>
-<span class="n">responseDescription</span><span class="o">:</span> <span class="n">Successful</span> <span class="n">Request</span>
-<span class="n">token</span><span class="o">:</span> <span class="mi">11110000000068530608</span>
-<span class="n">expirationDate</span><span class="o">:</span> <span class="mi">1225</span>
-<span class="n">authorizationCode</span><span class="o">:</span> <span class="mi">290144</span>
-<span class="n">originalReferenceNumber</span><span class="o">:</span> <span class="n">MCC7754741020</span>
-<span class="n">authorizedAmount</span><span class="o">:</span> <span class="err">$</span><span class="mi">5</span><span class="p">.</span><span class="mi">50</span>
-<span class="n">originalAmount</span><span class="o">:</span> <span class="err">$</span><span class="mi">5</span><span class="p">.</span><span class="mi">50</span>
-<span class="n">gatewayTransactionID</span><span class="o">:</span> <span class="mi">214973401</span>
-<span class="n">gatewayMessage</span><span class="o">:</span> <span class="n">A01</span> <span class="o">-</span><span class="n">Approved</span>
-<span class="n">internalMessage</span><span class="o">:</span> <span class="n">Approved</span><span class="o">:</span> <span class="mi">290144</span> <span class="p">(</span><span class="n">approval</span> <span class="n">code</span><span class="p">)</span>
-<span class="n">gatewayResult</span><span class="o">:</span> <span class="mo">00000</span>
-<span class="n">AVSMessage</span><span class="o">:</span>
-<span class="n">AVSResponse</span><span class="o">:</span>
-<span class="n">CVMessage</span><span class="o">:</span>
-<span class="n">CVResult</span><span class="o">:</span>
-<span class="n">transactionCode</span><span class="o">:</span> <span class="p">(</span><span class="n">null</span><span class="p">)</span>
-<span class="n">transactionDate</span><span class="o">:</span> <span class="mi">20161020</span>
-<span class="n">remainingAmount</span><span class="o">:</span> <span class="err">$</span><span class="mi">0</span><span class="p">.</span><span class="mo">00</span>
-<span class="n">ISOCountryCode</span><span class="o">:</span> <span class="p">(</span><span class="n">null</span><span class="p">)</span>
-<span class="n">ISOCurrencyCode</span><span class="o">:</span> <span class="n">USD</span>
-<span class="n">ISOTransactionDate</span><span class="o">:</span> <span class="mi">2016</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">20</span> <span class="mi">14</span><span class="o">:</span><span class="mi">32</span><span class="o">:</span><span class="mi">47</span><span class="p">.</span><span class="mi">86</span>
-<span class="n">ISORequestDate</span><span class="o">:</span> <span class="mi">2016</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">20</span> <span class="mi">14</span><span class="o">:</span><span class="mi">32</span><span class="o">:</span><span class="mi">47</span><span class="p">.</span><span class="mi">86</span>
-<span class="n">networkReferenceNumber</span><span class="o">:</span> <span class="n">MCC7754741020</span>
-<span class="n">merchantCategoryCode</span><span class="o">:</span>
-<span class="n">networkMerchantID</span><span class="o">:</span> <span class="mi">518564010126944</span>
-<span class="n">networkTerminalID</span><span class="o">:</span> <span class="n">PPB01</span><span class="p">.</span>
-<span class="n">cardType</span><span class="o">:</span> <span class="n">Mastercard</span>
-<span class="n">maskedPAN</span><span class="o">:</span> <span class="mi">5</span><span class="o">***********</span><span class="mo">060</span><span class="mi">8</span>
-<span class="n">responseTypeDescription</span><span class="o">:</span> <span class="n">sale</span>
-<span class="n">isCommercialCard</span><span class="o">:</span> <span class="n">False</span>
-<span class="n">streetMatchMessage</span><span class="o">:</span>
-<span class="n">secondsRemaining</span><span class="o">:</span> <span class="p">(</span><span class="n">null</span><span class="p">)</span>
-<span class="n">merchantCode</span><span class="o">:</span> <span class="p">(</span><span class="n">null</span><span class="p">)</span>
-<span class="n">merchantAccountCode</span><span class="o">:</span> <span class="p">(</span><span class="n">null</span><span class="p">)</span>
-<span class="n">merchantName</span><span class="o">:</span> <span class="p">(</span><span class="n">null</span><span class="p">)</span>
-<span class="n">receiptTagData</span><span class="o">:</span> <span class="p">(</span><span class="n">null</span><span class="p">)</span>
-<span class="n">issuerTagData</span><span class="o">:</span> <span class="p">(</span><span class="n">null</span><span class="p">)</span>
-<span class="n">applicationIdentifier</span><span class="o">:</span> <span class="p">(</span><span class="n">null</span><span class="p">)</span>
-<span class="n">terminalVerificationResults</span><span class="o">:</span> <span class="p">(</span><span class="n">null</span><span class="p">)</span>
-<span class="n">issuerApplicationData</span><span class="o">:</span> <span class="p">(</span><span class="n">null</span><span class="p">)</span>
-<span class="n">transactionStatusInformation</span><span class="o">:</span> <span class="p">(</span><span class="n">null</span><span class="p">)</span>
-</code></pre>
-<p>PayGuardian iOS is a secure iOS framework library that integrates seamlessly into iOS applications. PayGuardian iOS facilitates the transaction process by handling the collection and transmission of sensitive payment information as an out of scope PA-DSS solution, thereby offloading the certification responsibility from merchants and integrators. PayGuardian iOS is EMV enabled, handles point to point encryption, and tokenizes all transactions to ensure transaction processing is seamless and secure.</p>
-
-<p>Programmatically, a PayGuardian iOS transaction is comprised of a four step process:</p>
+<p>In addition to passing the routing and account number, you also need to specify whether the bank account is a checking or savings account, as well as the &quot;Standard Entry Class&quot; code as defined by NACHA.</p>
 
 <ul>
-<li>Create a BPNPaymentRequest object.</li>
-<li>Pass the BPNPaymentRequest object to the constructor of a PayGuardianTransaction object.</li>
-<li>Call the runOnCompletion method and provide an implementation for the completion.</li>
-<li>Implement a handler for the returned BPNPayment and/or NSError.</li>
+<li><code>CCD</code> - Corporate Credit or Debit - for business checks</li>
+<li><code>PPD</code> - Prearranged Payment and Deposit - for consumer checks</li>
+<li><code>TEL</code> - Telephone-Initiated Entry</li>
+<li><code>WEB</code> - Internet-Initiated Entry</li>
 </ul>
 
-<aside class="success">
-For development and testing, use this sandbox registration key: <b><code>H75RCGRV</code></b>. A new registration key will be provided for live/production transaction processing.
+<aside class="notice">
+Different NACHA SEC codes may require different disclosure notices to your customers. Check the [NACHA Operating Rules](https://www.nachaoperatingrulesonline.org/) to ensure compliance.
 </aside>
-<h2 id='payguardian-android-sdk'>PayGuardian Android SDK</h2>
-<blockquote>
-<p><a href='https://www.dropbox.com/s/zoa1s4n9s8cleob/PGAndroid-2.5.zip?dl=0'>PayGuardian for Android</a></p>
+<h1 id='in-person-payments'>In-Person Payments</h1><h2 id='overview'>Overview</h2>
+<p>If you are developing a payment application or point of sale (POS) system for use by only your business, then that application falls in your scope of PCI DSS compliance as a merchant. If you are developing a POS to sell or license to other businesses, that application is in scope for PCI Payment Application Data Security Standard (PA-DSS) if it interacts with card data. If that application is hosted/SaaS-based then you may also be in-scope PCI Service Provider (similar to a gateway provider).</p>
 
-<p><a href='https://www.dropbox.com/s/wem8vf780lffxfx/PayGuardian%20Android%20Developer%20Guide%20%20v2.5.0.pdf?dl=0'>Android Developer Guide</a></p>
+<p>The costs involved in validating PCI compliance for such software can be prohibitive for Indepdendent Software Vendors (ISVs). Increasingly, ISVs are also expected to offer support for EMV or chip cards: direct integration of which can also be very costly and time-consuming.</p>
 
-<p><a href='https://www.dropbox.com/s/35d2k95ltrrw7nm/App2AppSampleProject.zip?dl=0'>Android app-to-app sample project</a></p>
+<p>The solution to both of these challenges is a semi-integrated or &quot;out-of-scope&quot; architectural model, whereby a POS or application can integrate (or &quot;semi-integrate&quot;) to a pre-certified payment application and device. This removes the burden of complicated EMV/chip card certification and insulates the application from interacting with sensitive data.</p>
 
-<p>Java sample (App-to-App method):</p>
-</blockquote>
-<pre class="highlight java tab-java"><code><span class="kd">public</span> <span class="kt">void</span> <span class="nf">processTransaction</span><span class="o">(</span><span class="n">String</span> <span class="n">paymentRequestXml</span><span class="o">)</span>
-  <span class="o">{</span>
-    <span class="kd">final</span> <span class="kt">int</span> <span class="n">PAYGUARDIAN_REQUEST_CODE</span> <span class="o">=</span> <span class="mi">102</span><span class="o">;</span>
-    <span class="n">Intent</span> <span class="n">sendIntent</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Intent</span><span class="o">(</span><span class="n">android</span><span class="o">.</span><span class="na">content</span><span class="o">.</span><span class="na">Intent</span><span class="o">.</span><span class="na">ACTION_SEND</span><span class="o">);</span>
-    <span class="n">sendIntent</span><span class="o">.</span><span class="na">setType</span><span class="o">(</span><span class="s">"text/plain"</span><span class="o">);</span>
-    <span class="n">sendIntent</span><span class="o">.</span><span class="na">putExtra</span><span class="o">(</span><span class="n">Intent</span><span class="o">.</span><span class="na">EXTRA_TEXT</span><span class="o">,</span> <span class="n">paymentInputXml</span><span class="o">);</span>
+<p>Beyond PayGuardian is a cloud-based semi-integrated solution that makes it possible to easily support in-person card payments from any platform or environment.</p>
+<h2 id='supported-devices'>Supported Devices</h2>
+<p>Beyond&#39;s preferred card present devices are the Android-based &quot;A-series&quot; from PAX Technology:</p>
 
-    <span class="n">PackageManager</span> <span class="n">pm</span> <span class="o">=</span> <span class="n">getApplicationContext</span><span class="o">().</span><span class="na">getPackageManager</span><span class="o">();</span>
-    <span class="n">List</span><span class="o">&lt;</span><span class="n">ResolveInfo</span><span class="o">&gt;</span> <span class="n">activityList</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="na">queryIntentActivities</span><span class="o">(</span><span class="n">sendIntent</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
-
-    <span class="k">for</span> <span class="o">(</span><span class="kd">final</span> <span class="n">ResolveInfo</span> <span class="n">app</span> <span class="o">:</span> <span class="n">activityList</span><span class="o">)</span>
-    <span class="o">{</span>
-      <span class="k">if</span> <span class="o">((</span><span class="n">app</span><span class="o">.</span><span class="na">activityInfo</span><span class="o">.</span><span class="na">name</span><span class="o">).</span><span class="na">contains</span><span class="o">(</span><span class="s">"ProcessSecurelyActivity"</span><span class="o">))</span>
-      <span class="o">{</span>
-        <span class="kd">final</span> <span class="n">ActivityInfo</span> <span class="n">activity</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="na">activityInfo</span><span class="o">;</span>
-        <span class="kd">final</span> <span class="n">ComponentName</span> <span class="n">name</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ComponentName</span><span class="o">(</span><span class="n">activity</span><span class="o">.</span><span class="na">applicationInfo</span><span class="o">.</span><span class="na">packageName</span><span class="o">,</span> <span class="n">activity</span><span class="o">.</span><span class="na">name</span><span class="o">);</span>
-
-        <span class="n">sendIntent</span><span class="o">.</span><span class="na">setComponent</span><span class="o">(</span><span class="n">name</span><span class="o">);</span>
-
-        <span class="n">startActivityForResult</span><span class="o">(</span><span class="n">sendIntent</span><span class="o">,</span> <span class="n">PAYGUARDIAN_REQUEST_CODE</span><span class="o">);</span>
-
-        <span class="k">break</span><span class="o">;</span>
-      <span class="o">}</span>
-    <span class="o">}</span>
-</code></pre>
-<p>PayGuardian Android is a lightweight, highly secure Android application that integrates seamlessly into mobile POS (mPOS) applications. PayGuardian Android facilitates the transaction process by handling the collection and transmission of sensitive payment information as an out of scope PA-DSS solution, thereby offloading the certification responsibility from merchants and integrators. PayGuardian Android is EMV enabled, handles point to point encryption, and tokenizes all transactions to ensure transaction processing is seamless and secure.</p>
-<h3 id='process-flow'>Process Flow</h3>
 <ul>
-<li>The mPOS application collects transaction data, such as the dollar amount, invoice number, tender type, transaction type, merchant account information, etc.</li>
-<li>The mPOS application constructs the transaction requesting an XML format upon the selection of the Process button.</li>
-<li>PayGuardian obtains the card information via the claiming of the mPOS device using the Device USB Host connection and validates the transaction request object.</li>
-<li>The mPOS device prompts to swipe or insert the card and transmits the card information to the PayGuardian application, which captures the card data as a swiped or EMV transaction respectively.</li>
-<li>PayGuardian constructs the payload request and transmits the transaction request to the Beyond Pay Gateway.</li>
-<li>PayGuardian transmits the transaction response returned from the Gateway back to the mPOS application.</li>
-<li>The mPOS application implementation responds accordingly to the transaction response.</li>
+<li><a href="https://www.paxtechnology.com/a920">PAX A920</a></li>
+<li><a href="https://www.paxtechnology.com/a80">PAX A80</a></li>
 </ul>
 
-<p>For the App-to-App integration method, the PayGuardian Android application is accessed by starting an activity with an intent which encapsulates a request payload.</p>
+<p>Beyond also supports this semi-integration model using the Ingenico Telium2 family of devices, either through use of an additional network appliance or via OS-specific SDKs which are available by request.</p>
 
-<aside class="success">
-For development and testing, use this sandbox registration key: <b><code>H75RCGRV</code></b>. A new registration key will be provided for live/production transaction processing.
-</aside>
-<h2 id='payguardian-cloud'>PayGuardian Cloud</h2>
+<p>Development devices are available to purchase by request. Please contact <a href='mailto:BeyondPayIntegrations@getbeyond.com'>BeyondPayIntegrations@getbeyond.com</a>.</p>
+
+<p>Beyond will provide development and production devices pre-configured with the necessary account information and settings. The only credential you will need to communicate with the device is the UUID or &quot;locationID&quot;, which will be provided by Beyond and can also be confirmed in the PayGuardian Cloud app on the the terminal device.</p>
+<h2 id='getting-started-2'>Getting Started</h2>
 <blockquote>
-<p><a href='https://pgc.bridgepaynetsecuretx.com/'>PayGuardian Cloud API</a></p>
+<p><b>Sandbox Service (Testing):</b></p>
+</blockquote>
+<pre class="highlight html tab-html"><code>https://pgc.bridgepaynetsecuretest.com/req/payment
+</code></pre>
+<blockquote>
+<p><b>Live Service (Production):</b></p>
+</blockquote>
+<pre class="highlight html tab-html"><code>https://pgc.bridgepaynetsecuretx.com/req/payment
+</code></pre>
+<blockquote>
+<p>Credit Sale Request
+<code>POST</code>
+<code>json
+{
+&quot;locationID&quot;: &quot;your-locationID&quot;,
+&quot;mode&quot;: &quot;UAT&quot;,
+&quot;amount&quot;: &quot;17.00&quot;,
+&quot;softwareVendor&quot;: &quot;your_POS_name&quot;,
+&quot;tenderType&quot;: &quot;CREDIT&quot;,
+&quot;transType&quot;: &quot;SALE&quot;
+}
+</code></p>
 
-<p><code>POST https://pgc.bridgepaynetsecuretest.com/req/payment</code></p>
+<p>Credit Sale Response</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="s2">"requestID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2aaf2fe8663c561fe7edf5c663b4e7262dd47274bdba13f3daafb207"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"locationID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"91552FCB-01A7-4BA2-B00A-EA33FC660307"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"terminalID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3EADDF76-27E6-4883-A49C-0AA876E64734"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"approvedAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"17.00"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"authCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"830705"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"avsMessage"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="s2">"avsResponse"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="s2">"cardType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Visa"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"cashBackAmt"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="s2">"cvMessage"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="s2">"cvResponse"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="s2">"expirationDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0323"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"extData"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"lodgingItem"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"receiptTagData"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"maskedCard"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4***********2645"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"chipCardAID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A0000000031010"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"invoice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345678"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"seq"</span><span class="p">:</span><span class="w"> </span><span class="s2">"23dbde68c492a6c2c6b5cbe726d40741"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"authCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"830705"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"entryMethod"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Chip_Read"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"totalAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"17.00"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pinVerified"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NO"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"signatureEncoded"</span><span class="p">:</span><span class="w"> </span><span class="s2">"iVBORw0KGgoAAAANSUhEUgAAAe8AAACWCAIAAAB4sZcnAAADOklEQVR42u..."</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="s2">"gatewayMessage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A01 - Approved"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"gatewayResult"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"internalMessage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Approved: 830705 (approval code)"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"isCommercialCard"</span><span class="p">:</span><span class="w"> </span><span class="s2">"False"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"isoCountryCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"840"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"isoCurrencyCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"isoRequestDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-28 14:25:04.963"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"isoTransactionDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-28 14:25:04.963"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"maskedAccountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4***********2645"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"merchantCategoryCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="s2">"networkMerchantId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="s2">"networkReferenceNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="s2">"networkTerminalId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="s2">"pnRefNum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"253271004"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"remainingAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"requestedAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="s2">"responseTypeDescription"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sale"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"resultCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"resultTxt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Successful Request"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"streetMatchMessage"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="s2">"submittedAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"17.00"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20180628"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"tipAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11110000000400142645"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"transactionCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"23dbde68c492a6c2c6b5cbe726d40741"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Initiating a card present transaction is as simple as POSTing just a few lines of JSON to the webservice, passing the following arguments:</p>
+
+<ul>
+<li><code>locationID</code> - the UUID from the PayGuardian Cloud app installed on the device</li>
+<li><code>mode</code> - indicates what environment to use; options are: <code>UAT</code> for testing and development and <code>PROD</code> for production/live usage</li>
+<li><code>amount</code> - the amount of the transaction</li>
+<li><code>softwareVendor</code> - the name and version of your POS or application</li>
+<li><code>tenderType</code> - the type of payment to expect; common values are: <code>UNKNOWN</code>, <code>CREDIT</code>, <code>DEBIT</code>, <code>CHECK</code>, <code>GIFT</code></li>
+<li><code>transType</code> - the type of transaction to perform; common values are: <code>SALE</code>, <code>SALE_AUTH</code>, <code>REFUND</code>, <code>VOID</code>, <code>TOKENADD</code>, <code>CAPTURE</code></li>
+</ul>
+
+<p>If the card is an EMV/chip card, then the user will be presented with an option to select whichever Applications reside on the chip (that is, they can select an Application ID associated with either Credit or Debit, depending on their card) regardless of what tender type is sent in the request. This is the primary usage of the <code>UNKNOWN</code> tender type as well.</p>
+
+<p>If the card is magnetic stripe only and capable of being processed as either a debit or a credit transaction, then it will be processed as whatever tender type is sent in the request. If <code>UNKNOWN</code> is selected, the cardholder will likewise be prompted to make the selection.</p>
+
+<p>Transaction types may be defined as follows:</p>
+
+<ul>
+<li><code>SALE</code> - authorizes a card and captures it, placing it in the batch for settlement</li>
+<li><code>SALE_AUTH</code> - authorizes a card but does not capture it, holding the cardholder&#39;s funds until the capture transaction is performed (or until 7 days at which time the authorization is voided)</li>
+<li><code>REFUND</code> - this is the preferred transaction for both refunding and voiding; if the original transaction is still in an unsettled batch, the gateway will perform a void/reversal transaction; if the original transaction has already settled, then the gateway will perform a refund to the original card. See below notice.</li>
+<li><code>TOKENADD</code> - this transaction only tokenizes a given card number and does not perform any financial adjustments to the account</li>
+<li><code>CAPTURE</code> - used to capture a previous <code>SALE_AUTH</code> transaction and add it to the batch for settlement</li>
+</ul>
+
+<aside class="notice">
+You may refund/void the full amount of an original transaction or only part of the amount (a "partial refund" or "partial reversal"). If the transaction is in the current open (unsettled) batch, then only a single void (for the full amount or partial amount) may be performed. If the transaction has settled, the refund request transaction may be repeated for multiple partial refunds up to the amount of the original transaction.
+</aside>
+
+<aside class="notice">
+Additional arguments are presented in the following sections that cover industry-specific use cases and provide more detailed workflows.
+</aside>
+<h2 id='basic-sale-options'>Basic Sale Options</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
 </span><span class="s2">"locationID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your-locationID"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"terminalID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00000000-0000-0000-0000-000000000000"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your_user_name"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your_password"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"merchantAccountCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your_merchantAccountCode"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"merchantCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your_merchantCode"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UAT"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#####.##"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"softwareVendor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your_POS_name"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"tenderType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CREDIT"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"transType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SALE"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"invNum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Invoice number"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"pnRefNum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Reference number from a previous transaction"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"poNum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Purchase order number"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"taxAmt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#####.##"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"allowPartialApproval"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true|false"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"clerkID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Employee/Clerk ID"</span><span class="p">,</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>You may also need to send these additional fields on some transactions:</p>
+
+<ul>
+<li><code>invNum</code> - the UUID from the PayGuardian Cloud app installed on the device</li>
+<li><code>pnRefNum</code> - the reference number from a prior transaction response, primarily used to perform refunds, voids, or adjustments</li>
+<li><code>poNum</code> - a Purchase Order number associated with the transaction; required to receive a lower interchange rate on eligible B2B cards</li>
+<li><code>taxAmt</code> - the amount of the tax on the transaction; required to receive a lower interchange rate on eligible B2B cards</li>
+<li><code>allowPartialApproval</code> - whether or not to allow partial approvals; see below notice</li>
+<li><code>clerkID</code> - an employee or clerk identifier for reporting purposes</li>
+</ul>
+
+<aside class="notice">
+Partial authorization support is required for some merchant types and strongly encouraged for all others in order to reduce declines on prepaid open-loop (branded) cards when there are insufficient funds to cover the total amount of the transaction. See the [Visa Partial Authorization Service guide](https://usa.visa.com/dam/VCOM/global/support-legal/documents/visa-partial-authorization-service.pdf) for more details.
+</aside>
+<h2 id='tips-amp-gratuities'>Tips &amp; Gratuities</h2>
+<blockquote>
+<p><code>CREDIT</code>+<code>ADJUSTMENT</code> request:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="s2">"locationID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"C832D913-982C-4256-9895-2DD13BDA5947"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"pnRefNum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Reference number from a previous transaction"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"mode"</span><span class="p">:</span><span class="s2">"UAT"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"tipAmt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5.00"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"tenderType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CREDIT"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"transType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ADJUSTMENT"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p><code>CREDIT</code>+<code>ADJUSTMENT</code> response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="s2">"requestID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"388c37acbd88d7f00fce90ffee8b83c156efedb57828c1e8439e6284"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"locationID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"C832D913-982C-4256-9895-2DD13BDA5947"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"terminalID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9102C064-F990-41AB-BAD4-C98F33E4C684"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"approvedAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20.00"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"authCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"802431"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"avsMessage"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="s2">"avsResponse"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="s2">"cardType"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="s2">"cashBackAmt"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="s2">"cvMessage"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="s2">"cvResponse"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="s2">"expirationDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="s2">"extData"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"lodgingItem"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"receiptTagData"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+            </span><span class="p">}</span><span class="w">   </span><span class="p">,</span><span class="w"> </span><span class="s2">"gatewayMessage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A12 - Tip Adjustment Posted"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"gatewayResult"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"internalMessage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tip Adjustment Posted"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"isCommercialCard"</span><span class="p">:</span><span class="w"> </span><span class="s2">"False"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"isoCountryCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"isoCurrencyCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="s2">"isoRequestDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="s2">"isoTransactionDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="s2">"maskedAccountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="s2">"merchantCategoryCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="s2">"networkMerchantId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="s2">"networkReferenceNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="s2">"networkTerminalId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="s2">"pnRefNum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"253276004"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"remainingAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"requestedAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="s2">"resultCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"resultTxt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Successful Request"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"streetMatchMessage"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="s2">"submittedAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"15.00"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="s2">"tipAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="s2">"transactionCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><code>tenderType</code>=<code>CREDIT</code> and <code>transType</code>=<code>ADJUSTMENT</code> will adjust a previous <code>SALE</code> or <code>SALE_AUTH</code> adding a tip amount based on a <code>pnRefNum</code>. This can only be performed on unsettled transactions in an open batch. If successful, the response will contain the new total approved amount: (initial amount) + (tip amount).</p>
+<h2 id='lodging-amp-hotels'>Lodging &amp; Hotels</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="s2">"locationID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your-locationID"</span><span class="p">,</span><span class="w">
 </span><span class="s2">"mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UAT"</span><span class="p">,</span><span class="w">
 </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.00"</span><span class="p">,</span><span class="w">
 </span><span class="s2">"softwareVendor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your_POS_name"</span><span class="p">,</span><span class="w">
 </span><span class="s2">"tenderType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CREDIT"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"transType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SALE"</span><span class="w">
+</span><span class="s2">"transType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SALE"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"extData"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="err">/*</span><span class="w"> </span><span class="err">Lodging</span><span class="w"> </span><span class="err">fields</span><span class="w"> </span><span class="err">*/</span><span class="w">
+</span><span class="s2">"checkInDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Actual or anticipated check in date."</span><span class="p">,</span><span class="w">
+</span><span class="s2">"checkOutDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Actual or anticipated check out date."</span><span class="p">,</span><span class="w">
+</span><span class="s2">"departureAdjAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Additional amount charged after cardholder left the hotel."</span><span class="p">,</span><span class="w">
+</span><span class="s2">"folioNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hotel folio number"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"lodgingChargeType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"H (Hotel)|R (Restaurant)|G (Gift Shop)|S (Health Spa)|B (Beauty Shop)|F (Convention Fee)|T (Tennis)|O (Golf)"</span><span class="p">,</span><span class="w">
+</span><span class="err">/*Collection</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">lodging</span><span class="w"> </span><span class="err">item</span><span class="w"> </span><span class="err">records.*/</span><span class="w">
+</span><span class="s2">"lodgingItem"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+</span><span class="s2">"lodgingItemAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Amount (in cents) for lodging extra charge item. Implied (no) decimal."</span><span class="p">,</span><span class="w">
+</span><span class="s2">"lodgingItemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="s2">"lodgingItemType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"G (Gift Shop)|L (Laundry)|B (Mini Bar)|R (Restaurant)|T (Telephone)"</span><span class="w">
+</span><span class="p">}],</span><span class="w">
+</span><span class="s2">"lodgingItemCount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Indicates number of lodging industry items purchased as part of this transaction."</span><span class="p">,</span><span class="w">
+</span><span class="s2">"roomNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hotel room number"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"roomRateAmt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Amount (in cents) of the daily room rate."</span><span class="p">,</span><span class="w">
+</span><span class="s2">"roomTaxAmt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Amount (in cents) of the tax applied to daily room rate."</span><span class="p">,</span><span class="w">
+</span><span class="s2">"specialProgramType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AD (Advance deposit)|AR (Assured reservation)|DC (Delayed charge)|ES (Express service)|NC (Normal charge)|NS (No show charge)"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"stayDuration"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Anticipated, actual or incremental stay in days."</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>PayGuardian Cloud is designed for cloud-based Point-of-Sale systems, and delivers the same scope removal and easy EMV acceptance as other versions of PayGuardian. PayGuardian Cloud is operating system independent, and is installed on the merchant&#39;s router as a network appliance.</p>
-
-<aside class="notice">
-PayGuardian Cloud is currently in limited beta testing. <a href='mailto:BeyondPayIntegrations@getBeyond.com'>Contact us</a> if you are interested!
-</aside>
+<p>The extended data fields required for lodging transactions can easily be passed through the semi-integrated device to Beyond Pay Gateway.</p>
+<h2 id='pharmacy-amp-healthcare'>Pharmacy &amp; Healthcare</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="s2">"locationID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your-locationID"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UAT"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.00"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"softwareVendor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your_POS_name"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"tenderType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CREDIT"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"transType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SALE"</span><span class="p">,</span><span class="w">
+</span><span class="err">/*</span><span class="w"> </span><span class="err">Healthcare</span><span class="w"> </span><span class="err">related</span><span class="w"> </span><span class="err">fields</span><span class="w"> </span><span class="err">*/</span><span class="w">
+</span><span class="s2">"isQualifiedIIAS"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Indicates whether purchase items are verified against IIAS. Can be t|f"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"healthCareAmt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Amount (in cents) of the total Healthcare Amount."</span><span class="p">,</span><span class="w">
+</span><span class="s2">"clinicAmt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Amount (in cents) of the portion of the Healthcare Amount spent on hospitalization."</span><span class="p">,</span><span class="w">
+</span><span class="s2">"dentalAmt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Amount (in cents) of the portion of the Healthcare Amount spent on dental related medical services."</span><span class="p">,</span><span class="w">
+</span><span class="s2">"prescriptionAmt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Amount (in cents) of the portion of the Healthcare Amount spent on prescription drugs or products."</span><span class="p">,</span><span class="w">
+</span><span class="s2">"transitAmt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Amount (in cents) of the portion of the Healthcare Amount spent on transportaion."</span><span class="p">,</span><span class="w">
+</span><span class="s2">"visionAmt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Amount (in cents) of the portion of the Healthcare Amount spent on vision related medical services."</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Payment systems and Points of Sale for pharmacy merchants are required to pass some of these additional data fields in conjunction with their implementation of &quot;auto-substantiation&quot; using an &quot;inventory information approval system&quot; (IIAS). See <a href="https://sig-is.org/">sig-is.org</a> for more information.</p>
 <h1 id='transaction-reporting'>Transaction Reporting</h1>
 <blockquote>
 <p><a href='https://www.dropbox.com/s/epf9jhj5swi5q68/BridgePay_Reporting%20_API.zip?dl=0'>Reporting SDK (C#)</a></p>
