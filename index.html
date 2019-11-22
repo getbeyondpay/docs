@@ -705,9 +705,7 @@ You may refund/void the full amount of an original transaction or only part of t
 <p>In order for a transaction to qualify at reduced &quot;Level II&quot; interchange rates, assuming the card is eligible for such, the following fields should be provided in the XML message to the gateway in addition to the basic required fields given in the <a href="#charge-the-single-use-token">instructions for processing a basic sale transaction</a>:</p>
 
 <ul>
-<li><code>InvoiceNum</code> - may be up to 24 alphanumeric characters and hyphens</li>
-<li><code>PONum</code> - may be up to 24 alphanumeric characters and hyphens</li>
-<li><code>CustomerAccountCode</code> - may be up to 24 alphanumeric characters and hyphens</li>
+<li><code>PONum</code> - the customer&#39;s Purchase Order number; may be up to 24 alphanumeric characters and hyphens</li>
 <li><code>LocalTaxAmount</code> - applicable tax amount in cents (implied decimal); must be less than the total transaction <code>Amount</code></li>
 <li><code>LocalTaxIndicator</code> - may be <code>P</code> (Provided), <code>N</code> (Not Provided), or <code>E</code> (Exempt). Use <code>P</code> if you are sending a value in <code>LocalTaxAmount</code>, or <code>E</code> if you are tax-exempt</li>
 </ul>
@@ -756,7 +754,7 @@ You may refund/void the full amount of an original transaction or only part of t
 <li><code>ItemCount</code> - the total number of line items being submitted in this request</li>
 <li><code>Item</code> - an array representing each line item in the request, consisting of:</li>
 <li><code>ItemCode</code> - a unique identifier assigned to this item in the merchant&#39;s inventory system (typically a SKU, SKID, or UPC) - 12 character maximum</li>
-<li><code>ItemCommodityCode</code> - a standardized code that classifies the item, such as the <a href="https://catalog.data.gov/dataset/unspsc-codes">UN Standard Products and Services Code (UNSPSC)</a>; many integrators and merchants use the Merchant Category Code in this field</li>
+<li><code>ItemCommodityCode</code> - a standardized code that classifies the item, such as the <a href="https://www.unspsc.org/">UN Standard Products and Services Code (UNSPSC)</a>; many integrators and merchants use the Merchant Category Code in this field</li>
 <li><code>ItemDescription</code> - A short textual description of the item, limited to 35 characters</li>
 <li><code>ItemQuantity</code> - quantity of item units purchased as part of this transaction; supports up to 4 decimal places</li>
 <li><code>ItemUnitCostAmt</code> - cost of a single unit of the item in cents (implied decimal)</li>
@@ -790,14 +788,17 @@ In general, for most card brands and card issuers, the presence of a value in th
 <p>In addition to passing the routing and account number, you also need to specify whether the bank account is a checking or savings account, as well as the &quot;Standard Entry Class&quot; code as defined by NACHA.</p>
 
 <ul>
-<li><code>CCD</code> - Corporate Credit or Debit - for business checks</li>
-<li><code>PPD</code> - Prearranged Payment and Deposit - for consumer checks</li>
-<li><code>TEL</code> - Telephone-Initiated Entry</li>
 <li><code>WEB</code> - Internet-Initiated Entry</li>
+<li><code>PPD</code> - Prearranged Payment and Deposit - for consumer checks (requires written authorization from customer)</li>
+<li><code>CCD</code> - Corporate Credit or Debit - for business checks (requires written authorization from customer)</li>
+<li><code>TEL</code> - Telephone-Initiated Entry</li>
 </ul>
 
 <aside class="notice">
-Different NACHA SEC codes may require different disclosure notices to your customers. Check the <a href='https://www.nachaoperatingrulesonline.org'>NACHA Operating Rules</a> to ensure compliance.
+Different NACHA SEC codes require different types of authorizations from or disclosure to your customer:
+<b>WEB</b> - [best practices for authorization and sample language](https://www.nacha.org/system/files/resources/Authorization_0.pdf)
+<b>CCD</b> and <b>PPD</b> - [sample consumer authorization form](http://www.checktraining.com/docs/general/Programs/ACH%20Debit/ACH_Debit_auth_form.pdf)
+<b>TEL</b> - [sample script for IVR](http://www.checktraining.com/docs/general/Programs/Check%20By%20Phone/Checks-By-Phone_sample_script.pdf) or [sample written authorization form](http://www.checktraining.com/docs/general/Programs/Check%20By%20Phone/Checks-By-Phone_written_auth.pdf)
 </aside>
 <h1 id='in-person-payments'>In-Person Payments</h1><h2 id='overview'>Overview</h2>
 <p>If you are developing a payment application or point of sale (POS) system for use by only your business, then that application falls in your scope of PCI DSS compliance as a merchant. If you are developing a POS to sell or license to other businesses, that application is in scope for PCI Payment Application Data Security Standard (PA-DSS) if it interacts with card data. If that application is hosted/SaaS-based then you may also be in-scope PCI Service Provider (similar to a gateway provider).</p>
@@ -949,13 +950,13 @@ Additional data elements are presented in the following sections that cover indu
 </span><span class="s2">"clerkID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Employee/Clerk ID"</span><span class="p">,</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>You may also need to send these additional fields on some transactions:</p>
+<p>You may also want to send these additional fields on some transactions:</p>
 
 <ul>
-<li><code>invNum</code> - the UUID from the PayGuardian Cloud app installed on the device</li>
+<li><code>invNum</code> - an invoice number you would like to associate with the transaction (may be up to 24 alphanumeric characters and hyphens)</li>
 <li><code>pnRefNum</code> - the reference number from a prior transaction response, primarily used to perform refunds, voids, or adjustments</li>
-<li><code>poNum</code> - a Purchase Order number associated with the transaction; required to receive a lower interchange rate on eligible B2B cards</li>
-<li><code>taxAmt</code> - the amount of the tax on the transaction; required to receive a lower interchange rate on eligible B2B cards</li>
+<li><code>poNum</code> - a Purchase Order number associated with the transaction; required to receive a lower interchange rate on eligible B2B cards (may be up to 24 alphanumeric characters and hyphens)</li>
+<li><code>taxAmt</code> - the amount of the tax on the transaction; required to receive a lower interchange rate on eligible B2B cards (may be up to 24 alphanumeric characters and hyphens)</li>
 <li><code>allowPartialApproval</code> - whether or not to allow partial approvals; see below notice</li>
 <li><code>clerkID</code> - an employee or clerk identifier for reporting purposes</li>
 </ul>
