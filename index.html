@@ -241,6 +241,9 @@
                     <a href="#repeat-sales-and-cards-on-file" class="toc-h2 toc-link" data-title="Repeat Sales and Cards-on-File">Repeat Sales and Cards-on-File</a>
                   </li>
                   <li>
+                    <a href="#refunds-and-voids" class="toc-h2 toc-link" data-title="Refunds and Voids">Refunds and Voids</a>
+                  </li>
+                  <li>
                     <a href="#level-ii-and-level-iii-data" class="toc-h2 toc-link" data-title="Level II and Level III Data">Level II and Level III Data</a>
                   </li>
                   <li>
@@ -333,11 +336,7 @@
             <li><a href="https://forms.gle/AMxdRZTsS6skq2DEA" class="button">Get API Keys</a></li>
             <li>______________</li>
             <li><a href='https://www.getbeyond.com/'>www.getbeyond.com</a></li>
-            <li>©2019 Above & Beyond -</li>
-            <li>Business Tools and</li>
-            <li>Services for</li>
-            <li>Entrepreneurs, Inc.</li>
-            <li>All Rights Reserved.</li>
+            <li>©2020 Beyond</li>
             <li>______________</li>
             <li><a href='https://www.getbeyond.com/privacy-policy/'>Privacy Policy</a></li>
             <li><a href='https://www.getbeyond.com/ccpa/'>CCPA Consumer Privacy</a></li>
@@ -671,30 +670,28 @@ This capture request and several other API requests described here may take diff
 <p>Submitting a sale or sale-auth transaction with the Token as input requires use of the User and Password credentials in the request message, and also requires that the card <code>ExpirationDate</code> value be persisted and stored with the <code>Token</code> (the <code>ExpirationDate</code> value is returned in the original response message along with the <code>Token</code>).</p>
 
 <aside class="notice">
-The Token value returned from sale and authorization transactions is different than the client-side token from TokenPay.js</a>.
-
-## Refunds and Voids
-
-> The `GatewayTransId` is returned in the response to a previous sale or sale-auth request and may be used as input to refund or void that original transaction.
-
-```xml
-<requestHeader>
-    <ClientIdentifier>SOAP</ClientIdentifier>
-    <TransactionID>{transactionId}</TransactionID>
-    <RequestType>012</RequestType>
-    <RequestDateTime>{requestDateTime}</RequestDateTime>
-    <User>{Beyond-assigned username}</User>
-    <Password>{Beyond-assigned password}</Password>
-    <requestMessage>                    
-        <SoftwareVendor>{yourSoftwareName}</SoftwareVendor>
-        <TransactionType>refund</TransactionType>
-        <ReferenceNumber>{original sale or sale-auth GatewayTransId}</ReferenceNumber>
-        <Amount>{amountInCents}</Amount>
-    </requestMessage>
-</requestHeader>
-```
-
-In order to refund or void a previous sale or sale-auth transaction, simply construct an XML message with `RequestType` of `012` and `TransactionType` of `refund`. Note that if the original transaction is still in an unsettled batch, the gateway will perform a void/reversal transaction. If the original transaction has already settled, then the gateway will perform a refund to the original card.
+The Token value returned from sale and authorization transactions is different than the client-side token from TokenPay.js and which is intended to be used with the AuthenticationTokenId field.
+</aside>
+<h2 id='refunds-and-voids'>Refunds and Voids</h2>
+<blockquote>
+<p>The <code>GatewayTransId</code> is returned in the response to a previous sale or sale-auth request and may be used as input to refund or void that original transaction.</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;requestHeader&gt;</span>
+    <span class="nt">&lt;ClientIdentifier&gt;</span>SOAP<span class="nt">&lt;/ClientIdentifier&gt;</span>
+    <span class="nt">&lt;TransactionID&gt;</span>{transactionId}<span class="nt">&lt;/TransactionID&gt;</span>
+    <span class="nt">&lt;RequestType&gt;</span>012<span class="nt">&lt;/RequestType&gt;</span>
+    <span class="nt">&lt;RequestDateTime&gt;</span>{requestDateTime}<span class="nt">&lt;/RequestDateTime&gt;</span>
+    <span class="nt">&lt;User&gt;</span>{Beyond-assigned username}<span class="nt">&lt;/User&gt;</span>
+    <span class="nt">&lt;Password&gt;</span>{Beyond-assigned password}<span class="nt">&lt;/Password&gt;</span>
+    <span class="nt">&lt;requestMessage&gt;</span>                    
+        <span class="nt">&lt;SoftwareVendor&gt;</span>{yourSoftwareName}<span class="nt">&lt;/SoftwareVendor&gt;</span>
+        <span class="nt">&lt;TransactionType&gt;</span>refund<span class="nt">&lt;/TransactionType&gt;</span>
+        <span class="nt">&lt;ReferenceNumber&gt;</span>{original sale or sale-auth GatewayTransId}<span class="nt">&lt;/ReferenceNumber&gt;</span>
+        <span class="nt">&lt;Amount&gt;</span>{amountInCents}<span class="nt">&lt;/Amount&gt;</span>
+    <span class="nt">&lt;/requestMessage&gt;</span>
+<span class="nt">&lt;/requestHeader&gt;</span>
+</code></pre>
+<p>In order to refund or void a previous sale or sale-auth transaction, simply construct an XML message with <code>RequestType</code> of <code>012</code> and <code>TransactionType</code> of <code>refund</code>. Note that if the original transaction is still in an unsettled batch, the gateway will perform a void/reversal transaction. If the original transaction has already settled, then the gateway will perform a refund to the original card.</p>
 
 <aside class="notice">
 You may refund/void the full amount of an original transaction or only part of the amount (a "partial refund" or "partial reversal"). If the transaction is in the current open (unsettled) batch, then only a single void (for the full amount or partial amount) may be performed. If the transaction has settled, the refund request transaction may be repeated for multiple partial refunds up to the amount of the original transaction.
