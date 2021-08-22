@@ -8,7 +8,11 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
+<<<<<<< HEAD
     autoprefixer-rails (6.7.7.2)
+=======
+    autoprefixer-rails (6.6.1)
+>>>>>>> 3b1f41421bf987cd2819be5aa28d5876d37af81b
       execjs
     backports (3.21.0)
     coffee-script (2.4.1)
@@ -88,7 +92,7 @@ GEM
       tilt (>= 1.4.1, < 3)
     padrino-support (0.13.3.4)
       activesupport (>= 3.1)
-    parallel (1.20.1)
+    parallel (1.10.0)
     public_suffix (4.0.6)
     racc (1.5.2)
     rack (2.2.3)
