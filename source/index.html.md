@@ -1,28 +1,84 @@
 ---
-title: Beyond Pay Gateway API Reference
+title: Beyond Pay Developer Portal
 
 toc_footers:
-  - <a href='https://forms.gle/AMxdRZTsS6skq2DEA'>Get an API Key</a>
+  - <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=Q9V6UxGq3USJSkGsz2Jk78Ytw0d6hJlNsDOCAUz-XBhURUJXWFhEMDlDTUs3OVlROEMxOExJQzZGNS4u" class="button" target="_blank">Get API Keys</a>
   - ______________
   - <a href='https://www.getbeyond.com/'>www.getbeyond.com</a>
-  - ©2019 Above & Beyond - Business Tools and Services for Entrepreneurs, Inc. All Rights Reserved.
+  - ©2021 Beyond
+  - ______________
   - <a href='https://www.getbeyond.com/privacy-policy/'>Privacy Policy</a>
   - <a href='https://www.getbeyond.com/ccpa/'>CCPA Consumer Privacy</a>
 
 search: true
 ---
 
-# Introduction to Beyond Pay
+> <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=Q9V6UxGq3USJSkGsz2Jk78Ytw0d6hJlNsDOCAUz-XBhURUJXWFhEMDlDTUs3OVlROEMxOExJQzZGNS4u" class="button" target="_blank">Get Your Sandbox API Keys</a> and get coding now!
 
-> <a href='https://forms.gle/AMxdRZTsS6skq2DEA'>Get your API keys</a> and get moving!
+> Contact us if you have questions or need help! <a href='mailto:BeyondPayIntegrations@getbeyond.com'>BeyondPayIntegrations@getbeyond.com</a>
 
-> Contact us if you have questions or need any help! <a href='mailto:BeyondPayIntegrations@getbeyond.com'>BeyondPayIntegrations@getbeyond.com</a>
+Welcome to Beyond Pay: an omnichannel payment solution suite that enables a secure and embedded payment experience within your application.
 
-Welcome to the Beyond Pay Gateway API! Beyond Pay is a powerful gateway that enables you to securely accept many different payment types. Plus, by processing through Beyond Pay, you help put disadvantaged kids through college just by getting paid!
+# Integration Options
 
-The primary integration options offered by the Beyond Pay platform include:
+Whether you have an existing shopping cart or are building a custom integration, we've got you covered!
 
-* **TokenPay.js** – is an extension of Beyond Pay that combines client-side and server-side technologies for PCI-compliant online payment capture
+## Payment Plugins
+
+### WooCommerce
+
+<a href="https://wordpress.org/plugins/beyond-pay-for-woocommerce/"><img src="/source/images/256x256_woo_icon.png" />
+
+Get Beyond Pay for WooCommerce</a>
+
+Beyond Pay for WooCommerce enables secure payment card acceptance right from within your WooCommerce store. 
+
+- Pre-auth and later capture or instant sale modes
+- Secure saving of cards on file
+- Refund transactions directly from the Woo Order Details screen
+- Integration with <a href="https://woocommerce.com/products/woocommerce-subscriptions/">WooCommerce Subscriptions</a> for recurring billing
+- Interchange optimization by defaulting "Level III" data
+- Custom CSS styling of the hosted payment fields
+- Sandbox mode for development and staging
+
+### Gravity Forms
+
+<a href="https://wordpress.org/plugins/beyond-pay-for-gravity-forms/"><img src="/source/images/256x256_gravity_icon.png" />
+
+Get Beyond Pay for Gravity Forms</a>
+
+Beyond Pay for Gravity Forms allows you to create customized payment workflows for order checkout, donations, event registrations, and more!
+
+- Define a Gravity Forms "feed" for each payment form
+- Accept payment instantly in Sale mode or capture an authorization later from the Gravity Forms "Entries" page
+- Interchange optimization by defaulting "Level III" data
+- Sandbox mode for development and staging
+
+## Payment SDKs
+
+We offer several client libraries which consume the Beyond Pay APIs, making it even easier for you to integrate with your project:
+
+- PHP
+- .NET
+- Java
+- Android for mCommerce
+- Android for mPOS
+- iOS for mCommerce
+- iOS for mPOS
+
+<aside class="success">
+Note that "mCommerce" SDKs are for use in cardholder-initiated payments such as a consumer-facing app, while "mPOS" SDKs are for use in a merchant-facing app environment such as a mobile-based Point of Sale system.
+</aside>
+
+<aside class="warning">
+If your payment application stores, processes, or transmits sensitive cardholder data, then it may be in scope for the Payment Card Industry Payment Application Data Security Standard ("PCI PA-DSS"). You are responsible for adhering to all applicable industry standards, including PA-DSS and PCI DSS.
+</aside>
+
+## Payment APIs
+
+The primary APIs for integrating to the Beyond Pay platform are:
+
+* **TokenPay.js** – an extension of Beyond Pay that combines client-side and server-side technologies for PCI-compliant online payment capture
 * **Beyond Pay API** - a set of robust web service APIs offering support for credit cards, ACH/checks, tokenization, and more
 * **PayGuardian** – a lightweight middleware application that integrates seamlessly into Point of Sale (POS) software and facilitates the secure collection of cardholder data insulating the integrator from the scope of PA-DSS and the requirements of EMV certification
 
@@ -31,12 +87,11 @@ The primary integration options offered by the Beyond Pay platform include:
 
 ## Getting Started
 
-> To get started, include these scripts on your checkout page:
+> To get started, include this script on your checkout page:
 
 ```html
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
 <script
-  src="https://api-test.getbeyondpay.com/Bridgepay.WebSecurity/TokenPay/js/tokenPay.js">
+  src="https://api-test.getbeyondpay.com/WebSecurity/TokenPay/plain-js/tokenPay.js">
 </script>
 ```
 
@@ -46,7 +101,7 @@ The primary integration options offered by the Beyond Pay platform include:
 var tokenpay = TokenPay('your-public-key');
 ```
 
-> Replace `your-public-key` with your publishable <a href='https://forms.gle/AMxdRZTsS6skq2DEA'>public key</a>.
+> Replace `your-public-key` with your publishable public key</a>.
 
 TokenPay maximizes the user experience by allowing for the capture of sensitive card data within the payment form of the merchant’s website or mobile application. The consumer remains on the merchant’s payment page at all times during the checkout process.
 
@@ -89,10 +144,6 @@ The TokenPay.js UI component includes:
 
 All submission of payment information using TokenPay.js is made via a secure HTTPS connection. However, to protect yourself from man-in-the-middle attacks and to prevent your users from experiencing mixed content warnings in their browser, you <b>MUST</b> serve the page with your payment form over HTTPS.
 
-<aside class="notice">
-You must replace <code>your-public-key</code> with your publishable <a href='https://forms.gle/AMxdRZTsS6skq2DEA'>public API key</a>.
-</aside>
-
 ## Create a Payment Form
 
 > To determine where to insert the UI components, create empty DOM elements with unique IDs within your payment form.
@@ -133,16 +184,27 @@ You must replace <code>your-public-key</code> with your publishable <a href='htt
 tokenpay.initialize({
   dataElement: '#card', 
   errorElement: '#errorMessage', 
-  useStyles: false
+  useStyles: false,
+  disableZip: false
 });
 ```
 
 > If you have created the `customStyles` element to style the card entry area, change the value of `useStyles` to `true`.
 
+> To disable the ZIP code field from appearing in the iframe so that it can be captured elsewhere in your form, set `disableZip` to `true`.
+
 
 To securely collect sensitive card details from your users, TokenPay.js creates UI components for you that are hosted by Beyond Pay Gateway. These are then inserted into your payment form.
 
 The TokenPay element simplifies the form and minimizes the fields required by inserting a single input field that securely collects all needed card data.
+
+<aside class="warning">
+When implementing payment forms, it is strongly recommended that you utilize <b>reCAPTCHA</b>. reCAPTCHA protects payment forms from spam and bot abuse. Using reCAPTCHA on your payment forms reduces the risk of fraudulent transactions on the merchant's eCommerce sites by performing a Completely Automated Public Turing Test to Tell Computers and Humans Apart (CAPTCHA). For more information on reducing form spam and bot abuse see https://developers.google.com/recaptcha/intro
+</aside>
+
+<aside class="success">
+You should always submit the ZIP or Postal code in order to ensure the best chances for fraud reduction as well as the lowest interchange rates. "disableZip" is only intended for when you will collect the ZIP code with the rest of your form data rather than in the TokenPay iframe.
+</aside>
 
 ## Obtain a Token
 
@@ -167,7 +229,7 @@ The card data collected by the TokenPay element is posted from the client browse
 
 The token is stored as a hidden input value and passed to your server on form submission.
 
-## Perform a Sale Transaction
+## Token Sale
 
 > With the token and other form fields obtained, now construct the XML payload:
 
@@ -191,7 +253,7 @@ The token is stored as a hidden input value and passed to your server on form su
 </requestHeader>';
 
 ```
-> Encode the XML payload in Base-64 and package it within a SOAP envelope:
+> Encode the XML payload in Base64 and package it within a SOAP envelope:
 
 ```xml
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:req="http://bridgepaynetsecuretx.com/requesthandler">
@@ -218,14 +280,16 @@ https://api-test.getbeyondpay.com/PaymentService/RequestHandler.svc
 https://api.getbeyondpay.com/PaymentService/RequestHandler.svc
 ```
 
-Once you have securely collected and tokenized your user’s card data using TokenPay.js, you can charge the card or save the token for future use. Charges against cards that are tokenized in the browser using TokenPay.js must *ONLY* made from your server.
+Once you have securely collected and tokenized your user’s card data using TokenPay.js you can now use the single-use token to submit a transaction. Authorization or sale requests using single-use tokens must *ONLY* made from your server and not from the client.
+
+You will have a 15 minute window in which to complete the transaction request once you have obtained the client-side token. The token expires after the window or once used.
 
 On your server, collect the token information and the form POST parameters submitted by your form.
 
-Now submit the token and parameters according to the <a href='https://drive.google.com/file/d/1wH6xioSc2x2itloTQfoYcD3CQ1TtvUmi/view?usp=sharing'>Beyond Pay Gateway API Guide</a>, with the following substitutions:
+Now submit the token and parameters according to the example XML request, with the following substitutions:
 
 * `{transactionId}` - unique transaction ID generated by your application for tracking purposes
-* `{requestDateTime}` - date and time of the transaction in `yyyMMddHHmmss` format
+* `{requestDateTime}` - date and time of the transaction in `yyyyMMddHHmmss` format
 * `{yourPrivateKey}` - your private API key, obtainable <a href='https://forms.gle/AMxdRZTsS6skq2DEA'>here.</a>
 * `{token}` - token delivered in the submission of your payment form
 * `{amountInCents}` - transaction amount in cents ($1.25 would be 125)
@@ -241,13 +305,13 @@ After your transaction has been successfully submitted to the gateway, make sure
 * `AVSMessage` - a verbose description of the AVSResult code meaning
 * `CVResult` - a code indicating the status of the Card Security Code (aka CVV2, CID) sent in the request message
 * `CVMessage` - a verbose description of the CVResult code meaning
-* `Token` - a non-sensitive representation of the card number used in the transaction. The last four digits are the same as the last four digits of the card number. This value can be persisted and used for future recurring transactions from the same cardholder. 
+* `Token` - a non-sensitive representation of the card number used in the transaction. The last four digits are the same as the last four digits of the card number. This value can be persisted and used for <a href="#repeat-sales-and-cards-on-file">future recurring transactions from the same cardholder</a>. 
 
 <aside class="warning">
 You should always inspect the AVSResult and CVResult fields as these can be good indicators of potential fraud. If you see a AVSResult or CVResult code that you do not want to accept because it may be too risky (such as "No Match" on the submitted Zip code), then you should submit a void transaction to cancel the authorization and advise the cardholder that their transaction has been declined.
 </aside>
 
-## Perform an Authorization Only
+## Token Authorize
 
 > To change from a "sale" transaction to an "authorize" transaction, simply set `TransactionType` to `sale-auth`:
 
@@ -273,7 +337,7 @@ You should always inspect the AVSResult and CVResult fields as these can be good
 
 ```
 
-> In order to actually capture that authorization and charge the card, you must submit 019 capture `RequestType`, passing the original sale-auth `ReferenceNumber`, and using the `User` and `Password` credentials instead of `AuthenticationTokenId` and `PrivateKey` to authenticate:
+> In order to capture that authorization and charge the card, you must submit 019 capture `RequestType`, passing the original sale-auth `ReferenceNumber`, and using the `User` and `Password` credentials instead of `AuthenticationTokenId` and `PrivateKey` to authenticate:
 
 ```xml
 <requestHeader>
@@ -296,17 +360,17 @@ You should always inspect the AVSResult and CVResult fields as these can be good
 
 Sometimes you may not want to accept payment right away for a transaction, such as when shipping physical goods. The normal practice in this scenario is to first authorize a card which will place a hold on the funds, and then to later "capture" that authorization when the order is fulfilled.
 
-The `SettlementDelay` tag can be added for sale-auth transactions, and designates te number of batch cycles that the authorization remains "open" (or unsettled). If the sale-auth transaction is not captured before completion of the designated number of batches, then the original authorization will be automatically voided and not captured.
+The `SettlementDelay` tag can be added for sale-auth transactions, and designates the number of batch cycles that the authorization remains "open" (or uncaptured). If the sale-auth transaction is not captured before completion of the designated number of batches, then the original authorization will be automatically voided and not captured.
 
-To capture an authorization (sometimes called a "pre-auth"), simply submit a `RequestType` of `019` for capture, along with passing the reference number of the original authorization as shown here.
+To capture an authorization, simply submit a `RequestType` of `019` for capture, along with passing the reference number of the original authorization as shown here.
 
 <aside class="notice">
-This capture request and several other API requests described here may take differing credentials in order to authenticate the client. All such credentials will be provided by Beyond for testing and production.</a>.
+This capture request and several other API requests described here may take differing credentials in order to authenticate the client. All such credentials will be provided by Beyond for testing and production.
 </aside>
 
-## Tokenization and repeat sales
+## Repeat Sales and Cards-on-File
 
-> The `Token` element represents a card number, can be used multiple times, and does not expire. It may be used as input in a transaction in lieu of the `PaymentAccountNumber` or the `AuthenticationTokenId`, and still requires the `ExpirationDate` field as well.
+> The `Token` element represents a card number, can be used multiple times, and does not expire. It may be used as input in a transaction in lieu of the `PaymentAccountNumber` or the `AuthenticationTokenId`, and also requires the `ExpirationDate` field to be submitted with it.
 
 ```xml
 <requestHeader>
@@ -318,7 +382,7 @@ This capture request and several other API requests described here may take diff
     <Password>{Beyond-assigned password}</Password>
     <requestMessage>
         <SoftwareVendor>{yourSoftwareName}</SoftwareVendor>                    
-        <Token>{token - not to be confused with AuthenticationTokenId}</Token>
+        <Token>{token}</Token>
         <ExpirationDate>{expirationDate}</ExpirationDate>
         <TransactionType>sale</TransactionType>
         <TransIndustryType>EC</TransIndustryType>
@@ -330,273 +394,454 @@ This capture request and several other API requests described here may take diff
 </requestHeader>
 ```
 
-Every API response message from Beyond Pay contains a `Token` element. This Token represents the card number used in the original transaction, but is not considered a sensitive data element per the PCI DSS. To ease in identifying the original card, however, the last four digits of the `Token` are the same as the last four digits ot the card number.
+Every sale or authorization response from Beyond Pay contains a `Token` element. This Token represents the card number used in the original transaction, but is not considered a sensitive data element per the PCI DSS. To ease in identifying the original card, however, the last four digits of the `Token` are the same as the last four digits of the card number.
 
 This Token value may be persisted and, with the cardholder's permission, associated with their user account in your application in order to make future purchases with the same card ("card-on-file").
 
-Submitting a sale or sale-auth transaction with the Token as input requires use of the User and Password credentials in the request message, and also requires that the card `ExpirationDate` value be persisted and stored with the `Token` (the `ExpirationDate` value is returned in the original response message along with the `Token`).
+Submitting a sale or sale-auth transaction with the Token as input requires use of the `User` and `Password` credentials in the request message, and also requires that the card `ExpirationDate` value be persisted and stored with the `Token` (the `ExpirationDate` value is returned in the original response message along with the `Token`).
 
+## Refunds and Voids
+
+> The `GatewayTransId` is returned in the response to a previous sale or sale-auth request and may be used as input to refund or void that original transaction.
+
+```xml
+<requestHeader>
+    <ClientIdentifier>SOAP</ClientIdentifier>
+    <TransactionID>{transactionId}</TransactionID>
+    <RequestType>012</RequestType>
+    <RequestDateTime>{requestDateTime}</RequestDateTime>
+    <User>{Beyond-assigned username}</User>
+    <Password>{Beyond-assigned password}</Password>
+    <requestMessage>                    
+        <SoftwareVendor>{yourSoftwareName}</SoftwareVendor>
+        <TransactionType>refund</TransactionType>
+        <ReferenceNumber>{original sale or sale-auth GatewayTransId}</ReferenceNumber>
+        <Amount>{amountInCents}</Amount>
+    </requestMessage>
+</requestHeader>
+```
+
+In order to refund or void a previous sale or sale-auth transaction, simply construct an XML message with `RequestType` of `012` and `TransactionType` of `refund`. Note that if the original transaction is still in an unsettled batch, the gateway will perform a void/reversal transaction. If the original transaction has already settled, then the gateway will perform a refund to the original card.
+
+<aside class="notice">
+You may refund/void the full amount of an original transaction or only part of the amount (a "partial refund" or "partial reversal"). If the transaction is in the current open (unsettled) batch, then only a single void (for the full amount or partial amount) may be performed. If the transaction has settled, the refund request transaction may be repeated for multiple partial refunds up to the amount of the original transaction.
+</aside>
+
+## Level II and Level III Data
+
+Some business cards may be eligible for lower interchange rates if you send additional data with the transaction. Beyond Pay supports these additional data fields and can help you or your clients secure <a href="https://www.getbeyond.com/b2b-payment-solutions/">these significantly reduced rates and other B2B benefits</a>.
+
+### Level II Data
+
+> Sample sale transaction via TokenPay.js, including Level II data:
+
+```xml
+<requestHeader>
+    <ClientIdentifier>SOAP</ClientIdentifier>
+    <TransactionID>{transactionId}</TransactionID>
+    <RequestType>004</RequestType>
+    <RequestDateTime>{requestDateTime}</RequestDateTime>
+    <PrivateKey>{yourPrivateKey}</PrivateKey>
+    <AuthenticationTokenId>{token}</AuthenticationTokenId>
+    <requestMessage>                    
+        <SoftwareVendor>{yourSoftwareName}</SoftwareVendor>
+        <TransIndustryType>EC</TransIndustryType>
+        <TransactionType>sale</TransactionType>
+        <AcctType>R</AcctType>
+        <HolderType>O</HolderType>
+        <Amount>{amountInCents}</Amount>
+        <CurrencyCode>USD</CurrencyCode>
+        <InvoiceNum>{yourInvoiceNumber}</InvoiceNum>
+        <PONum>{yourPONumber}</PONum>
+        <CustomerAccountCode>{customerCode}</CustomerAccountCode>
+        <TaxAmount>{taxAmount}</TaxAmount>
+        <TaxIndicator>P</TaxIndicator>
+    </requestMessage>
+</requestHeader>
+```
+In order for a transaction to qualify at reduced "Level II" interchange rates, assuming the card is eligible for such, the following fields should be provided in the XML message to the gateway in addition to the basic required fields given in the <a href="#token-sale">instructions for processing a basic sale transaction</a>:
+
+- `PONum` - the customer's Purchase Order number; may be up to 24 alphanumeric characters and hyphens
+- `LocalTaxAmount` - applicable tax amount in cents (implied decimal); must be less than the total transaction `Amount`
+- `LocalTaxIndicator` - may be `P` (Provided), `N` (Not Provided), or `E` (Exempt). Use P if you are sending a value in `LocalTaxAmount`, or E if you are tax-exempt
+
+### Level III Data
+
+> Sample sale transaction via TokenPay.js with Level III line-item details:
+
+```xml
+<requestHeader>
+    <ClientIdentifier>SOAP</ClientIdentifier>
+    <TransactionID>{transactionId}</TransactionID>
+    <RequestType>004</RequestType>
+    <RequestDateTime>{requestDateTime}</RequestDateTime>
+    <PrivateKey>{yourPrivateKey}</PrivateKey>
+    <AuthenticationTokenId>{token}</AuthenticationTokenId>
+    <requestMessage>                    
+        <SoftwareVendor>{yourSoftwareName}</SoftwareVendor>
+        <TransIndustryType>EC</TransIndustryType>
+        <TransactionType>sale</TransactionType>
+        <AcctType>R</AcctType>
+        <HolderType>O</HolderType>
+        <Amount>{amountInCents}</Amount>
+        <CurrencyCode>USD</CurrencyCode>
+        <InvoiceNum>{yourInvoiceNumber}</InvoiceNum>
+        <PONum>{yourPONumber}</PONum>
+        <CustomerAccountCode>{customerCode}</CustomerAccountCode>
+        <TaxAmount>{taxAmount}</TaxAmount>
+        <TaxIndicator>P</TaxIndicator>
+        <ItemCount>1</ItemCount>
+        <Item>
+          <ItemCode>{itemSKU}</ItemCode>
+          <ItemCommodityCode>{UNSPSC code or merchantCategoryCode}</ItemCommodityCode>
+          <ItemDescription>{shortDescriptionOfItem}</ItemDescription>
+          <ItemQuantity>1</ItemQuantity>
+          <ItemUnitCostAmt>{unitCostPerItem}</ItemUnitCostAmt>
+          <ItemUnitMeasure>EA</ItemUnitMeasure>
+          <ItemTotalAmount>{totalAmountForItem}</ItemTotalAmount>
+        </Item>
+    </requestMessage>
+</requestHeader>
+```
+Cards that are eligible for Level III interchange rates are typically corporate purchasing or some travel cards. If a card is eligible for such, you can achieve a reduced interchange rate by providing the following fields in your gateway request message (in addition to those required for Level II and basic sale or "Level I" transactions).
+
+Note that Level III transactions require line-item details from the purchase. You should send one Item array for each line item on a given invoice; many integrators will dynamically map these required fields into their existing inventory, order management, or ERP systems. Alternatively, if you only sell one type of item, you may consider creating a static mapping of these fields, or "hard-coding" the values specific to your business.
+
+- `ItemCount` - the total number of line items being submitted in this request
+- `Item` - an array representing each line item in the request, consisting of:
+- `ItemCode` - a unique identifier assigned to this item in the merchant's inventory system (typically a SKU, SKID, or UPC) - 12 character maximum
+- `ItemCommodityCode` - a standardized code that classifies the item, such as the <a href="https://www.unspsc.org/">UN Standard Products and Services Code (UNSPSC)</a>; many integrators and merchants use the Merchant Category Code in this field
+- `ItemDescription` - A short textual description of the item, limited to 35 characters
+- `ItemQuantity` - quantity of item units purchased as part of this transaction; supports up to 4 decimal places
+- `ItemUnitCostAmt` - cost of a single unit of the item in cents (implied decimal)
+- `ItemUnitMeasure` - unit of measure used to quantify the items purchased (e.g.: kg, lb, in, etc.); "EA" for "each" is most commonly used and recommended for single-item merchants
+- `ItemTotalAmount` - total amount paid for the item (including tax and any discount)
+
+<aside class="success">
+In general, for most card brands and card issuers, the presence of a value in the appropriate Level III field is enough to qualify for the reduced interchange rate. The accuracy of these values is not validated by the card brands in most cases, but may impact the reporting received by the administrator of a given corporate purchasing card program.
+</aside>
+
+## ACH and eChecks
+
+```xml
+<requestHeader>
+    <ClientIdentifier>SOAP</ClientIdentifier>
+    <TransactionID>{transactionId}</TransactionID>
+    <RequestType>004</RequestType>
+    <RequestDateTime>{requestDateTime}</RequestDateTime>
+    <User>{Beyond-assigned username}</User>
+    <Password>{Beyond-assigned password}</Password>
+    <requestMessage>
+        <SoftwareVendor>{yourSoftwareName}</SoftwareVendor>
+        <TransactionType>sale</TransactionType>
+        <TransIndustryType>{Standard Entry Class code; see below}</TransIndustryType>
+        <RoutingNum>{bankRoutingNumber}</RoutingNum>
+        <BankAccountNum>{bankAccountNumber}</BankAccountNum>
+        <AcctType>{'S' for savings account; 'C' for checking account}</AcctType>
+        <Amount>{amountInCents}</Amount>
+    </requestMessage>
+</requestHeader>
+```
+Processing an eCheck/ACH transaction is very similar to processing a credit card transaction. Instead of passing a token to the webservice, you can directly pass the bank's routing/transit number and the bank account number. These data elements are not considered sensitive to the same degree as card data, and are not covered by the scope of PCI DSS. You should still encrypt said data elements whether at rest or in motion, but they will not impact your scope of PCI compliance.
+
+In addition to passing the routing and account number, you also need to specify whether the bank account is a checking or savings account, as well as the "Standard Entry Class" code as defined by NACHA.
+
+`WEB` - Internet-Initiated Entry
+`PPD` - Prearranged Payment and Deposit - for consumer checks (requires written authorization from customer)
+`CCD` - Corporate Credit or Debit - for business checks (requires written authorization from customer)
+`TEL` - Telephone-Initiated Entry
+
+<aside class="notice">
+Different NACHA SEC codes require different types of authorizations from or disclosure to your customer:
+<br><b>WEB</b> - <a href="https://www.nacha.org/system/files/resources/Authorization_0.pdf">best practices for authorization and sample language</a>
+<br><b>CCD</b> and <b>PPD</b> - <a href="http://www.checktraining.com/docs/general/Programs/ACH%20Debit/ACH_Debit_auth_form.pdf">sample consumer authorization form</a>
+<br><b>TEL</b> - <a href="http://www.checktraining.com/docs/general/Programs/Check%20By%20Phone/Checks-By-Phone_sample_script.pdf">sample script for IVR</a> or <a href="http://www.checktraining.com/docs/general/Programs/Check%20By%20Phone/Checks-By-Phone_written_auth.pdf">sample written authorization form</a>
+</aside>
 
 # In-Person Payments
 
-## PayGuardian
+## Overview
 
-> <a href='https://www.dropbox.com/s/31515dk9s1hptpu/BridgePay%20Gateway%20Certified%20Device%20Matrix.pdf?dl=0'>CERTIFIED DEVICES</a>
+If you are developing a payment application or point of sale (POS) system for use by only your business, then that application falls in your scope of PCI DSS compliance as a merchant. 
 
-Point‐of‐Sale (POS) systems that process sensitive payment information are required to certify their payment applications to the Payment Application Data Security Standard (PA‐DSS). The addition of EMV certification and continued need for both encryption and tokenization has become a concern for both merchants and integrators. Instituting and maintaining these standards requires significant financial and employee resources in order to adhere to the Payments Card Industry Data Security Standards (PCI DSS) compliance requirements. Subsequently, any changes made in the POS system, may require a partial or full recertification, which increases the cost and time to market. Beyond has engaged these issues through our product line, the PayGuardian suite, to better serve the needs of our integrators and merchants.
+If you are developing a POS to sell or license to other businesses, that application is in scope for PCI Payment Application Data Security Standard (PA-DSS) if it interacts with card data. 
 
-PayGuardian is a lightweight, highly secure client application that integrates seamlessly into POS applications. PayGuardian facilitates the transaction process by handling the collection and transmission of sensitive payment information as an out of scope PA-DSS solution, thereby offloading the certification responsibility from merchants and integrators. PayGuardian is EMV enabled, handles point to point encryption, and tokenizes all transactions to ensure transaction processing is seamless and secure.
+If that application is hosted/SaaS-based then you may also be in-scope PCI Service Provider (similar to a gateway provider).
 
-## PayGuardian Desktop
+The costs involved in validating PCI compliance for such software can be prohibitive for Indepdendent Software Vendors (ISVs). Increasingly, ISVs are also expected to offer support for EMV or chip cards: direct integration of which can also be very costly and time-consuming.
 
-> <a href='https://www.dropbox.com/s/9mhfffnqknd2q7y/PayGuardian-2.4.4.zip?dl=0'>Download PayGuardian Desktop v 2.4.4</a>
+The solution to both of these challenges is a semi-integrated or "out-of-scope" architectural model, whereby a POS or application can integrate (or "semi-integrate") to a pre-certified payment application and device. This removes the burden of complicated EMV/chip card certification and insulates the application from interacting with sensitive data.
 
-> <a href='https://www.dropbox.com/s/2oczvikko1olz1a/PayGuardian%20Developer%20Guide.pdf?dl=0'>PayGuardian Desktop Developer Guide</a>
+Beyond PayGuardian is a cloud-based semi-integrated solution that makes it possible to easily support in-person card payments from any platform or environment.
 
-> <a href='https://www.dropbox.com/s/o7itaspp454c5al/PayGuardian%20Installation%20Guide%20v2.4.3.pdf?dl=0'>PayGuardian Desktop Installation Guide</a>
+## Supported Devices
 
-> <a href='https://www.dropbox.com/s/lq6l4lpmj05f29p/PayGuardian%20User%20Guide%20v2.4.1.pdf?dl=0'>PayGuardian Desktop User Guide</a>
+Beyond's preferred card present devices are the Android-based "A-series" from PAX Technology:
 
-> Sample C# DLL integration:
+- <a href="https://www.paxtechnology.com/a920">PAX A920</a>
+- <a href="https://www.paxtechnology.com/a80">PAX A80</a>
 
-```c#
-private void ProcessCreditCard_Click(object sender, EventArgs e)
-  {
-    // 1. First create a Payment Page
-    hostName=hostname.Text;
-    PaymentPage pg=newPaymentPage();
-    PaymentRequest paymentRequest=pg.PaymentRequest;
-    paymentRequest.TenderType=PaymentRequest.ParseTenderType(TenderType.Text);
-    paymentRequest.TransType=PaymentRequest.ParseTransType(TransType.Text);
+Development devices are available to purchase by request. Please contact <a href="mailto:BeyondPayIntegrations@getbeyond.com">BeyondPayIntegrations@getbeyond.com</a>.
 
-    // 2. Next, set the PayLink Properties
-    #regionSetPayLinkProperties
+Beyond will provide development and production devices pre-configured with the necessary account information and settings. The only credential you will need to communicate with the device is its UUID or "locationID", which will be provided by Beyond and can also be confirmed in the PayGuardian Cloud app on the the terminal device.
 
-    // Set the only required field (Amount)
-    paymentRequest.Amount = this.Amount.Text.ToString();
+## Getting Started
+> <b>Web Service (Test and Production):</b>
 
-    // 3. Display the payment processing page
-    ShowPageResult result = null;
-    try
-    {
-      Result = pg.ShowPage();
-    }
-    catch (Exception)
-    {
-      // Error while processing payment
-      MessageBox.Show("Error Processing Payment");
-    }
-    PaymentResponse paymentResponse = pg.PaymentResponse;
-
-    // 4. Display the result of the transaction
-    #region Show the PayLink Result
-
-    If (result != null && result.code == ShowPageResultCode.OK)
-
-   //TO DO - finish
-
+```html
+https://pgc.bridgepaynetsecuretx.com/req/payment
 ```
 
-PayGuardian Desktop (for Windows) comes with an executable installer file that integrators may incorporate into their Point-of-Sale system installation. A Windows object library has also been included to facilitate easy integrations with POS applications. The object library is accessible using Component Object Model (COM) or .NET technology.When invoked, PayGuardian displays a basic frame that encapsulates the browser, fetching and rendering the Virtual Terminal (VT)page. The object window is configurable, and integrators can brand the user interface using cascading style sheets. The VT object window holds focus, floating on top of all other running applications.
+> Credit Sale Request
 
-<aside class="success">
-For development and testing, use this sandbox registration key: <b><code>H75RCGRV</code></b>. A new registration key will be required for live/production transaction processing.
-</aside>
-
-## PayGuardian iOS SDK
-
-> <a href='https://www.dropbox.com/s/g340i0bsp4tjo01/PayGuardian-iOS-2.5.zip?dl=0'>iOS Framework</a>
-
-> <a href='https://www.dropbox.com/s/ffdc90z7thgnxw0/PayGuardian%20iOS%20Framework%20Developer%20Guide%20v2.5.0.pdf?dl=0'>iOS Developer Guide</a>
-
-> <a href='https://www.dropbox.com/s/0wt5jp013fszfnd/PayGuardian-iOS-Test.zip?dl=0'>Test iOS App</a>
-
-> Create a BPNPaymentRequest object:
-
-```objective_c
--(instancetype) initInvoiceNumber:(NSString *_Nonnull) invoiceNumber
-pnRefNum:(NSString *_Nullable) pnRefNum 
-amount:(NSDecimalNumber *_Nullable) amount 
-tipAmount:(NSDecimalNumber *_Nullable) tipAmount 
-cashBackAmount:(NSDecimalNumber *_Nullable) cashBackAmount 
-tenderType:(NSString *_Nonnull) tenderType 
-transactionType:(NSString *_Nonnull) transactionType 
-username:(NSString *_Nonnull) username 
-password:(NSString *_Nonnull) password 
-merchantCode:(NSString *_Nonnull) merchantCode 
-merchantAccountCode:(NSString *_Nonnull) merchantAccountCode 
-paymentAccountNumber:(NSString *_Nullable) paymentAccountNumber 
-token:(NSString *_Nullable) token 
-expirationDate:(NSString *_Nullable) expirationDate 
-terminalCommConfig:(TerminalCommConfig *_Nonnull) terminalCommConfig
-industryType:(NSString *_Nonnull) industryType 
-healthCareData:(BPNHealthCare *_Nullable) healthCareData 
-bankAccountNumber:(NSString *_Nullable) bankAccountNumber
-routingNumber:(NSString *_Nullable) routingNumber
-partialApproval:(BOOL) partialApproval
-enableTpi:(BOOL) enableTpi
-signatureData:(NSString *_Nullable) signatureData
-disableAmountConfirmation:(BOOL) disableAmountConfirmation
-testMode:(BOOL) testMode;
-```
-
-> Construct the PayGuardianTransaction object:
-
-```objective_c
-initWithPaymentRequest:(BPNPaymentRequest *)request;
-```
-
-> The run method with completion is:
-
-```objective_c
--(void)runOnCompletion:(void (^)(BPNPayment *payment, NSError *error)) onCompletion onStateChanged:(void (^)(PayGuardianTransactionState state)) onStateChanged;
-```
-
-> Implement a handler for the returned BPNPayment response:
-
-```objective_c
-BPNPayment.BridgeCommResponse:
-transactionID: 8888
-requestType: 004
-responseCode: 0
-responseDescription: Successful Request
-token: 11110000000068530608
-expirationDate: 1225
-authorizationCode: 290144
-originalReferenceNumber: MCC7754741020
-authorizedAmount: $5.50
-originalAmount: $5.50
-gatewayTransactionID: 214973401
-gatewayMessage: A01 -Approved
-internalMessage: Approved: 290144 (approval code)
-gatewayResult: 00000
-AVSMessage:
-AVSResponse:
-CVMessage:
-CVResult:
-transactionCode: (null)
-transactionDate: 20161020
-remainingAmount: $0.00
-ISOCountryCode: (null)
-ISOCurrencyCode: USD
-ISOTransactionDate: 2016-10-20 14:32:47.86
-ISORequestDate: 2016-10-20 14:32:47.86
-networkReferenceNumber: MCC7754741020
-merchantCategoryCode:
-networkMerchantID: 518564010126944
-networkTerminalID: PPB01.
-cardType: Mastercard
-maskedPAN: 5***********0608
-responseTypeDescription: sale
-isCommercialCard: False
-streetMatchMessage:
-secondsRemaining: (null)
-merchantCode: (null)
-merchantAccountCode: (null)
-merchantName: (null)
-receiptTagData: (null)
-issuerTagData: (null)
-applicationIdentifier: (null)
-terminalVerificationResults: (null)
-issuerApplicationData: (null)
-transactionStatusInformation: (null)
-```
-
-PayGuardian iOS is a secure iOS framework library that integrates seamlessly into iOS applications. PayGuardian iOS facilitates the transaction process by handling the collection and transmission of sensitive payment information as an out of scope PA-DSS solution, thereby offloading the certification responsibility from merchants and integrators. PayGuardian iOS is EMV enabled, handles point to point encryption, and tokenizes all transactions to ensure transaction processing is seamless and secure.
-
-Programmatically, a PayGuardian iOS transaction is comprised of a four step process:
-
-* Create a BPNPaymentRequest object.
-* Pass the BPNPaymentRequest object to the constructor of a PayGuardianTransaction object.
-* Call the runOnCompletion method and provide an implementation for the completion.
-* Implement a handler for the returned BPNPayment and/or NSError.
-
-<aside class="success">
-For development and testing, use this sandbox registration key: <b><code>H75RCGRV</code></b>. A new registration key will be required for live/production transaction processing.
-</aside>
-
-## PayGuardian Android SDK
-
-> <a href='https://www.dropbox.com/s/zoa1s4n9s8cleob/PGAndroid-2.5.zip?dl=0'>PayGuardian for Android</a>
-
-> <a href='https://www.dropbox.com/s/wem8vf780lffxfx/PayGuardian%20Android%20Developer%20Guide%20%20v2.5.0.pdf?dl=0'>Android Developer Guide</a>
-
-> <a href='https://www.dropbox.com/s/35d2k95ltrrw7nm/App2AppSampleProject.zip?dl=0'>Android app-to-app sample project</a>
-
-> Java sample (App-to-App method):
-
-```java
-public void processTransaction(String paymentRequestXml)
-  {
-    final int PAYGUARDIAN_REQUEST_CODE = 102;
-    Intent sendIntent = new Intent(android.content.Intent.ACTION_SEND);
-    sendIntent.setType("text/plain");
-    sendIntent.putExtra(Intent.EXTRA_TEXT, paymentInputXml);
-
-    PackageManager pm = getApplicationContext().getPackageManager();
-    List<ResolveInfo> activityList = pm.queryIntentActivities(sendIntent, 0);
-
-    for (final ResolveInfo app : activityList)
-    {
-      if ((app.activityInfo.name).contains("ProcessSecurelyActivity"))
-      {
-        final ActivityInfo activity = app.activityInfo;
-        final ComponentName name = new ComponentName(activity.applicationInfo.packageName, activity.name);
-
-        sendIntent.setComponent(name);
-
-        startActivityForResult(sendIntent, PAYGUARDIAN_REQUEST_CODE);
-
-        break;
-      }
-    }
-```
-
-PayGuardian Android is a lightweight, highly secure Android application that integrates seamlessly into mobile POS (mPOS) applications. PayGuardian Android facilitates the transaction process by handling the collection and transmission of sensitive payment information as an out of scope PA-DSS solution, thereby offloading the certification responsibility from merchants and integrators. PayGuardian Android is EMV enabled, handles point to point encryption, and tokenizes all transactions to ensure transaction processing is seamless and secure.
-
-### Process Flow
-
-* The mPOS application collects transaction data, such as the dollar amount, invoice number, tender type, transaction type, merchant account information, etc.
-* The mPOS application constructs the transaction requesting an XML format upon the selection of the Process button.
-* PayGuardian obtains the card information via the claiming of the mPOS device using the Device USB Host connection and validates the transaction request object.
-* The mPOS device prompts to swipe or insert the card and transmits the card information to the PayGuardian application, which captures the card data as a swiped or EMV transaction respectively.
-* PayGuardian constructs the payload request and transmits the transaction request to the Beyond Pay Gateway.
-* PayGuardian transmits the transaction response returned from the Gateway back to the mPOS application.
-* The mPOS application implementation responds accordingly to the transaction response.
-
-For the App-to-App integration method, the PayGuardian Android application is accessed by starting an activity with an intent which encapsulates a request payload.
-
-<aside class="success">
-For development and testing, use this sandbox registration key: <b><code>H75RCGRV</code></b>. A new registration key will be required for live/production transaction processing.
-</aside>
-
-## PayGuardian Cloud
-
-> <a href='https://pgc.bridgepaynetsecuretx.com/'>PayGuardian Cloud API</a>
-
-> `POST https://pgc.bridgepaynetsecuretest.com/req/payment`
+> `POST`
 
 ```json
 {
-"locationID": "your-locationID",
-"terminalID": "00000000-0000-0000-0000-000000000000",
-"username": "your_user_name",
-"password": "your_password",
-"merchantAccountCode": "your_merchantAccountCode",
-"merchantCode": "your_merchantCode",
+"locationID": "91552FCB-01A7-4BA2-B00A-EA33FC660307",
 "mode": "UAT",
-"amount": "10.00",
-"softwareVendor": "your_POS_name",
+"amount": "17.00",
+"softwareVendor": "My POS 1.0",
 "tenderType": "CREDIT",
 "transType": "SALE"
 }
 ```
 
-PayGuardian Cloud is designed for cloud-based Point-of-Sale systems, and delivers the same scope removal and easy EMV acceptance as other versions of PayGuardian. PayGuardian Cloud is operating system independent, and is installed on the merchant's router as a network appliance.
+>Credit Sale Response
+
+```json
+{
+"requestID": "2aaf2fe8663c561fe7edf5c663b4e7262dd47274bdba13f3daafb207",
+"locationID": "91552FCB-01A7-4BA2-B00A-EA33FC660307",
+"terminalID": "3EADDF76-27E6-4883-A49C-0AA876E64734",
+"approvedAmount": "17.00",
+"authCode": "830705",
+"avsMessage": "",
+"avsResponse": "",
+"cardType": "Visa",
+"cashBackAmt": "",
+"cvMessage": "",
+"cvResponse": "",
+"expirationDate": "0323",
+"extData": {
+    "lodgingItem": [],
+    "receiptTagData": {
+        "maskedCard": "4***********2645",
+        "chipCardAID": "A0000000031010",
+        "invoice": "12345678",
+        "seq": "23dbde68c492a6c2c6b5cbe726d40741",
+        "authCode": "830705",
+        "entryMethod": "Chip_Read",
+        "totalAmount": "17.00",
+        "pinVerified": "NO"
+    },
+    "signatureEncoded": "iVBORw0KGgoAAAANSUhEUgAAAe8AAACWCAIAAAB4sZcnAAADOklEQVR42u..."
+},
+"gatewayMessage": "A01 - Approved",
+"gatewayResult": "0",
+"internalMessage": "Approved: 830705 (approval code)",
+"isCommercialCard": "False",
+"isoCountryCode": "840",
+"isoCurrencyCode": "USD",
+"isoRequestDate": "2018-06-28 14:25:04.963",
+"isoTransactionDate": "2018-06-28 14:25:04.963",
+"maskedAccountNumber": "4***********2645",
+"merchantCategoryCode": "",
+"networkMerchantId": "",
+"networkReferenceNumber": "",
+"networkTerminalId": "",
+"pnRefNum": "253271004",
+"remainingAmount": "0.00",
+"requestedAmount": "",
+"responseTypeDescription": "sale",
+"resultCode": "0",
+"resultTxt": "Successful Request",
+"streetMatchMessage": "",
+"submittedAmount": "17.00",
+"timestamp": "20180628",
+"tipAmount": "",
+"token": "11110000000400142645",
+"transactionCode": "23dbde68c492a6c2c6b5cbe726d40741"
+}
+```
+
+Initiating a card present transaction is as simple as POSTing just a few lines of JSON to the web service, passing the following arguments:
+
+- `locationID` - the UUID from the PayGuardian Cloud app installed on the device
+- `mode` - indicates what environment to use; options are: UAT for testing and development and PROD for production/live usage
+- `amount` - the amount of the transaction
+`softwareVendor` - the name and version of your POS or application
+`tenderType` - the type of payment to expect; common values are: `UNKNOWN`, `CREDIT`, `DEBIT`, `CHECK`, `GIFT`
+`transType` - the type of transaction to perform; common values are: `SALE`, `SALE_AUTH`, `REFUND`, `VOID`, `TOKENADD`, `CAPTURE`
+
+If the card is an EMV/chip card, then the user will be presented with an option to select whichever Applications reside on the chip (that is, they can select an Application ID associated with either Credit or Debit, depending on their card) regardless of what tender type is sent in the request. If the `UNKNOWN` tender type is used, the cardholder will similarly be prompted to select either the credit or debit application on the chip.
+
+If the card is magnetic stripe only and capable of being processed as either a debit or a credit transaction, then it will be processed as whatever tender type is sent in the request. If `UNKNOWN` is selected, the cardholder will likewise be prompted to make the selection.
+
+Transaction types may be defined as follows:
+
+`SALE` - authorizes a card and captures it, placing it in the batch for settlement
+`SALE_AUTH` - authorizes a card but does not capture it, holding the cardholder's funds until the capture transaction is performed (or until 7 days at which time the authorization is voided)
+`REFUND` - this is the preferred transaction for both refunding and voiding; if the original transaction is still in an unsettled batch, the gateway will perform a void/reversal transaction; if the original transaction has already settled, then the gateway will perform a refund to the original card. See below notice.
+`TOKENADD` - this transaction only tokenizes a given card number and does not perform any financial adjustments to the account
+`CAPTURE` - used to capture a previous `SALE_AUTH` transaction and add it to the batch for settlement
 
 <aside class="notice">
-PayGuardian Cloud is currently in limited beta testing. <a href='mailto:BeyondPay@getBeyond.com'>Contact us</a> if you are interested!
+Additional data elements are presented in the following sections that cover industry-specific use cases and provide more detailed workflows.
 </aside>
+
+## Basic Sale Options
+
+```json
+{
+"locationID": "91552FCB-01A7-4BA2-B00A-EA33FC660307",
+"mode": "UAT",
+"amount": "#####.##",
+"softwareVendor": "My POS 1.0",
+"tenderType": "CREDIT",
+"transType": "SALE",
+"invNum": "Invoice number",
+"pnRefNum": "Reference number from a previous transaction",
+"poNum": "Purchase order number",
+"taxAmt": "#####.##",
+"allowPartialApproval": "true|false",
+"clerkID": "Employee/Clerk ID",
+}
+```
+
+You may also want to send these additional fields on some transactions:
+
+- `invNum` - an invoice number you would like to associate with the transaction (may be up to 24 alphanumeric characters and hyphens)
+- `pnRefNum` - the reference number from a prior transaction response, primarily used to perform refunds, voids, or adjustments
+- `poNum` - a Purchase Order number associated with the transaction; required to receive a lower interchange rate on eligible B2B cards (may be up to 24 alphanumeric characters and hyphens)
+- `taxAmt` - the amount of the tax on the transaction; required to receive a lower interchange rate on eligible B2B cards (may be up to 24 alphanumeric characters and hyphens)
+- `allowPartialApproval` - whether or not to allow partial approvals; see below notice
+- `clerkID` - an employee or clerk identifier for reporting purposes
+
+<aside class="notice">
+Partial authorization support is required for some merchant types and strongly encouraged for all others in order to reduce declines on prepaid open-loop (branded) cards when there are insufficient funds to cover the total amount of the transaction. See the <a href="https://usa.visa.com/dam/VCOM/global/support-legal/documents/visa-partial-authorization-service.pdf">Visa Partial Authorization Service Guide</a> for more details.
+</aside>
+
+## Tips & Gratuities
+
+> `CREDIT` + `ADJUSTMENT` request:
+
+```json
+{
+"locationID": "C832D913-982C-4256-9895-2DD13BDA5947",
+"pnRefNum": "Reference number from a previous transaction",
+"mode":"UAT",
+"tipAmt": "5.00",
+"tenderType": "CREDIT",
+"transType": "ADJUSTMENT"
+}
+```
+
+> `CREDIT` + `ADJUSTMENT` response:
+
+```json
+{
+"requestID": "388c37acbd88d7f00fce90ffee8b83c156efedb57828c1e8439e6284",
+"locationID": "C832D913-982C-4256-9895-2DD13BDA5947",
+"terminalID": "9102C064-F990-41AB-BAD4-C98F33E4C684",
+"approvedAmount": "20.00",
+"authCode": "802431",
+"avsMessage": "",
+"avsResponse": "",
+"cardType": "",
+"cashBackAmt": "",
+"cvMessage": "",
+"cvResponse": "",
+"expirationDate": "",
+"extData": {
+    "lodgingItem": [],
+    "receiptTagData": {}
+            }   , "gatewayMessage": "A12 - Tip Adjustment Posted",
+"gatewayResult": "0",
+"internalMessage": "Tip Adjustment Posted",
+"isCommercialCard": "False",
+"isoCountryCode": "0",
+"isoCurrencyCode": "",
+"isoRequestDate": "",
+"isoTransactionDate": "",
+"maskedAccountNumber": "",
+"merchantCategoryCode": "",
+"networkMerchantId": "",
+"networkReferenceNumber": "",
+"networkTerminalId": "",
+"pnRefNum": "253276004",
+"remainingAmount": "0.00",
+"requestedAmount": "",
+"resultCode": "0",
+"resultTxt": "Successful Request",
+"streetMatchMessage": "",
+"submittedAmount": "15.00",
+"timestamp": "",
+"tipAmount": "",
+"token": "",
+"transactionCode": ""
+}
+```
+`tenderType`=`CREDIT` and `transType`=`ADJUSTMENT` will adjust a previous `SALE` or `SALE_AUTH` adding a tip amount based on a `pnRefNum` (previous transaction reference number). This action can only be performed on unsettled transactions in an open batch. 
+
+If successful, the response will contain the new total approved amount: (initial amount) + (tip amount).
+
+## Lodging & Hotels
+
+```json
+{
+"locationID": "your-locationID",
+"mode": "UAT",
+"amount": "10.00",
+"softwareVendor": "your_POS_name",
+"tenderType": "CREDIT",
+"transType": "SALE",
+"extData": {
+/* Lodging fields */
+"checkInDate": "Actual or anticipated check in date.",
+"checkOutDate": "Actual or anticipated check out date.",
+"departureAdjAmount": "Additional amount charged after cardholder left the hotel.",
+"folioNumber": "Hotel folio number",
+"lodgingChargeType": "H (Hotel)|R (Restaurant)|G (Gift Shop)|S (Health Spa)|B (Beauty Shop)|F (Convention Fee)|T (Tennis)|O (Golf)",
+/*Collection of lodging item records.*/
+"lodgingItem": [{
+"lodgingItemAmount": "Amount (in cents) for lodging extra charge item. Implied (no) decimal.",
+"lodgingItemCode": "",
+"lodgingItemType": "G (Gift Shop)|L (Laundry)|B (Mini Bar)|R (Restaurant)|T (Telephone)"
+}],
+"lodgingItemCount": "Indicates number of lodging industry items purchased as part of this transaction.",
+"roomNumber": "Hotel room number",
+"roomRateAmt": "Amount (in cents) of the daily room rate.",
+"roomTaxAmt": "Amount (in cents) of the tax applied to daily room rate.",
+"specialProgramType": "AD (Advance deposit)|AR (Assured reservation)|DC (Delayed charge)|ES (Express service)|NC (Normal charge)|NS (No show charge)",
+"stayDuration": "Anticipated, actual or incremental stay in days."
+}
+```
+
+The extended data fields required for lodging transactions can easily be passed through the semi-integrated device to Beyond Pay Gateway.
+
+## Pharmacy & Healthcare
+
+```json
+{
+"locationID": "your-locationID",
+"mode": "UAT",
+"amount": "10.00",
+"softwareVendor": "your_POS_name",
+"tenderType": "CREDIT",
+"transType": "SALE",
+/* Healthcare related fields */
+"isQualifiedIIAS": "Indicates whether purchase items are verified against IIAS. Can be t|f",
+"healthCareAmt": "Amount (in cents) of the total Healthcare Amount.",
+"clinicAmt": "Amount (in cents) of the portion of the Healthcare Amount spent on hospitalization.",
+"dentalAmt": "Amount (in cents) of the portion of the Healthcare Amount spent on dental related medical services.",
+"prescriptionAmt": "Amount (in cents) of the portion of the Healthcare Amount spent on prescription drugs or products.",
+"transitAmt": "Amount (in cents) of the portion of the Healthcare Amount spent on transportaion.",
+"visionAmt": "Amount (in cents) of the portion of the Healthcare Amount spent on vision related medical services."
+}
+```
+
+Payment systems and Points of Sale for pharmacy merchants are required to pass some of these additional data fields in conjunction with their implementation of "auto-substantiation" using an "inventory information approval system" (IIAS). See <a href="https://sig-is.org/">sig-is.org</a> for more information.
 
 # Transaction Reporting
 
@@ -693,28 +938,207 @@ The TransResults field works by mapping the BridgeComm 5-digit response code bac
 
 ### TransactionSet
 
-TODO: finish
+|Parameter Name|Data Type|Description|
+|--- |--- |--- |
+|RecordCount|Integer|The total number of records that match the filter, excluding the Take & Skip fields.|
+|TransactionList|List|A collection of TransactionRow objects.|
+
 
 ### TransactionRow
 
-TODO: finish
+|Parameter Name|Data Type|Description|
+|--- |--- |--- |
+|Account Type|String|1 character identifier that determines the type of account. Valid values are R (Branded Credit Card), E (Branded debit checking card), V (Branded debit savings card), D (Unbranded debit checking card), I (Unbranded debit savings card), S (Bank savings account), C (Bank checking account), F (EBT food stamp), H (EBT cash benefit), G (Gift card), L (Fleet), A (Cash), K (Check)|
+|AuthCode|String|The Authorization Code provided by the card issuer|
+|AuthorizedAmount|Implied Integer|The amount that was actually authorized. This may be different from the requested amount (e.g., partial approvals)|
+|BatchDateTime|DateTime|The close date of the batch that contains the transaction|
+|BatchId|Integer|The gateway Batch ID that contains this transaction|
+|CardBrand|String|Description of the card brand used. Valid values: AMEX, DISCOVER, MASTERCARD, DINERS, and VISA|
+|ClerkId|String|The client-supplied Clerk ID (or the Username used to process the transaction if no Clerk ID was provided)|
+|ClerkName|String|The client-supplied name of the Clerk who processed the transaction|
+|CustomerAddress|String|The client-provided Street Address for the transaction|
+|CustomerEmail|String|The client-provided Email Address for the transaction|
+|CustomerNumber|String|The client-provided Customer ID|
+|CustomerZip|String|The client-provided Zip Code|
+|EntryModeId|String|Identifies how the transaction was processed. Valid valus are T1 (Track 1 Data), T2 (Track 2 Data), T3 (Track 1 and 2 Data), KD (Keyed)|
+|ExpirationDate|String|Month and Year of the card expiry date in MMYY format|
+|FirstName|String|First name of the account holder|
+|HolderType|String|A one-character code identifying if the payment method was a personal account (P) or a business/corporate account (O)|
+|InvoiceNumber|String|The client-provided Invoice Number|
+|LastFour|String|The last four digits of the Primary Account Number (card number)|
+|LastName|String|The last name of the account holder|
+|MaskedAccount|String|A masked version of the account number used to process the transaction|
+|Memo|String|The client-provided "PaymentType" value|
+|MerchantAccountId|Integer|The "MerchantAccountCode" for the transaction|
+|MerchantAccount|Integer|The "MerchantAccount" for the transaction|
+|PaymentMethodId|String|Two letter code that identifies the payment method transaction type. Valid values: AC (Amex), BC (Bank Checking), BD (Bank Card Debit), BS (Bank Savings), DC (Discover Credit), DD (Discover Debit), EC (EBT Cash Benefit), EF (Food Stamps), FL (Fleet One), GF (Fuelman Fleet Wide), GG (General Gift), MC (Master Card Credit), MD (Master Card Debit), MF (Master Card Fleet), MP (Master Card Prepaid), NC (Diner’s Club), VC (Visa Credit), VD (Visa Debit), VF (Voyager), VP (Visa Prepaid), VS (Visa Fleet), WX (Wright Express)|
+|ProcessorResponse|String|Description of the response provided by the account issuer|
+|PurchaseOrderNumber|String|The client-provided Purchase Order Number|
+|RemainingAmount|Implied Integer|The amount of the authorization that is remaining after partial refunds or voids have been applied|
+|RequestedAmount|Implied Integer|The amount that was requested to be authorized when the transaction was processed|
+|ResellerId|Integer|The gateway reseller ID for the transaction|
+|ResponseCode|String|The 3-character <a href="#gateway-message-codes">Gateway Message code</a>|
+|SaleDateTime|DateTime|The date and time the transaction was processed|
+|SettleAmount|Implied Integer|The amount of the transaction that was actually settled. This may be different than the requested or authorized amounts.|
+|SettlementStatus|String|Identifies whether the transaction has been settled yet or not. Valid valuies: Settled, Unsettled|
+|TerminalId|String|Reserved for Future Use|
+|Token|String|The tokenized account number|
+|TransactionId|Long Integer|The unique gateway ID for the transaction|
+|TransactionIndustryType|String|A 2-3 character string that identifies what industry or SEC code the transaction was processed under. Valid values: RE (Retail), DM (Direct Marketing), EC (eCommerce), RS (Restaurant), LD (Lodging), PT (Petroleum), POP (Point Of Purchase), PPD (Prearranged Payment and Deposit), CCD (Corporate Credit or Debit), TEL (Telephone Initiated Entry), WEB (Internet Initiated Entry), C21 (Check 21)|
+|TransactionSourceIP|String|The IP Address and Port where the transaction request originated|
+|TransactionStatus|String|Identifies what state the transaction is in. Valid values: Open, Confirmed, or Voided.|
+|TransactionType|String|Identifies the type of transaction that was requested. Valid values: Sale, Sale-Auth (authorization only), Credit, Void, Refund, Increment (incremental authorization).|
+|VoidIndicator|Boolean|Indicates whether or not the transaction was voided before the batch was settled|
+
+## Operation Contract
+
+> This method returns a `TransactionSet` object as described above:
+
+```csharp
+PublicGetTransactionsByFilter(Credentials credentials, TransactionRowFilter filterObject)
+
+```
+
+At this time, the Reporting API provides only one operation contract for retrieving transactional data.
+
+## Reporting Tips & Examples
+
+There are two types of parameters in the TransactionRowFilter object: DBQuery Filters and Post-Query Filters.
+
+Most of the parameters in the filter are DBQuery filters that are used directly against the persisted data store that contains the transactional data. However, some of the filters are Post-Query filters, meaning the filters are not applied until after the persisted data is retrieved. Post-Query filters have transformational logic that is better suited after the bulk of the query has been processed by the data store.
+
+Filters that are processed directly against the data store also have specific comparison modes that can be utilized for easier queries. Review the comparison modes listed in the <a href"#transactionrowfilter">TransactionRowFilter</a> table for a full list.
+
+### Comparison Types
+
+> Examples:
+
+> Returns all transactions of $1.00 or more:
+
+```xml
+<AmountRangeFrom>100</AmountRangeFrom>
+```
+
+> Returns all transactions of $2.00 or less:
+
+```xml
+<AmountRangeTo>100</AmountRangeTo>
+```
+
+> Returns all transactions with Invoice Number 2001:
+
+```xml
+<InoviceNumber>2001</InvoiceNumber>
+```
+
+> Returns all declined transactions:
+
+```xml
+<ResponseCode>D</ResponseCode>
+```
+
+> Returns all declined transactions with <a href="#gateway-message-codes">Gateway Message</a> codes D01-D09:
+
+```xml
+<ResponseCode>D0</ResponseCode>
+```
+
+> Returns only those transactions that were declined with <a href="#gateway-message-codes">Gateway Message</a> code D01:
+
+```xml
+<ResponseCode>D01</ResponseCode>
+```
+
+> Returns only those transactions that were declined with <a href="#gateway-message-codes">Gateway Message</a> code D01:
+
+```xml
+<ResponseCode>D01</ResponseCode>
+```
+
+> Provides those transactions where the <a href="#gateway-result-codes">Gateway Result code</a> is equal to 00000, 00001, or 10012 only:
+
+```xml
+<TransResults>00000,00001,10012</TransResults>
+```
+
+> Return all transactions where <a href="#gateway-result-codes">Gateway Result code</a> code is NOT equal to 00000, 00001, or 10012::
+
+```xml
+<TransResults>00000,00001,10012</TransResults>
+<ExcludeTransResults>1</ExcludeTransResults>
+```
+
+- GTE = Greater Than or Equal. The query will look for data that is greater than or equal to the data provided in the filter parameter.
+- LTE = Less Than or Equal. The query will look for data that is less than or equal to the data provided in the filter parameter.
+- EQUIV = Equals. The query will look for data that exactly matches the data provided in the filter parameter.
+- CONTAINS = The query will look for data that contains the data provided in the filter parameter.
+- INLIST = The query will look for data where the stored data matches one of the comma-delimited entries in the data provided in the filter parameter.
+- N/A = The parameter is either a Boolean parameter or does not affect the data filtering process.
+
+NOTE: `ExcludeTransResults` must be used with `TransResults`. It modifies the behavior of the TransResults field.
+
+### Post-Query Filters
+
+The following fields are Post-Query filters. They will not process until after the initial data store query has completed.
+
+- TransactionStatus
+- CardBrand
+
+The data used to query on these parameters must be transformed before the filter can be applied. The data store resources are too time-consuming for these filters and they are therefore added after the data store query is completed. <b>You should never use a Post-Query Filter without first limiting the data store query with some DBQuery filters such as a date range and/or the merchant account information.</b>
+
+Response Codes
 
 # Response Codes
 
-## PayGuardian Response Codes
+## AVS Response Codes
+
+<aside class="warning">
+ You should always inspect the AVSResult and CVResult fields as these can be good indicators of potential fraud. If you see a AVSResult or CVResult code that you do not want to accept because it may be too risky (such as "No Match" on the submitted Zip code), then you should submit a void transaction to cancel the authorization and advise the cardholder that their transaction has been declined.
+</aside>
 
 Response Code | Description
 ------------- | -----------
-0 | Approved
-1 | Declined
-2 | Error
-12 | EMV Chip Declined
+00 | AVS Error - Retry, System unavailable or Timed out
+40 | Address not available (Address not verified)
+43 | Street address not available (not verified), ZIP matches
+44 | Address failed
+45 | Street address and ZIP don't match
+46 | Street address doesn't match, 5-digit ZIP matches
+47 | Street address doesn't match, 9-digit ZIP matches
+4A | Street address or ZIP doesn't match
+4D | Street address matches, ZIP does not
+4E | Street address and 5-digit ZIP match
+4F | Street address and ZIP match
+53 | Account holder name incorrect, billing postal code matches
+55 | Unrecognized response
+5C | Account holder name incorrect, billing address matches
+5F | Account holder name incorrect, billing address and postal code match
+70 | Account holder name matches
+73 | Account holder name and billing postal code match
+7C | Account holder name and billing address match
+7F | Account holder name, billing address and postal code match
+80 | AVS service not supported by issuer - Issuer doesn't participate in AVS
 
-## Gateway Response Codes
+## CVV Response Codes
+
+<aside class="warning">
+ You should always inspect the AVSResult and CVResult fields as these can be good indicators of potential fraud. If you see a AVSResult or CVResult code that you do not want to accept because it may be too risky (such as "No Match" on the submitted Zip code), then you should submit a void transaction to cancel the authorization and advise the cardholder that their transaction has been declined.
+</aside>
 
 Response Code | Description
 ------------- | -----------
-000 | Successful request
+M | Matches
+N | No match
+P | Not processed
+S | Should be present
+U | Issuer is not certified
+X | Unrecognized reason
+
+## Gateway Result Codes
+
+Response Code | Description
+------------- | -----------
+00000 | Successful request
 00001 | Partial Authorization
 10001 | Missing Reference Number
 10002 | Invalid Card Number - Blank/Null
@@ -844,50 +1268,74 @@ Response Code | Description
 90001 | Token Store failed to decrypt a token
 99999 | Unknown Error
 
+## Gateway Message Codes
 
-## AVS Response Codes
+|Gateway Message Code|Message|
+|--- |--- |
+|A01|Approved: XXXXXX (approval code)|
+|A02|Credit Posted|
+|A03|Void Posted (Auth Reversed)|
+|A04|No Update|
+|A05|Partially Approved|
+|A06|Void Posted (Auth Not Reversed)|
+|A07|Partial Void Posted|
+|A08|Partial Refund Posted|
+|A09|Incremental Auth Posted|
+|A10|Request Accepted|
+|A11|Approval (Reversal failed)|
+|A60|Terminal Offline Approval - EMV/Chip|
+|A61|Terminal Offline Approval - Swipe|
+|A62|Terminal Offline Approval - Credit|
+|D01|Denied by customer's bank|
+|D02|Invalid Expiration Date|
+|D03|Insufficient funds|
+|D04|Hold - Pick up card|
+|D05|Invalid card number|
+|D06|No account|
+|D07|Incorrect PIN|
+|D08|CSC is invalid|
+|D09|Duplicate Transaction|
+|D10|Card reported lost/stolen|
+|D11|Card reported stolen|
+|D12|Service not allowed|
+|D13|Stop Recurring|
+|D15|Maximum transaction limit is exceeded|
+|D16|Card is expired|
+|D17|Re-enter Transaction|
+|D18|Bad Amount|
+|D19|Unmapped decline|
+|D20|Billing profile configuration error|
+|D21|PIN try excdeed|
+|D22|Refund was not processed/received|
+|D24|Chargeback received|
+|D25|Refund limit is reached for the day|
+|D26|Settlement Failed|
+|D27|Transaction Error|
+|D28|Cashback limit exceeded/Cashback unavailable|
+|D29|Card is restricted|
+|D30|Call for Authorization|
+|D31|Declined due to fraud rules|
+|D32|Declined due to fraud engine decision|
+|D33|Incorrect merchant setup|
+|D34|Merchant profile configuration issue|
+|D35|Card chip decline|
+|E02|Processing Network Unavailable|
+|E03|Transaction data integrity validation error|
+|E04|Refund limit is reached for the day|
+|E06|Card is blacklisted|
+|E07|Tokenization is not supported|
+|E08|Refunds are not allowed|
+|E09|Processing Network Error|
+|E10|3D Secure Verification Failed|
+|E31|Declined due to pre-processing rules|
+|X01|Processing Cancelled by User|
+|X02|Pending processing|
+|X03|3D Secure Verification Required|
+|X04|Processing cancelled: the request has expired|
 
-Response Code | Description
-------------- | -----------
-00 | AVS Error - Retry, System unavailable or Timed out
-40 | Address not available (Address not verified)
-43 | Street address not available (not verified), ZIP matches
-44 | Address failed
-45 | Street address and ZIP don't match
-46 | Street address doesn't match, 5-digit ZIP matches
-47 | Street address doesn't match, 9-digit ZIP matches
-4A | Street address or ZIP doesn't match
-4D | Street address matches, ZIP does not
-4E | Street address and 5-digit ZIP match
-4F | Street address and ZIP match
-53 | Account holder name incorrect, billing postal code matches
-55 | Unrecognized response
-5C | Account holder name incorrect, billing address matches
-5F | Account holder name incorrect, billing address and postal code match
-70 | Account holder name matches
-73 | Account holder name and billing postal code match
-7C | Account holder name and billing address match
-7F | Account holder name, billing address and postal code match
-80 | AVS service not supported by issuer - Issuer doesn't participate in AVS
+# Test Cards and Triggers
 
-## CVV Response Codes
-
-Response Code | Description
-------------- | -----------
-M | Matches
-N | No match
-P | Not processed
-S | Should be present
-U | Issuer is not certified
-X | Unrecognized reason
-
-# Testing & Certification
-
-## Certification
-
-When you are finished developing your interface to one of the Beyond Pay solutions, please <a href='mailto:BeyondPayIntegrations@getBeyond.com'>contact us</a> to get certified and obtain your production keys!
-
-## Test Cards and Checks
+## Cards and Checks
 
 You can use the following card numbers for testing. CVV numbers are 1234 or 1111 for Amex; all others are 111 or 999.
 
