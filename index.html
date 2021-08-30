@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>Beyond Pay</title>
+    <title>Beyond Pay Developer Portal</title>
 
     <style>
       .highlight table td { padding: 5px; }
@@ -199,7 +199,6 @@
     <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
     <link href="stylesheets/print.css" rel="stylesheet" media="print" />
       <script src="javascripts/all.js"></script>
-    <link href="images/favicon.ico" rel="icon" type="image/ico" />
   </head>
 
   <body class="index" data-languages="[]">
@@ -217,7 +216,18 @@
         <ul class="search-results"></ul>
       <ul id="toc" class="toc-list-h1">
           <li>
-            <a href="#beyond-pay" class="toc-h1 toc-link" data-title="Beyond Pay">Beyond Pay</a>
+            <a href="#integration-options" class="toc-h1 toc-link" data-title="Integration Options">Integration Options</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#payment-plugins" class="toc-h2 toc-link" data-title="Payment Plugins">Payment Plugins</a>
+                  </li>
+                  <li>
+                    <a href="#payment-sdks" class="toc-h2 toc-link" data-title="Payment SDKs">Payment SDKs</a>
+                  </li>
+                  <li>
+                    <a href="#payment-apis" class="toc-h2 toc-link" data-title="Payment APIs">Payment APIs</a>
+                  </li>
+              </ul>
           </li>
           <li>
             <a href="#online-payments" class="toc-h1 toc-link" data-title="Online Payments">Online Payments</a>
@@ -293,7 +303,7 @@
                     <a href="#operation-contract" class="toc-h2 toc-link" data-title="Operation Contract">Operation Contract</a>
                   </li>
                   <li>
-                    <a href="#reporting-tips-and-examples" class="toc-h2 toc-link" data-title="Reporting Tips and Examples">Reporting Tips and Examples</a>
+                    <a href="#reporting-tips-amp-examples" class="toc-h2 toc-link" data-title="Reporting Tips &amp; Examples">Reporting Tips &amp; Examples</a>
                   </li>
               </ul>
           </li>
@@ -307,13 +317,10 @@
                     <a href="#cvv-response-codes" class="toc-h2 toc-link" data-title="CVV Response Codes">CVV Response Codes</a>
                   </li>
                   <li>
-                    <a href="#gateway-message-codes" class="toc-h2 toc-link" data-title="Gateway Message Codes">Gateway Message Codes</a>
-                  </li>
-                  <li>
                     <a href="#gateway-result-codes" class="toc-h2 toc-link" data-title="Gateway Result Codes">Gateway Result Codes</a>
                   </li>
                   <li>
-                    <a href="#payguardian-response-codes" class="toc-h2 toc-link" data-title="PayGuardian Response Codes">PayGuardian Response Codes</a>
+                    <a href="#gateway-message-codes" class="toc-h2 toc-link" data-title="Gateway Message Codes">Gateway Message Codes</a>
                   </li>
               </ul>
           </li>
@@ -333,7 +340,7 @@
             <li><a href="https://forms.office.com/Pages/ResponsePage.aspx?id=Q9V6UxGq3USJSkGsz2Jk78Ytw0d6hJlNsDOCAUz-XBhURUJXWFhEMDlDTUs3OVlROEMxOExJQzZGNS4u" class="button" target="_blank">Get API Keys</a></li>
             <li>______________</li>
             <li><a href='https://www.getbeyond.com/'>www.getbeyond.com</a></li>
-            <li>©2020 Beyond</li>
+            <li>©2021 Beyond</li>
             <li>______________</li>
             <li><a href='https://www.getbeyond.com/privacy-policy/'>Privacy Policy</a></li>
             <li><a href='https://www.getbeyond.com/ccpa/'>CCPA Consumer Privacy</a></li>
@@ -342,34 +349,78 @@
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id='beyond-pay'>Beyond Pay</h1><pre class="highlight nginx tab-nginx"><code><span class="k">GET</span> <span class="n">/BeyondPay</span>
-<span class="s">Pricing:</span> <span class="s">Transparent,</span> <span class="s">Protected</span>
-<span class="s">Integration:</span> <span class="s">Easy</span>
-<span class="s">Security:</span> <span class="s">Worry-Free</span>
-<span class="s">Service:</span> <span class="s">Top-Notch</span>
-</code></pre>
-<blockquote>
+        <blockquote>
 <p><a href="https://forms.office.com/Pages/ResponsePage.aspx?id=Q9V6UxGq3USJSkGsz2Jk78Ytw0d6hJlNsDOCAUz-XBhURUJXWFhEMDlDTUs3OVlROEMxOExJQzZGNS4u" class="button" target="_blank">Get Your Sandbox API Keys</a> and get coding now!</p>
 
-<p>Contact us if you have questions or need assistance with your integration! <a href='mailto:BeyondPayIntegrations@getbeyond.com'>BeyondPayIntegrations@getbeyond.com</a></p>
+<p>Contact us if you have questions or need help! <a href='mailto:BeyondPayIntegrations@getbeyond.com'>BeyondPayIntegrations@getbeyond.com</a></p>
 </blockquote>
 
-<p>Welcome to Beyond Pay: an omnichannel payment solution suite that enables a complete and embedded payment experience within your application.</p>
+<p>Welcome to Beyond Pay: an omnichannel payment solution suite that enables a secure and embedded payment experience within your application.</p>
+<h1 id='integration-options'>Integration Options</h1>
+<p>Whether you have an existing shopping cart or are building a custom integration, we&#39;ve got you covered!</p>
+<h2 id='payment-plugins'>Payment Plugins</h2><h3 id='woocommerce'>WooCommerce</h3>
+<p><a href="https://wordpress.org/plugins/beyond-pay-for-woocommerce/"><img src="/source/images/256x256_woo_icon.png" /></p>
 
-<p>The primary integration points to Beyond Pay include:</p>
+<p>Get Beyond Pay for WooCommerce</a></p>
+
+<p>Beyond Pay for WooCommerce enables secure payment card acceptance right from within your WooCommerce store. </p>
 
 <ul>
+<li>Pre-auth and later capture or instant sale modes</li>
+<li>Secure saving of cards on file</li>
+<li>Refund transactions directly from the Woo Order Details screen</li>
+<li>Integration with <a href="https://woocommerce.com/products/woocommerce-subscriptions/">WooCommerce Subscriptions</a> for recurring billing</li>
+<li>Interchange optimization by defaulting &quot;Level III&quot; data</li>
+<li>Custom CSS styling of the hosted payment fields</li>
+<li>Sandbox mode for development and staging</li>
+</ul>
+<h3 id='gravity-forms'>Gravity Forms</h3>
+<p><a href="https://wordpress.org/plugins/beyond-pay-for-gravity-forms/"><img src="/source/images/256x256_gravity_icon.png" /></p>
+
+<p>Get Beyond Pay for Gravity Forms</a></p>
+
+<p>Beyond Pay for Gravity Forms allows you to create customized payment workflows for order checkout, donations, event registrations, and more!</p>
+
+<ul>
+<li>Define a Gravity Forms &quot;feed&quot; for each payment form</li>
+<li>Accept payment instantly in Sale mode or capture an authorization later from the Gravity Forms &quot;Entries&quot; page</li>
+<li>Interchange optimization by defaulting &quot;Level III&quot; data</li>
+<li>Sandbox mode for development and staging</li>
+</ul>
+<h2 id='payment-sdks'>Payment SDKs</h2>
+<p>We offer several client libraries which consume the Beyond Pay APIs, making it even easier for you to integrate with your project:</p>
+
+<ul>
+<li>PHP</li>
+<li>.NET</li>
+<li>Java</li>
+<li>Android for mCommerce</li>
+<li>Android for mPOS</li>
+<li>iOS for mCommerce</li>
+<li>iOS for mPOS</li>
+</ul>
+
+<aside class="success">
+Note that "mCommerce" SDKs are for use in cardholder-initiated payments such as a consumer-facing app, while "mPOS" SDKs are for use in a merchant-facing app environment such as a mobile-based Point of Sale system.
+</aside>
+
+<aside class="warning">
+If your payment application stores, processes, or transmits sensitive cardholder data, then it may be in scope for the Payment Card Industry Payment Application Data Security Standard ("PCI PA-DSS"). You are responsible for adhering to all applicable industry standards, including PA-DSS and PCI DSS.
+</aside>
+<h2 id='payment-apis'>Payment APIs</h2>
+<p>The primary APIs for integrating to the Beyond Pay platform are:</p>
+
+<ul>
+<li><strong>TokenPay.js</strong> – an extension of Beyond Pay that combines client-side and server-side technologies for PCI-compliant online payment capture</li>
 <li><strong>Beyond Pay API</strong> - a set of robust web service APIs offering support for credit cards, ACH/checks, tokenization, and more</li>
-<li><strong>TokenPay.js</strong> – a library and methodology that combines client-side and server-side technologies for PCI-compliant online payment capture</li>
-<li><strong>PayGuardian</strong> – a web service API for semi-integration with in-person payment devices and easy support for EMV/chip cards</li>
+<li><strong>PayGuardian</strong> – a lightweight middleware application that integrates seamlessly into Point of Sale (POS) software and facilitates the secure collection of cardholder data insulating the integrator from the scope of PA-DSS and the requirements of EMV certification</li>
 </ul>
 <h1 id='online-payments'>Online Payments</h1><h2 id='getting-started'>Getting Started</h2>
 <blockquote>
-<p>To get started, include these scripts on your checkout page:</p>
+<p>To get started, include this script on your checkout page:</p>
 </blockquote>
-<pre class="highlight html tab-html"><code><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span> 
-<span class="nt">&lt;script
-  </span><span class="na">src=</span><span class="s">"https://api-test.getbeyondpay.com/Bridgepay.WebSecurity/TokenPay/js/tokenPay.js"</span><span class="nt">&gt;</span>
+<pre class="highlight html tab-html"><code><span class="nt">&lt;script
+  </span><span class="na">src=</span><span class="s">"https://api-test.getbeyondpay.com/WebSecurity/TokenPay/plain-js/tokenPay.js"</span><span class="nt">&gt;</span>
 <span class="nt">&lt;/script&gt;</span>
 </code></pre>
 <blockquote>
@@ -378,33 +429,33 @@
 <pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">tokenpay</span> <span class="o">=</span> <span class="nx">TokenPay</span><span class="p">(</span><span class="s1">'your-public-key'</span><span class="p">);</span>
 </code></pre>
 <blockquote>
-<p>Replace <code>your-public-key</code> with your publishable <a href='https://forms.office.com/Pages/ResponsePage.aspx?id=Q9V6UxGq3USJSkGsz2Jk78Ytw0d6hJlNsDOCAUz-XBhURUJXWFhEMDlDTUs3OVlROEMxOExJQzZGNS4u'>public key</a>.</p>
+<p>Replace <code>your-public-key</code> with your publishable public key</a>.</p>
 </blockquote>
 
-<p>TokenPay captures sensitive card data within the payment form of your website. The consumer remains on your payment page at all times during the checkout process, reducing potential shopping cart abandonment.</p>
+<p>TokenPay maximizes the user experience by allowing for the capture of sensitive card data within the payment form of the merchant’s website or mobile application. The consumer remains on the merchant’s payment page at all times during the checkout process.</p>
 
 <p>TokenPay is an integration interface for Beyond Pay Gateway which facilitates online card payments in a manner that ensures that no sensitive card data ever touches your servers so your integration can operate with minimized scope of PCI.</p>
 
-<p>To ensure that merchants are eligible for the simplest PCI validation method for eCommerce merchants, Self-Assessment Questionnaire A (SAQ-A), TokenPay utilizes:</p>
+<p>To ensure that merchants are eligible for the simplest PCI validation method, Self-Assessment Questionnaire A (SAQ-A), TokenPay utilizes</p>
 
 <ul>
 <li><strong>Isolation</strong> – Beyond Pay Gateway hosts the sensitive cardholder data input fields. The fields are injected into your form as an HTML iframe thus isolating your page and your server from card sensitive data.</li>
 <li><strong>Tokenization</strong> – in order to execute transactions against the user’s card, TokenPay replaces the sensitive cardholder data with a non-sensitive surrogate value (token). The token is generated via the use of the TokenPay JavaScript library and your payment form.</li>
 <li><strong>Segregation</strong> – Requests for charges against the user’s card are made server-to-server – not in the browser or mobile app where it is publicly visible. The tokenized card data is submitted to your server where a secure server-to-server request is made to execute the transaction.</li>
-<li><strong>Authentication</strong> – The injection of the TokenPay hosted input fields and card tokenization is authenticated via a public key assigned to the merchant. API requests to execute charges against the tokenized card are made by the backend server and are authenticated with a private key assigned to the merchant.</li>
+<li><strong>Public/Private Keys</strong> – The injection of the TokenPay hosted input fields and card tokenization is authenticated via a public key assigned to the merchant. API requests to execute charges against the tokenized card are made by the backend server and are authenticated with a private key assigned to the merchant.</li>
 </ul>
 <h3 id='tokenpay-js'>TokenPay.js</h3>
 <blockquote>
-<p><b>Sandbox Script (Testing):</b></p>
+<p><b>Sandbox (Testing):</b></p>
 </blockquote>
-<pre class="highlight html tab-html"><code>https://api-test.getbeyondpay.com/WebSecurity/TokenPay/plain-js/tokenPay.js
+<pre class="highlight html tab-html"><code>https://api-test.getbeyondpay.com/Bridgepay.WebSecurity/TokenPay/js/tokenPay.js
 </code></pre>
 <blockquote>
-<p><b>Live Script (Production):</b></p>
+<p><b>Live (Production):</b></p>
 </blockquote>
-<pre class="highlight html tab-html"><code>https://api.getbeyondpay.com/WebSecurity/TokenPay/plain-js/tokenPay.js
+<pre class="highlight html tab-html"><code>https://api.getbeyondpay.com/WebSecurity/TokenPay/js/tokenPay.js
 </code></pre>
-<p>TokenPay.js is the JavaScript library for building online or mobile browser checkout flows with Beyond Pay Gateway. With it, you can collect sensitive data from the cardholder and create tokens for securely sending the data to your webserver.</p>
+<p>TokenPay.js is the JavaScript library for building online or mobile checkout flows with Beyond Pay Gateway. With it, you can collect sensitive data from the cardholder and create tokens for securely sending the data to your server.</p>
 
 <p>TokenPay.js provides a ready-made UI component for collecting the sensitive card data from the user. TokenPay.js then tokenizes the information without it ever having to touch your server.</p>
 
@@ -418,18 +469,6 @@
 </ul>
 <h3 id='https-requirements'>HTTPS Requirements</h3>
 <p>All submission of payment information using TokenPay.js is made via a secure HTTPS connection. However, to protect yourself from man-in-the-middle attacks and to prevent your users from experiencing mixed content warnings in their browser, you <b>MUST</b> serve the page with your payment form over HTTPS.</p>
-<h3 id='api-keys-and-merchant-credentials'>API Keys and Merchant Credentials</h3>
-<p>For TokenPay.js, two API keys are employed: a <code>PublicKey</code> and a <code>PrivateKey</code>. The public/private key is associated with a specific <code>MerchantCode</code> and <code>MerchantAccountCode</code>.</p>
-
-<p>The <code>PublicKey</code> is utilized by the TokenPay.js JavaScript library on your payment page and is publicly visible, but this key only allows for the injection of the Payment Gateway hosted input fields. This key cannot be used to execute transactions against a card.</p>
-
-<p>The <code>PrivateKey</code> <strong>MUST</strong> be secured and <strong>never</strong> shared. The combination of the TokenPay.js-generated card payment token and private key allows for charges to be made against the associated user’s card server-side.</p>
-
-<p>The <code>PrivateKey</code> and TokenPay.js-generated card payment token may only be used with the <a href="#charge-the-single-use-token">Authorization/Sale transaction</a> (<code>RequestType</code>=004). Other transaction types, such as <a href="#refunds-and-voids">refunds</a>, require the <code>User</code> and <code>Password</code> API credentials</p>
-
-<p>If you will be supporting any transaction types other than Authorize/Sale, then you should also submit the <code>MerchantCode</code> and <code>MerchantAccountCode</code> parameters.</p>
-<h3 id='request-response-pattern'>Request/Response Pattern</h3>
-<p>Beyond Pay routes payment requests to the appropriate processing networks and returns real-time responses. Responses are returned as a web service response message. The response includes the unique transaction identifier or reference number, approval or decline response code and message, as well as a tokenized representation of the card number and the expiration date.</p>
 <h2 id='create-a-payment-form'>Create a Payment Form</h2>
 <blockquote>
 <p>To determine where to insert the UI components, create empty DOM elements with unique IDs within your payment form.</p>
@@ -473,7 +512,7 @@
 <blockquote>
 <p>If you have created the <code>customStyles</code> element to style the card entry area, change the value of <code>useStyles</code> to <code>true</code>.</p>
 
-<p>To disable the ZIP code field from appearing, set &#39;disableZip&#39; to true. You can then collect the ZIP code with the rest of your address form, for example. </p>
+<p>To disable the ZIP code field from appearing in the iframe so that it can be captured elsewhere in your form, set <code>disableZip</code> to <code>true</code>.</p>
 </blockquote>
 
 <p>To securely collect sensitive card details from your users, TokenPay.js creates UI components for you that are hosted by Beyond Pay Gateway. These are then inserted into your payment form.</p>
@@ -481,13 +520,11 @@
 <p>The TokenPay element simplifies the form and minimizes the fields required by inserting a single input field that securely collects all needed card data.</p>
 
 <aside class="warning">
-When implementing payment forms, it is strongly recommended that you utilize **reCAPTCHA**. reCAPTCHA protects payment forms from spam and bot abuse. Using reCAPTCHA on your payment forms reduces the risk of fraudulent transactions on the merchant's eCommerce sites by performing a Completely Automated Public Turing Test to Tell Computers and Humans Apart (CAPTCHA). 
-
-For more information on reducing form spam and bot abuse see <a href="https://developers.google.com/recaptcha/intro">https://developers.google.com/recaptcha/intro</a>
+When implementing payment forms, it is strongly recommended that you utilize <b>reCAPTCHA</b>. reCAPTCHA protects payment forms from spam and bot abuse. Using reCAPTCHA on your payment forms reduces the risk of fraudulent transactions on the merchant's eCommerce sites by performing a Completely Automated Public Turing Test to Tell Computers and Humans Apart (CAPTCHA). For more information on reducing form spam and bot abuse see https://developers.google.com/recaptcha/intro
 </aside>
 
-<aside class="warning">
-You should always submit the ZIP code in order to ensure the best  chances for fraud reduction as well as the lowest interchange rates. disableZip is only intended for when you will collect the ZIP code with the rest of your form data and submit it server-side with the token.
+<aside class="success">
+You should always submit the ZIP or Postal code in order to ensure the best chances for fraud reduction as well as the lowest interchange rates. "disableZip" is only intended for when you will collect the ZIP code with the rest of your form data rather than in the TokenPay iframe.
 </aside>
 <h2 id='obtain-a-token'>Obtain a Token</h2><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">form</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'paymentForm'</span><span class="p">);</span> 
 <span class="nx">$</span><span class="p">(</span><span class="s1">'#paymentForm'</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'submit'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
@@ -504,12 +541,12 @@ You should always submit the ZIP code in order to ensure the best  chances for f
   <span class="p">});</span>
 <span class="p">});</span>
 </code></pre>
-<p>The card data collected by the TokenPay element is posted from the client browser to Beyond Pay Gateway where it is converted into a single-use token. If there are any errors in the collection of the card data or creation of this token, information is automatically displayed in the <code>errorElement</code> of your payment form.</p>
+<p>The card data collected by the TokenPay element is posted from the client browser to Beyond Pay Gateway where it is converted into a token. If there are any errors in the collection of the card data or creation of the token, information is automatically displayed in the <code>errorElement</code> of your payment form.</p>
 
 <p>The token is stored as a hidden input value and passed to your server on form submission.</p>
 <h2 id='token-sale'>Token Sale</h2>
 <blockquote>
-<p>With the token and other key form fields obtained, now construct the XML payload from your server application:</p>
+<p>With the token and other form fields obtained, now construct the XML payload:</p>
 </blockquote>
 <pre class="highlight xml tab-xml"><code><span class="nt">&lt;requestHeader&gt;</span>
     <span class="nt">&lt;ClientIdentifier&gt;</span>SOAP<span class="nt">&lt;/ClientIdentifier&gt;</span>
@@ -523,14 +560,15 @@ You should always submit the ZIP code in order to ensure the best  chances for f
         <span class="nt">&lt;TransIndustryType&gt;</span>EC<span class="nt">&lt;/TransIndustryType&gt;</span>
         <span class="nt">&lt;TransactionType&gt;</span>sale<span class="nt">&lt;/TransactionType&gt;</span>
         <span class="nt">&lt;AcctType&gt;</span>R<span class="nt">&lt;/AcctType&gt;</span>
-        <span class="nt">&lt;HolderType&gt;</span>O<span class="nt">&lt;/HolderType&gt;</span>
+        <span class="nt">&lt;HolderType&gt;</span>P<span class="nt">&lt;/HolderType&gt;</span>
         <span class="nt">&lt;Amount&gt;</span>{amountInCents}<span class="nt">&lt;/Amount&gt;</span>
         <span class="nt">&lt;CurrencyCode&gt;</span>USD<span class="nt">&lt;/CurrencyCode&gt;</span>
     <span class="nt">&lt;/requestMessage&gt;</span>
-<span class="nt">&lt;/requestHeader&gt;</span>
+<span class="nt">&lt;/requestHeader&gt;</span>';
+
 </code></pre>
 <blockquote>
-<p>Encode the XML payload in Base-64 and package it within a SOAP envelope:</p>
+<p>Encode the XML payload in Base64 and package it within a SOAP envelope:</p>
 </blockquote>
 <pre class="highlight xml tab-xml"><code><span class="nt">&lt;soapenv:Envelope</span> <span class="na">xmlns:soapenv=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> <span class="na">xmlns:req=</span><span class="s">"http://bridgepaynetsecuretx.com/requesthandler"</span><span class="nt">&gt;</span>
                     <span class="nt">&lt;soapenv:Header/&gt;</span>
@@ -555,32 +593,33 @@ You should always submit the ZIP code in order to ensure the best  chances for f
 </code></pre>
 <p>Once you have securely collected and tokenized your user’s card data using TokenPay.js you can now use the single-use token to submit a transaction. Authorization or sale requests using single-use tokens must <em>ONLY</em> made from your server and not from the client.</p>
 
-<p>You will have a 15 minute window in which to complete the transaction request once you have obtained the client-side token. The token expires after the window or once used. </p>
+<p>You will have a 15 minute window in which to complete the transaction request once you have obtained the client-side token. The token expires after the window or once used.</p>
 
-<p>On your server application, collect the token information and the form POST parameters submitted by your form.</p>
+<p>On your server, collect the token information and the form POST parameters submitted by your form.</p>
 
 <p>Now submit the token and parameters according to the example XML request, with the following substitutions:</p>
 
 <ul>
 <li><code>{transactionId}</code> - unique transaction ID generated by your application for tracking purposes</li>
-<li><code>{requestDateTime}</code> - date and time of the transaction in <code>yyyMMddHHmmss</code> format</li>
-<li><code>{yourPrivateKey}</code> - your private API key, obtainable <a href='https://forms.office.com/Pages/ResponsePage.aspx?id=Q9V6UxGq3USJSkGsz2Jk78Ytw0d6hJlNsDOCAUz-XBhURUJXWFhEMDlDTUs3OVlROEMxOExJQzZGNS4u'>here.</a></li>
+<li><code>{requestDateTime}</code> - date and time of the transaction in <code>yyyyMMddHHmmss</code> format</li>
+<li><code>{yourPrivateKey}</code> - your private API key, obtainable <a href='https://forms.gle/AMxdRZTsS6skq2DEA'>here.</a></li>
 <li><code>{token}</code> - token delivered in the submission of your payment form</li>
 <li><code>{amountInCents}</code> - transaction amount in cents ($1.25 would be 125)</li>
 <li><code>{yourSoftwareName}</code> - the name and version number of your software application</li>
 </ul>
 
-<p>After your transaction has been successfully submitted to the gateway, make sure you parse and inspect the response message. Specifically, look at:</p>
+<p>After your transaction has been successfully submitted to the gateway, make sure you inspect the response message. Specifically, look at:</p>
 
 <ul>
-<li><code>ResponseCode</code> - a 5 digit <a href="#gateway-result-codes">response code</a> indicating the status of the transaction request</li>
+<li><code>ResponseCode</code> - a 5 digit response code indicating the status of the transaction request</li>
 <li><code>ResponseDescription</code>- a verbose description of the ResponseCode</li>
-<li><code>GatewayMessage</code> - an additional <a href="#gateway-message-codes">response code</a> that may provide further information on the status of the transaction</li>
-<li><code>AVSResult</code> - a <a href="#avs-response-codes">response code</a> indicating the status of the Address Verification System request, if any</li>
+<li><code>GatewayResult</code> - an additional response code that may provide additional information on the status of the transaction</li>
+<li><code>GatewayMessage</code> - a verbose description of the GatewayResult</li>
+<li><code>AVSResult</code> - a code indicating the status of the Address Verification System request, if any</li>
 <li><code>AVSMessage</code> - a verbose description of the AVSResult code meaning</li>
-<li><code>CVResult</code> - a <a href="#cvv-response-codes">response code</a> indicating the status of the Card Security Code (aka CVV2, CID) sent in the request message</li>
+<li><code>CVResult</code> - a code indicating the status of the Card Security Code (aka CVV2, CID) sent in the request message</li>
 <li><code>CVMessage</code> - a verbose description of the CVResult code meaning</li>
-<li><code>Token</code> - a non-sensitive representation of the card number used in the transaction. The last four digits are the same as the last four digits of the card number. This value may be persisted and used for <a href="#repeat-sales-and-cards-on-file">subsequent card-on-file transactions</a> from the same cardholder. </li>
+<li><code>Token</code> - a non-sensitive representation of the card number used in the transaction. The last four digits are the same as the last four digits of the card number. This value can be persisted and used for <a href="#repeat-sales-and-cards-on-file">future recurring transactions from the same cardholder</a>. </li>
 </ul>
 
 <aside class="warning">
@@ -602,15 +641,16 @@ You should always inspect the AVSResult and CVResult fields as these can be good
         <span class="nt">&lt;TransIndustryType&gt;</span>EC<span class="nt">&lt;/TransIndustryType&gt;</span>
         <span class="nt">&lt;TransactionType&gt;</span>sale-auth<span class="nt">&lt;/TransactionType&gt;</span>
         <span class="nt">&lt;AcctType&gt;</span>R<span class="nt">&lt;/AcctType&gt;</span>
-        <span class="nt">&lt;HolderType&gt;</span>O<span class="nt">&lt;/HolderType&gt;</span>
+        <span class="nt">&lt;HolderType&gt;</span>P<span class="nt">&lt;/HolderType&gt;</span>
         <span class="nt">&lt;Amount&gt;</span>{amountInCents}<span class="nt">&lt;/Amount&gt;</span>
         <span class="nt">&lt;CurrencyCode&gt;</span>USD<span class="nt">&lt;/CurrencyCode&gt;</span>
         <span class="nt">&lt;SettlementDelay&gt;</span>{daysToDelay}<span class="nt">&lt;/SettlementDelay&gt;</span>
     <span class="nt">&lt;/requestMessage&gt;</span>
-<span class="nt">&lt;/requestHeader&gt;</span>
+<span class="nt">&lt;/requestHeader&gt;</span>';
+
 </code></pre>
 <blockquote>
-<p>In order to actually capture that authorization and charge the card, you must submit 019 capture <code>RequestType</code>, passing the original sale-auth <code>GatewayTransId</code> in the &#39;ReferenceNumber&#39; field, and using the <code>User</code> and <code>Password</code> credentials instead of <code>AuthenticationTokenId</code> and <code>PrivateKey</code> to authenticate:</p>
+<p>In order to capture that authorization and charge the card, you must submit 019 capture <code>RequestType</code>, passing the original sale-auth <code>ReferenceNumber</code>, and using the <code>User</code> and <code>Password</code> credentials instead of <code>AuthenticationTokenId</code> and <code>PrivateKey</code> to authenticate:</p>
 </blockquote>
 <pre class="highlight xml tab-xml"><code><span class="nt">&lt;requestHeader&gt;</span>
     <span class="nt">&lt;ClientIdentifier&gt;</span>SOAP<span class="nt">&lt;/ClientIdentifier&gt;</span>
@@ -619,26 +659,27 @@ You should always inspect the AVSResult and CVResult fields as these can be good
     <span class="nt">&lt;RequestDateTime&gt;</span>{requestDateTime}<span class="nt">&lt;/RequestDateTime&gt;</span>
     <span class="nt">&lt;User&gt;</span>{Beyond-assigned username}<span class="nt">&lt;/User&gt;</span>
     <span class="nt">&lt;Password&gt;</span>{Beyond-assigned password}<span class="nt">&lt;/Password&gt;</span>
-    <span class="nt">&lt;requestMessage&gt;</span>
+    <span class="nt">&lt;requestMessage&gt;</span>                    
+        <span class="nt">&lt;TransactionCode&gt;</span>{must match header transaction ID}<span class="nt">&lt;/TransactionCode&gt;</span>
         <span class="nt">&lt;SoftwareVendor&gt;</span>{yourSoftwareName}<span class="nt">&lt;/SoftwareVendor&gt;</span>
         <span class="nt">&lt;TransactionType&gt;</span>capture<span class="nt">&lt;/TransactionType&gt;</span>
-        <span class="nt">&lt;ReferenceNumber&gt;</span>{original sale-auth GatewayTransId from response}<span class="nt">&lt;/ReferenceNumber&gt;</span>
+        <span class="nt">&lt;ReferenceNumber&gt;</span>{original sale-auth ReferenceNumber from response}<span class="nt">&lt;/ReferenceNumber&gt;</span>
         <span class="nt">&lt;Amount&gt;</span>{amountInCents}<span class="nt">&lt;/Amount&gt;</span>
     <span class="nt">&lt;/requestMessage&gt;</span>
-<span class="nt">&lt;/requestHeader&gt;</span>
+<span class="nt">&lt;/requestHeader&gt;</span>';
 </code></pre>
 <p>Sometimes you may not want to accept payment right away for a transaction, such as when shipping physical goods. The normal practice in this scenario is to first authorize a card which will place a hold on the funds, and then to later &quot;capture&quot; that authorization when the order is fulfilled.</p>
 
-<p>The <code>SettlementDelay</code> tag can be added for sale-auth transactions, and designates the number of batch cycles that the authorization remains &quot;open&quot; (or unsettled). If the sale-auth transaction is not captured before completion of the designated number of batches, then the original authorization will be automatically voided and not captured.</p>
+<p>The <code>SettlementDelay</code> tag can be added for sale-auth transactions, and designates the number of batch cycles that the authorization remains &quot;open&quot; (or uncaptured). If the sale-auth transaction is not captured before completion of the designated number of batches, then the original authorization will be automatically voided and not captured.</p>
 
-<p>To capture an authorization (sometimes called a &quot;pre-auth&quot;), simply submit a <code>RequestType</code> of <code>019</code> for capture, along with passing the reference number of the original authorization as shown here.</p>
+<p>To capture an authorization, simply submit a <code>RequestType</code> of <code>019</code> for capture, along with passing the reference number of the original authorization as shown here.</p>
 
 <aside class="notice">
-This capture request and several other API requests described here may take differing credentials in order to authenticate the client. All such credentials will be provided by Beyond for testing and production.</a>.
+This capture request and several other API requests described here may take differing credentials in order to authenticate the client. All such credentials will be provided by Beyond for testing and production.
 </aside>
 <h2 id='repeat-sales-and-cards-on-file'>Repeat Sales and Cards-on-File</h2>
 <blockquote>
-<p>The <code>Token</code> element represents a card number and is valid so long a the card is valid. It may be used as input in a transaction in lieu of the <code>PaymentAccountNumber</code> or the <code>AuthenticationTokenId</code>, and also requires the <code>ExpirationDate</code> field to be submitted with it.</p>
+<p>The <code>Token</code> element represents a card number, can be used multiple times, and does not expire. It may be used as input in a transaction in lieu of the <code>PaymentAccountNumber</code> or the <code>AuthenticationTokenId</code>, and also requires the <code>ExpirationDate</code> field to be submitted with it.</p>
 </blockquote>
 <pre class="highlight xml tab-xml"><code><span class="nt">&lt;requestHeader&gt;</span>
     <span class="nt">&lt;ClientIdentifier&gt;</span>SOAP<span class="nt">&lt;/ClientIdentifier&gt;</span>
@@ -654,7 +695,7 @@ This capture request and several other API requests described here may take diff
         <span class="nt">&lt;TransactionType&gt;</span>sale<span class="nt">&lt;/TransactionType&gt;</span>
         <span class="nt">&lt;TransIndustryType&gt;</span>EC<span class="nt">&lt;/TransIndustryType&gt;</span>
         <span class="nt">&lt;AcctType&gt;</span>R<span class="nt">&lt;/AcctType&gt;</span>
-        <span class="nt">&lt;HolderType&gt;</span>O<span class="nt">&lt;/HolderType&gt;</span>
+        <span class="nt">&lt;HolderType&gt;</span>P<span class="nt">&lt;/HolderType&gt;</span>
         <span class="nt">&lt;Amount&gt;</span>{amountInCents}<span class="nt">&lt;/Amount&gt;</span>
         <span class="nt">&lt;CurrencyCode&gt;</span>USD<span class="nt">&lt;/CurrencyCode&gt;</span>
     <span class="nt">&lt;/requestMessage&gt;</span>
@@ -664,11 +705,7 @@ This capture request and several other API requests described here may take diff
 
 <p>This Token value may be persisted and, with the cardholder&#39;s permission, associated with their user account in your application in order to make future purchases with the same card (&quot;card-on-file&quot;).</p>
 
-<p>Submitting a sale or sale-auth transaction with the Token as input requires use of the User and Password credentials in the request message, and also requires that the card <code>ExpirationDate</code> value be persisted and stored with the <code>Token</code> (the <code>ExpirationDate</code> value is returned in the original response message along with the <code>Token</code>).</p>
-
-<aside class="notice">
-The Token value returned from sale and authorization transactions is different than the client-side token from TokenPay.js and which is intended to be used with the AuthenticationTokenId field.
-</aside>
+<p>Submitting a sale or sale-auth transaction with the Token as input requires use of the <code>User</code> and <code>Password</code> credentials in the request message, and also requires that the card <code>ExpirationDate</code> value be persisted and stored with the <code>Token</code> (the <code>ExpirationDate</code> value is returned in the original response message along with the <code>Token</code>).</p>
 <h2 id='refunds-and-voids'>Refunds and Voids</h2>
 <blockquote>
 <p>The <code>GatewayTransId</code> is returned in the response to a previous sale or sale-auth request and may be used as input to refund or void that original transaction.</p>
@@ -697,7 +734,7 @@ You may refund/void the full amount of an original transaction or only part of t
 <p>Some business cards may be eligible for lower interchange rates if you send additional data with the transaction. Beyond Pay supports these additional data fields and can help you or your clients secure <a href="https://www.getbeyond.com/b2b-payment-solutions/">these significantly reduced rates and other B2B benefits</a>.</p>
 <h3 id='level-ii-data'>Level II Data</h3>
 <blockquote>
-<p>Sample sale transaction with TokenPay.js and Level II data:</p>
+<p>Sample sale transaction via TokenPay.js, including Level II data:</p>
 </blockquote>
 <pre class="highlight xml tab-xml"><code><span class="nt">&lt;requestHeader&gt;</span>
     <span class="nt">&lt;ClientIdentifier&gt;</span>SOAP<span class="nt">&lt;/ClientIdentifier&gt;</span>
@@ -717,21 +754,21 @@ You may refund/void the full amount of an original transaction or only part of t
         <span class="nt">&lt;InvoiceNum&gt;</span>{yourInvoiceNumber}<span class="nt">&lt;/InvoiceNum&gt;</span>
         <span class="nt">&lt;PONum&gt;</span>{yourPONumber}<span class="nt">&lt;/PONum&gt;</span>
         <span class="nt">&lt;CustomerAccountCode&gt;</span>{customerCode}<span class="nt">&lt;/CustomerAccountCode&gt;</span>
-        <span class="nt">&lt;LocalTaxAmount&gt;</span>{taxAmount}<span class="nt">&lt;/LocalTaxAmount&gt;</span>
-        <span class="nt">&lt;LocalTaxIndicator&gt;</span>P<span class="nt">&lt;/LocalTaxIndicator&gt;</span>
+        <span class="nt">&lt;TaxAmount&gt;</span>{taxAmount}<span class="nt">&lt;/TaxAmount&gt;</span>
+        <span class="nt">&lt;TaxIndicator&gt;</span>P<span class="nt">&lt;/TaxIndicator&gt;</span>
     <span class="nt">&lt;/requestMessage&gt;</span>
 <span class="nt">&lt;/requestHeader&gt;</span>
 </code></pre>
-<p>In order for a transaction to qualify at reduced &quot;Level II&quot; interchange rates, assuming the card is eligible for such, the following fields should be provided in the XML message to the gateway in addition to the basic required fields given in the <a href="#charge-the-single-use-token">instructions for processing a basic sale transaction</a>:</p>
+<p>In order for a transaction to qualify at reduced &quot;Level II&quot; interchange rates, assuming the card is eligible for such, the following fields should be provided in the XML message to the gateway in addition to the basic required fields given in the <a href="#token-sale">instructions for processing a basic sale transaction</a>:</p>
 
 <ul>
 <li><code>PONum</code> - the customer&#39;s Purchase Order number; may be up to 24 alphanumeric characters and hyphens</li>
 <li><code>LocalTaxAmount</code> - applicable tax amount in cents (implied decimal); must be less than the total transaction <code>Amount</code></li>
-<li><code>LocalTaxIndicator</code> - may be <code>P</code> (Provided), <code>N</code> (Not Provided), or <code>E</code> (Exempt). Use <code>P</code> if you are sending a value in <code>LocalTaxAmount</code>, or <code>E</code> if you are tax-exempt</li>
+<li><code>LocalTaxIndicator</code> - may be <code>P</code> (Provided), <code>N</code> (Not Provided), or <code>E</code> (Exempt). Use P if you are sending a value in <code>LocalTaxAmount</code>, or E if you are tax-exempt</li>
 </ul>
 <h3 id='level-iii-data'>Level III Data</h3>
 <blockquote>
-<p>Sample sale transaction with TokenPay.js and Level III line-item details:</p>
+<p>Sample sale transaction via TokenPay.js with Level III line-item details:</p>
 </blockquote>
 <pre class="highlight xml tab-xml"><code><span class="nt">&lt;requestHeader&gt;</span>
     <span class="nt">&lt;ClientIdentifier&gt;</span>SOAP<span class="nt">&lt;/ClientIdentifier&gt;</span>
@@ -751,8 +788,8 @@ You may refund/void the full amount of an original transaction or only part of t
         <span class="nt">&lt;InvoiceNum&gt;</span>{yourInvoiceNumber}<span class="nt">&lt;/InvoiceNum&gt;</span>
         <span class="nt">&lt;PONum&gt;</span>{yourPONumber}<span class="nt">&lt;/PONum&gt;</span>
         <span class="nt">&lt;CustomerAccountCode&gt;</span>{customerCode}<span class="nt">&lt;/CustomerAccountCode&gt;</span>
-        <span class="nt">&lt;LocalTaxAmount&gt;</span>{taxAmount}<span class="nt">&lt;/LocalTaxAmount&gt;</span>
-        <span class="nt">&lt;LocalTaxIndicator&gt;</span>P<span class="nt">&lt;/LocalTaxIndicator&gt;</span>
+        <span class="nt">&lt;TaxAmount&gt;</span>{taxAmount}<span class="nt">&lt;/TaxAmount&gt;</span>
+        <span class="nt">&lt;TaxIndicator&gt;</span>P<span class="nt">&lt;/TaxIndicator&gt;</span>
         <span class="nt">&lt;ItemCount&gt;</span>1<span class="nt">&lt;/ItemCount&gt;</span>
         <span class="nt">&lt;Item&gt;</span>
           <span class="nt">&lt;ItemCode&gt;</span>{itemSKU}<span class="nt">&lt;/ItemCode&gt;</span>
@@ -766,9 +803,9 @@ You may refund/void the full amount of an original transaction or only part of t
     <span class="nt">&lt;/requestMessage&gt;</span>
 <span class="nt">&lt;/requestHeader&gt;</span>
 </code></pre>
-<p>Cards that are eligible for Level III interchange rates are typically corporate purchasing or some travel cards. If a card is eligible for such, you can achieve a reduced interchange rate by providing the following fields in your gateway request message (in addition to <a href="#level-ii-data">those required for Level II</a> and <a href="#charge-the-single-use-token">basic sale or &quot;Level I&quot; transactions</a>).</p>
+<p>Cards that are eligible for Level III interchange rates are typically corporate purchasing or some travel cards. If a card is eligible for such, you can achieve a reduced interchange rate by providing the following fields in your gateway request message (in addition to those required for Level II and basic sale or &quot;Level I&quot; transactions).</p>
 
-<p>Note that Level III transactions require line-item details from the purchase. You should send one <code>Item</code> array for each line item on a given invoice; many integrators will dynamically map these required fields into their existing inventory, order management, or ERP systems. Alternatively, if you only sell one type of item, you may consider creating a static mapping of these fields, or &quot;hard-coding&quot; the values specific to your business.</p>
+<p>Note that Level III transactions require line-item details from the purchase. You should send one Item array for each line item on a given invoice; many integrators will dynamically map these required fields into their existing inventory, order management, or ERP systems. Alternatively, if you only sell one type of item, you may consider creating a static mapping of these fields, or &quot;hard-coding&quot; the values specific to your business.</p>
 
 <ul>
 <li><code>ItemCount</code> - the total number of line items being submitted in this request</li>
@@ -807,21 +844,23 @@ In general, for most card brands and card issuers, the presence of a value in th
 
 <p>In addition to passing the routing and account number, you also need to specify whether the bank account is a checking or savings account, as well as the &quot;Standard Entry Class&quot; code as defined by NACHA.</p>
 
-<ul>
-<li><code>WEB</code> - Internet-Initiated Entry</li>
-<li><code>PPD</code> - Prearranged Payment and Deposit - for consumer checks (requires written authorization from customer)</li>
-<li><code>CCD</code> - Corporate Credit or Debit - for business checks (requires written authorization from customer)</li>
-<li><code>TEL</code> - Telephone-Initiated Entry</li>
-</ul>
+<p><code>WEB</code> - Internet-Initiated Entry
+<code>PPD</code> - Prearranged Payment and Deposit - for consumer checks (requires written authorization from customer)
+<code>CCD</code> - Corporate Credit or Debit - for business checks (requires written authorization from customer)
+<code>TEL</code> - Telephone-Initiated Entry</p>
 
 <aside class="notice">
 Different NACHA SEC codes require different types of authorizations from or disclosure to your customer:
-<br><b>WEB</b> - <a href='https://www.nacha.org/system/files/resources/Authorization_0.pdf'>best practices for authorization and sample language</a>
-<br><b>CCD</b> and <b>PPD</b> - <a href='http://www.checktraining.com/docs/general/Programs/ACH%20Debit/ACH_Debit_auth_form.pdf'>sample consumer authorization form</a>
-<br><b>TEL</b> - <a href='http://www.checktraining.com/docs/general/Programs/Check%20By%20Phone/Checks-By-Phone_sample_script.pdf'>sample script for IVR</a> or <a href='http://www.checktraining.com/docs/general/Programs/Check%20By%20Phone/Checks-By-Phone_written_auth.pdf'>sample written authorization form</a>
+<br><b>WEB</b> - <a href="https://www.nacha.org/system/files/resources/Authorization_0.pdf">best practices for authorization and sample language</a>
+<br><b>CCD</b> and <b>PPD</b> - <a href="http://www.checktraining.com/docs/general/Programs/ACH%20Debit/ACH_Debit_auth_form.pdf">sample consumer authorization form</a>
+<br><b>TEL</b> - <a href="http://www.checktraining.com/docs/general/Programs/Check%20By%20Phone/Checks-By-Phone_sample_script.pdf">sample script for IVR</a> or <a href="http://www.checktraining.com/docs/general/Programs/Check%20By%20Phone/Checks-By-Phone_written_auth.pdf">sample written authorization form</a>
 </aside>
 <h1 id='in-person-payments'>In-Person Payments</h1><h2 id='overview'>Overview</h2>
-<p>If you are developing a payment application or point of sale (POS) system for use by only your business, then that application falls in your scope of PCI DSS compliance as a merchant. If you are developing a POS to sell or license to other businesses, that application is in scope for PCI Payment Application Data Security Standard (PA-DSS) if it interacts with card data. If that application is hosted/SaaS-based then you may also be in-scope PCI Service Provider (similar to a gateway provider).</p>
+<p>If you are developing a payment application or point of sale (POS) system for use by only your business, then that application falls in your scope of PCI DSS compliance as a merchant. </p>
+
+<p>If you are developing a POS to sell or license to other businesses, that application is in scope for PCI Payment Application Data Security Standard (PA-DSS) if it interacts with card data. </p>
+
+<p>If that application is hosted/SaaS-based then you may also be in-scope PCI Service Provider (similar to a gateway provider).</p>
 
 <p>The costs involved in validating PCI compliance for such software can be prohibitive for Indepdendent Software Vendors (ISVs). Increasingly, ISVs are also expected to offer support for EMV or chip cards: direct integration of which can also be very costly and time-consuming.</p>
 
@@ -836,12 +875,12 @@ Different NACHA SEC codes require different types of authorizations from or disc
 <li><a href="https://www.paxtechnology.com/a80">PAX A80</a></li>
 </ul>
 
-<p>Development devices are available to purchase by request. Please contact <a href='mailto:BeyondPayIntegrations@getbeyond.com'>BeyondPayIntegrations@getbeyond.com</a>.</p>
+<p>Development devices are available to purchase by request. Please contact <a href="mailto:BeyondPayIntegrations@getbeyond.com">BeyondPayIntegrations@getbeyond.com</a>.</p>
 
 <p>Beyond will provide development and production devices pre-configured with the necessary account information and settings. The only credential you will need to communicate with the device is its UUID or &quot;locationID&quot;, which will be provided by Beyond and can also be confirmed in the PayGuardian Cloud app on the the terminal device.</p>
 <h2 id='getting-started-2'>Getting Started</h2>
 <blockquote>
-<p><b>Cloud Service (Test and Prod):</b></p>
+<p><b>Web Service (Test and Production):</b></p>
 </blockquote>
 <pre class="highlight html tab-html"><code>https://pgc.bridgepaynetsecuretx.com/req/payment
 </code></pre>
@@ -920,30 +959,24 @@ Different NACHA SEC codes require different types of authorizations from or disc
 
 <ul>
 <li><code>locationID</code> - the UUID from the PayGuardian Cloud app installed on the device</li>
-<li><code>mode</code> - indicates what environment to use; options are: <code>UAT</code> for testing and development and <code>PROD</code> for production/live usage</li>
-<li><code>amount</code> - the amount of the transaction</li>
-<li><code>softwareVendor</code> - the name and version of your POS or application</li>
-<li><code>tenderType</code> - the type of payment to expect; common values are: <code>UNKNOWN</code>, <code>CREDIT</code>, <code>DEBIT</code>, <code>CHECK</code>, <code>GIFT</code></li>
-<li><code>transType</code> - the type of transaction to perform; common values are: <code>SALE</code>, <code>SALE_AUTH</code>, <code>REFUND</code>, <code>VOID</code>, <code>TOKENADD</code>, <code>CAPTURE</code></li>
+<li><code>mode</code> - indicates what environment to use; options are: UAT for testing and development and PROD for production/live usage</li>
+<li><code>amount</code> - the amount of the transaction
+<code>softwareVendor</code> - the name and version of your POS or application
+<code>tenderType</code> - the type of payment to expect; common values are: <code>UNKNOWN</code>, <code>CREDIT</code>, <code>DEBIT</code>, <code>CHECK</code>, <code>GIFT</code>
+<code>transType</code> - the type of transaction to perform; common values are: <code>SALE</code>, <code>SALE_AUTH</code>, <code>REFUND</code>, <code>VOID</code>, <code>TOKENADD</code>, <code>CAPTURE</code></li>
 </ul>
 
-<p>If the card is an EMV/chip card, then the user will be presented with an option to select whichever Applications reside on the chip (that is, they can select an Application ID associated with either Credit or Debit, depending on their card) regardless of what tender type is sent in the request. This is the primary usage of the <code>UNKNOWN</code> tender type as well.</p>
+<p>If the card is an EMV/chip card, then the user will be presented with an option to select whichever Applications reside on the chip (that is, they can select an Application ID associated with either Credit or Debit, depending on their card) regardless of what tender type is sent in the request. If the <code>UNKNOWN</code> tender type is used, the cardholder will similarly be prompted to select either the credit or debit application on the chip.</p>
 
 <p>If the card is magnetic stripe only and capable of being processed as either a debit or a credit transaction, then it will be processed as whatever tender type is sent in the request. If <code>UNKNOWN</code> is selected, the cardholder will likewise be prompted to make the selection.</p>
 
 <p>Transaction types may be defined as follows:</p>
 
-<ul>
-<li><code>SALE</code> - authorizes a card and captures it, placing it in the batch for settlement</li>
-<li><code>SALE_AUTH</code> - authorizes a card but does not capture it, holding the cardholder&#39;s funds until the capture transaction is performed (or until 7 days at which time the authorization is voided)</li>
-<li><code>REFUND</code> - this is the preferred transaction for both refunding and voiding; if the original transaction is still in an unsettled batch, the gateway will perform a void/reversal transaction; if the original transaction has already settled, then the gateway will perform a refund to the original card. See below notice.</li>
-<li><code>TOKENADD</code> - this transaction only tokenizes a given card number and does not perform any financial adjustments to the account</li>
-<li><code>CAPTURE</code> - used to capture a previous <code>SALE_AUTH</code> transaction and add it to the batch for settlement</li>
-</ul>
-
-<aside class="notice">
-You may refund/void the full amount of an original transaction or only part of the amount (a "partial refund" or "partial reversal"). If the transaction is in the current open (unsettled) batch, then only a single void (for the full amount or partial amount) may be performed. If the transaction has settled, the refund request transaction may be repeated for multiple partial refunds up to the amount of the original transaction.
-</aside>
+<p><code>SALE</code> - authorizes a card and captures it, placing it in the batch for settlement
+<code>SALE_AUTH</code> - authorizes a card but does not capture it, holding the cardholder&#39;s funds until the capture transaction is performed (or until 7 days at which time the authorization is voided)
+<code>REFUND</code> - this is the preferred transaction for both refunding and voiding; if the original transaction is still in an unsettled batch, the gateway will perform a void/reversal transaction; if the original transaction has already settled, then the gateway will perform a refund to the original card. See below notice.
+<code>TOKENADD</code> - this transaction only tokenizes a given card number and does not perform any financial adjustments to the account
+<code>CAPTURE</code> - used to capture a previous <code>SALE_AUTH</code> transaction and add it to the batch for settlement</p>
 
 <aside class="notice">
 Additional data elements are presented in the following sections that cover industry-specific use cases and provide more detailed workflows.
@@ -975,11 +1008,11 @@ Additional data elements are presented in the following sections that cover indu
 </ul>
 
 <aside class="notice">
-Partial authorization support is required for some merchant types and strongly encouraged for all others in order to reduce declines on prepaid open-loop (branded) cards when there are insufficient funds to cover the total amount of the transaction. See the <a href='https://usa.visa.com/dam/VCOM/global/support-legal/documents/visa-partial-authorization-service.pdf'>Visa Partial Authorization Service Guide</a> for more details.
+Partial authorization support is required for some merchant types and strongly encouraged for all others in order to reduce declines on prepaid open-loop (branded) cards when there are insufficient funds to cover the total amount of the transaction. See the <a href="https://usa.visa.com/dam/VCOM/global/support-legal/documents/visa-partial-authorization-service.pdf">Visa Partial Authorization Service Guide</a> for more details.
 </aside>
 <h2 id='tips-amp-gratuities'>Tips &amp; Gratuities</h2>
 <blockquote>
-<p><code>CREDIT</code>+<code>ADJUSTMENT</code> request:</p>
+<p><code>CREDIT</code> + <code>ADJUSTMENT</code> request:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
 </span><span class="s2">"locationID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"C832D913-982C-4256-9895-2DD13BDA5947"</span><span class="p">,</span><span class="w">
@@ -991,7 +1024,7 @@ Partial authorization support is required for some merchant types and strongly e
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
-<p><code>CREDIT</code>+<code>ADJUSTMENT</code> response:</p>
+<p><code>CREDIT</code> + <code>ADJUSTMENT</code> response:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
 </span><span class="s2">"requestID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"388c37acbd88d7f00fce90ffee8b83c156efedb57828c1e8439e6284"</span><span class="p">,</span><span class="w">
@@ -1035,7 +1068,9 @@ Partial authorization support is required for some merchant types and strongly e
 </span><span class="s2">"transactionCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p><code>tenderType</code>=<code>CREDIT</code> and <code>transType</code>=<code>ADJUSTMENT</code> will adjust a previous <code>SALE</code> or <code>SALE_AUTH</code> adding a tip amount based on a <code>pnRefNum</code>. This can only be performed on unsettled transactions in an open batch. If successful, the response will contain the new total approved amount: (initial amount) + (tip amount).</p>
+<p><code>tenderType</code>=<code>CREDIT</code> and <code>transType</code>=<code>ADJUSTMENT</code> will adjust a previous <code>SALE</code> or <code>SALE_AUTH</code> adding a tip amount based on a <code>pnRefNum</code> (previous transaction reference number). This action can only be performed on unsettled transactions in an open batch. </p>
+
+<p>If successful, the response will contain the new total approved amount: (initial amount) + (tip amount).</p>
 <h2 id='lodging-amp-hotels'>Lodging &amp; Hotels</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
 </span><span class="s2">"locationID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your-locationID"</span><span class="p">,</span><span class="w">
 </span><span class="s2">"mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UAT"</span><span class="p">,</span><span class="w">
@@ -1085,9 +1120,11 @@ Partial authorization support is required for some merchant types and strongly e
 <p>Payment systems and Points of Sale for pharmacy merchants are required to pass some of these additional data fields in conjunction with their implementation of &quot;auto-substantiation&quot; using an &quot;inventory information approval system&quot; (IIAS). See <a href="https://sig-is.org/">sig-is.org</a> for more information.</p>
 <h1 id='transaction-reporting'>Transaction Reporting</h1>
 <blockquote>
-<p><a href='https://www.dropbox.com/s/epf9jhj5swi5q68/BridgePay_Reporting%20_API.zip?dl=0'>Reporting SDK (C#)</a></p>
+<p><a href='https://www.dropbox.com/s/h7ih2g47w8b8v39/BridgePay%20Public%20Reporting%20API%20v1%200%201.pdf?dl=0'>Reporting Developer Guide</a></p>
 
-<p>Web Service: <a href='https://api.getbeyondpay.com/Reporting.API/ReportingAPI.svc'>https://api.getbeyondpay.com/Reporting.API/ReportingAPI.svc</a></p>
+<p><a href='https://www.dropbox.com/s/epf9jhj5swi5q68/BridgePay_Reporting%20_API.zip?dl=0'>Reporting API (Visual Studio)</a></p>
+
+<p>Service: <a href='https://www.bridgepaynetsecuretest.com/Bridgepay.Reporting.API/ReportingAPI.svc'>https://www.bridgepaynetsecuretest.com/Bridgepay.Reporting.API/ReportingAPI.svc</a></p>
 
 <p>C# sample implementation:</p>
 </blockquote>
@@ -1315,7 +1352,7 @@ Partial authorization support is required for some merchant types and strongly e
 </tr>
 </tbody></table>
 
-<p>The <code>TransResults</code> field works by mapping theb 5-digit Beyond Pay <a href="#gateway-result-codes">Gateway Result code</a> back to the gateway response code (the <code>ResponseCode</code> or <a href="#gateway-message-codes">Gateway Message code</a> field in this contract).  In some cases, more than one mapping may exist for a given code.  It is recommended that you use the <code>ResponseCode</code> or <a href="#gateway-message-codes">Gateway Message code</a> field for more granular filtering. The <code>ExcludeTransResults</code> field can modify the behavior of the <code>TransResults</code> field by establishing a &quot;not in&quot; condition.</p>
+<p>The TransResults field works by mapping the BridgeComm 5-digit response code back to the gateway response code (the ResponseCode field in this contract).  In some cases, more than one mapping may exist for a given code.  It is recommended that you use the ResponseCode field for more granular filtering. The ExcludeTransResults field can modify the behavior of the TransResults field by establishing a “not in” condition.</p>
 <h3 id='transactionset'>TransactionSet</h3>
 <table><thead>
 <tr>
@@ -1331,7 +1368,7 @@ Partial authorization support is required for some merchant types and strongly e
 </tr>
 <tr>
 <td>TransactionList</td>
-<td>List<TransactionRow></td>
+<td>List</td>
 <td>A collection of TransactionRow objects.</td>
 </tr>
 </tbody></table>
@@ -1549,20 +1586,21 @@ Partial authorization support is required for some merchant types and strongly e
 <td>Indicates whether or not the transaction was voided before the batch was settled</td>
 </tr>
 </tbody></table>
-<h3 id='operation-contract'>Operation Contract</h3>
+<h2 id='operation-contract'>Operation Contract</h2>
 <blockquote>
 <p>This method returns a <code>TransactionSet</code> object as described above:</p>
 </blockquote>
-<pre class="highlight csharp"><code><span class="nf">PublicGetTransactionsByFilter</span><span class="p">(</span><span class="n">Credentials</span> <span class="n">credentials</span><span class="p">,</span> <span class="n">TransactionRowFilter</span> <span class="n">filterObject</span><span class="p">)</span>
+<pre class="highlight csharp tab-csharp"><code><span class="nf">PublicGetTransactionsByFilter</span><span class="p">(</span><span class="n">Credentials</span> <span class="n">credentials</span><span class="p">,</span> <span class="n">TransactionRowFilter</span> <span class="n">filterObject</span><span class="p">)</span>
+
 </code></pre>
 <p>At this time, the Reporting API provides only one operation contract for retrieving transactional data.</p>
-<h3 id='reporting-tips-and-examples'>Reporting Tips and Examples</h3>
-<p>There are two types of parameters in the TransactionRowFilter object: DBQuery Filters and Post-Query Filters. </p>
+<h2 id='reporting-tips-amp-examples'>Reporting Tips &amp; Examples</h2>
+<p>There are two types of parameters in the TransactionRowFilter object: DBQuery Filters and Post-Query Filters.</p>
 
 <p>Most of the parameters in the filter are DBQuery filters that are used directly against the persisted data store that contains the transactional data. However, some of the filters are Post-Query filters, meaning the filters are not applied until after the persisted data is retrieved. Post-Query filters have transformational logic that is better suited after the bulk of the query has been processed by the data store.</p>
 
-<p>Filters that are processed directly against the data store also have specific comparison modes that can be utilized for easier queries. Review the comparison modes listed in the <a href="#transactionrowfilter">TransactionRowFilter</a> table for a full list.</p>
-
+<p>Filters that are processed directly against the data store also have specific comparison modes that can be utilized for easier queries. Review the comparison modes listed in the <a href"#transactionrowfilter">TransactionRowFilter</a> table for a full list.</p>
+<h3 id='comparison-types'>Comparison Types</h3>
 <blockquote>
 <p>Examples:</p>
 
@@ -1573,7 +1611,7 @@ Partial authorization support is required for some merchant types and strongly e
 <blockquote>
 <p>Returns all transactions of $2.00 or less:</p>
 </blockquote>
-<pre class="highlight xml tab-xml"><code><span class="nt">&lt;AmountRangeTo&gt;</span>200<span class="nt">&lt;/AmountRangeTo&gt;</span>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;AmountRangeTo&gt;</span>100<span class="nt">&lt;/AmountRangeTo&gt;</span>
 </code></pre>
 <blockquote>
 <p>Returns all transactions with Invoice Number 2001:</p>
@@ -1586,7 +1624,7 @@ Partial authorization support is required for some merchant types and strongly e
 <pre class="highlight xml tab-xml"><code><span class="nt">&lt;ResponseCode&gt;</span>D<span class="nt">&lt;/ResponseCode&gt;</span>
 </code></pre>
 <blockquote>
-<p>Returns all declined transactions with <a href="#gateway-message-codes">Gateway Message</a> codes D01–D09:</p>
+<p>Returns all declined transactions with <a href="#gateway-message-codes">Gateway Message</a> codes D01-D09:</p>
 </blockquote>
 <pre class="highlight xml tab-xml"><code><span class="nt">&lt;ResponseCode&gt;</span>D0<span class="nt">&lt;/ResponseCode&gt;</span>
 </code></pre>
@@ -1596,18 +1634,21 @@ Partial authorization support is required for some merchant types and strongly e
 <pre class="highlight xml tab-xml"><code><span class="nt">&lt;ResponseCode&gt;</span>D01<span class="nt">&lt;/ResponseCode&gt;</span>
 </code></pre>
 <blockquote>
-<p>Provides those transactions where the <a href="#gateway-result-codes">Gateway Result code</a> is equal to 00000, 00001, or 10012 only</p>
+<p>Returns only those transactions that were declined with <a href="#gateway-message-codes">Gateway Message</a> code D01:</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;ResponseCode&gt;</span>D01<span class="nt">&lt;/ResponseCode&gt;</span>
+</code></pre>
+<blockquote>
+<p>Provides those transactions where the <a href="#gateway-result-codes">Gateway Result code</a> is equal to 00000, 00001, or 10012 only:</p>
 </blockquote>
 <pre class="highlight xml tab-xml"><code><span class="nt">&lt;TransResults&gt;</span>00000,00001,10012<span class="nt">&lt;/TransResults&gt;</span>
 </code></pre>
 <blockquote>
-<p>Return all transactions where the <a href="#gateway-result-codes">Gateway Result code</a> is NOT equal to 00000, 00001, or 10012:</p>
+<p>Return all transactions where <a href="#gateway-result-codes">Gateway Result code</a> code is NOT equal to 00000, 00001, or 10012::</p>
 </blockquote>
 <pre class="highlight xml tab-xml"><code><span class="nt">&lt;TransResults&gt;</span>00000,00001,10012<span class="nt">&lt;/TransResults&gt;</span>
 <span class="nt">&lt;ExcludeTransResults&gt;</span>1<span class="nt">&lt;/ExcludeTransResults&gt;</span>
 </code></pre>
-<p><strong>Comparison Types</strong></p>
-
 <ul>
 <li>GTE = Greater Than or Equal. The query will look for data that is greater than or equal to the data provided in the filter parameter.</li>
 <li>LTE = Less Than or Equal. The query will look for data that is less than or equal to the data provided in the filter parameter.</li>
@@ -1618,20 +1659,20 @@ Partial authorization support is required for some merchant types and strongly e
 </ul>
 
 <p>NOTE: <code>ExcludeTransResults</code> must be used with <code>TransResults</code>. It modifies the behavior of the TransResults field.</p>
-
-<p><strong>Post-Query Filters</strong></p>
-
+<h3 id='post-query-filters'>Post-Query Filters</h3>
 <p>The following fields are Post-Query filters. They will not process until after the initial data store query has completed.</p>
 
 <ul>
-<li><code>TransactionStatus</code></li>
-<li><code>CardBrand</code></li>
+<li>TransactionStatus</li>
+<li>CardBrand</li>
 </ul>
 
-<p>The data used to query on these parameters must be transformed before the filter can be applied. The data store resources are too time-consuming for these filters and they are therefore added after the data store query is completed. <strong><em>You should never use a Post-Query Filter without first limiting the data store query with some DBQuery filters such as a date range and/or the merchant account information.</em></strong></p>
+<p>The data used to query on these parameters must be transformed before the filter can be applied. The data store resources are too time-consuming for these filters and they are therefore added after the data store query is completed. <b>You should never use a Post-Query Filter without first limiting the data store query with some DBQuery filters such as a date range and/or the merchant account information.</b></p>
+
+<p>Response Codes</p>
 <h1 id='response-codes'>Response Codes</h1><h2 id='avs-response-codes'>AVS Response Codes</h2>
 <aside class="warning">
-You should always inspect the AVSResult and CVResult fields as these can be good indicators of potential fraud. If you see a AVSResult or CVResult code that you do not want to accept because it may be too risky (such as "No Match" on the submitted Zip code), then you should submit a void transaction to cancel the authorization and advise the cardholder that their transaction has been declined.
+ You should always inspect the AVSResult and CVResult fields as these can be good indicators of potential fraud. If you see a AVSResult or CVResult code that you do not want to accept because it may be too risky (such as "No Match" on the submitted Zip code), then you should submit a void transaction to cancel the authorization and advise the cardholder that their transaction has been declined.
 </aside>
 
 <table><thead>
@@ -1723,7 +1764,7 @@ You should always inspect the AVSResult and CVResult fields as these can be good
 </tbody></table>
 <h2 id='cvv-response-codes'>CVV Response Codes</h2>
 <aside class="warning">
-You should always inspect the AVSResult and CVResult fields as these can be good indicators of potential fraud. If you see a AVSResult or CVResult code that you do not want to accept because it may be too risky (such as "No Match" on the submitted Zip code), then you should submit a void transaction to cancel the authorization and advise the cardholder that their transaction has been declined.
+ You should always inspect the AVSResult and CVResult fields as these can be good indicators of potential fraud. If you see a AVSResult or CVResult code that you do not want to accept because it may be too risky (such as "No Match" on the submitted Zip code), then you should submit a void transaction to cancel the authorization and advise the cardholder that their transaction has been declined.
 </aside>
 
 <table><thead>
@@ -1757,258 +1798,10 @@ You should always inspect the AVSResult and CVResult fields as these can be good
 <td>Unrecognized reason</td>
 </tr>
 </tbody></table>
-<h2 id='gateway-message-codes'>Gateway Message Codes</h2>
-<table><thead>
-<tr>
-<th>Gateway Message Code</th>
-<th>Message</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>A01</td>
-<td>Approved: XXXXXX (approval code)</td>
-</tr>
-<tr>
-<td>A02</td>
-<td>Credit Posted</td>
-</tr>
-<tr>
-<td>A03</td>
-<td>Void Posted (Auth Reversed)</td>
-</tr>
-<tr>
-<td>A04</td>
-<td>No Update</td>
-</tr>
-<tr>
-<td>A05</td>
-<td>Partially Approved</td>
-</tr>
-<tr>
-<td>A06</td>
-<td>Void Posted (Auth Not Reversed)</td>
-</tr>
-<tr>
-<td>A07</td>
-<td>Partial Void Posted</td>
-</tr>
-<tr>
-<td>A08</td>
-<td>Partial Refund Posted</td>
-</tr>
-<tr>
-<td>A09</td>
-<td>Incremental Auth Posted</td>
-</tr>
-<tr>
-<td>A10</td>
-<td>Request Accepted</td>
-</tr>
-<tr>
-<td>A11</td>
-<td>Approval (Reversal failed)</td>
-</tr>
-<tr>
-<td>A60</td>
-<td>Terminal Offline Approval - EMV/Chip</td>
-</tr>
-<tr>
-<td>A61</td>
-<td>Terminal Offline Approval - Swipe</td>
-</tr>
-<tr>
-<td>A62</td>
-<td>Terminal Offline Approval - Credit</td>
-</tr>
-<tr>
-<td>D01</td>
-<td>Denied by customer&#39;s bank</td>
-</tr>
-<tr>
-<td>D02</td>
-<td>Invalid Expiration Date</td>
-</tr>
-<tr>
-<td>D03</td>
-<td>Insufficient funds</td>
-</tr>
-<tr>
-<td>D04</td>
-<td>Hold - Pick up card</td>
-</tr>
-<tr>
-<td>D05</td>
-<td>Invalid card number</td>
-</tr>
-<tr>
-<td>D06</td>
-<td>No account</td>
-</tr>
-<tr>
-<td>D07</td>
-<td>Incorrect PIN</td>
-</tr>
-<tr>
-<td>D08</td>
-<td>CSC is invalid</td>
-</tr>
-<tr>
-<td>D09</td>
-<td>Duplicate Transaction</td>
-</tr>
-<tr>
-<td>D10</td>
-<td>Card reported lost/stolen</td>
-</tr>
-<tr>
-<td>D11</td>
-<td>Card reported stolen</td>
-</tr>
-<tr>
-<td>D12</td>
-<td>Service not allowed</td>
-</tr>
-<tr>
-<td>D13</td>
-<td>Stop Recurring</td>
-</tr>
-<tr>
-<td>D15</td>
-<td>Maximum transaction limit is exceeded</td>
-</tr>
-<tr>
-<td>D16</td>
-<td>Card is expired</td>
-</tr>
-<tr>
-<td>D17</td>
-<td>Re-enter Transaction</td>
-</tr>
-<tr>
-<td>D18</td>
-<td>Bad Amount</td>
-</tr>
-<tr>
-<td>D19</td>
-<td>Unmapped decline</td>
-</tr>
-<tr>
-<td>D20</td>
-<td>Billing profile configuration error</td>
-</tr>
-<tr>
-<td>D21</td>
-<td>PIN try excdeed</td>
-</tr>
-<tr>
-<td>D22</td>
-<td>Refund was not processed/received</td>
-</tr>
-<tr>
-<td>D24</td>
-<td>Chargeback received</td>
-</tr>
-<tr>
-<td>D25</td>
-<td>Refund limit is reached for the day</td>
-</tr>
-<tr>
-<td>D26</td>
-<td>Settlement Failed</td>
-</tr>
-<tr>
-<td>D27</td>
-<td>Transaction Error</td>
-</tr>
-<tr>
-<td>D28</td>
-<td>Cashback limit exceeded/Cashback unavailable</td>
-</tr>
-<tr>
-<td>D29</td>
-<td>Card is restricted</td>
-</tr>
-<tr>
-<td>D30</td>
-<td>Call for Authorization</td>
-</tr>
-<tr>
-<td>D31</td>
-<td>Declined due to fraud rules</td>
-</tr>
-<tr>
-<td>D32</td>
-<td>Declined due to fraud engine decision</td>
-</tr>
-<tr>
-<td>D33</td>
-<td>Incorrect merchant setup</td>
-</tr>
-<tr>
-<td>D34</td>
-<td>Merchant profile configuration issue</td>
-</tr>
-<tr>
-<td>D35</td>
-<td>Card chip decline</td>
-</tr>
-<tr>
-<td>E02</td>
-<td>Processing Network Unavailable</td>
-</tr>
-<tr>
-<td>E03</td>
-<td>Transaction data integrity validation error</td>
-</tr>
-<tr>
-<td>E04</td>
-<td>Refund limit is reached for the day</td>
-</tr>
-<tr>
-<td>E06</td>
-<td>Card is blacklisted</td>
-</tr>
-<tr>
-<td>E07</td>
-<td>Tokenization is not supported</td>
-</tr>
-<tr>
-<td>E08</td>
-<td>Refunds are not allowed</td>
-</tr>
-<tr>
-<td>E09</td>
-<td>Processing Network Error</td>
-</tr>
-<tr>
-<td>E10</td>
-<td>3D Secure Verification Failed</td>
-</tr>
-<tr>
-<td>E31</td>
-<td>Declined due to pre-processing rules</td>
-</tr>
-<tr>
-<td>X01</td>
-<td>Processing Cancelled by User</td>
-</tr>
-<tr>
-<td>X02</td>
-<td>Pending processing</td>
-</tr>
-<tr>
-<td>X03</td>
-<td>3D Secure Verification Required</td>
-</tr>
-<tr>
-<td>X04</td>
-<td>Processing cancelled: the request has expired</td>
-</tr>
-</tbody></table>
 <h2 id='gateway-result-codes'>Gateway Result Codes</h2>
 <table><thead>
 <tr>
-<th>Result Code</th>
+<th>Response Code</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -2529,28 +2322,252 @@ You should always inspect the AVSResult and CVResult fields as these can be good
 <td>Unknown Error</td>
 </tr>
 </tbody></table>
-<h2 id='payguardian-response-codes'>PayGuardian Response Codes</h2>
+<h2 id='gateway-message-codes'>Gateway Message Codes</h2>
 <table><thead>
 <tr>
-<th>Response Code</th>
-<th>Description</th>
+<th>Gateway Message Code</th>
+<th>Message</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>0</td>
-<td>Approved</td>
+<td>A01</td>
+<td>Approved: XXXXXX (approval code)</td>
 </tr>
 <tr>
-<td>1</td>
-<td>Declined</td>
+<td>A02</td>
+<td>Credit Posted</td>
 </tr>
 <tr>
-<td>2</td>
-<td>Error</td>
+<td>A03</td>
+<td>Void Posted (Auth Reversed)</td>
 </tr>
 <tr>
-<td>12</td>
-<td>EMV Chip Declined</td>
+<td>A04</td>
+<td>No Update</td>
+</tr>
+<tr>
+<td>A05</td>
+<td>Partially Approved</td>
+</tr>
+<tr>
+<td>A06</td>
+<td>Void Posted (Auth Not Reversed)</td>
+</tr>
+<tr>
+<td>A07</td>
+<td>Partial Void Posted</td>
+</tr>
+<tr>
+<td>A08</td>
+<td>Partial Refund Posted</td>
+</tr>
+<tr>
+<td>A09</td>
+<td>Incremental Auth Posted</td>
+</tr>
+<tr>
+<td>A10</td>
+<td>Request Accepted</td>
+</tr>
+<tr>
+<td>A11</td>
+<td>Approval (Reversal failed)</td>
+</tr>
+<tr>
+<td>A60</td>
+<td>Terminal Offline Approval - EMV/Chip</td>
+</tr>
+<tr>
+<td>A61</td>
+<td>Terminal Offline Approval - Swipe</td>
+</tr>
+<tr>
+<td>A62</td>
+<td>Terminal Offline Approval - Credit</td>
+</tr>
+<tr>
+<td>D01</td>
+<td>Denied by customer&#39;s bank</td>
+</tr>
+<tr>
+<td>D02</td>
+<td>Invalid Expiration Date</td>
+</tr>
+<tr>
+<td>D03</td>
+<td>Insufficient funds</td>
+</tr>
+<tr>
+<td>D04</td>
+<td>Hold - Pick up card</td>
+</tr>
+<tr>
+<td>D05</td>
+<td>Invalid card number</td>
+</tr>
+<tr>
+<td>D06</td>
+<td>No account</td>
+</tr>
+<tr>
+<td>D07</td>
+<td>Incorrect PIN</td>
+</tr>
+<tr>
+<td>D08</td>
+<td>CSC is invalid</td>
+</tr>
+<tr>
+<td>D09</td>
+<td>Duplicate Transaction</td>
+</tr>
+<tr>
+<td>D10</td>
+<td>Card reported lost/stolen</td>
+</tr>
+<tr>
+<td>D11</td>
+<td>Card reported stolen</td>
+</tr>
+<tr>
+<td>D12</td>
+<td>Service not allowed</td>
+</tr>
+<tr>
+<td>D13</td>
+<td>Stop Recurring</td>
+</tr>
+<tr>
+<td>D15</td>
+<td>Maximum transaction limit is exceeded</td>
+</tr>
+<tr>
+<td>D16</td>
+<td>Card is expired</td>
+</tr>
+<tr>
+<td>D17</td>
+<td>Re-enter Transaction</td>
+</tr>
+<tr>
+<td>D18</td>
+<td>Bad Amount</td>
+</tr>
+<tr>
+<td>D19</td>
+<td>Unmapped decline</td>
+</tr>
+<tr>
+<td>D20</td>
+<td>Billing profile configuration error</td>
+</tr>
+<tr>
+<td>D21</td>
+<td>PIN try excdeed</td>
+</tr>
+<tr>
+<td>D22</td>
+<td>Refund was not processed/received</td>
+</tr>
+<tr>
+<td>D24</td>
+<td>Chargeback received</td>
+</tr>
+<tr>
+<td>D25</td>
+<td>Refund limit is reached for the day</td>
+</tr>
+<tr>
+<td>D26</td>
+<td>Settlement Failed</td>
+</tr>
+<tr>
+<td>D27</td>
+<td>Transaction Error</td>
+</tr>
+<tr>
+<td>D28</td>
+<td>Cashback limit exceeded/Cashback unavailable</td>
+</tr>
+<tr>
+<td>D29</td>
+<td>Card is restricted</td>
+</tr>
+<tr>
+<td>D30</td>
+<td>Call for Authorization</td>
+</tr>
+<tr>
+<td>D31</td>
+<td>Declined due to fraud rules</td>
+</tr>
+<tr>
+<td>D32</td>
+<td>Declined due to fraud engine decision</td>
+</tr>
+<tr>
+<td>D33</td>
+<td>Incorrect merchant setup</td>
+</tr>
+<tr>
+<td>D34</td>
+<td>Merchant profile configuration issue</td>
+</tr>
+<tr>
+<td>D35</td>
+<td>Card chip decline</td>
+</tr>
+<tr>
+<td>E02</td>
+<td>Processing Network Unavailable</td>
+</tr>
+<tr>
+<td>E03</td>
+<td>Transaction data integrity validation error</td>
+</tr>
+<tr>
+<td>E04</td>
+<td>Refund limit is reached for the day</td>
+</tr>
+<tr>
+<td>E06</td>
+<td>Card is blacklisted</td>
+</tr>
+<tr>
+<td>E07</td>
+<td>Tokenization is not supported</td>
+</tr>
+<tr>
+<td>E08</td>
+<td>Refunds are not allowed</td>
+</tr>
+<tr>
+<td>E09</td>
+<td>Processing Network Error</td>
+</tr>
+<tr>
+<td>E10</td>
+<td>3D Secure Verification Failed</td>
+</tr>
+<tr>
+<td>E31</td>
+<td>Declined due to pre-processing rules</td>
+</tr>
+<tr>
+<td>X01</td>
+<td>Processing Cancelled by User</td>
+</tr>
+<tr>
+<td>X02</td>
+<td>Pending processing</td>
+</tr>
+<tr>
+<td>X03</td>
+<td>3D Secure Verification Required</td>
+</tr>
+<tr>
+<td>X04</td>
+<td>Processing cancelled: the request has expired</td>
 </tr>
 </tbody></table>
 <h1 id='test-cards-and-triggers'>Test Cards and Triggers</h1><h2 id='cards-and-checks'>Cards and Checks</h2>
