@@ -42,7 +42,7 @@
 .highlight .cs {
   color: #75715e;
 }
-.highlight .c, .highlight .cd {
+.highlight .c, .highlight .ch, .highlight .cd, .highlight .cpf {
   color: #75715e;
 }
 .highlight .err {
@@ -126,7 +126,7 @@
 .highlight .s1 {
   color: #e6db74;
 }
-.highlight .s {
+.highlight .s, .highlight .sa, .highlight .dl {
   color: #e6db74;
 }
 .highlight .na {
@@ -141,41 +141,52 @@
 .highlight .ne {
   color: #a6e22e;
 }
-.highlight .nf {
+.highlight .nf, .highlight .fm {
   color: #a6e22e;
 }
 .highlight .vc {
   color: #ffffff;
+  background-color: #272822;
 }
 .highlight .nn {
   color: #ffffff;
+  background-color: #272822;
 }
 .highlight .nl {
   color: #ffffff;
+  background-color: #272822;
 }
 .highlight .ni {
   color: #ffffff;
+  background-color: #272822;
 }
 .highlight .bp {
   color: #ffffff;
+  background-color: #272822;
 }
 .highlight .vg {
   color: #ffffff;
+  background-color: #272822;
 }
 .highlight .vi {
   color: #ffffff;
+  background-color: #272822;
 }
-.highlight .nv {
+.highlight .nv, .highlight .vm {
   color: #ffffff;
+  background-color: #272822;
 }
 .highlight .w {
   color: #ffffff;
+  background-color: #272822;
 }
 .highlight {
   color: #ffffff;
+  background-color: #272822;
 }
 .highlight .n, .highlight .py, .highlight .nx {
   color: #ffffff;
+  background-color: #272822;
 }
 .highlight .ow {
   color: #f92672;
@@ -205,11 +216,11 @@
     <a href="#" id="nav-button">
       <span>
         NAV
-        <img src="images/navbar.png" alt="Navbar" />
+        <img src="images/navbar.png" alt="" />
       </span>
     </a>
     <div class="toc-wrapper">
-      <img src="images/logo.png" class="logo" alt="Logo" />
+      <img src="images/logo.png" class="logo" alt="" />
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
         </div>
@@ -359,7 +370,7 @@
 <h1 id='integration-options'>Integration Options</h1>
 <p>Whether you have an existing shopping cart or are building a custom integration, we&#39;ve got you covered!</p>
 <h2 id='payment-plugins'>Payment Plugins</h2><h3 id='woocommerce'>WooCommerce</h3>
-<p><a href="https://wordpress.org/plugins/beyond-pay-for-woocommerce/"><img src="/source/images/256x256_woo_icon.png" /></p>
+<p><a href="https://wordpress.org/plugins/beyond-pay-for-woocommerce/"><img src="images/256x256_woo_icon.png" /></p>
 
 <p>Get Beyond Pay for WooCommerce</a></p>
 
@@ -375,7 +386,7 @@
 <li>Sandbox mode for development and staging</li>
 </ul>
 <h3 id='gravity-forms'>Gravity Forms</h3>
-<p><a href="https://wordpress.org/plugins/beyond-pay-for-gravity-forms/"><img src="/source/images/256x256_gravity_icon.png" /></p>
+<p><a href="https://wordpress.org/plugins/beyond-pay-for-gravity-forms/"><img src="images/256x256_gravity_icon.png" /></p>
 
 <p>Get Beyond Pay for Gravity Forms</a></p>
 
@@ -419,15 +430,15 @@ If your payment application stores, processes, or transmits sensitive cardholder
 <blockquote>
 <p>To get started, include this script on your checkout page:</p>
 </blockquote>
-<pre class="highlight html tab-html"><code><span class="nt">&lt;script
+<div class="highlight"><pre class="highlight html tab-html"><code><span class="nt">&lt;script
   </span><span class="na">src=</span><span class="s">"https://api-test.getbeyondpay.com/WebSecurity/TokenPay/plain-js/tokenPay.js"</span><span class="nt">&gt;</span>
 <span class="nt">&lt;/script&gt;</span>
-</code></pre>
+</code></pre></div>
 <blockquote>
 <p>Next, create an instance of TokenPay:</p>
 </blockquote>
-<pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">tokenpay</span> <span class="o">=</span> <span class="nx">TokenPay</span><span class="p">(</span><span class="s1">'your-public-key'</span><span class="p">);</span>
-</code></pre>
+<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">tokenpay</span> <span class="o">=</span> <span class="nx">TokenPay</span><span class="p">(</span><span class="dl">'</span><span class="s1">your-public-key</span><span class="dl">'</span><span class="p">);</span>
+</code></pre></div>
 <blockquote>
 <p>Replace <code>your-public-key</code> with your publishable public key</a>.</p>
 </blockquote>
@@ -448,13 +459,13 @@ If your payment application stores, processes, or transmits sensitive cardholder
 <blockquote>
 <p><b>Sandbox (Testing):</b></p>
 </blockquote>
-<pre class="highlight html tab-html"><code>https://api-test.getbeyondpay.com/Bridgepay.WebSecurity/TokenPay/js/tokenPay.js
-</code></pre>
+<div class="highlight"><pre class="highlight html tab-html"><code>https://api-test.getbeyondpay.com/Bridgepay.WebSecurity/TokenPay/js/tokenPay.js
+</code></pre></div>
 <blockquote>
 <p><b>Live (Production):</b></p>
 </blockquote>
-<pre class="highlight html tab-html"><code>https://api.getbeyondpay.com/WebSecurity/TokenPay/js/tokenPay.js
-</code></pre>
+<div class="highlight"><pre class="highlight html tab-html"><code>https://api.getbeyondpay.com/WebSecurity/TokenPay/js/tokenPay.js
+</code></pre></div>
 <p>TokenPay.js is the JavaScript library for building online or mobile checkout flows with Beyond Pay Gateway. With it, you can collect sensitive data from the cardholder and create tokens for securely sending the data to your server.</p>
 
 <p>TokenPay.js provides a ready-made UI component for collecting the sensitive card data from the user. TokenPay.js then tokenizes the information without it ever having to touch your server.</p>
@@ -473,7 +484,7 @@ If your payment application stores, processes, or transmits sensitive cardholder
 <blockquote>
 <p>To determine where to insert the UI components, create empty DOM elements with unique IDs within your payment form.</p>
 </blockquote>
-<pre class="highlight html tab-html"><code><span class="nt">&lt;form</span> <span class="na">id=</span><span class="s">"paymentForm"</span> <span class="na">action=</span><span class="s">"/charge"</span> <span class="na">method=</span><span class="s">"post"</span><span class="nt">&gt;</span> 
+<div class="highlight"><pre class="highlight html tab-html"><code><span class="nt">&lt;form</span> <span class="na">id=</span><span class="s">"paymentForm"</span> <span class="na">action=</span><span class="s">"/charge"</span> <span class="na">method=</span><span class="s">"post"</span><span class="nt">&gt;</span> 
   <span class="nt">&lt;select</span> <span class="na">class=</span><span class="s">"form-control"</span> <span class="na">name=</span><span class="s">"amount"</span> <span class="na">id=</span><span class="s">"amount"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">"25"</span><span class="nt">&gt;</span>$25<span class="nt">&lt;/option&gt;</span>
     <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">"50"</span><span class="nt">&gt;</span>$50<span class="nt">&lt;/option&gt;</span> 
@@ -482,11 +493,11 @@ If your payment application stores, processes, or transmits sensitive cardholder
   <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"errorMessage"</span><span class="nt">&gt;&lt;/div&gt;</span>
   <span class="nt">&lt;button</span> <span class="na">type=</span><span class="s">"submit"</span><span class="nt">&gt;</span>Submit<span class="nt">&lt;/button&gt;</span>
 <span class="nt">&lt;/form&gt;</span>
-</code></pre>
+</code></pre></div>
 <blockquote>
 <p>If you want to customize the style of the card entry area, create a hidden <code>&lt;div&gt;</code> element to contain your styling. The <code>id</code> of this element MUST be <code>customStyles</code>.</p>
 </blockquote>
-<pre class="highlight html tab-html"><code><span class="nt">&lt;div</span> <span class="na">style=</span><span class="s">"display: none"</span> <span class="na">id=</span><span class="s">"customStyles"</span><span class="nt">&gt;</span> 
+<div class="highlight"><pre class="highlight html tab-html"><code><span class="nt">&lt;div</span> <span class="na">style=</span><span class="s">"display: none"</span> <span class="na">id=</span><span class="s">"customStyles"</span><span class="nt">&gt;</span> 
   body {
     margin: 8px 0;
     }
@@ -498,17 +509,17 @@ If your payment application stores, processes, or transmits sensitive cardholder
   color: #333;
 }
 <span class="nt">&lt;/div&gt;</span>
-</code></pre>
+</code></pre></div>
 <blockquote>
 <p>When the form is loaded, initialize the Pay element:</p>
 </blockquote>
-<pre class="highlight javascript tab-javascript"><code><span class="nx">tokenpay</span><span class="p">.</span><span class="nx">initialize</span><span class="p">({</span>
-  <span class="na">dataElement</span><span class="p">:</span> <span class="s1">'#card'</span><span class="p">,</span> 
-  <span class="na">errorElement</span><span class="p">:</span> <span class="s1">'#errorMessage'</span><span class="p">,</span> 
+<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">tokenpay</span><span class="p">.</span><span class="nx">initialize</span><span class="p">({</span>
+  <span class="na">dataElement</span><span class="p">:</span> <span class="dl">'</span><span class="s1">#card</span><span class="dl">'</span><span class="p">,</span> 
+  <span class="na">errorElement</span><span class="p">:</span> <span class="dl">'</span><span class="s1">#errorMessage</span><span class="dl">'</span><span class="p">,</span> 
   <span class="na">useStyles</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
   <span class="na">disableZip</span><span class="p">:</span> <span class="kc">false</span>
 <span class="p">});</span>
-</code></pre>
+</code></pre></div>
 <blockquote>
 <p>If you have created the <code>customStyles</code> element to style the card entry area, change the value of <code>useStyles</code> to <code>true</code>.</p>
 
@@ -526,21 +537,21 @@ When implementing payment forms, it is strongly recommended that you utilize <b>
 <aside class="success">
 You should always submit the ZIP or Postal code in order to ensure the best chances for fraud reduction as well as the lowest interchange rates. "disableZip" is only intended for when you will collect the ZIP code with the rest of your form data rather than in the TokenPay iframe.
 </aside>
-<h2 id='obtain-a-token'>Obtain a Token</h2><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">form</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'paymentForm'</span><span class="p">);</span> 
-<span class="nx">$</span><span class="p">(</span><span class="s1">'#paymentForm'</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'submit'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+<h2 id='obtain-a-token'>Obtain a Token</h2><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">form</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">paymentForm</span><span class="dl">'</span><span class="p">);</span> 
+<span class="nx">$</span><span class="p">(</span><span class="dl">'</span><span class="s1">#paymentForm</span><span class="dl">'</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">submit</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span> 
   <span class="nx">tokenpay</span><span class="p">.</span><span class="nx">createToken</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">hiddenInput</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">'input'</span><span class="p">);</span> 
-    <span class="nx">hiddenInput</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s1">'type'</span><span class="p">,</span> <span class="s1">'hidden'</span><span class="p">);</span> 
-    <span class="nx">hiddenInput</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s1">'name'</span><span class="p">,</span> <span class="s1">'token'</span><span class="p">);</span> 
-    <span class="nx">hiddenInput</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s1">'value'</span><span class="p">,</span> <span class="nx">result</span><span class="p">.</span><span class="nx">token</span><span class="p">);</span> 
+    <span class="kd">var</span> <span class="nx">hiddenInput</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="dl">'</span><span class="s1">input</span><span class="dl">'</span><span class="p">);</span> 
+    <span class="nx">hiddenInput</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="dl">'</span><span class="s1">type</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">hidden</span><span class="dl">'</span><span class="p">);</span> 
+    <span class="nx">hiddenInput</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="dl">'</span><span class="s1">name</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">token</span><span class="dl">'</span><span class="p">);</span> 
+    <span class="nx">hiddenInput</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="dl">'</span><span class="s1">value</span><span class="dl">'</span><span class="p">,</span> <span class="nx">result</span><span class="p">.</span><span class="nx">token</span><span class="p">);</span> 
     <span class="nx">form</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">hiddenInput</span><span class="p">);</span>
     <span class="nx">form</span><span class="p">.</span><span class="nx">submit</span><span class="p">();</span>
   <span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"error: "</span> <span class="o">+</span> <span class="nx">result</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">error: </span><span class="dl">"</span> <span class="o">+</span> <span class="nx">result</span><span class="p">);</span>
   <span class="p">});</span>
 <span class="p">});</span>
-</code></pre>
+</code></pre></div>
 <p>The card data collected by the TokenPay element is posted from the client browser to Beyond Pay Gateway where it is converted into a token. If there are any errors in the collection of the card data or creation of the token, information is automatically displayed in the <code>errorElement</code> of your payment form.</p>
 
 <p>The token is stored as a hidden input value and passed to your server on form submission.</p>
@@ -548,7 +559,7 @@ You should always submit the ZIP or Postal code in order to ensure the best chan
 <blockquote>
 <p>With the token and other form fields obtained, now construct the XML payload:</p>
 </blockquote>
-<pre class="highlight xml tab-xml"><code><span class="nt">&lt;requestHeader&gt;</span>
+<div class="highlight"><pre class="highlight xml tab-xml"><code><span class="nt">&lt;requestHeader&gt;</span>
     <span class="nt">&lt;ClientIdentifier&gt;</span>SOAP<span class="nt">&lt;/ClientIdentifier&gt;</span>
     <span class="nt">&lt;TransactionID&gt;</span>{transactionId}<span class="nt">&lt;/TransactionID&gt;</span>
     <span class="nt">&lt;RequestType&gt;</span>004<span class="nt">&lt;/RequestType&gt;</span>
@@ -566,11 +577,11 @@ You should always submit the ZIP or Postal code in order to ensure the best chan
     <span class="nt">&lt;/requestMessage&gt;</span>
 <span class="nt">&lt;/requestHeader&gt;</span>';
 
-</code></pre>
+</code></pre></div>
 <blockquote>
 <p>Encode the XML payload in Base64 and package it within a SOAP envelope:</p>
 </blockquote>
-<pre class="highlight xml tab-xml"><code><span class="nt">&lt;soapenv:Envelope</span> <span class="na">xmlns:soapenv=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> <span class="na">xmlns:req=</span><span class="s">"http://bridgepaynetsecuretx.com/requesthandler"</span><span class="nt">&gt;</span>
+<div class="highlight"><pre class="highlight xml tab-xml"><code><span class="nt">&lt;soapenv:Envelope</span> <span class="na">xmlns:soapenv=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> <span class="na">xmlns:req=</span><span class="s">"http://bridgepaynetsecuretx.com/requesthandler"</span><span class="nt">&gt;</span>
                     <span class="nt">&lt;soapenv:Header/&gt;</span>
                         <span class="nt">&lt;soapenv:Body&gt;</span>
                             <span class="nt">&lt;req:ProcessRequest&gt;</span>
@@ -578,19 +589,19 @@ You should always submit the ZIP or Postal code in order to ensure the best chan
                             <span class="nt">&lt;/req:ProcessRequest&gt;</span>
                         <span class="nt">&lt;/soapenv:Body&gt;</span>
                     <span class="nt">&lt;/soapenv:Envelope&gt;</span>
-</code></pre>
+</code></pre></div>
 <blockquote>
 <p>POST the SOAP envelope to the appropriate endpoint:</p>
 
 <p><b>Sandbox (Testing):</b></p>
 </blockquote>
-<pre class="highlight html tab-html"><code>https://api-test.getbeyondpay.com/PaymentService/RequestHandler.svc
-</code></pre>
+<div class="highlight"><pre class="highlight html tab-html"><code>https://api-test.getbeyondpay.com/PaymentService/RequestHandler.svc
+</code></pre></div>
 <blockquote>
 <p><b>Live (Production):</b></p>
 </blockquote>
-<pre class="highlight html tab-html"><code>https://api.getbeyondpay.com/PaymentService/RequestHandler.svc
-</code></pre>
+<div class="highlight"><pre class="highlight html tab-html"><code>https://api.getbeyondpay.com/PaymentService/RequestHandler.svc
+</code></pre></div>
 <p>Once you have securely collected and tokenized your user’s card data using TokenPay.js you can now use the single-use token to submit a transaction. Authorization or sale requests using single-use tokens must <em>ONLY</em> made from your server and not from the client.</p>
 
 <p>You will have a 15 minute window in which to complete the transaction request once you have obtained the client-side token. The token expires after the window or once used.</p>
@@ -629,7 +640,7 @@ You should always inspect the AVSResult and CVResult fields as these can be good
 <blockquote>
 <p>To change from a &quot;sale&quot; transaction to an &quot;authorize&quot; transaction, simply set <code>TransactionType</code> to <code>sale-auth</code>:</p>
 </blockquote>
-<pre class="highlight xml tab-xml"><code><span class="nt">&lt;requestHeader&gt;</span>
+<div class="highlight"><pre class="highlight xml tab-xml"><code><span class="nt">&lt;requestHeader&gt;</span>
     <span class="nt">&lt;ClientIdentifier&gt;</span>SOAP<span class="nt">&lt;/ClientIdentifier&gt;</span>
     <span class="nt">&lt;TransactionID&gt;</span>{transactionId}<span class="nt">&lt;/TransactionID&gt;</span>
     <span class="nt">&lt;RequestType&gt;</span>004<span class="nt">&lt;/RequestType&gt;</span>
@@ -648,11 +659,11 @@ You should always inspect the AVSResult and CVResult fields as these can be good
     <span class="nt">&lt;/requestMessage&gt;</span>
 <span class="nt">&lt;/requestHeader&gt;</span>';
 
-</code></pre>
+</code></pre></div>
 <blockquote>
 <p>In order to capture that authorization and charge the card, you must submit 019 capture <code>RequestType</code>, passing the original sale-auth <code>ReferenceNumber</code>, and using the <code>User</code> and <code>Password</code> credentials instead of <code>AuthenticationTokenId</code> and <code>PrivateKey</code> to authenticate:</p>
 </blockquote>
-<pre class="highlight xml tab-xml"><code><span class="nt">&lt;requestHeader&gt;</span>
+<div class="highlight"><pre class="highlight xml tab-xml"><code><span class="nt">&lt;requestHeader&gt;</span>
     <span class="nt">&lt;ClientIdentifier&gt;</span>SOAP<span class="nt">&lt;/ClientIdentifier&gt;</span>
     <span class="nt">&lt;TransactionID&gt;</span>{transactionId}<span class="nt">&lt;/TransactionID&gt;</span>
     <span class="nt">&lt;RequestType&gt;</span>019<span class="nt">&lt;/RequestType&gt;</span>
@@ -667,7 +678,7 @@ You should always inspect the AVSResult and CVResult fields as these can be good
         <span class="nt">&lt;Amount&gt;</span>{amountInCents}<span class="nt">&lt;/Amount&gt;</span>
     <span class="nt">&lt;/requestMessage&gt;</span>
 <span class="nt">&lt;/requestHeader&gt;</span>';
-</code></pre>
+</code></pre></div>
 <p>Sometimes you may not want to accept payment right away for a transaction, such as when shipping physical goods. The normal practice in this scenario is to first authorize a card which will place a hold on the funds, and then to later &quot;capture&quot; that authorization when the order is fulfilled.</p>
 
 <p>The <code>SettlementDelay</code> tag can be added for sale-auth transactions, and designates the number of batch cycles that the authorization remains &quot;open&quot; (or uncaptured). If the sale-auth transaction is not captured before completion of the designated number of batches, then the original authorization will be automatically voided and not captured.</p>
@@ -681,7 +692,7 @@ This capture request and several other API requests described here may take diff
 <blockquote>
 <p>The <code>Token</code> element represents a card number, can be used multiple times, and does not expire. It may be used as input in a transaction in lieu of the <code>PaymentAccountNumber</code> or the <code>AuthenticationTokenId</code>, and also requires the <code>ExpirationDate</code> field to be submitted with it.</p>
 </blockquote>
-<pre class="highlight xml tab-xml"><code><span class="nt">&lt;requestHeader&gt;</span>
+<div class="highlight"><pre class="highlight xml tab-xml"><code><span class="nt">&lt;requestHeader&gt;</span>
     <span class="nt">&lt;ClientIdentifier&gt;</span>SOAP<span class="nt">&lt;/ClientIdentifier&gt;</span>
     <span class="nt">&lt;TransactionID&gt;</span>{transactionId}<span class="nt">&lt;/TransactionID&gt;</span>
     <span class="nt">&lt;RequestType&gt;</span>004<span class="nt">&lt;/RequestType&gt;</span>
@@ -700,7 +711,7 @@ This capture request and several other API requests described here may take diff
         <span class="nt">&lt;CurrencyCode&gt;</span>USD<span class="nt">&lt;/CurrencyCode&gt;</span>
     <span class="nt">&lt;/requestMessage&gt;</span>
 <span class="nt">&lt;/requestHeader&gt;</span>
-</code></pre>
+</code></pre></div>
 <p>Every sale or authorization response from Beyond Pay contains a <code>Token</code> element. This Token represents the card number used in the original transaction, but is not considered a sensitive data element per the PCI DSS. To ease in identifying the original card, however, the last four digits of the <code>Token</code> are the same as the last four digits of the card number.</p>
 
 <p>This Token value may be persisted and, with the cardholder&#39;s permission, associated with their user account in your application in order to make future purchases with the same card (&quot;card-on-file&quot;).</p>
@@ -710,7 +721,7 @@ This capture request and several other API requests described here may take diff
 <blockquote>
 <p>The <code>GatewayTransId</code> is returned in the response to a previous sale or sale-auth request and may be used as input to refund or void that original transaction.</p>
 </blockquote>
-<pre class="highlight xml tab-xml"><code><span class="nt">&lt;requestHeader&gt;</span>
+<div class="highlight"><pre class="highlight xml tab-xml"><code><span class="nt">&lt;requestHeader&gt;</span>
     <span class="nt">&lt;ClientIdentifier&gt;</span>SOAP<span class="nt">&lt;/ClientIdentifier&gt;</span>
     <span class="nt">&lt;TransactionID&gt;</span>{transactionId}<span class="nt">&lt;/TransactionID&gt;</span>
     <span class="nt">&lt;RequestType&gt;</span>012<span class="nt">&lt;/RequestType&gt;</span>
@@ -724,7 +735,7 @@ This capture request and several other API requests described here may take diff
         <span class="nt">&lt;Amount&gt;</span>{amountInCents}<span class="nt">&lt;/Amount&gt;</span>
     <span class="nt">&lt;/requestMessage&gt;</span>
 <span class="nt">&lt;/requestHeader&gt;</span>
-</code></pre>
+</code></pre></div>
 <p>In order to refund or void a previous sale or sale-auth transaction, simply construct an XML message with <code>RequestType</code> of <code>012</code> and <code>TransactionType</code> of <code>refund</code>. Note that if the original transaction is still in an unsettled batch, the gateway will perform a void/reversal transaction. If the original transaction has already settled, then the gateway will perform a refund to the original card.</p>
 
 <aside class="notice">
@@ -736,7 +747,7 @@ You may refund/void the full amount of an original transaction or only part of t
 <blockquote>
 <p>Sample sale transaction via TokenPay.js, including Level II data:</p>
 </blockquote>
-<pre class="highlight xml tab-xml"><code><span class="nt">&lt;requestHeader&gt;</span>
+<div class="highlight"><pre class="highlight xml tab-xml"><code><span class="nt">&lt;requestHeader&gt;</span>
     <span class="nt">&lt;ClientIdentifier&gt;</span>SOAP<span class="nt">&lt;/ClientIdentifier&gt;</span>
     <span class="nt">&lt;TransactionID&gt;</span>{transactionId}<span class="nt">&lt;/TransactionID&gt;</span>
     <span class="nt">&lt;RequestType&gt;</span>004<span class="nt">&lt;/RequestType&gt;</span>
@@ -758,7 +769,7 @@ You may refund/void the full amount of an original transaction or only part of t
         <span class="nt">&lt;TaxIndicator&gt;</span>P<span class="nt">&lt;/TaxIndicator&gt;</span>
     <span class="nt">&lt;/requestMessage&gt;</span>
 <span class="nt">&lt;/requestHeader&gt;</span>
-</code></pre>
+</code></pre></div>
 <p>In order for a transaction to qualify at reduced &quot;Level II&quot; interchange rates, assuming the card is eligible for such, the following fields should be provided in the XML message to the gateway in addition to the basic required fields given in the <a href="#token-sale">instructions for processing a basic sale transaction</a>:</p>
 
 <ul>
@@ -770,7 +781,7 @@ You may refund/void the full amount of an original transaction or only part of t
 <blockquote>
 <p>Sample sale transaction via TokenPay.js with Level III line-item details:</p>
 </blockquote>
-<pre class="highlight xml tab-xml"><code><span class="nt">&lt;requestHeader&gt;</span>
+<div class="highlight"><pre class="highlight xml tab-xml"><code><span class="nt">&lt;requestHeader&gt;</span>
     <span class="nt">&lt;ClientIdentifier&gt;</span>SOAP<span class="nt">&lt;/ClientIdentifier&gt;</span>
     <span class="nt">&lt;TransactionID&gt;</span>{transactionId}<span class="nt">&lt;/TransactionID&gt;</span>
     <span class="nt">&lt;RequestType&gt;</span>004<span class="nt">&lt;/RequestType&gt;</span>
@@ -802,7 +813,7 @@ You may refund/void the full amount of an original transaction or only part of t
         <span class="nt">&lt;/Item&gt;</span>
     <span class="nt">&lt;/requestMessage&gt;</span>
 <span class="nt">&lt;/requestHeader&gt;</span>
-</code></pre>
+</code></pre></div>
 <p>Cards that are eligible for Level III interchange rates are typically corporate purchasing or some travel cards. If a card is eligible for such, you can achieve a reduced interchange rate by providing the following fields in your gateway request message (in addition to those required for Level II and basic sale or &quot;Level I&quot; transactions).</p>
 
 <p>Note that Level III transactions require line-item details from the purchase. You should send one Item array for each line item on a given invoice; many integrators will dynamically map these required fields into their existing inventory, order management, or ERP systems. Alternatively, if you only sell one type of item, you may consider creating a static mapping of these fields, or &quot;hard-coding&quot; the values specific to your business.</p>
@@ -822,7 +833,7 @@ You may refund/void the full amount of an original transaction or only part of t
 <aside class="success">
 In general, for most card brands and card issuers, the presence of a value in the appropriate Level III field is enough to qualify for the reduced interchange rate. The accuracy of these values is not validated by the card brands in most cases, but may impact the reporting received by the administrator of a given corporate purchasing card program.
 </aside>
-<h2 id='ach-and-echecks'>ACH and eChecks</h2><pre class="highlight xml tab-xml"><code><span class="nt">&lt;requestHeader&gt;</span>
+<h2 id='ach-and-echecks'>ACH and eChecks</h2><div class="highlight"><pre class="highlight xml tab-xml"><code><span class="nt">&lt;requestHeader&gt;</span>
     <span class="nt">&lt;ClientIdentifier&gt;</span>SOAP<span class="nt">&lt;/ClientIdentifier&gt;</span>
     <span class="nt">&lt;TransactionID&gt;</span>{transactionId}<span class="nt">&lt;/TransactionID&gt;</span>
     <span class="nt">&lt;RequestType&gt;</span>004<span class="nt">&lt;/RequestType&gt;</span>
@@ -839,7 +850,7 @@ In general, for most card brands and card issuers, the presence of a value in th
         <span class="nt">&lt;Amount&gt;</span>{amountInCents}<span class="nt">&lt;/Amount&gt;</span>
     <span class="nt">&lt;/requestMessage&gt;</span>
 <span class="nt">&lt;/requestHeader&gt;</span>
-</code></pre>
+</code></pre></div>
 <p>Processing an eCheck/ACH transaction is very similar to processing a credit card transaction. Instead of passing a token to the webservice, you can directly pass the bank&#39;s routing/transit number and the bank account number. These data elements are not considered sensitive to the same degree as card data, and are not covered by the scope of PCI DSS. You should still encrypt said data elements whether at rest or in motion, but they will not impact your scope of PCI compliance.</p>
 
 <p>In addition to passing the routing and account number, you also need to specify whether the bank account is a checking or savings account, as well as the &quot;Standard Entry Class&quot; code as defined by NACHA.</p>
@@ -882,79 +893,79 @@ Different NACHA SEC codes require different types of authorizations from or disc
 <blockquote>
 <p><b>Web Service (Test and Production):</b></p>
 </blockquote>
-<pre class="highlight html tab-html"><code>https://pgc.bridgepaynetsecuretx.com/req/payment
-</code></pre>
+<div class="highlight"><pre class="highlight html tab-html"><code>https://pgc.bridgepaynetsecuretx.com/req/payment
+</code></pre></div>
 <blockquote>
 <p>Credit Sale Request</p>
 
 <p><code>POST</code></p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-</span><span class="s2">"locationID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"91552FCB-01A7-4BA2-B00A-EA33FC660307"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UAT"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"17.00"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"softwareVendor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"My POS 1.0"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"tenderType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CREDIT"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"transType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SALE"</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="nl">"locationID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"91552FCB-01A7-4BA2-B00A-EA33FC660307"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UAT"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"17.00"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"softwareVendor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"My POS 1.0"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"tenderType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CREDIT"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"transType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SALE"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
+</span></code></pre></div>
 <blockquote>
 <p>Credit Sale Response</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-</span><span class="s2">"requestID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2aaf2fe8663c561fe7edf5c663b4e7262dd47274bdba13f3daafb207"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"locationID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"91552FCB-01A7-4BA2-B00A-EA33FC660307"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"terminalID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3EADDF76-27E6-4883-A49C-0AA876E64734"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"approvedAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"17.00"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"authCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"830705"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"avsMessage"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-</span><span class="s2">"avsResponse"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-</span><span class="s2">"cardType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Visa"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"cashBackAmt"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-</span><span class="s2">"cvMessage"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-</span><span class="s2">"cvResponse"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-</span><span class="s2">"expirationDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0323"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"extData"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"lodgingItem"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-    </span><span class="s2">"receiptTagData"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"maskedCard"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4***********2645"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"chipCardAID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A0000000031010"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"invoice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345678"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"seq"</span><span class="p">:</span><span class="w"> </span><span class="s2">"23dbde68c492a6c2c6b5cbe726d40741"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"authCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"830705"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"entryMethod"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Chip_Read"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"totalAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"17.00"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"pinVerified"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NO"</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="nl">"requestID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2aaf2fe8663c561fe7edf5c663b4e7262dd47274bdba13f3daafb207"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"locationID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"91552FCB-01A7-4BA2-B00A-EA33FC660307"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"terminalID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3EADDF76-27E6-4883-A49C-0AA876E64734"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"approvedAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"17.00"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"authCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"830705"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"avsMessage"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="nl">"avsResponse"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="nl">"cardType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Visa"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"cashBackAmt"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="nl">"cvMessage"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="nl">"cvResponse"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="nl">"expirationDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0323"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"extData"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"lodgingItem"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nl">"receiptTagData"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"maskedCard"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4***********2645"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"chipCardAID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A0000000031010"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"invoice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345678"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"seq"</span><span class="p">:</span><span class="w"> </span><span class="s2">"23dbde68c492a6c2c6b5cbe726d40741"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"authCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"830705"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"entryMethod"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Chip_Read"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"totalAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"17.00"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"pinVerified"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NO"</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"signatureEncoded"</span><span class="p">:</span><span class="w"> </span><span class="s2">"iVBORw0KGgoAAAANSUhEUgAAAe8AAACWCAIAAAB4sZcnAAADOklEQVR42u..."</span><span class="w">
+    </span><span class="nl">"signatureEncoded"</span><span class="p">:</span><span class="w"> </span><span class="s2">"iVBORw0KGgoAAAANSUhEUgAAAe8AAACWCAIAAAB4sZcnAAADOklEQVR42u..."</span><span class="w">
 </span><span class="p">},</span><span class="w">
-</span><span class="s2">"gatewayMessage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A01 - Approved"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"gatewayResult"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"internalMessage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Approved: 830705 (approval code)"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"isCommercialCard"</span><span class="p">:</span><span class="w"> </span><span class="s2">"False"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"isoCountryCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"840"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"isoCurrencyCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"isoRequestDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-28 14:25:04.963"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"isoTransactionDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-28 14:25:04.963"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"maskedAccountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4***********2645"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"merchantCategoryCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-</span><span class="s2">"networkMerchantId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-</span><span class="s2">"networkReferenceNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-</span><span class="s2">"networkTerminalId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-</span><span class="s2">"pnRefNum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"253271004"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"remainingAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"requestedAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-</span><span class="s2">"responseTypeDescription"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sale"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"resultCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"resultTxt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Successful Request"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"streetMatchMessage"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-</span><span class="s2">"submittedAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"17.00"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20180628"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"tipAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-</span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11110000000400142645"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"transactionCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"23dbde68c492a6c2c6b5cbe726d40741"</span><span class="w">
+</span><span class="nl">"gatewayMessage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A01 - Approved"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"gatewayResult"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"internalMessage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Approved: 830705 (approval code)"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"isCommercialCard"</span><span class="p">:</span><span class="w"> </span><span class="s2">"False"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"isoCountryCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"840"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"isoCurrencyCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"isoRequestDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-28 14:25:04.963"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"isoTransactionDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-28 14:25:04.963"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"maskedAccountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4***********2645"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"merchantCategoryCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="nl">"networkMerchantId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="nl">"networkReferenceNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="nl">"networkTerminalId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="nl">"pnRefNum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"253271004"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"remainingAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"requestedAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="nl">"responseTypeDescription"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sale"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"resultCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"resultTxt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Successful Request"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"streetMatchMessage"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="nl">"submittedAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"17.00"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20180628"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"tipAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="nl">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11110000000400142645"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"transactionCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"23dbde68c492a6c2c6b5cbe726d40741"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
+</span></code></pre></div>
 <p>Initiating a card present transaction is as simple as POSTing just a few lines of JSON to the web service, passing the following arguments:</p>
 
 <ul>
@@ -981,21 +992,21 @@ Different NACHA SEC codes require different types of authorizations from or disc
 <aside class="notice">
 Additional data elements are presented in the following sections that cover industry-specific use cases and provide more detailed workflows.
 </aside>
-<h2 id='basic-sale-options'>Basic Sale Options</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-</span><span class="s2">"locationID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"91552FCB-01A7-4BA2-B00A-EA33FC660307"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UAT"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#####.##"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"softwareVendor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"My POS 1.0"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"tenderType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CREDIT"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"transType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SALE"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"invNum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Invoice number"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"pnRefNum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Reference number from a previous transaction"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"poNum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Purchase order number"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"taxAmt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#####.##"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"allowPartialApproval"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true|false"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"clerkID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Employee/Clerk ID"</span><span class="p">,</span><span class="w">
+<h2 id='basic-sale-options'>Basic Sale Options</h2><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="nl">"locationID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"91552FCB-01A7-4BA2-B00A-EA33FC660307"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UAT"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#####.##"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"softwareVendor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"My POS 1.0"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"tenderType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CREDIT"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"transType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SALE"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"invNum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Invoice number"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"pnRefNum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Reference number from a previous transaction"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"poNum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Purchase order number"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"taxAmt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#####.##"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"allowPartialApproval"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true|false"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"clerkID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Employee/Clerk ID"</span><span class="p">,</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
+</span></code></pre></div>
 <p>You may also want to send these additional fields on some transactions:</p>
 
 <ul>
@@ -1014,109 +1025,109 @@ Partial authorization support is required for some merchant types and strongly e
 <blockquote>
 <p><code>CREDIT</code> + <code>ADJUSTMENT</code> request:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-</span><span class="s2">"locationID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"C832D913-982C-4256-9895-2DD13BDA5947"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"pnRefNum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Reference number from a previous transaction"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"mode"</span><span class="p">:</span><span class="s2">"UAT"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"tipAmt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5.00"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"tenderType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CREDIT"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"transType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ADJUSTMENT"</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="nl">"locationID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"C832D913-982C-4256-9895-2DD13BDA5947"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"pnRefNum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Reference number from a previous transaction"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"mode"</span><span class="p">:</span><span class="s2">"UAT"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"tipAmt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5.00"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"tenderType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CREDIT"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"transType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ADJUSTMENT"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
+</span></code></pre></div>
 <blockquote>
 <p><code>CREDIT</code> + <code>ADJUSTMENT</code> response:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-</span><span class="s2">"requestID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"388c37acbd88d7f00fce90ffee8b83c156efedb57828c1e8439e6284"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"locationID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"C832D913-982C-4256-9895-2DD13BDA5947"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"terminalID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9102C064-F990-41AB-BAD4-C98F33E4C684"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"approvedAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20.00"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"authCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"802431"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"avsMessage"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-</span><span class="s2">"avsResponse"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-</span><span class="s2">"cardType"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-</span><span class="s2">"cashBackAmt"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-</span><span class="s2">"cvMessage"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-</span><span class="s2">"cvResponse"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-</span><span class="s2">"expirationDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-</span><span class="s2">"extData"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"lodgingItem"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-    </span><span class="s2">"receiptTagData"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
-            </span><span class="p">}</span><span class="w">   </span><span class="p">,</span><span class="w"> </span><span class="s2">"gatewayMessage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A12 - Tip Adjustment Posted"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"gatewayResult"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"internalMessage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tip Adjustment Posted"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"isCommercialCard"</span><span class="p">:</span><span class="w"> </span><span class="s2">"False"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"isoCountryCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"isoCurrencyCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-</span><span class="s2">"isoRequestDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-</span><span class="s2">"isoTransactionDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-</span><span class="s2">"maskedAccountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-</span><span class="s2">"merchantCategoryCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-</span><span class="s2">"networkMerchantId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-</span><span class="s2">"networkReferenceNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-</span><span class="s2">"networkTerminalId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-</span><span class="s2">"pnRefNum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"253276004"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"remainingAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"requestedAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-</span><span class="s2">"resultCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"resultTxt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Successful Request"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"streetMatchMessage"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-</span><span class="s2">"submittedAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"15.00"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-</span><span class="s2">"tipAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-</span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-</span><span class="s2">"transactionCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="nl">"requestID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"388c37acbd88d7f00fce90ffee8b83c156efedb57828c1e8439e6284"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"locationID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"C832D913-982C-4256-9895-2DD13BDA5947"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"terminalID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9102C064-F990-41AB-BAD4-C98F33E4C684"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"approvedAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20.00"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"authCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"802431"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"avsMessage"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="nl">"avsResponse"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="nl">"cardType"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="nl">"cashBackAmt"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="nl">"cvMessage"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="nl">"cvResponse"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="nl">"expirationDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="nl">"extData"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"lodgingItem"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nl">"receiptTagData"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+            </span><span class="p">}</span><span class="w">   </span><span class="p">,</span><span class="w"> </span><span class="nl">"gatewayMessage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A12 - Tip Adjustment Posted"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"gatewayResult"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"internalMessage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tip Adjustment Posted"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"isCommercialCard"</span><span class="p">:</span><span class="w"> </span><span class="s2">"False"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"isoCountryCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"isoCurrencyCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="nl">"isoRequestDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="nl">"isoTransactionDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="nl">"maskedAccountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="nl">"merchantCategoryCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="nl">"networkMerchantId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="nl">"networkReferenceNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="nl">"networkTerminalId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="nl">"pnRefNum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"253276004"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"remainingAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"requestedAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="nl">"resultCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"resultTxt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Successful Request"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"streetMatchMessage"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="nl">"submittedAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"15.00"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="nl">"tipAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="nl">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="nl">"transactionCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
+</span></code></pre></div>
 <p><code>tenderType</code>=<code>CREDIT</code> and <code>transType</code>=<code>ADJUSTMENT</code> will adjust a previous <code>SALE</code> or <code>SALE_AUTH</code> adding a tip amount based on a <code>pnRefNum</code> (previous transaction reference number). This action can only be performed on unsettled transactions in an open batch. </p>
 
 <p>If successful, the response will contain the new total approved amount: (initial amount) + (tip amount).</p>
-<h2 id='lodging-amp-hotels'>Lodging &amp; Hotels</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-</span><span class="s2">"locationID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your-locationID"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UAT"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.00"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"softwareVendor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your_POS_name"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"tenderType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CREDIT"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"transType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SALE"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"extData"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+<h2 id='lodging-amp-hotels'>Lodging &amp; Hotels</h2><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="nl">"locationID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your-locationID"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UAT"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.00"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"softwareVendor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your_POS_name"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"tenderType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CREDIT"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"transType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SALE"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"extData"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span><span class="err">/*</span><span class="w"> </span><span class="err">Lodging</span><span class="w"> </span><span class="err">fields</span><span class="w"> </span><span class="err">*/</span><span class="w">
-</span><span class="s2">"checkInDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Actual or anticipated check in date."</span><span class="p">,</span><span class="w">
-</span><span class="s2">"checkOutDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Actual or anticipated check out date."</span><span class="p">,</span><span class="w">
-</span><span class="s2">"departureAdjAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Additional amount charged after cardholder left the hotel."</span><span class="p">,</span><span class="w">
-</span><span class="s2">"folioNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hotel folio number"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"lodgingChargeType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"H (Hotel)|R (Restaurant)|G (Gift Shop)|S (Health Spa)|B (Beauty Shop)|F (Convention Fee)|T (Tennis)|O (Golf)"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"checkInDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Actual or anticipated check in date."</span><span class="p">,</span><span class="w">
+</span><span class="nl">"checkOutDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Actual or anticipated check out date."</span><span class="p">,</span><span class="w">
+</span><span class="nl">"departureAdjAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Additional amount charged after cardholder left the hotel."</span><span class="p">,</span><span class="w">
+</span><span class="nl">"folioNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hotel folio number"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"lodgingChargeType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"H (Hotel)|R (Restaurant)|G (Gift Shop)|S (Health Spa)|B (Beauty Shop)|F (Convention Fee)|T (Tennis)|O (Golf)"</span><span class="p">,</span><span class="w">
 </span><span class="err">/*Collection</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">lodging</span><span class="w"> </span><span class="err">item</span><span class="w"> </span><span class="err">records.*/</span><span class="w">
-</span><span class="s2">"lodgingItem"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-</span><span class="s2">"lodgingItemAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Amount (in cents) for lodging extra charge item. Implied (no) decimal."</span><span class="p">,</span><span class="w">
-</span><span class="s2">"lodgingItemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-</span><span class="s2">"lodgingItemType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"G (Gift Shop)|L (Laundry)|B (Mini Bar)|R (Restaurant)|T (Telephone)"</span><span class="w">
+</span><span class="nl">"lodgingItem"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+</span><span class="nl">"lodgingItemAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Amount (in cents) for lodging extra charge item. Implied (no) decimal."</span><span class="p">,</span><span class="w">
+</span><span class="nl">"lodgingItemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="nl">"lodgingItemType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"G (Gift Shop)|L (Laundry)|B (Mini Bar)|R (Restaurant)|T (Telephone)"</span><span class="w">
 </span><span class="p">}],</span><span class="w">
-</span><span class="s2">"lodgingItemCount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Indicates number of lodging industry items purchased as part of this transaction."</span><span class="p">,</span><span class="w">
-</span><span class="s2">"roomNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hotel room number"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"roomRateAmt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Amount (in cents) of the daily room rate."</span><span class="p">,</span><span class="w">
-</span><span class="s2">"roomTaxAmt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Amount (in cents) of the tax applied to daily room rate."</span><span class="p">,</span><span class="w">
-</span><span class="s2">"specialProgramType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AD (Advance deposit)|AR (Assured reservation)|DC (Delayed charge)|ES (Express service)|NC (Normal charge)|NS (No show charge)"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"stayDuration"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Anticipated, actual or incremental stay in days."</span><span class="w">
+</span><span class="nl">"lodgingItemCount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Indicates number of lodging industry items purchased as part of this transaction."</span><span class="p">,</span><span class="w">
+</span><span class="nl">"roomNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hotel room number"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"roomRateAmt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Amount (in cents) of the daily room rate."</span><span class="p">,</span><span class="w">
+</span><span class="nl">"roomTaxAmt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Amount (in cents) of the tax applied to daily room rate."</span><span class="p">,</span><span class="w">
+</span><span class="nl">"specialProgramType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AD (Advance deposit)|AR (Assured reservation)|DC (Delayed charge)|ES (Express service)|NC (Normal charge)|NS (No show charge)"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"stayDuration"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Anticipated, actual or incremental stay in days."</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
+</span></code></pre></div>
 <p>The extended data fields required for lodging transactions can easily be passed through the semi-integrated device to Beyond Pay Gateway.</p>
-<h2 id='pharmacy-amp-healthcare'>Pharmacy &amp; Healthcare</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-</span><span class="s2">"locationID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your-locationID"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UAT"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.00"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"softwareVendor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your_POS_name"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"tenderType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CREDIT"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"transType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SALE"</span><span class="p">,</span><span class="w">
+<h2 id='pharmacy-amp-healthcare'>Pharmacy &amp; Healthcare</h2><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="nl">"locationID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your-locationID"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UAT"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.00"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"softwareVendor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your_POS_name"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"tenderType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CREDIT"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"transType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SALE"</span><span class="p">,</span><span class="w">
 </span><span class="err">/*</span><span class="w"> </span><span class="err">Healthcare</span><span class="w"> </span><span class="err">related</span><span class="w"> </span><span class="err">fields</span><span class="w"> </span><span class="err">*/</span><span class="w">
-</span><span class="s2">"isQualifiedIIAS"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Indicates whether purchase items are verified against IIAS. Can be t|f"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"healthCareAmt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Amount (in cents) of the total Healthcare Amount."</span><span class="p">,</span><span class="w">
-</span><span class="s2">"clinicAmt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Amount (in cents) of the portion of the Healthcare Amount spent on hospitalization."</span><span class="p">,</span><span class="w">
-</span><span class="s2">"dentalAmt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Amount (in cents) of the portion of the Healthcare Amount spent on dental related medical services."</span><span class="p">,</span><span class="w">
-</span><span class="s2">"prescriptionAmt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Amount (in cents) of the portion of the Healthcare Amount spent on prescription drugs or products."</span><span class="p">,</span><span class="w">
-</span><span class="s2">"transitAmt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Amount (in cents) of the portion of the Healthcare Amount spent on transportaion."</span><span class="p">,</span><span class="w">
-</span><span class="s2">"visionAmt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Amount (in cents) of the portion of the Healthcare Amount spent on vision related medical services."</span><span class="w">
+</span><span class="nl">"isQualifiedIIAS"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Indicates whether purchase items are verified against IIAS. Can be t|f"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"healthCareAmt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Amount (in cents) of the total Healthcare Amount."</span><span class="p">,</span><span class="w">
+</span><span class="nl">"clinicAmt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Amount (in cents) of the portion of the Healthcare Amount spent on hospitalization."</span><span class="p">,</span><span class="w">
+</span><span class="nl">"dentalAmt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Amount (in cents) of the portion of the Healthcare Amount spent on dental related medical services."</span><span class="p">,</span><span class="w">
+</span><span class="nl">"prescriptionAmt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Amount (in cents) of the portion of the Healthcare Amount spent on prescription drugs or products."</span><span class="p">,</span><span class="w">
+</span><span class="nl">"transitAmt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Amount (in cents) of the portion of the Healthcare Amount spent on transportaion."</span><span class="p">,</span><span class="w">
+</span><span class="nl">"visionAmt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Amount (in cents) of the portion of the Healthcare Amount spent on vision related medical services."</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
+</span></code></pre></div>
 <p>Payment systems and Points of Sale for pharmacy merchants are required to pass some of these additional data fields in conjunction with their implementation of &quot;auto-substantiation&quot; using an &quot;inventory information approval system&quot; (IIAS). See <a href="https://sig-is.org/">sig-is.org</a> for more information.</p>
 <h1 id='transaction-reporting'>Transaction Reporting</h1>
 <blockquote>
@@ -1128,7 +1139,7 @@ Partial authorization support is required for some merchant types and strongly e
 
 <p>C# sample implementation:</p>
 </blockquote>
-<pre class="highlight csharp"><code><span class="k">class</span> <span class="nc">Program</span>
+<div class="highlight"><pre class="highlight csharp"><code><span class="k">class</span> <span class="nc">Program</span>
 <span class="p">{</span>
   <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
   <span class="p">{</span>
@@ -1169,7 +1180,7 @@ Partial authorization support is required for some merchant types and strongly e
     <span class="p">}</span>
   <span class="p">}</span>
 <span class="p">}</span>
-</code></pre>
+</code></pre></div>
 <p>The Beyond Pay Reporting API provides integrators with the ability to request transaction data via a SOAP request made to the service.  The user must provide data they wish to use as a filter in the parameter to the SOAP method and will receive a response containing the data they requested.</p>
 
 <p>The Reporting API provides three data contracts.  One for the incoming request and two for the response to the request.  When making a request, the consumer must provide a TransctionRowFilter object. When receiving the response, the consumer will get a TransactionSet object which will contain a collection of TransactionRow objects.  The data contracts are described in more detail below.</p>
@@ -1590,9 +1601,9 @@ Partial authorization support is required for some merchant types and strongly e
 <blockquote>
 <p>This method returns a <code>TransactionSet</code> object as described above:</p>
 </blockquote>
-<pre class="highlight csharp tab-csharp"><code><span class="nf">PublicGetTransactionsByFilter</span><span class="p">(</span><span class="n">Credentials</span> <span class="n">credentials</span><span class="p">,</span> <span class="n">TransactionRowFilter</span> <span class="n">filterObject</span><span class="p">)</span>
+<div class="highlight"><pre class="highlight csharp tab-csharp"><code><span class="nf">PublicGetTransactionsByFilter</span><span class="p">(</span><span class="n">Credentials</span> <span class="n">credentials</span><span class="p">,</span> <span class="n">TransactionRowFilter</span> <span class="n">filterObject</span><span class="p">)</span>
 
-</code></pre>
+</code></pre></div>
 <p>At this time, the Reporting API provides only one operation contract for retrieving transactional data.</p>
 <h2 id='reporting-tips-amp-examples'>Reporting Tips &amp; Examples</h2>
 <p>There are two types of parameters in the TransactionRowFilter object: DBQuery Filters and Post-Query Filters.</p>
@@ -1606,49 +1617,49 @@ Partial authorization support is required for some merchant types and strongly e
 
 <p>Returns all transactions of $1.00 or more:</p>
 </blockquote>
-<pre class="highlight xml tab-xml"><code><span class="nt">&lt;AmountRangeFrom&gt;</span>100<span class="nt">&lt;/AmountRangeFrom&gt;</span>
-</code></pre>
+<div class="highlight"><pre class="highlight xml tab-xml"><code><span class="nt">&lt;AmountRangeFrom&gt;</span>100<span class="nt">&lt;/AmountRangeFrom&gt;</span>
+</code></pre></div>
 <blockquote>
 <p>Returns all transactions of $2.00 or less:</p>
 </blockquote>
-<pre class="highlight xml tab-xml"><code><span class="nt">&lt;AmountRangeTo&gt;</span>100<span class="nt">&lt;/AmountRangeTo&gt;</span>
-</code></pre>
+<div class="highlight"><pre class="highlight xml tab-xml"><code><span class="nt">&lt;AmountRangeTo&gt;</span>100<span class="nt">&lt;/AmountRangeTo&gt;</span>
+</code></pre></div>
 <blockquote>
 <p>Returns all transactions with Invoice Number 2001:</p>
 </blockquote>
-<pre class="highlight xml tab-xml"><code><span class="nt">&lt;InoviceNumber&gt;</span>2001<span class="nt">&lt;/InvoiceNumber&gt;</span>
-</code></pre>
+<div class="highlight"><pre class="highlight xml tab-xml"><code><span class="nt">&lt;InoviceNumber&gt;</span>2001<span class="nt">&lt;/InvoiceNumber&gt;</span>
+</code></pre></div>
 <blockquote>
 <p>Returns all declined transactions:</p>
 </blockquote>
-<pre class="highlight xml tab-xml"><code><span class="nt">&lt;ResponseCode&gt;</span>D<span class="nt">&lt;/ResponseCode&gt;</span>
-</code></pre>
+<div class="highlight"><pre class="highlight xml tab-xml"><code><span class="nt">&lt;ResponseCode&gt;</span>D<span class="nt">&lt;/ResponseCode&gt;</span>
+</code></pre></div>
 <blockquote>
 <p>Returns all declined transactions with <a href="#gateway-message-codes">Gateway Message</a> codes D01-D09:</p>
 </blockquote>
-<pre class="highlight xml tab-xml"><code><span class="nt">&lt;ResponseCode&gt;</span>D0<span class="nt">&lt;/ResponseCode&gt;</span>
-</code></pre>
+<div class="highlight"><pre class="highlight xml tab-xml"><code><span class="nt">&lt;ResponseCode&gt;</span>D0<span class="nt">&lt;/ResponseCode&gt;</span>
+</code></pre></div>
 <blockquote>
 <p>Returns only those transactions that were declined with <a href="#gateway-message-codes">Gateway Message</a> code D01:</p>
 </blockquote>
-<pre class="highlight xml tab-xml"><code><span class="nt">&lt;ResponseCode&gt;</span>D01<span class="nt">&lt;/ResponseCode&gt;</span>
-</code></pre>
+<div class="highlight"><pre class="highlight xml tab-xml"><code><span class="nt">&lt;ResponseCode&gt;</span>D01<span class="nt">&lt;/ResponseCode&gt;</span>
+</code></pre></div>
 <blockquote>
 <p>Returns only those transactions that were declined with <a href="#gateway-message-codes">Gateway Message</a> code D01:</p>
 </blockquote>
-<pre class="highlight xml tab-xml"><code><span class="nt">&lt;ResponseCode&gt;</span>D01<span class="nt">&lt;/ResponseCode&gt;</span>
-</code></pre>
+<div class="highlight"><pre class="highlight xml tab-xml"><code><span class="nt">&lt;ResponseCode&gt;</span>D01<span class="nt">&lt;/ResponseCode&gt;</span>
+</code></pre></div>
 <blockquote>
 <p>Provides those transactions where the <a href="#gateway-result-codes">Gateway Result code</a> is equal to 00000, 00001, or 10012 only:</p>
 </blockquote>
-<pre class="highlight xml tab-xml"><code><span class="nt">&lt;TransResults&gt;</span>00000,00001,10012<span class="nt">&lt;/TransResults&gt;</span>
-</code></pre>
+<div class="highlight"><pre class="highlight xml tab-xml"><code><span class="nt">&lt;TransResults&gt;</span>00000,00001,10012<span class="nt">&lt;/TransResults&gt;</span>
+</code></pre></div>
 <blockquote>
 <p>Return all transactions where <a href="#gateway-result-codes">Gateway Result code</a> code is NOT equal to 00000, 00001, or 10012::</p>
 </blockquote>
-<pre class="highlight xml tab-xml"><code><span class="nt">&lt;TransResults&gt;</span>00000,00001,10012<span class="nt">&lt;/TransResults&gt;</span>
+<div class="highlight"><pre class="highlight xml tab-xml"><code><span class="nt">&lt;TransResults&gt;</span>00000,00001,10012<span class="nt">&lt;/TransResults&gt;</span>
 <span class="nt">&lt;ExcludeTransResults&gt;</span>1<span class="nt">&lt;/ExcludeTransResults&gt;</span>
-</code></pre>
+</code></pre></div>
 <ul>
 <li>GTE = Greater Than or Equal. The query will look for data that is greater than or equal to the data provided in the filter parameter.</li>
 <li>LTE = Less Than or Equal. The query will look for data that is less than or equal to the data provided in the filter parameter.</li>
