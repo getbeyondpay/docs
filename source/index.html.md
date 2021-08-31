@@ -3,7 +3,7 @@ title: Beyond Pay Developer Portal
 
 language_tabs:
   - php
-  - csharp
+  - c#
   - java
 
 toc_footers:
@@ -25,7 +25,7 @@ meta:
   - name: keywords
     content: GetBeyond,Beyond,BeyondPay,Gateway,API,Payments,Credit,Debit,Plugin,SDK
 ---
-
+<a href="#"></a>
 > <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=Q9V6UxGq3USJSkGsz2Jk78Ytw0d6hJlNsDOCAUz-XBhURUJXWFhEMDlDTUs3OVlROEMxOExJQzZGNS4u" class="button" target="_blank">Get Your Sandbox API Keys</a> and get coding now!
 
 > Contact us if you have questions or need help! <a href='mailto:BeyondPayIntegrations@getbeyond.com'>BeyondPayIntegrations@getbeyond.com</a>
@@ -38,13 +38,45 @@ Whether you have an existing shopping cart or are building a custom integration,
 
 ## Payment Plugins
 
+Why reinvent the wheel? We've done the heavy lifting to build robust integrations to these popular solutions for you: sit back, relax, and plug in!
+
 ### WooCommerce
+
+<a href="html
+https://wordpress.org/plugins/beyond-pay-for-woocommerce">
+```html
+https://wordpress.org/plugins/beyond-pay-for-woocommerce
+```
+</a>
+
+<a href="html
+https://github.com/getbeyond/beyondpay_woocommerce">
+```html
+https://github.com/getbeyond/beyondpay_woocommerce
+```
+</a>
+
+> WordPress README.txt:
+
+```html
+=== Beyond Pay for WooCommerce ===
+Contributors: beyondpay
+Tags: credit card, payment, woocommerce, payment gateway, subscriptions, subscription payments, recurring billing
+Requires at least: 4.7
+Tested up to: 5.7.2
+Stable tag: trunk
+Requires PHP: 7.0
+License: MIT
+License URI: https://opensource.org/licenses/MIT
+
+Securely accept credit card payments using Beyond Pay gateway and optimize your cost of acceptance on B2B/corporate cards.
+```
 
 <a href="https://wordpress.org/plugins/beyond-pay-for-woocommerce/"><img src="/images/256x256_woo_icon.png" width="100" />
 
 Get Beyond Pay for WooCommerce</a>
 
-Beyond Pay for WooCommerce enables secure payment card acceptance right from within your WooCommerce store. 
+Beyond Pay for <a href="woocommerce.com">WooCommerce</a> enables secure payment card acceptance right from within your WooCommerce store. 
 
 - Pre-auth and later capture or instant sale modes
 - Secure saving of cards on file
@@ -56,11 +88,41 @@ Beyond Pay for WooCommerce enables secure payment card acceptance right from wit
 
 ### Gravity Forms
 
+<a href="html
+https://wordpress.org/plugins/beyond-pay-for-gravity-forms/">
+```html
+https://wordpress.org/plugins/beyond-pay-for-gravity-forms/
+```
+</a>
+
+<a href="tml
+https://github.com/getbeyond/beyondpay_gravityforms">
+```html
+https://github.com/getbeyond/beyondpay_gravityforms
+```
+</a>
+
+> WordPress README.txt:
+
+```html
+=== Beyond Pay for Gravity Forms ===
+Contributors: beyondpay
+Tags: credit card, payment, gravity forms, payment gateway, donation
+Requires at least: 4.7
+Tested up to: 5.8
+Stable tag: 1.1.1
+Requires PHP: 7.0
+License: MIT
+License URI: https://opensource.org/licenses/MIT
+
+Securely accept credit card payments within Gravity Forms using Beyond Pay gateway and optimize your cost of acceptance on B2B/corporate cards.
+```
+
 <a href="https://wordpress.org/plugins/beyond-pay-for-gravity-forms/"><img src="/images/256x256_gravity_icon.png" width="100" />
 
 Get Beyond Pay for Gravity Forms</a>
 
-Beyond Pay for Gravity Forms allows you to create customized payment workflows for order checkout, donations, event registrations, and more!
+Beyond Pay for <a href="gravityforms.com">Gravity Forms</a> allows you to create customized payment workflows for order checkout, donations, event registrations, and more!
 
 - Define a Gravity Forms "feed" for each payment form
 - Accept payment instantly in Sale mode or capture an authorization later from the Gravity Forms "Entries" page
@@ -69,7 +131,9 @@ Beyond Pay for Gravity Forms allows you to create customized payment workflows f
 
 ## Payment SDKs
 
-We offer several client libraries which consume the Beyond Pay APIs, making it even easier for you to integrate with your project:
+We offer several client libraries (or software development kits) which consume the Beyond Pay APIs, making it even easier for you to integrate with your project.
+
+Click the respective language tab to see SDK usage examples. SDKs coming soon to Github; contact BeyondPayIntegrations@getbeyond.com to request access until then.
 
 - PHP
 - .NET
@@ -125,24 +189,21 @@ To ensure that merchants are eligible for the simplest PCI validation method, Se
 * **Isolation** – Beyond Pay Gateway hosts the sensitive cardholder data input fields. The fields are injected into your form as an HTML iframe thus isolating your page and your server from card sensitive data.
 * **Tokenization** – in order to execute transactions against the user’s card, TokenPay replaces the sensitive cardholder data with a non-sensitive surrogate value (token). The token is generated via the use of the TokenPay JavaScript library and your payment form.
 * **Segregation** – Requests for charges against the user’s card are made server-to-server – not in the browser or mobile app where it is publicly visible. The tokenized card data is submitted to your server where a secure server-to-server request is made to execute the transaction.
-* **Public/Private Keys** – The injection of the TokenPay hosted input fields and card tokenization is authenticated via a public key assigned to the merchant. API requests to execute charges against the tokenized card are made by the backend server and are authenticated with a private key assigned to the merchant.
+* **Authentication** – The injection of the TokenPay hosted input fields and card tokenization is authenticated via a public key assigned to the merchant. API requests to execute charges against the tokenized card are made by the backend server and are authenticated with a private key assigned to the merchant.
 
 ### TokenPay.js
 
-> <b>Sandbox (Testing):</b>
-
+> <b>Sandbox:</b>
 ```html
 https://api-test.getbeyondpay.com/Bridgepay.WebSecurity/TokenPay/js/tokenPay.js
 ```
-
-> <b>Live (Production):</b>
+> <b>Production:</b>
 
 ```html
 https://api.getbeyondpay.com/WebSecurity/TokenPay/js/tokenPay.js
 ```
 
-
-TokenPay.js is the JavaScript library for building online or mobile checkout flows with Beyond Pay Gateway. With it, you can collect sensitive data from the cardholder and create tokens for securely sending the data to your server.
+TokenPay.js is the hosted JavaScript library for building online or mobile checkout flows with Beyond Pay Gateway. With it, you can collect sensitive data from the cardholder and create tokens for securely sending the data to your server.
 
 TokenPay.js provides a ready-made UI component for collecting the sensitive card data from the user. TokenPay.js then tokenizes the information without it ever having to touch your server.
 
@@ -174,7 +235,6 @@ All submission of payment information using TokenPay.js is made via a secure HTT
 ```
 
 > If you want to customize the style of the card entry area, create a hidden `<div>` element to contain your styling. The `id` of this element MUST be `customStyles`.
-
 ```html
 <div style="display: none" id="customStyles"> 
   body {
@@ -191,8 +251,6 @@ All submission of payment information using TokenPay.js is made via a secure HTT
 ```
 
 > When the form is loaded, initialize the Pay element:
-
-
 ```javascript
 tokenpay.initialize({
   dataElement: '#card', 
@@ -206,13 +264,12 @@ tokenpay.initialize({
 
 > To disable the ZIP code field from appearing in the iframe so that it can be captured elsewhere in your form, set `disableZip` to `true`.
 
-
 To securely collect sensitive card details from your users, TokenPay.js creates UI components for you that are hosted by Beyond Pay Gateway. These are then inserted into your payment form.
 
 The TokenPay element simplifies the form and minimizes the fields required by inserting a single input field that securely collects all needed card data.
 
 <aside class="warning">
-When implementing payment forms, it is strongly recommended that you utilize <b>reCAPTCHA</b>. reCAPTCHA protects payment forms from spam and bot abuse. Using reCAPTCHA on your payment forms reduces the risk of fraudulent transactions on the merchant's eCommerce sites by performing a Completely Automated Public Turing Test to Tell Computers and Humans Apart (CAPTCHA). For more information on reducing form spam and bot abuse see https://developers.google.com/recaptcha/intro
+When implementing payment forms, it is imperative that you utilize <b>reCAPTCHA</b> or similar mechanisms. reCAPTCHA protects your web forms from spam and bot abuse. Using reCAPTCHA on your payment forms reduces the risk of fraudulent transactions on the merchant's eCommerce sites by performing a Completely Automated Public Turing Test to Tell Computers and Humans Apart (CAPTCHA). For more information on reducing form spam and bot abuse see <a href="https://developers.google.com/recaptcha/intro">https://developers.google.com/recaptcha/intro</a>
 </aside>
 
 <aside class="success">
@@ -303,7 +360,7 @@ Now submit the token and parameters according to the example XML request, with t
 
 * `{transactionId}` - unique transaction ID generated by your application for tracking purposes
 * `{requestDateTime}` - date and time of the transaction in `yyyyMMddHHmmss` format
-* `{yourPrivateKey}` - your private API key, obtainable <a href='https://forms.gle/AMxdRZTsS6skq2DEA'>here.</a>
+* `{yourPrivateKey}` - your private API key
 * `{token}` - token delivered in the submission of your payment form
 * `{amountInCents}` - transaction amount in cents ($1.25 would be 125)
 * `{yourSoftwareName}` - the name and version number of your software application
