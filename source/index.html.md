@@ -1,6 +1,11 @@
 ---
 title: Beyond Pay Developer Portal
 
+language_tabs:
+  - php
+  - csharp
+  - java
+
 toc_footers:
   - <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=Q9V6UxGq3USJSkGsz2Jk78Ytw0d6hJlNsDOCAUz-XBhURUJXWFhEMDlDTUs3OVlROEMxOExJQzZGNS4u" class="button" target="_blank">Get API Keys</a>
   - ______________
@@ -11,6 +16,14 @@ toc_footers:
   - <a href='https://www.getbeyond.com/ccpa/'>CCPA Consumer Privacy</a>
 
 search: true
+
+code_clipboard: true
+
+meta:
+  - name: description
+    content: Beyond Pay API Documentation
+  - name: keywords
+    content: GetBeyond,Beyond,BeyondPay,Gateway,API,Payments,Credit,Debit,Plugin,SDK
 ---
 
 > <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=Q9V6UxGq3USJSkGsz2Jk78Ytw0d6hJlNsDOCAUz-XBhURUJXWFhEMDlDTUs3OVlROEMxOExJQzZGNS4u" class="button" target="_blank">Get Your Sandbox API Keys</a> and get coding now!
@@ -27,7 +40,7 @@ Whether you have an existing shopping cart or are building a custom integration,
 
 ### WooCommerce
 
-<a href="https://wordpress.org/plugins/beyond-pay-for-woocommerce/"><img src="/images/256x256_woo_icon.png" />
+<a href="https://wordpress.org/plugins/beyond-pay-for-woocommerce/"><img src="/images/256x256_woo_icon.png" width="100" />
 
 Get Beyond Pay for WooCommerce</a>
 
@@ -43,7 +56,7 @@ Beyond Pay for WooCommerce enables secure payment card acceptance right from wit
 
 ### Gravity Forms
 
-<a href="https://wordpress.org/plugins/beyond-pay-for-gravity-forms/"><img src="/images/256x256_gravity_icon.png" />
+<a href="https://wordpress.org/plugins/beyond-pay-for-gravity-forms/"><img src="/images/256x256_gravity_icon.png" width="100" />
 
 Get Beyond Pay for Gravity Forms</a>
 
