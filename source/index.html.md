@@ -27,7 +27,7 @@ Whether you have an existing shopping cart or are building a custom integration,
 
 ### WooCommerce
 
-<a href="https://wordpress.org/plugins/beyond-pay-for-woocommerce/"><img src="/source/images/256x256_woo_icon.png" />
+<a href="https://wordpress.org/plugins/beyond-pay-for-woocommerce/"><img src="/images/256x256_woo_icon.png" />
 
 Get Beyond Pay for WooCommerce</a>
 
@@ -43,7 +43,7 @@ Beyond Pay for WooCommerce enables secure payment card acceptance right from wit
 
 ### Gravity Forms
 
-<a href="https://wordpress.org/plugins/beyond-pay-for-gravity-forms/"><img src="/source/images/256x256_gravity_icon.png" />
+<a href="https://wordpress.org/plugins/beyond-pay-for-gravity-forms/"><img src="/images/256x256_gravity_icon.png" />
 
 Get Beyond Pay for Gravity Forms</a>
 
