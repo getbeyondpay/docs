@@ -30,7 +30,7 @@ meta:
 
 > Contact us if you have questions or need help! <a href='mailto:BeyondPayIntegrations@getbeyond.com'>BeyondPayIntegrations@getbeyond.com</a>
 
-Welcome to Beyond Pay: an omnichannel payment solution suite that enables a secure and embedded payment experience within your application.
+Welcome to Beyond Pay: an omnichannel payment suite that enables a secure and embedded payment experience within your solution.
 
 # Integration Options
 
@@ -42,15 +42,15 @@ Why reinvent the wheel? We've done the heavy lifting to build robust integration
 
 ### WooCommerce
 
-<a href="html
-https://wordpress.org/plugins/beyond-pay-for-woocommerce">
+> <a href="html
+https://wordpress.org/plugins/beyond-pay-for-woocommerce" target="_blank">
 ```html
 https://wordpress.org/plugins/beyond-pay-for-woocommerce
 ```
 </a>
 
-<a href="html
-https://github.com/getbeyond/beyondpay_woocommerce">
+> <a href="html
+https://github.com/getbeyond/beyondpay_woocommerce" target="_blank">
 ```html
 https://github.com/getbeyond/beyondpay_woocommerce
 ```
@@ -72,16 +72,16 @@ License URI: https://opensource.org/licenses/MIT
 Securely accept credit card payments using Beyond Pay gateway and optimize your cost of acceptance on B2B/corporate cards.
 ```
 
-<a href="https://wordpress.org/plugins/beyond-pay-for-woocommerce/"><img src="/images/256x256_woo_icon.png" width="100" />
+<a href="https://wordpress.org/plugins/beyond-pay-for-woocommerce/"  target="_blank"><img src="/images/256x256_woo_icon.png" width="100" />
 
 Get Beyond Pay for WooCommerce</a>
 
-Beyond Pay for <a href="woocommerce.com">WooCommerce</a> enables secure payment card acceptance right from within your WooCommerce store. 
+Beyond Pay for <a href="woocommerce.com" target="_blank">WooCommerce</a> enables secure payment card acceptance right from within your WooCommerce store. 
 
 - Pre-auth and later capture or instant sale modes
 - Secure saving of cards on file
 - Refund transactions directly from the Woo Order Details screen
-- Integration with <a href="https://woocommerce.com/products/woocommerce-subscriptions/">WooCommerce Subscriptions</a> for recurring billing
+- Integration with <a href="https://woocommerce.com/products/woocommerce-subscriptions/" target="_blank">WooCommerce Subscriptions</a> for recurring billing
 - Interchange optimization by defaulting "Level III" data
 - Custom CSS styling of the hosted payment fields
 - Sandbox mode for development and staging
@@ -89,14 +89,14 @@ Beyond Pay for <a href="woocommerce.com">WooCommerce</a> enables secure payment 
 ### Gravity Forms
 
 <a href="html
-https://wordpress.org/plugins/beyond-pay-for-gravity-forms/">
+https://wordpress.org/plugins/beyond-pay-for-gravity-forms/" target="_blank">
 ```html
 https://wordpress.org/plugins/beyond-pay-for-gravity-forms/
 ```
 </a>
 
 <a href="tml
-https://github.com/getbeyond/beyondpay_gravityforms">
+https://github.com/getbeyond/beyondpay_gravityforms" target="_blank">
 ```html
 https://github.com/getbeyond/beyondpay_gravityforms
 ```
@@ -118,7 +118,7 @@ License URI: https://opensource.org/licenses/MIT
 Securely accept credit card payments within Gravity Forms using Beyond Pay gateway and optimize your cost of acceptance on B2B/corporate cards.
 ```
 
-<a href="https://wordpress.org/plugins/beyond-pay-for-gravity-forms/"><img src="/images/256x256_gravity_icon.png" width="100" />
+<a href="https://wordpress.org/plugins/beyond-pay-for-gravity-forms/" target="_blank"><img src="/images/256x256_gravity_icon.png" width="100" />
 
 Get Beyond Pay for Gravity Forms</a>
 
@@ -269,7 +269,7 @@ To securely collect sensitive card details from your users, TokenPay.js creates 
 The TokenPay element simplifies the form and minimizes the fields required by inserting a single input field that securely collects all needed card data.
 
 <aside class="warning">
-When implementing payment forms, it is imperative that you utilize <b>reCAPTCHA</b> or similar mechanisms. reCAPTCHA protects your web forms from spam and bot abuse. Using reCAPTCHA on your payment forms reduces the risk of fraudulent transactions on the merchant's eCommerce sites by performing a Completely Automated Public Turing Test to Tell Computers and Humans Apart (CAPTCHA). For more information on reducing form spam and bot abuse see <a href="https://developers.google.com/recaptcha/intro">https://developers.google.com/recaptcha/intro</a>
+When implementing payment forms, it is imperative that you utilize <b>reCAPTCHA</b> or similar mechanisms. reCAPTCHA protects your web forms from spam and bot abuse. Using reCAPTCHA on your payment forms reduces the risk of fraudulent transactions on the merchant's eCommerce sites by performing a Completely Automated Public Turing Test to Tell Computers and Humans Apart (CAPTCHA). For more information on reducing form spam and bot abuse see <a href="https://developers.google.com/recaptcha/intro" target="_blank">https://developers.google.com/recaptcha/intro</a>
 </aside>
 
 <aside class="success">
@@ -499,7 +499,7 @@ You may refund/void the full amount of an original transaction or only part of t
 
 ## Level II and Level III Data
 
-Some business cards may be eligible for lower interchange rates if you send additional data with the transaction. Beyond Pay supports these additional data fields and can help you or your clients secure <a href="https://www.getbeyond.com/b2b-payment-solutions/">these significantly reduced rates and other B2B benefits</a>.
+Some business cards may be eligible for lower interchange rates if you send additional data with the transaction. Beyond Pay supports these additional data fields and can help you or your clients secure <a href="https://www.getbeyond.com/b2b-payment-solutions/" target="_blank">these significantly reduced rates and other B2B benefits</a>.
 
 ### Level II Data
 
@@ -580,7 +580,7 @@ Note that Level III transactions require line-item details from the purchase. Yo
 - `ItemCount` - the total number of line items being submitted in this request
 - `Item` - an array representing each line item in the request, consisting of:
 - `ItemCode` - a unique identifier assigned to this item in the merchant's inventory system (typically a SKU, SKID, or UPC) - 12 character maximum
-- `ItemCommodityCode` - a standardized code that classifies the item, such as the <a href="https://www.unspsc.org/">UN Standard Products and Services Code (UNSPSC)</a>; many integrators and merchants use the Merchant Category Code in this field
+- `ItemCommodityCode` - a standardized code that classifies the item, such as the <a href="https://www.unspsc.org/" target="_blank">UN Standard Products and Services Code (UNSPSC)</a>; many integrators and merchants use the Merchant Category Code in this field
 - `ItemDescription` - A short textual description of the item, limited to 35 characters
 - `ItemQuantity` - quantity of item units purchased as part of this transaction; supports up to 4 decimal places
 - `ItemUnitCostAmt` - cost of a single unit of the item in cents (implied decimal)
@@ -623,9 +623,9 @@ In addition to passing the routing and account number, you also need to specify 
 
 <aside class="notice">
 Different NACHA SEC codes require different types of authorizations from or disclosure to your customer:
-<br><b>WEB</b> - <a href="https://www.nacha.org/system/files/resources/Authorization_0.pdf">best practices for authorization and sample language</a>
-<br><b>CCD</b> and <b>PPD</b> - <a href="http://www.checktraining.com/docs/general/Programs/ACH%20Debit/ACH_Debit_auth_form.pdf">sample consumer authorization form</a>
-<br><b>TEL</b> - <a href="http://www.checktraining.com/docs/general/Programs/Check%20By%20Phone/Checks-By-Phone_sample_script.pdf">sample script for IVR</a> or <a href="http://www.checktraining.com/docs/general/Programs/Check%20By%20Phone/Checks-By-Phone_written_auth.pdf">sample written authorization form</a>
+<br><b>WEB</b> - <a href="https://www.nacha.org/system/files/resources/Authorization_0.pdf" target="_blank">best practices for authorization and sample language</a>
+<br><b>CCD</b> and <b>PPD</b> - <a href="http://www.checktraining.com/docs/general/Programs/ACH%20Debit/ACH_Debit_auth_form.pdf" target="_blank">sample consumer authorization form</a>
+<br><b>TEL</b> - <a href="http://www.checktraining.com/docs/general/Programs/Check%20By%20Phone/Checks-By-Phone_sample_script.pdf" target="_blank">sample script for IVR</a> or <a href="http://www.checktraining.com/docs/general/Programs/Check%20By%20Phone/Checks-By-Phone_written_auth.pdf" target="_blank">sample written authorization form</a>
 </aside>
 
 # In-Person Payments
@@ -648,8 +648,8 @@ Beyond PayGuardian is a cloud-based semi-integrated solution that makes it possi
 
 Beyond's preferred card present devices are the Android-based "A-series" from PAX Technology:
 
-- <a href="https://www.paxtechnology.com/a920">PAX A920</a>
-- <a href="https://www.paxtechnology.com/a80">PAX A80</a>
+- <a href="https://www.paxtechnology.com/a920" target="_blank">PAX A920</a>
+- <a href="https://www.paxtechnology.com/a80" target="_blank">PAX A80</a>
 
 Development devices are available to purchase by request. Please contact <a href="mailto:BeyondPayIntegrations@getbeyond.com">BeyondPayIntegrations@getbeyond.com</a>.
 
@@ -789,7 +789,7 @@ You may also want to send these additional fields on some transactions:
 - `clerkID` - an employee or clerk identifier for reporting purposes
 
 <aside class="notice">
-Partial authorization support is required for some merchant types and strongly encouraged for all others in order to reduce declines on prepaid open-loop (branded) cards when there are insufficient funds to cover the total amount of the transaction. See the <a href="https://usa.visa.com/dam/VCOM/global/support-legal/documents/visa-partial-authorization-service.pdf">Visa Partial Authorization Service Guide</a> for more details.
+Partial authorization support is required for some merchant types and strongly encouraged for all others in order to reduce declines on prepaid open-loop (branded) cards when there are insufficient funds to cover the total amount of the transaction. See the <a href="https://usa.visa.com/dam/VCOM/global/support-legal/documents/visa-partial-authorization-service.pdf" target="_blank">Visa Partial Authorization Service Guide</a> for more details.
 </aside>
 
 ## Tips & Gratuities
