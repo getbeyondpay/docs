@@ -26,13 +26,14 @@ meta:
     content: GetBeyond,Beyond,BeyondPay,Gateway,API,Payments,Credit,Debit,Plugin,SDK
 ---
 <a href="#"></a>
-> <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=Q9V6UxGq3USJSkGsz2Jk78Ytw0d6hJlNsDOCAUz-XBhURUJXWFhEMDlDTUs3OVlROEMxOExJQzZGNS4u" class="button" target="_blank">Get Your Sandbox API Keys</a> and get coding now!
-
-> Contact us if you have questions or need help! <a href='mailto:BeyondPayIntegrations@getbeyond.com'>BeyondPayIntegrations@getbeyond.com</a>
 
 Welcome to Beyond Pay: an omnichannel payment suite that enables a secure and embedded payment experience within your solution.
 
+> <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=Q9V6UxGq3USJSkGsz2Jk78Ytw0d6hJlNsDOCAUz-XBhURUJXWFhEMDlDTUs3OVlROEMxOExJQzZGNS4u" target="_blank" class="button">Get Your Sandbox API Keys</a> and get coding now!
+
 # Integration Options
+
+> Contact us if you have questions or need help: <a href='mailto:BeyondPayIntegrations@getbeyond.com'>BeyondPayIntegrations@getbeyond.com</a>
 
 Whether you have an existing shopping cart or are building a custom integration, we've got you covered!
 
@@ -44,19 +45,19 @@ Why reinvent the wheel? We've done the heavy lifting to build robust integration
 
 > <a href="html
 https://wordpress.org/plugins/beyond-pay-for-woocommerce" target="_blank">
-```html
+```
 https://wordpress.org/plugins/beyond-pay-for-woocommerce
 ```
 </a>
 
 > <a href="html
 https://github.com/getbeyond/beyondpay_woocommerce" target="_blank">
-```html
+```
 https://github.com/getbeyond/beyondpay_woocommerce
 ```
 </a>
 
-> WordPress README.txt:
+<a href="https://wordpress.org/plugins/beyond-pay-for-woocommerce/"  target="_blank"><img src="/images/256x256_woo_icon.png" width="100" />
 
 ```html
 === Beyond Pay for WooCommerce ===
@@ -68,11 +69,7 @@ Stable tag: trunk
 Requires PHP: 7.0
 License: MIT
 License URI: https://opensource.org/licenses/MIT
-
-Securely accept credit card payments using Beyond Pay gateway and optimize your cost of acceptance on B2B/corporate cards.
 ```
-
-<a href="https://wordpress.org/plugins/beyond-pay-for-woocommerce/"  target="_blank"><img src="/images/256x256_woo_icon.png" width="100" />
 
 Get Beyond Pay for WooCommerce</a>
 
@@ -86,23 +83,26 @@ Beyond Pay for <a href="woocommerce.com" target="_blank">WooCommerce</a> enables
 - Custom CSS styling of the hosted payment fields
 - Sandbox mode for development and staging
 
+
 ### Gravity Forms
 
-<a href="html
-https://wordpress.org/plugins/beyond-pay-for-gravity-forms/" target="_blank">
-```html
-https://wordpress.org/plugins/beyond-pay-for-gravity-forms/
+> <a href="html
+https://wordpress.org/plugins/beyond-pay-for-gravity-forms" target="_blank">
+```
+https://wordpress.org/plugins/beyond-pay-for-gravity-forms
 ```
 </a>
 
-<a href="tml
+> <a href="html
 https://github.com/getbeyond/beyondpay_gravityforms" target="_blank">
-```html
+```
 https://github.com/getbeyond/beyondpay_gravityforms
 ```
 </a>
 
-> WordPress README.txt:
+<a href="https://wordpress.org/plugins/beyond-pay-for-gravity-forms/" target="_blank"><img src="/images/256x256_gravity_icon.png" width="100" />
+
+Get Beyond Pay for Gravity Forms</a>
 
 ```html
 === Beyond Pay for Gravity Forms ===
@@ -114,13 +114,9 @@ Stable tag: 1.1.1
 Requires PHP: 7.0
 License: MIT
 License URI: https://opensource.org/licenses/MIT
-
-Securely accept credit card payments within Gravity Forms using Beyond Pay gateway and optimize your cost of acceptance on B2B/corporate cards.
 ```
 
-<a href="https://wordpress.org/plugins/beyond-pay-for-gravity-forms/" target="_blank"><img src="/images/256x256_gravity_icon.png" width="100" />
 
-Get Beyond Pay for Gravity Forms</a>
 
 Beyond Pay for <a href="gravityforms.com">Gravity Forms</a> allows you to create customized payment workflows for order checkout, donations, event registrations, and more!
 
@@ -133,7 +129,7 @@ Beyond Pay for <a href="gravityforms.com">Gravity Forms</a> allows you to create
 
 We offer several client libraries (or software development kits) which consume the Beyond Pay APIs, making it even easier for you to integrate with your project.
 
-Click the respective language tab to see SDK usage examples. SDKs coming soon to Github; contact BeyondPayIntegrations@getbeyond.com to request access until then.
+Click the respective language tab to see SDK usage examples. SDKs coming soon to Github; contact <a href="mailto:BeyondPayIntegrations@getbeyond.com">BeyondPayIntegrations@getbeyond.com</a> to request access until then.
 
 - PHP
 - .NET
@@ -157,7 +153,7 @@ The primary APIs for integrating to the Beyond Pay platform are:
 
 * **TokenPay.js** – an extension of Beyond Pay that combines client-side and server-side technologies for PCI-compliant online payment capture
 * **Beyond Pay API** - a set of robust web service APIs offering support for credit cards, ACH/checks, tokenization, and more
-* **PayGuardian** – a lightweight middleware application that integrates seamlessly into Point of Sale (POS) software and facilitates the secure collection of cardholder data insulating the integrator from the scope of PA-DSS and the requirements of EMV certification
+* **PayGuardian** – a cloud-based terminal integration option for Point of Sale developers
 
 
 # Online Payments
@@ -166,25 +162,25 @@ The primary APIs for integrating to the Beyond Pay platform are:
 
 > To get started, include this script on your checkout page:
 
+TokenPay maximizes the user experience by allowing for the capture of sensitive card data within the payment form of the merchant’s website or mobile application. The consumer remains on the merchant’s payment page at all times during the checkout process.
+
 ```html
 <script
   src="https://api-test.getbeyondpay.com/WebSecurity/TokenPay/plain-js/tokenPay.js">
 </script>
 ```
 
+TokenPay is an integration interface for Beyond Pay Gateway which facilitates online card payments in a manner that ensures that no sensitive card data ever touches your servers so your integration can operate with minimized scope of PCI.
+
 > Next, create an instance of TokenPay:
+
+To ensure that merchants are eligible for the simplest PCI validation method, Self-Assessment Questionnaire A (SAQ-A), TokenPay utilizes
 
 ```javascript
 var tokenpay = TokenPay('your-public-key');
 ```
 
 > Replace `your-public-key` with your publishable public key</a>.
-
-TokenPay maximizes the user experience by allowing for the capture of sensitive card data within the payment form of the merchant’s website or mobile application. The consumer remains on the merchant’s payment page at all times during the checkout process.
-
-TokenPay is an integration interface for Beyond Pay Gateway which facilitates online card payments in a manner that ensures that no sensitive card data ever touches your servers so your integration can operate with minimized scope of PCI.
-
-To ensure that merchants are eligible for the simplest PCI validation method, Self-Assessment Questionnaire A (SAQ-A), TokenPay utilizes
 
 * **Isolation** – Beyond Pay Gateway hosts the sensitive cardholder data input fields. The fields are injected into your form as an HTML iframe thus isolating your page and your server from card sensitive data.
 * **Tokenization** – in order to execute transactions against the user’s card, TokenPay replaces the sensitive cardholder data with a non-sensitive surrogate value (token). The token is generated via the use of the TokenPay JavaScript library and your payment form.
@@ -193,15 +189,7 @@ To ensure that merchants are eligible for the simplest PCI validation method, Se
 
 ### TokenPay.js
 
-> <b>Sandbox:</b>
-```html
-https://api-test.getbeyondpay.com/Bridgepay.WebSecurity/TokenPay/js/tokenPay.js
-```
-> <b>Production:</b>
 
-```html
-https://api.getbeyondpay.com/WebSecurity/TokenPay/js/tokenPay.js
-```
 
 TokenPay.js is the hosted JavaScript library for building online or mobile checkout flows with Beyond Pay Gateway. With it, you can collect sensitive data from the cardholder and create tokens for securely sending the data to your server.
 
@@ -218,9 +206,47 @@ The TokenPay.js UI component includes:
 
 All submission of payment information using TokenPay.js is made via a secure HTTPS connection. However, to protect yourself from man-in-the-middle attacks and to prevent your users from experiencing mixed content warnings in their browser, you <b>MUST</b> serve the page with your payment form over HTTPS.
 
+## Environments
+
+Only <a href="#test-cards-and-triggers">test cards</a> should be used in sandbox environments.
+
+> TokenPay.js Hosted Scripts
+
+> <b>Sandbox:</b>
+
+```html
+https://api-test.getbeyondpay.com/Bridgepay.WebSecurity/TokenPay/js/tokenPay.js
+```
+
+> <b>Production:</b>
+
+```html
+https://api.getbeyondpay.com/WebSecurity/TokenPay/js/tokenPay.js
+```
+
+The hosted TokenPay script has different versions for test and production.
+
+> Beyond Pay SOAP API Endpoints
+
+> <b>Sandbox:</b>
+
+```html
+https://api-test.getbeyondpay.com/PaymentService/RequestHandler.svc
+```
+
+> <b>Production:</b>
+
+```html
+https://api.getbeyondpay.com/PaymentService/RequestHandler.svc
+```
+
+A WSDL is available for Beyond Pay SOAP API by appending "?wsdl" to these endpoints.
+
 ## Create a Payment Form
 
 > To determine where to insert the UI components, create empty DOM elements with unique IDs within your payment form.
+
+To securely collect sensitive card details from your users, TokenPay.js creates UI components for you that are hosted by Beyond Pay Gateway. These are then inserted into your payment form.
 
 ```html
 <form id="paymentForm" action="/charge" method="post"> 
@@ -234,13 +260,21 @@ All submission of payment information using TokenPay.js is made via a secure HTT
 </form>
 ```
 
+The TokenPay element simplifies the form and minimizes the fields required by inserting a single input field that securely collects all needed card data.
+
 > If you want to customize the style of the card entry area, create a hidden `<div>` element to contain your styling. The `id` of this element MUST be `customStyles`.
+
+
+<aside class="warning">
+When implementing payment forms, it is imperative that you utilize <b>reCAPTCHA</b> or similar mechanisms. reCAPTCHA protects your web forms from spam and bot abuse. Using reCAPTCHA on your payment forms reduces the risk of fraudulent transactions on the merchant's eCommerce sites by performing a Completely Automated Public Turing Test to Tell Computers and Humans Apart (CAPTCHA). For more information on reducing form spam and bot abuse see <a href="https://developers.google.com/recaptcha/intro" target="_blank">https://developers.google.com/recaptcha/intro</a>
+</aside>
+
 ```html
 <div style="display: none" id="customStyles"> 
   body {
     margin: 8px 0;
     }
-#payment-form {
+ #payment-form {
   border: 2px solid #003b5c; 
   padding: 5px 10px; 
   border-radius: 5px; 
@@ -251,6 +285,7 @@ All submission of payment information using TokenPay.js is made via a secure HTT
 ```
 
 > When the form is loaded, initialize the Pay element:
+
 ```javascript
 tokenpay.initialize({
   dataElement: '#card', 
@@ -262,19 +297,11 @@ tokenpay.initialize({
 
 > If you have created the `customStyles` element to style the card entry area, change the value of `useStyles` to `true`.
 
-> To disable the ZIP code field from appearing in the iframe so that it can be captured elsewhere in your form, set `disableZip` to `true`.
-
-To securely collect sensitive card details from your users, TokenPay.js creates UI components for you that are hosted by Beyond Pay Gateway. These are then inserted into your payment form.
-
-The TokenPay element simplifies the form and minimizes the fields required by inserting a single input field that securely collects all needed card data.
-
-<aside class="warning">
-When implementing payment forms, it is imperative that you utilize <b>reCAPTCHA</b> or similar mechanisms. reCAPTCHA protects your web forms from spam and bot abuse. Using reCAPTCHA on your payment forms reduces the risk of fraudulent transactions on the merchant's eCommerce sites by performing a Completely Automated Public Turing Test to Tell Computers and Humans Apart (CAPTCHA). For more information on reducing form spam and bot abuse see <a href="https://developers.google.com/recaptcha/intro" target="_blank">https://developers.google.com/recaptcha/intro</a>
-</aside>
-
 <aside class="success">
 You should always submit the ZIP or Postal code in order to ensure the best chances for fraud reduction as well as the lowest interchange rates. "disableZip" is only intended for when you will collect the ZIP code with the rest of your form data rather than in the TokenPay iframe.
 </aside>
+
+> To disable the ZIP code field from appearing in the iframe so that it can be captured elsewhere in your form, set `disableZip` to `true`.
 
 ## Obtain a Token
 
@@ -301,7 +328,69 @@ The token is stored as a hidden input value and passed to your server on form su
 
 ## Token Sale
 
-> With the token and other form fields obtained, now construct the XML payload:
+> With the token and other form fields obtained by your server, now construct the payload:
+
+Once you have securely collected and tokenized your user’s card data using TokenPay.js you can now use the single-use token to submit a transaction. Authorization or sale requests using single-use tokens must *ONLY* made from your server and not from the client.
+
+```php
+$bpRequest->User = "xxxxxx";
+$bpRequest->Password = "xxxxxx";
+$bpRequest->RequestType = "004";
+$bpRequest->PrivateKey = "YourPrivateKey";
+$bpRequest->AuthenticationTokenId = "00000000-0000-0000-0000-000000000000";
+$bpRequest->TransactionID = "00000000-0000-0000-0000-000000000000";
+$bpRequest->$requestMessage->MerchantCode = "123456";
+$bpRequest->$requestMessage->MerchantAccountCode = "789123";
+$bpRequest->$requestMessage->Amount = "1200";
+$bpRequest->$requestMessage->TransIndustryType = "EC";
+$bpRequest->$requestMessage->TransactionType = "SALE";
+$bpRequest->$requestMessage->ExpirationDate = "1224";
+$bpRequest->$requestMessage->AcctType = "R";
+$bpRequest->$requestMessage->HolderType = "O";
+$bpRequest->$requestMessage->IsoCurrencyCode = "USD";
+```
+
+```c#
+BridgeCommRequest bcRequest = new BridgeCommRequest();
+bcRequest.User = "xxxxxx";
+bcRequest.Password = "xxxxxx";
+bcRequest.RequestType = "004";
+bcRequest.TransactionID = "00000000-0000-0000-0000-000000000000";
+bcRequest.PrivateKey = "YourPrivateKey";
+bcRequest.AuthenticationTokenId = "00000000-0000-0000-0000-000000000000";
+bcRequest.RequestDateTime = "YYYYMMDDHHmmss";
+
+ResponseMessage rsMessage = bcResponse.responseMessage;
+rqMessage.TransactionType = "EC";
+rqMessage.TransIndustryType = "SALE";
+rqMessage.Amount = "1200";
+rqMessage.HolderType = "O";
+rqMessage.AcctType = "R";
+rsMessage.IsoCurrencyCode = "USD";
+```
+
+```java
+BridgeCommRequest bcRequest = new BridgeCommRequest();
+bcRequest.User = "xxxxxx";
+bcRequest.Password = "xxxxxx";
+bcRequest.RequestType = "004";
+bcRequest.TransactionID = "00000000-0000-0000-0000-000000000000";
+bcRequest.PrivateKey = "YourPrivateKey";
+bcRequest.AuthenticationTokenId = "00000000-0000-0000-0000-000000000000";
+bcRequest.RequestDateTime = "YYYYMMDDHHmmss";
+
+ResponseMessage rsMessage = bcResponse.responseMessage;
+rqMessage.TransactionType = "EC";
+rqMessage.TransIndustryType = "SALE";
+rqMessage.Amount = "1200";
+rqMessage.HolderType = "O";
+rqMessage.AcctType = "R";
+rsMessage.IsoCurrencyCode = "USD";
+```
+
+> Beyond Pay SDKs wrap the core SOAP/XML API message
+
+You can construct the SOAP/XML message to Beyond Pay gateway or let our SDKs do it for you. Instructions are provided for those who want to send the raw SOAP message.
 
 ```xml
 <requestHeader>
@@ -320,10 +409,15 @@ The token is stored as a hidden input value and passed to your server on form su
         <Amount>{amountInCents}</Amount>
         <CurrencyCode>USD</CurrencyCode>
     </requestMessage>
-</requestHeader>';
+</requestHeader>
 
 ```
-> Encode the XML payload in Base64 and package it within a SOAP envelope:
+
+You will have a 15 minute window in which to complete the transaction request once you have obtained the client-side token. The token expires after the window or once used.
+
+> Beyond Pay SDKs then encode the XML payload in Base64 and package it within a SOAP envelope
+
+On your server, collect the token information and the form POST parameters submitted by your form.
 
 ```xml
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:req="http://bridgepaynetsecuretx.com/requesthandler">
@@ -336,25 +430,7 @@ The token is stored as a hidden input value and passed to your server on form su
                     </soapenv:Envelope>
 ```
 
-> POST the SOAP envelope to the appropriate endpoint:
 
-> <b>Sandbox (Testing):</b>
-
-```html
-https://api-test.getbeyondpay.com/PaymentService/RequestHandler.svc
-```
-
-> <b>Live (Production):</b>
-
-```html
-https://api.getbeyondpay.com/PaymentService/RequestHandler.svc
-```
-
-Once you have securely collected and tokenized your user’s card data using TokenPay.js you can now use the single-use token to submit a transaction. Authorization or sale requests using single-use tokens must *ONLY* made from your server and not from the client.
-
-You will have a 15 minute window in which to complete the transaction request once you have obtained the client-side token. The token expires after the window or once used.
-
-On your server, collect the token information and the form POST parameters submitted by your form.
 
 Now submit the token and parameters according to the example XML request, with the following substitutions:
 
@@ -385,6 +461,8 @@ You should always inspect the AVSResult and CVResult fields as these can be good
 
 > To change from a "sale" transaction to an "authorize" transaction, simply set `TransactionType` to `sale-auth`:
 
+Sometimes you may not want to accept payment right away for a transaction, such as when shipping physical goods. The normal practice in this scenario is to first authorize a card which will place a hold on the funds, and then to later "capture" that authorization when the order is fulfilled.
+
 ```xml
 <requestHeader>
     <ClientIdentifier>SOAP</ClientIdentifier>
@@ -407,7 +485,11 @@ You should always inspect the AVSResult and CVResult fields as these can be good
 
 ```
 
+The `SettlementDelay` tag can be added for sale-auth transactions, and designates the number of batch cycles that the authorization remains "open" (or uncaptured). If the sale-auth transaction is not captured before completion of the designated number of batches, then the original authorization will be automatically voided and not captured.
+
 > In order to capture that authorization and charge the card, you must submit 019 capture `RequestType`, passing the original sale-auth `ReferenceNumber`, and using the `User` and `Password` credentials instead of `AuthenticationTokenId` and `PrivateKey` to authenticate:
+
+To capture an authorization, simply submit a `RequestType` of `019` for capture, along with passing the reference number of the original authorization as shown here.
 
 ```xml
 <requestHeader>
@@ -427,13 +509,6 @@ You should always inspect the AVSResult and CVResult fields as these can be good
 </requestHeader>';
 ```
 
-
-Sometimes you may not want to accept payment right away for a transaction, such as when shipping physical goods. The normal practice in this scenario is to first authorize a card which will place a hold on the funds, and then to later "capture" that authorization when the order is fulfilled.
-
-The `SettlementDelay` tag can be added for sale-auth transactions, and designates the number of batch cycles that the authorization remains "open" (or uncaptured). If the sale-auth transaction is not captured before completion of the designated number of batches, then the original authorization will be automatically voided and not captured.
-
-To capture an authorization, simply submit a `RequestType` of `019` for capture, along with passing the reference number of the original authorization as shown here.
-
 <aside class="notice">
 This capture request and several other API requests described here may take differing credentials in order to authenticate the client. All such credentials will be provided by Beyond for testing and production.
 </aside>
@@ -441,6 +516,8 @@ This capture request and several other API requests described here may take diff
 ## Repeat Sales and Cards-on-File
 
 > The `Token` element represents a card number, can be used multiple times, and does not expire. It may be used as input in a transaction in lieu of the `PaymentAccountNumber` or the `AuthenticationTokenId`, and also requires the `ExpirationDate` field to be submitted with it.
+
+Every sale or authorization response from Beyond Pay contains a `Token` element. This Token represents the card number used in the original transaction, but is not considered a sensitive data element per the PCI DSS. To ease in identifying the original card, however, the last four digits of the `Token` are the same as the last four digits of the card number.
 
 ```xml
 <requestHeader>
@@ -464,13 +541,13 @@ This capture request and several other API requests described here may take diff
 </requestHeader>
 ```
 
-Every sale or authorization response from Beyond Pay contains a `Token` element. This Token represents the card number used in the original transaction, but is not considered a sensitive data element per the PCI DSS. To ease in identifying the original card, however, the last four digits of the `Token` are the same as the last four digits of the card number.
-
 This Token value may be persisted and, with the cardholder's permission, associated with their user account in your application in order to make future purchases with the same card ("card-on-file").
 
 Submitting a sale or sale-auth transaction with the Token as input requires use of the `User` and `Password` credentials in the request message, and also requires that the card `ExpirationDate` value be persisted and stored with the `Token` (the `ExpirationDate` value is returned in the original response message along with the `Token`).
 
 ## Refunds and Voids
+
+In order to refund or void a previous sale or sale-auth transaction, simply construct an XML message with `RequestType` of `012` and `TransactionType` of `refund`. Note that if the original transaction is still in an unsettled batch, the gateway will perform a void/reversal transaction. If the original transaction has already settled, then the gateway will perform a refund to the original card.
 
 > The `GatewayTransId` is returned in the response to a previous sale or sale-auth request and may be used as input to refund or void that original transaction.
 
@@ -490,8 +567,6 @@ Submitting a sale or sale-auth transaction with the Token as input requires use 
     </requestMessage>
 </requestHeader>
 ```
-
-In order to refund or void a previous sale or sale-auth transaction, simply construct an XML message with `RequestType` of `012` and `TransactionType` of `refund`. Note that if the original transaction is still in an unsettled batch, the gateway will perform a void/reversal transaction. If the original transaction has already settled, then the gateway will perform a refund to the original card.
 
 <aside class="notice">
 You may refund/void the full amount of an original transaction or only part of the amount (a "partial refund" or "partial reversal"). If the transaction is in the current open (unsettled) batch, then only a single void (for the full amount or partial amount) may be performed. If the transaction has settled, the refund request transaction may be repeated for multiple partial refunds up to the amount of the original transaction.
@@ -537,6 +612,8 @@ In order for a transaction to qualify at reduced "Level II" interchange rates, a
 
 ### Level III Data
 
+Cards that are eligible for Level III interchange rates are typically corporate purchasing or some travel cards. If a card is eligible for such, you can achieve a reduced interchange rate by providing the following fields in your gateway request message (in addition to those required for Level II and basic sale or "Level I" transactions).
+
 > Sample sale transaction via TokenPay.js with Level III line-item details:
 
 ```xml
@@ -573,7 +650,7 @@ In order for a transaction to qualify at reduced "Level II" interchange rates, a
     </requestMessage>
 </requestHeader>
 ```
-Cards that are eligible for Level III interchange rates are typically corporate purchasing or some travel cards. If a card is eligible for such, you can achieve a reduced interchange rate by providing the following fields in your gateway request message (in addition to those required for Level II and basic sale or "Level I" transactions).
+
 
 Note that Level III transactions require line-item details from the purchase. You should send one Item array for each line item on a given invoice; many integrators will dynamically map these required fields into their existing inventory, order management, or ERP systems. Alternatively, if you only sell one type of item, you may consider creating a static mapping of these fields, or "hard-coding" the values specific to your business.
 
@@ -656,13 +733,17 @@ Development devices are available to purchase by request. Please contact <a href
 Beyond will provide development and production devices pre-configured with the necessary account information and settings. The only credential you will need to communicate with the device is its UUID or "locationID", which will be provided by Beyond and can also be confirmed in the PayGuardian Cloud app on the the terminal device.
 
 ## Getting Started
-> <b>Web Service (Test and Production):</b>
+
+> <b>Endpoint (Test and Production):</b>
 
 ```html
 https://pgc.bridgepaynetsecuretx.com/req/payment
 ```
 
+Initiating a card present transaction is as simple as POSTing just a few lines of JSON to the web service, passing the following arguments:
+
 > Credit Sale Request
+
 
 > `POST`
 
@@ -676,6 +757,13 @@ https://pgc.bridgepaynetsecuretx.com/req/payment
 "transType": "SALE"
 }
 ```
+
+- `locationID` - the UUID from the PayGuardian Cloud app installed on the device
+- `mode` - indicates what environment to use; options are: UAT for testing and development and PROD for production/live usage
+- `amount` - the amount of the transaction
+`softwareVendor` - the name and version of your POS or application
+`tenderType` - the type of payment to expect; common values are: `UNKNOWN`, `CREDIT`, `DEBIT`, `CHECK`, `GIFT`
+`transType` - the type of transaction to perform; common values are: `SALE`, `SALE_AUTH`, `REFUND`, `VOID`, `TOKENADD`, `CAPTURE`
 
 >Credit Sale Response
 
@@ -735,14 +823,8 @@ https://pgc.bridgepaynetsecuretx.com/req/payment
 }
 ```
 
-Initiating a card present transaction is as simple as POSTing just a few lines of JSON to the web service, passing the following arguments:
 
-- `locationID` - the UUID from the PayGuardian Cloud app installed on the device
-- `mode` - indicates what environment to use; options are: UAT for testing and development and PROD for production/live usage
-- `amount` - the amount of the transaction
-`softwareVendor` - the name and version of your POS or application
-`tenderType` - the type of payment to expect; common values are: `UNKNOWN`, `CREDIT`, `DEBIT`, `CHECK`, `GIFT`
-`transType` - the type of transaction to perform; common values are: `SALE`, `SALE_AUTH`, `REFUND`, `VOID`, `TOKENADD`, `CAPTURE`
+
 
 If the card is an EMV/chip card, then the user will be presented with an option to select whichever Applications reside on the chip (that is, they can select an Application ID associated with either Credit or Debit, depending on their card) regardless of what tender type is sent in the request. If the `UNKNOWN` tender type is used, the cardholder will similarly be prompted to select either the credit or debit application on the chip.
 
@@ -793,6 +875,8 @@ Partial authorization support is required for some merchant types and strongly e
 </aside>
 
 ## Tips & Gratuities
+
+`tenderType`=`CREDIT` and `transType`=`ADJUSTMENT` will adjust a previous `SALE` or `SALE_AUTH` adding a tip amount based on a `pnRefNum` (previous transaction reference number). This action can only be performed on unsettled transactions in an open batch. 
 
 > `CREDIT` + `ADJUSTMENT` request:
 
@@ -852,7 +936,6 @@ Partial authorization support is required for some merchant types and strongly e
 "transactionCode": ""
 }
 ```
-`tenderType`=`CREDIT` and `transType`=`ADJUSTMENT` will adjust a previous `SALE` or `SALE_AUTH` adding a tip amount based on a `pnRefNum` (previous transaction reference number). This action can only be performed on unsettled transactions in an open batch. 
 
 If successful, the response will contain the new total approved amount: (initial amount) + (tip amount).
 
@@ -1041,7 +1124,7 @@ The TransResults field works by mapping the BridgeComm 5-digit response code bac
 |Memo|String|The client-provided "PaymentType" value|
 |MerchantAccountId|Integer|The "MerchantAccountCode" for the transaction|
 |MerchantAccount|Integer|The "MerchantAccount" for the transaction|
-|PaymentMethodId|String|Two letter code that identifies the payment method transaction type. Valid values: AC (Amex), BC (Bank Checking), BD (Bank Card Debit), BS (Bank Savings), DC (Discover Credit), DD (Discover Debit), EC (EBT Cash Benefit), EF (Food Stamps), FL (Fleet One), GF (Fuelman Fleet Wide), GG (General Gift), MC (Master Card Credit), MD (Master Card Debit), MF (Master Card Fleet), MP (Master Card Prepaid), NC (Diner’s Club), VC (Visa Credit), VD (Visa Debit), VF (Voyager), VP (Visa Prepaid), VS (Visa Fleet), WX (Wright Express)|
+|PaymentMethodId|String|Two letter code that identifies the payment method transaction type. Valid values: AC (Amex), bp (Bank Checking), BD (Bank Card Debit), BS (Bank Savings), DC (Discover Credit), DD (Discover Debit), EC (EBT Cash Benefit), EF (Food Stamps), FL (Fleet One), GF (Fuelman Fleet Wide), GG (General Gift), MC (Master Card Credit), MD (Master Card Debit), MF (Master Card Fleet), MP (Master Card Prepaid), NC (Diner’s Club), VC (Visa Credit), VD (Visa Debit), VF (Voyager), VP (Visa Prepaid), VS (Visa Fleet), WX (Wright Express)|
 |ProcessorResponse|String|Description of the response provided by the account issuer|
 |PurchaseOrderNumber|String|The client-provided Purchase Order Number|
 |RemainingAmount|Implied Integer|The amount of the authorization that is remaining after partial refunds or voids have been applied|
@@ -1081,6 +1164,24 @@ Filters that are processed directly against the data store also have specific co
 
 ### Comparison Types
 
+
+
+
+
+
+
+
+
+
+### Post-Query Filters
+
+The following fields are Post-Query filters. They will not process until after the initial data store query has completed.
+
+- TransactionStatus
+- CardBrand
+
+The data used to query on these parameters must be transformed before the filter can be applied. The data store resources are too time-consuming for these filters and they are therefore added after the data store query is completed. <b>You should never use a Post-Query Filter without first limiting the data store query with some DBQuery filters such as a date range and/or the merchant account information.</b>
+
 > Examples:
 
 > Returns all transactions of $1.00 or more:
@@ -1089,11 +1190,15 @@ Filters that are processed directly against the data store also have specific co
 <AmountRangeFrom>100</AmountRangeFrom>
 ```
 
+- GTE = Greater Than or Equal. The query will look for data that is greater than or equal to the data provided in the filter parameter.
+
 > Returns all transactions of $2.00 or less:
 
 ```xml
 <AmountRangeTo>100</AmountRangeTo>
 ```
+
+- LTE = Less Than or Equal. The query will look for data that is less than or equal to the data provided in the filter parameter.
 
 > Returns all transactions with Invoice Number 2001:
 
@@ -1101,11 +1206,15 @@ Filters that are processed directly against the data store also have specific co
 <InoviceNumber>2001</InvoiceNumber>
 ```
 
+- EQUIV = Equals. The query will look for data that exactly matches the data provided in the filter parameter.
+
 > Returns all declined transactions:
 
 ```xml
 <ResponseCode>D</ResponseCode>
 ```
+
+- CONTAINS = The query will look for data that contains the data provided in the filter parameter.
 
 > Returns all declined transactions with <a href="#gateway-message-codes">Gateway Message</a> codes D01-D09:
 
@@ -1113,11 +1222,15 @@ Filters that are processed directly against the data store also have specific co
 <ResponseCode>D0</ResponseCode>
 ```
 
+- INLIST = The query will look for data where the stored data matches one of the comma-delimited entries in the data provided in the filter parameter.
+
 > Returns only those transactions that were declined with <a href="#gateway-message-codes">Gateway Message</a> code D01:
 
 ```xml
 <ResponseCode>D01</ResponseCode>
 ```
+
+- N/A = The parameter is either a Boolean parameter or does not affect the data filtering process.
 
 > Returns only those transactions that were declined with <a href="#gateway-message-codes">Gateway Message</a> code D01:
 
@@ -1131,32 +1244,14 @@ Filters that are processed directly against the data store also have specific co
 <TransResults>00000,00001,10012</TransResults>
 ```
 
+NOTE: `ExcludeTransResults` must be used with `TransResults`. It modifies the behavior of the TransResults field.
+
 > Return all transactions where <a href="#gateway-result-codes">Gateway Result code</a> code is NOT equal to 00000, 00001, or 10012::
 
 ```xml
 <TransResults>00000,00001,10012</TransResults>
 <ExcludeTransResults>1</ExcludeTransResults>
 ```
-
-- GTE = Greater Than or Equal. The query will look for data that is greater than or equal to the data provided in the filter parameter.
-- LTE = Less Than or Equal. The query will look for data that is less than or equal to the data provided in the filter parameter.
-- EQUIV = Equals. The query will look for data that exactly matches the data provided in the filter parameter.
-- CONTAINS = The query will look for data that contains the data provided in the filter parameter.
-- INLIST = The query will look for data where the stored data matches one of the comma-delimited entries in the data provided in the filter parameter.
-- N/A = The parameter is either a Boolean parameter or does not affect the data filtering process.
-
-NOTE: `ExcludeTransResults` must be used with `TransResults`. It modifies the behavior of the TransResults field.
-
-### Post-Query Filters
-
-The following fields are Post-Query filters. They will not process until after the initial data store query has completed.
-
-- TransactionStatus
-- CardBrand
-
-The data used to query on these parameters must be transformed before the filter can be applied. The data store resources are too time-consuming for these filters and they are therefore added after the data store query is completed. <b>You should never use a Post-Query Filter without first limiting the data store query with some DBQuery filters such as a date range and/or the merchant account information.</b>
-
-Response Codes
 
 # Response Codes
 
