@@ -3,7 +3,7 @@ title: Beyond Pay Developer Portal
 
 language_tabs:
   - php
-  - c#
+  - csharp: c#
   - java
 
 toc_footers:
@@ -25,8 +25,6 @@ meta:
   - name: keywords
     content: GetBeyond,Beyond,BeyondPay,Gateway,API,Payments,Credit,Debit,Plugin,SDK
 ---
-<a href="#"></a>
-
 Welcome to Beyond Pay: an omnichannel payment suite that enables a secure and embedded payment experience within your solution.
 
 > <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=Q9V6UxGq3USJSkGsz2Jk78Ytw0d6hJlNsDOCAUz-XBhURUJXWFhEMDlDTUs3OVlROEMxOExJQzZGNS4u" target="_blank" class="button">Get Your Sandbox API Keys</a> and get coding now!
@@ -43,15 +41,13 @@ Why reinvent the wheel? We've done the heavy lifting to build robust integration
 
 ### WooCommerce
 
-> <a href="html
-https://wordpress.org/plugins/beyond-pay-for-woocommerce" target="_blank">
+> <a href="https://wordpress.org/plugins/beyond-pay-for-woocommerce" target="_blank">
 ```
 https://wordpress.org/plugins/beyond-pay-for-woocommerce
 ```
 </a>
 
-> <a href="html
-https://github.com/getbeyond/beyondpay_woocommerce" target="_blank">
+> <a href="https://github.com/getbeyond/beyondpay_woocommerce" target="_blank">
 ```
 https://github.com/getbeyond/beyondpay_woocommerce
 ```
@@ -86,15 +82,13 @@ Beyond Pay for <a href="woocommerce.com" target="_blank">WooCommerce</a> enables
 
 ### Gravity Forms
 
-> <a href="html
-https://wordpress.org/plugins/beyond-pay-for-gravity-forms" target="_blank">
+> <a href="https://wordpress.org/plugins/beyond-pay-for-gravity-forms" target="_blank">
 ```
 https://wordpress.org/plugins/beyond-pay-for-gravity-forms
 ```
 </a>
 
-> <a href="html
-https://github.com/getbeyond/beyondpay_gravityforms" target="_blank">
+> <a href="https://github.com/getbeyond/beyondpay_gravityforms" target="_blank">
 ```
 https://github.com/getbeyond/beyondpay_gravityforms
 ```
@@ -115,8 +109,6 @@ Requires PHP: 7.0
 License: MIT
 License URI: https://opensource.org/licenses/MIT
 ```
-
-
 
 Beyond Pay for <a href="gravityforms.com">Gravity Forms</a> allows you to create customized payment workflows for order checkout, donations, event registrations, and more!
 
@@ -155,7 +147,6 @@ The primary APIs for integrating to the Beyond Pay platform are:
 * **Beyond Pay API** - a set of robust web service APIs offering support for credit cards, ACH/checks, tokenization, and more
 * **PayGuardian** – a cloud-based terminal integration option for Point of Sale developers
 
-
 # Online Payments
 
 ## Getting Started
@@ -188,8 +179,6 @@ var tokenpay = TokenPay('your-public-key');
 * **Authentication** – The injection of the TokenPay hosted input fields and card tokenization is authenticated via a public key assigned to the merchant. API requests to execute charges against the tokenized card are made by the backend server and are authenticated with a private key assigned to the merchant.
 
 ### TokenPay.js
-
-
 
 TokenPay.js is the hosted JavaScript library for building online or mobile checkout flows with Beyond Pay Gateway. With it, you can collect sensitive data from the cardholder and create tokens for securely sending the data to your server.
 
@@ -333,8 +322,10 @@ The token is stored as a hidden input value and passed to your server on form su
 Once you have securely collected and tokenized your user’s card data using TokenPay.js you can now use the single-use token to submit a transaction. Authorization or sale requests using single-use tokens must *ONLY* made from your server and not from the client.
 
 ```php
-$bpRequest->User = "xxxxxx";
-$bpRequest->Password = "xxxxxx";
+$bpRequest = new BridgeCommRequest();
+$bpRequest->$requestMessage = new RequestMessage();
+
+$bpRequest->RequestDateTime = DateTime.Now.ToString("yyyyMMddHHmmss");
 $bpRequest->RequestType = "004";
 $bpRequest->PrivateKey = "YourPrivateKey";
 $bpRequest->AuthenticationTokenId = "00000000-0000-0000-0000-000000000000";
@@ -348,74 +339,77 @@ $bpRequest->$requestMessage->ExpirationDate = "1224";
 $bpRequest->$requestMessage->AcctType = "R";
 $bpRequest->$requestMessage->HolderType = "O";
 $bpRequest->$requestMessage->IsoCurrencyCode = "USD";
+$bpRequest->$requestMessage->SoftwareVendor = "YourSoftwareName 1.0";
 ```
 
-```c#
+```csharp
 BridgeCommRequest bcRequest = new BridgeCommRequest();
-bcRequest.User = "xxxxxx";
-bcRequest.Password = "xxxxxx";
 bcRequest.RequestType = "004";
 bcRequest.TransactionID = "00000000-0000-0000-0000-000000000000";
 bcRequest.PrivateKey = "YourPrivateKey";
 bcRequest.AuthenticationTokenId = "00000000-0000-0000-0000-000000000000";
-bcRequest.RequestDateTime = "YYYYMMDDHHmmss";
+bcRequest.RequestDateTime = DateTime.Now.ToString("yyyyMMddHHmmss");
 
 ResponseMessage rsMessage = bcResponse.responseMessage;
-rqMessage.TransactionType = "EC";
-rqMessage.TransIndustryType = "SALE";
+rqMessage.MerchantCode = "123456";
+rqMessage.MerchantAccountCode = "789123";
+rqMessage.TransactionType = "SALE";
+rqMessage.TransIndustryType = "EC";
 rqMessage.Amount = "1200";
 rqMessage.HolderType = "O";
 rqMessage.AcctType = "R";
-rsMessage.IsoCurrencyCode = "USD";
+rqMessage.IsoCurrencyCode = "USD";
+rqMessage.SoftwareVendor = "YourSoftwareName 1.0";
 ```
 
 ```java
 BridgeCommRequest bcRequest = new BridgeCommRequest();
-bcRequest.User = "xxxxxx";
-bcRequest.Password = "xxxxxx";
-bcRequest.RequestType = "004";
-bcRequest.TransactionID = "00000000-0000-0000-0000-000000000000";
-bcRequest.PrivateKey = "YourPrivateKey";
-bcRequest.AuthenticationTokenId = "00000000-0000-0000-0000-000000000000";
-bcRequest.RequestDateTime = "YYYYMMDDHHmmss";
+RequestMessage rqMessage = new RequestMessage();
 
-ResponseMessage rsMessage = bcResponse.responseMessage;
-rqMessage.TransactionType = "EC";
-rqMessage.TransIndustryType = "SALE";
-rqMessage.Amount = "1200";
-rqMessage.HolderType = "O";
-rqMessage.AcctType = "R";
-rsMessage.IsoCurrencyCode = "USD";
+bcRequest.setRequestType("004");
+bcRequest.setAuthenticationTokenId("00000000-0000-0000-0000-000000000000");
+bcRequest.setTransactionID(DateTime.Now.ToString("yyyyMMddHHmmss"));
+bcRequest.setRequestMessage(new rqMessage);
+
+rqMessage.setMerchantCode("123456");
+rqMessage.setMerchantAccountCode("789123");
+rqMessage.setAmount("1200");
+rqMessage.setTransIndustryType("EC");
+rqMessage.setTransactionType("SALE");
+rqMessage.setHolderType("O");
+rqMessage.setExpirationDate("1234");
+rqMessage.setIsoCurrencyCode("USD");
+rqMessage.setAcctType("R");
+rqMessage.setSoftwareVendor("Your Software Name 1.0");
 ```
 
-> Beyond Pay SDKs wrap the core SOAP/XML API message
+> Beyond Pay SDKs wrap the core XML API message
 
 You can construct the SOAP/XML message to Beyond Pay gateway or let our SDKs do it for you. Instructions are provided for those who want to send the raw SOAP message.
 
 ```xml
 <requestHeader>
     <ClientIdentifier>SOAP</ClientIdentifier>
-    <TransactionID>{transactionId}</TransactionID>
+    <TransactionID>00000000-0000-0000-0000-000000000000</TransactionID>
     <RequestType>004</RequestType>
-    <RequestDateTime>{requestDateTime}</RequestDateTime>
-    <PrivateKey>{yourPrivateKey}</PrivateKey>
-    <AuthenticationTokenId>{token}</AuthenticationTokenId>
+    <RequestDateTime>yyyyMMddHHmmss</RequestDateTime>
+    <PrivateKey>YourPrivateKey</PrivateKey>
+    <AuthenticationTokenId>00000000-0000-0000-0000-000000000000</AuthenticationTokenId>
     <requestMessage>										
-        <SoftwareVendor>{yourSoftwareName}</SoftwareVendor>
+        <SoftwareVendor>YourSoftwareName 1.0</SoftwareVendor>
         <TransIndustryType>EC</TransIndustryType>
         <TransactionType>sale</TransactionType>
         <AcctType>R</AcctType>
-        <HolderType>P</HolderType>
-        <Amount>{amountInCents}</Amount>
+        <HolderType>O</HolderType>
+        <Amount>1200</Amount>
         <CurrencyCode>USD</CurrencyCode>
     </requestMessage>
 </requestHeader>
-
 ```
 
 You will have a 15 minute window in which to complete the transaction request once you have obtained the client-side token. The token expires after the window or once used.
 
-> Beyond Pay SDKs then encode the XML payload in Base64 and package it within a SOAP envelope
+> The XML payload is then Base64-encoded and packaged within a SOAP envelope
 
 On your server, collect the token information and the form POST parameters submitted by your form.
 
@@ -429,8 +423,6 @@ On your server, collect the token information and the form POST parameters submi
                         </soapenv:Body>
                     </soapenv:Envelope>
 ```
-
-
 
 Now submit the token and parameters according to the example XML request, with the following substitutions:
 
@@ -459,54 +451,180 @@ You should always inspect the AVSResult and CVResult fields as these can be good
 
 ## Token Authorize
 
-> To change from a "sale" transaction to an "authorize" transaction, simply set `TransactionType` to `sale-auth`:
+> To change from a "sale" transaction to an "authorize" transaction, simply set `TransactionType` to `sale-auth` in the Beyond Pay SDK:
 
 Sometimes you may not want to accept payment right away for a transaction, such as when shipping physical goods. The normal practice in this scenario is to first authorize a card which will place a hold on the funds, and then to later "capture" that authorization when the order is fulfilled.
+
+```php
+$bpRequest = new BridgeCommRequest();
+$bpRequest->$requestMessage = new RequestMessage();
+
+$bpRequest->RequestDateTime = DateTime.Now.ToString("yyyyMMddHHmmss");
+$bpRequest->RequestType = "004";
+$bpRequest->PrivateKey = "YourPrivateKey";
+$bpRequest->AuthenticationTokenId = "00000000-0000-0000-0000-000000000000";
+$bpRequest->TransactionID = "00000000-0000-0000-0000-000000000000";
+$bpRequest->$requestMessage->MerchantCode = "123456";
+$bpRequest->$requestMessage->MerchantAccountCode = "789123";
+$bpRequest->$requestMessage->Amount = "1200";
+$bpRequest->$requestMessage->TransIndustryType = "EC";
+$bpRequest->$requestMessage->TransactionType = "SALE-AUTH";
+$bpRequest->$requestMessage->ExpirationDate = "1224";
+$bpRequest->$requestMessage->AcctType = "R";
+$bpRequest->$requestMessage->HolderType = "O";
+$bpRequest->$requestMessage->IsoCurrencyCode = "USD";
+$bpRequest->$requestMessage->SettlementDelay = "30";
+$bpRequest->$requestMessage->SoftwareVendor = "YourSoftwareName 1.0";
+```
+
+```csharp
+BridgeCommRequest bcRequest = new BridgeCommRequest();
+bcRequest.RequestType = "004";
+bcRequest.TransactionID = "00000000-0000-0000-0000-000000000000";
+bcRequest.PrivateKey = "YourPrivateKey";
+bcRequest.AuthenticationTokenId = "00000000-0000-0000-0000-000000000000";
+bcRequest.RequestDateTime = DateTime.Now.ToString("yyyyMMddHHmmss");
+
+ResponseMessage rsMessage = bcResponse.responseMessage;
+rqMessage.MerchantCode = "123456";
+rqMessage.MerchantAccountCode = "789123";
+rqMessage.TransactionType = "SALE-AUTH";
+rqMessage.TransIndustryType = "EC";
+rqMessage.Amount = "1200";
+rqMessage.HolderType = "O";
+rqMessage.AcctType = "R";
+rqMessage.IsoCurrencyCode = "USD";
+rqMessage.SettlementDelay = "30";
+rqMessage.SoftwareVendor = "YourSoftwareName 1.0";
+```
+
+```java
+BridgeCommRequest bcRequest = new BridgeCommRequest();
+RequestMessage rqMessage = new RequestMessage();
+
+bcRequest.setRequestType("004");
+bcRequest.setAuthenticationTokenId("00000000-0000-0000-0000-000000000000");
+bcRequest.setTransactionID(DateTime.Now.ToString("yyyyMMddHHmmss"));
+bcRequest.setRequestMessage(new rqMessage);
+
+rqMessage.setMerchantCode("123456");
+rqMessage.setMerchantAccountCode("789123");
+rqMessage.setAmount("1200");
+rqMessage.setTransIndustryType("EC");
+rqMessage.setTransactionType("SALE-AUTH");
+rqMessage.setHolderType("O");
+rqMessage.setExpirationDate("1234");
+rqMessage.setAcctType("R");
+rqMessage.setSettlementDelay("30");
+rqMessage.setSoftwareVendor("YourSoftwareName 1.0");
+```
+
+> Or, in the raw XML:
 
 ```xml
 <requestHeader>
     <ClientIdentifier>SOAP</ClientIdentifier>
-    <TransactionID>{transactionId}</TransactionID>
+    <TransactionID>00000000-0000-0000-0000-000000000000</TransactionID>
     <RequestType>004</RequestType>
-    <RequestDateTime>{requestDateTime}</RequestDateTime>
-    <PrivateKey>{yourPrivateKey}</PrivateKey>
-    <AuthenticationTokenId>{token}</AuthenticationTokenId>
+    <RequestDateTime>yyyyMMddHHmmss</RequestDateTime>
+    <PrivateKey>YourPrivateKey</PrivateKey>
+    <AuthenticationTokenId>00000000-0000-0000-0000-000000000000</AuthenticationTokenId>
     <requestMessage>                    
-        <SoftwareVendor>{yourSoftwareName}</SoftwareVendor>
+        <SoftwareVendor>YourSoftwareName 1.0</SoftwareVendor>
         <TransIndustryType>EC</TransIndustryType>
         <TransactionType>sale-auth</TransactionType>
         <AcctType>R</AcctType>
-        <HolderType>P</HolderType>
-        <Amount>{amountInCents}</Amount>
+        <HolderType>O</HolderType>
+        <Amount>1200</Amount>
         <CurrencyCode>USD</CurrencyCode>
-        <SettlementDelay>{daysToDelay}</SettlementDelay>
+        <SettlementDelay>30</SettlementDelay>
     </requestMessage>
-</requestHeader>';
+</requestHeader>
 
 ```
 
-The `SettlementDelay` tag can be added for sale-auth transactions, and designates the number of batch cycles that the authorization remains "open" (or uncaptured). If the sale-auth transaction is not captured before completion of the designated number of batches, then the original authorization will be automatically voided and not captured.
+The `SettlementDelay` tag can be added for sale-auth transactions, and designates the number of batch cycles that the authorization remains "open" (or uncaptured). If the sale-auth transaction is not captured before completion of the designated number of batches, then the original authorization will be automatically voided and not captured. This value cannot exceed "30" (batch cycles).
 
 > In order to capture that authorization and charge the card, you must submit 019 capture `RequestType`, passing the original sale-auth `ReferenceNumber`, and using the `User` and `Password` credentials instead of `AuthenticationTokenId` and `PrivateKey` to authenticate:
 
 To capture an authorization, simply submit a `RequestType` of `019` for capture, along with passing the reference number of the original authorization as shown here.
 
+```php
+$bpRequest = new BridgeCommRequest();
+$bpRequest->$requestMessage = new RequestMessage();
+
+$bpRequest->RequestDateTime = DateTime.Now.ToString("yyyyMMddHHmmss");
+$bpRequest->User = "xxxxxx";
+$bpRequest->Password = "xxxxxx";
+$bpRequest->RequestType = "019";
+$bpRequest->TransactionID = "00000000-0000-0000-0000-000000000000";
+$bpRequest->$requestMessage->MerchantCode = "123456";
+$bpRequest->$requestMessage->MerchantAccountCode = "789123";
+$bpRequest->$requestMessage->Amount = "1200";
+$bpRequest->$requestMessage->TransIndustryType = "EC";
+$bpRequest->$requestMessage->TransactionType = "CAPTURE";
+$bpRequest->$requestMessage->AcctType = "R";
+$bpRequest->$requestMessage->HolderType = "O";
+$bpRequest->$requestMessage->ReferenceNumber = "12345678";
+$bpRequest->$requestMessage->SoftwareVendor = "YourSoftwareName 1.0";
+```
+
+```csharp
+BridgeCommRequest bcRequest = new BridgeCommRequest();
+bcRequest.User = "xxxxxx";
+bcRequest.Password = "xxxxxx";
+bcRequest.RequestType = "019";
+bcRequest.TransactionID = "00000000-0000-0000-0000-000000000000";
+bcRequest.RequestDateTime = DateTime.Now.ToString("yyyyMMddHHmmss");
+
+ResponseMessage rsMessage = bcResponse.responseMessage;
+rqMessage.MerchantCode = "123456";
+rqMessage.MerchantAccountCode = "789123";
+rqMessage.TransactionType = "CAPTURE";
+rqMessage.TransIndustryType = "EC";
+rqMessage.Amount = "1200";
+rqMessage.HolderType = "O";
+rqMessage.AcctType = "R";
+rqMessage.ReferenceNumber = "12345678";
+rqMessage.SoftwareVendor = "YourSoftwareName 1.0";
+```
+
+```java
+BridgeCommRequest bcRequest = new BridgeCommRequest();
+RequestMessage rqMessage = new RequestMessage();
+
+bcRequest.setUser("xxxxxx");
+bcRequest.setPassword("xxxxxx");
+bcRequest.setRequestType("019");
+bcRequest.setTransactionID("00000000-0000-0000-0000-000000000000");
+bcRequest.setRequestDateTime(DateTime.Now.ToString("yyyyMMddHHmmss"));
+bcRequest.setRequestMessage(new rqMessage);
+
+rqMessage.setMerchantCode("123456");
+rqMessage.setMerchantAccountCode("789123");
+rqMessage.setTransIndustryType("EC");
+rqMessage.setTransactionType("CAPTURE");
+rqMessage.setReferenceNumber("12345678");
+rqMessage.setSoftwareVendor("YourSoftwareName 1.0");
+```
+
+> Or, in the raw XML:
+
 ```xml
 <requestHeader>
     <ClientIdentifier>SOAP</ClientIdentifier>
-    <TransactionID>{transactionId}</TransactionID>
+    <TransactionID>00000000-0000-0000-0000-000000000000</TransactionID>
     <RequestType>019</RequestType>
-    <RequestDateTime>{requestDateTime}</RequestDateTime>
-    <User>{Beyond-assigned username}</User>
-    <Password>{Beyond-assigned password}</Password>
+    <RequestDateTime>yyyyMMddHHmmss</RequestDateTime>
+    <User>xxxxxx</User>
+    <Password>xxxxxx</Password>
     <requestMessage>                    
-        <TransactionCode>{must match header transaction ID}</TransactionCode>
-        <SoftwareVendor>{yourSoftwareName}</SoftwareVendor>
+        <SoftwareVendor>YourSoftwareNam 1.0</SoftwareVendor>
         <TransactionType>capture</TransactionType>
-        <ReferenceNumber>{original sale-auth ReferenceNumber from response}</ReferenceNumber>
-        <Amount>{amountInCents}</Amount>
+        <ReferenceNumber>12345678</ReferenceNumber>
+        <Amount>1200</Amount>
     </requestMessage>
-</requestHeader>';
+</requestHeader>
 ```
 
 <aside class="notice">
@@ -519,24 +637,93 @@ This capture request and several other API requests described here may take diff
 
 Every sale or authorization response from Beyond Pay contains a `Token` element. This Token represents the card number used in the original transaction, but is not considered a sensitive data element per the PCI DSS. To ease in identifying the original card, however, the last four digits of the `Token` are the same as the last four digits of the card number.
 
+```php
+$bpRequest = new BridgeCommRequest();
+$bpRequest->$requestMessage = new RequestMessage();
+
+$bpRequest->RequestDateTime = DateTime.Now.ToString("yyyyMMddHHmmss");
+$bpRequest->User = "xxxxxx";
+$bpRequest->Password = "xxxxxx";
+$bpRequest->RequestType = "004";
+$bpRequest->TransactionID = "00000000-0000-0000-0000-000000000000";
+$bpRequest->$requestMessage->MerchantCode = "123456";
+$bpRequest->$requestMessage->MerchantAccountCode = "789123";
+$bpRequest->$requestMessage->Amount = "1200";
+$bpRequest->$requestMessage->TransIndustryType = "EC";
+$bpRequest->$requestMessage->TransactionType = "SALE";
+$bpRequest->$requestMessage->AcctType = "R";
+$bpRequest->$requestMessage->HolderType = "O";
+$bpRequest->$requestMessage->SoftwareVendor = "YourSoftwareName 1.0";
+$bpRequest->$requestMessage->Token = "1000000010532376";
+$bpRequest->$requestMessage->ExpirationDate = "12/23";
+$bpRequest->requestMessage->StoredCredential = "recurring";
+```
+
+```csharp
+BridgeCommRequest bcRequest = new BridgeCommRequest();
+bcRequest.User = "xxxxxx";
+bcRequest.Password = "xxxxxx";
+bcRequest.RequestType = "004";
+bcRequest.TransactionID = "00000000-0000-0000-0000-000000000000";
+bcRequest.RequestDateTime = DateTime.Now.ToString("yyyyMMddHHmmss");
+
+ResponseMessage rsMessage = bcResponse.responseMessage;
+rqMessage.MerchantCode = "123456";
+rqMessage.MerchantAccountCode = "789123";
+rqMessage.TransactionType = "SALE";
+rqMessage.TransIndustryType = "EC";
+rqMessage.Amount = "1200";
+rqMessage.HolderType = "O";
+rqMessage.AcctType = "R";
+rqMessage.SoftwareVendor = "YourSoftwareName 1.0";
+rqMessage.Token = "1000000010532376";
+rqMessage.ExpirationDate = "12/23";
+rqMessage.StoredCredential = "recurring";
+```
+
+```java
+BridgeCommRequest bcRequest = new BridgeCommRequest();
+RequestMessage rqMessage = new RequestMessage();
+
+bcRequest.setUser("xxxxxx");
+bcRequest.setPassword("xxxxxx");
+bcRequest.setRequestType("004");
+bcRequest.setTransactionID("00000000-0000-0000-0000-000000000000");
+bcRequest.setRequestDateTime(DateTime.Now.ToString("yyyyMMddHHmmss"));
+bcRequest.setRequestMessage(new rqMessage);
+
+rqMessage.setMerchantCode("123456");
+rqMessage.setMerchantAccountCode("789123");
+rqMessage.setTransIndustryType("EC");
+rqMessage.setTransactionType("SALE");
+rqMessage.setReferenceNumber("12345678");
+rqMessage.setSoftwareVendor("YourSoftwareName 1.0");
+rqMessage.setToken("1000000010532376");
+rqMessage.setExpirationDate("12/23");
+rqMessage.StoredCredential("recurring");
+```
+
+> Or, in the raw XML:
+
 ```xml
 <requestHeader>
     <ClientIdentifier>SOAP</ClientIdentifier>
-    <TransactionID>{transactionId}</TransactionID>
+    <TransactionID>00000000-0000-0000-0000-000000000000</TransactionID>
     <RequestType>004</RequestType>
-    <RequestDateTime>{requestDateTime}</RequestDateTime>
-    <User>{Beyond-assigned username}</User>
-    <Password>{Beyond-assigned password}</Password>
+    <RequestDateTime>yyyyMMddHHmmss</RequestDateTime>
+    <User>xxxxxx</User>
+    <Password>xxxxxx</Password>
     <requestMessage>
-        <SoftwareVendor>{yourSoftwareName}</SoftwareVendor>                    
-        <Token>{token}</Token>
-        <ExpirationDate>{expirationDate}</ExpirationDate>
+        <SoftwareVendor>YourSoftwareName 1.0</SoftwareVendor>                    
+        <Token>1000000010532376</Token>
+        <ExpirationDate>1223</ExpirationDate>
         <TransactionType>sale</TransactionType>
         <TransIndustryType>EC</TransIndustryType>
         <AcctType>R</AcctType>
-        <HolderType>P</HolderType>
-        <Amount>{amountInCents}</Amount>
+        <HolderType>O</HolderType>
+        <Amount>1200</Amount>
         <CurrencyCode>USD</CurrencyCode>
+        <StoredCredential>recurring</StoredCredential>
     </requestMessage>
 </requestHeader>
 ```
@@ -550,6 +737,65 @@ Submitting a sale or sale-auth transaction with the Token as input requires use 
 In order to refund or void a previous sale or sale-auth transaction, simply construct an XML message with `RequestType` of `012` and `TransactionType` of `refund`. Note that if the original transaction is still in an unsettled batch, the gateway will perform a void/reversal transaction. If the original transaction has already settled, then the gateway will perform a refund to the original card.
 
 > The `GatewayTransId` is returned in the response to a previous sale or sale-auth request and may be used as input to refund or void that original transaction.
+
+```php
+$bpRequest = new BridgeCommRequest();
+$bpRequest->$requestMessage = new RequestMessage();
+
+$bpRequest->RequestDateTime = DateTime.Now.ToString("yyyyMMddHHmmss");
+$bpRequest->User = "xxxxxx";
+$bpRequest->Password = "xxxxxx";
+$bpRequest->RequestType = "012";
+$bpRequest->TransactionID = "00000000-0000-0000-0000-000000000000";
+$bpRequest->$requestMessage->MerchantCode = "123456";
+$bpRequest->$requestMessage->MerchantAccountCode = "789123";
+$bpRequest->$requestMessage->Amount = "1200";
+$bpRequest->$requestMessage->TransactionType = "REFUND";
+$bpRequest->$requestMessage->AcctType = "R";
+$bpRequest->$requestMessage->HolderType = "O";
+$bpRequest->$requestMessage->SoftwareVendor = "YourSoftwareName 1.0";
+$bpRequest->$requestMessage->ReferenceNumber = "12345678";
+```
+
+```csharp
+BridgeCommRequest bcRequest = new BridgeCommRequest();
+bcRequest.User = "xxxxxx";
+bcRequest.Password = "xxxxxx";
+bcRequest.RequestType = "012";
+bcRequest.TransactionID = "00000000-0000-0000-0000-000000000000";
+bcRequest.RequestDateTime = DateTime.Now.ToString("yyyyMMddHHmmss");
+
+ResponseMessage rsMessage = bcResponse.responseMessage;
+rqMessage.MerchantCode = "123456";
+rqMessage.MerchantAccountCode = "789123";
+rqMessage.TransactionType = "REFUND";
+rqMessage.Amount = "1200";
+rqMessage.HolderType = "O";
+rqMessage.AcctType = "R";
+rqMessage.SoftwareVendor = "YourSoftwareName 1.0";
+rqMessage.ReferenceNumber = "12345678";
+```
+
+```java
+BridgeCommRequest bcRequest = new BridgeCommRequest();
+RequestMessage rqMessage = new RequestMessage();
+
+bcRequest.setUser("xxxxxx");
+bcRequest.setPassword("xxxxxx");
+bcRequest.setRequestType("012");
+bcRequest.setTransactionID("00000000-0000-0000-0000-000000000000");
+bcRequest.setRequestDateTime(DateTime.Now.ToString("yyyyMMddHHmmss"));
+bcRequest.setRequestMessage(new rqMessage);
+
+rqMessage.setMerchantCode("123456");
+rqMessage.setMerchantAccountCode("789123");
+rqMessage.setTransactionType("REFUND");
+rqMessage.setReferenceNumber("12345678");
+rqMessage.setSoftwareVendor("YourSoftwareName 1.0");
+rqMessage.setReferenceNumber("12345678");
+```
+
+> Or, in the raw XML:
 
 ```xml
 <requestHeader>
@@ -578,79 +824,249 @@ Some business cards may be eligible for lower interchange rates if you send addi
 
 ### Level II Data
 
-> Sample sale transaction via TokenPay.js, including Level II data:
+> Sample transaction with Level II data:
+
+```php
+$bpRequest = new BeyondPayRequest();
+$bpRequest->$requestMessage = new RequestMessage();
+
+$bpRequest->RequestDateTime = DateTime.Now.ToString("yyyyMMddHHmmss");
+$bpRequest->RequestType = "004";
+$bpRequest->PrivateKey = "YourPrivateKey";
+$bpRequest->AuthenticationTokenId = "00000000-0000-0000-0000-000000000000";
+$bpRequest->TransactionID = "00000000-0000-0000-0000-000000000000";
+$bpRequest->$requestMessage->MerchantCode = "123456";
+$bpRequest->$requestMessage->MerchantAccountCode = "789123";
+$bpRequest->$requestMessage->Amount = "1200";
+$bpRequest->$requestMessage->TransIndustryType = "EC";
+$bpRequest->$requestMessage->TransactionType = "SALE";
+$bpRequest->$requestMessage->ExpirationDate = "1224";
+$bpRequest->$requestMessage->AcctType = "R";
+$bpRequest->$requestMessage->HolderType = "O";
+$bpRequest->$requestMessage->IsoCurrencyCode = "USD";
+$bpRequest->$requestMessage->SoftwareVendor = "YourSoftwareName 1.0";
+$bpRequest->$requestMessage->PONum = "PO-4321";
+$bpRequest->$requestMessage->TaxAmount = "110";
+$bpRequest->$requestMessage->TaxIndicator = "P";
+```
+
+```csharp
+BridgeCommRequest bcRequest = new BridgeCommRequest();
+bcRequest.RequestType = "004";
+bcRequest.TransactionID = "00000000-0000-0000-0000-000000000000";
+bcRequest.PrivateKey = "YourPrivateKey";
+bcRequest.AuthenticationTokenId = "00000000-0000-0000-0000-000000000000";
+bcRequest.RequestDateTime = DateTime.Now.ToString("yyyyMMddHHmmss");
+
+ResponseMessage rsMessage = bcResponse.responseMessage;
+rqMessage.MerchantCode = "123456";
+rqMessage.MerchantAccountCode = "789123";
+rqMessage.TransactionType = "SALE";
+rqMessage.TransIndustryType = "EC";
+rqMessage.Amount = "1200";
+rqMessage.HolderType = "O";
+rqMessage.AcctType = "R";
+rqMessage.IsoCurrencyCode = "USD";
+rqMessage.SoftwareVendor = "YourSoftwareName 1.0";
+rqMessage.PONum = "PO-4321";
+rqMessage.TaxAmount = "110";
+rqMessage.TaxIndicator = "P";
+```
+
+```java
+BridgeCommRequest bcRequest = new BridgeCommRequest();
+RequestMessage rqMessage = new RequestMessage();
+
+bcRequest.setRequestType("004");
+bcRequest.setAuthenticationTokenId("00000000-0000-0000-0000-000000000000");
+bcRequest.setTransactionID(DateTime.Now.ToString("yyyyMMddHHmmss"));
+bcRequest.setRequestMessage(new rqMessage);
+
+rqMessage.setMerchantCode("123456");
+rqMessage.setMerchantAccountCode("789123");
+rqMessage.setAmount("1200");
+rqMessage.setTransIndustryType("EC");
+rqMessage.setTransactionType("SALE");
+rqMessage.setHolderType("O");
+rqMessage.setExpirationDate("1234");
+rqMessage.setIsoCurrencyCode("USD");
+rqMessage.setAcctType("R");
+rqMessage.setSoftwareVendor("Your Software Name 1.0");
+rqMessage.setPONum("PO-4321");
+rqMessage.setTaxAmount("110");
+rqMessage.setTaxIndicator("P");
+```
+
+In order for a transaction to qualify at reduced "Level II" interchange rates, assuming the card is eligible for such, the following fields should be provided in the XML message to the gateway in addition to the basic required fields given in the <a href="#token-sale">instructions for processing a basic sale transaction</a>:
+
+- `PONum` - the customer's Purchase Order number; may be up to 24 alphanumeric characters and hyphens
+- `TaxAmount` - applicable tax amount in cents (implied decimal); must be less than the total transaction `Amount`
+- `TaxIndicator` - may be `P` (Provided), `N` (Not Provided), or `E` (Exempt). Use P if you are sending a value in `LocalTaxAmount`, or E if you are tax-exempt
+
+> Or, in the raw XML:
 
 ```xml
 <requestHeader>
     <ClientIdentifier>SOAP</ClientIdentifier>
-    <TransactionID>{transactionId}</TransactionID>
+    <TransactionID>00000000-0000-0000-0000-000000000000</TransactionID>
     <RequestType>004</RequestType>
-    <RequestDateTime>{requestDateTime}</RequestDateTime>
-    <PrivateKey>{yourPrivateKey}</PrivateKey>
-    <AuthenticationTokenId>{token}</AuthenticationTokenId>
+    <RequestDateTime>yyyyMMddHHmmss</RequestDateTime>
+    <PrivateKey>YourPrivateKey</PrivateKey>
+    <AuthenticationTokenId>00000000-0000-0000-0000-000000000000</AuthenticationTokenId>
     <requestMessage>                    
-        <SoftwareVendor>{yourSoftwareName}</SoftwareVendor>
+        <SoftwareVendor>YourSoftwareName 1.0</SoftwareVendor>
         <TransIndustryType>EC</TransIndustryType>
         <TransactionType>sale</TransactionType>
         <AcctType>R</AcctType>
         <HolderType>O</HolderType>
-        <Amount>{amountInCents}</Amount>
+        <Amount>1200</Amount>
         <CurrencyCode>USD</CurrencyCode>
-        <InvoiceNum>{yourInvoiceNumber}</InvoiceNum>
-        <PONum>{yourPONumber}</PONum>
-        <CustomerAccountCode>{customerCode}</CustomerAccountCode>
-        <TaxAmount>{taxAmount}</TaxAmount>
+        <PONum>PO-4321</PONum>
+        <TaxAmount>110</TaxAmount>
         <TaxIndicator>P</TaxIndicator>
     </requestMessage>
 </requestHeader>
 ```
-In order for a transaction to qualify at reduced "Level II" interchange rates, assuming the card is eligible for such, the following fields should be provided in the XML message to the gateway in addition to the basic required fields given in the <a href="#token-sale">instructions for processing a basic sale transaction</a>:
-
-- `PONum` - the customer's Purchase Order number; may be up to 24 alphanumeric characters and hyphens
-- `LocalTaxAmount` - applicable tax amount in cents (implied decimal); must be less than the total transaction `Amount`
-- `LocalTaxIndicator` - may be `P` (Provided), `N` (Not Provided), or `E` (Exempt). Use P if you are sending a value in `LocalTaxAmount`, or E if you are tax-exempt
 
 ### Level III Data
 
 Cards that are eligible for Level III interchange rates are typically corporate purchasing or some travel cards. If a card is eligible for such, you can achieve a reduced interchange rate by providing the following fields in your gateway request message (in addition to those required for Level II and basic sale or "Level I" transactions).
 
-> Sample sale transaction via TokenPay.js with Level III line-item details:
+> Sample sale transaction via <a href="/getting-started">TokenPay.js</a> with Level III line-item details:
+
+```php
+$bpRequest = new BeyondPayRequest();
+$bpRequest->$requestMessage = new RequestMessage();
+
+$bpRequest->RequestDateTime = DateTime.Now.ToString("yyyyMMddHHmmss");
+$bpRequest->RequestType = "004";
+$bpRequest->PrivateKey = "YourPrivateKey";
+$bpRequest->AuthenticationTokenId = "00000000-0000-0000-0000-000000000000";
+$bpRequest->TransactionID = "00000000-0000-0000-0000-000000000000";
+$bpRequest->$requestMessage->MerchantCode = "123456";
+$bpRequest->$requestMessage->MerchantAccountCode = "789123";
+$bpRequest->$requestMessage->Amount = "1200";
+$bpRequest->$requestMessage->TransIndustryType = "EC";
+$bpRequest->$requestMessage->TransactionType = "SALE";
+$bpRequest->$requestMessage->ExpirationDate = "1224";
+$bpRequest->$requestMessage->AcctType = "R";
+$bpRequest->$requestMessage->HolderType = "O";
+$bpRequest->$requestMessage->IsoCurrencyCode = "USD";
+$bpRequest->$requestMessage->SoftwareVendor = "YourSoftwareName 1.0";
+$bpRequest->$requestMessage->InvoiceNum = "INV-1234";
+$bpRequest->$requestMessage->PONum = "PO-4321";
+$bpRequest->$requestMessage->CustomerAccountCode = "CID-9876";
+$bpRequest->$requestMessage->TaxAmount = "110";
+$bpRequest->$requestMessage->TaxIndicator = "P";
+$bpRequest->$requestMessage->ItemCount = "1";
+
+$requestMessage->$rqItem = new Item();
+$requestMessage->$rqItem->ItemCode = "123456";
+$requestMessage->$rqItem->ItemCommodityCode = "5999";
+$requestMessage->$rqItem->ItemDescription = "Widget";
+$requestMessage->$rqItem->ItemQuantity = "1";
+$requestMessage->$rqItem->ItemUnitCostAmt = "1000";
+$requestMessage->$rqItem->ItemUnitMeasure = "EA";
+$requestMessage->$rqItem->ItemTotalAmount = "1110";
+```
+
+```csharp
+BridgeCommRequest bcRequest = new BridgeCommRequest();
+bcRequest.RequestType = "004";
+bcRequest.TransactionID = "00000000-0000-0000-0000-000000000000";
+bcRequest.PrivateKey = "YourPrivateKey";
+bcRequest.AuthenticationTokenId = "00000000-0000-0000-0000-000000000000";
+bcRequest.RequestDateTime = DateTime.Now.ToString("yyyyMMddHHmmss");
+
+ResponseMessage rsMessage = bcResponse.responseMessage;
+rqMessage.MerchantCode = "123456";
+rqMessage.MerchantAccountCode = "789123";
+rqMessage.TransactionType = "SALE";
+rqMessage.TransIndustryType = "EC";
+rqMessage.Amount = "1200";
+rqMessage.HolderType = "O";
+rqMessage.AcctType = "R";
+rqMessage.IsoCurrencyCode = "USD";
+rqMessage.SoftwareVendor = "YourSoftwareName 1.0";
+rqMessage.PONum = "PO-4321";
+rqMessage.InvoiceNum = "INV-1234";
+rqMessage.CustomerAccountCode = "CID-9876";
+rqMessage.TaxAmount = "110";
+rqMessage.TaxIndicator = "P";
+```
+
+```java
+BridgeCommRequest bcRequest = new BridgeCommRequest();
+RequestMessage rqMessage = new RequestMessage();
+
+bcRequest.setRequestType("004");
+bcRequest.setAuthenticationTokenId("00000000-0000-0000-0000-000000000000");
+bcRequest.setTransactionID(DateTime.Now.ToString("yyyyMMddHHmmss"));
+bcRequest.setRequestMessage(new rqMessage);
+
+rqMessage.setMerchantCode("123456");
+rqMessage.setMerchantAccountCode("789123");
+rqMessage.setAmount("1200");
+rqMessage.setTransIndustryType("EC");
+rqMessage.setTransactionType("SALE");
+rqMessage.setHolderType("O");
+rqMessage.setExpirationDate("1234");
+rqMessage.setIsoCurrencyCode("USD");
+rqMessage.setAcctType("R");
+rqMessage.setSoftwareVendor("Your Software Name 1.0");
+rqMessage.setInvoiceNum("INV-1234");
+rqMessage.setPONum("PO-4321");
+rqMessage.setCustomerAccountCode("CID-9876");
+rqMessage.setTaxAmount("110");
+rqMessage.setTaxIndicator("P");
+rqMessage.setItemCount("1");
+rqMessage.setItem(new rqItem);
+
+rqItem.setItemCode("123456");
+rqItem.setItemCommodityCode("5999");
+rqItem.setItemDescription("Widget");
+rqItem.setItemQuantity("1");
+rqItem.setItemUnitCostAmt("1000");
+rqItem.setItemUnitMeasure("EA");
+rqItem.setItemTotalAmount("1110");
+```
+
+> Or, in the raw XML:
 
 ```xml
 <requestHeader>
     <ClientIdentifier>SOAP</ClientIdentifier>
-    <TransactionID>{transactionId}</TransactionID>
+    <TransactionID>00000000-0000-0000-0000-000000000000</TransactionID>
     <RequestType>004</RequestType>
-    <RequestDateTime>{requestDateTime}</RequestDateTime>
-    <PrivateKey>{yourPrivateKey}</PrivateKey>
-    <AuthenticationTokenId>{token}</AuthenticationTokenId>
+    <RequestDateTime>yyyyMMddHHmmss</RequestDateTime>
+    <PrivateKey>YourPrivateKey</PrivateKey>
+    <AuthenticationTokenId>00000000-0000-0000-0000-000000000000</AuthenticationTokenId>
     <requestMessage>                    
-        <SoftwareVendor>{yourSoftwareName}</SoftwareVendor>
+        <SoftwareVendor>YourSoftwareName 1.0</SoftwareVendor>
         <TransIndustryType>EC</TransIndustryType>
         <TransactionType>sale</TransactionType>
         <AcctType>R</AcctType>
         <HolderType>O</HolderType>
-        <Amount>{amountInCents}</Amount>
+        <Amount>1110</Amount>
         <CurrencyCode>USD</CurrencyCode>
-        <InvoiceNum>{yourInvoiceNumber}</InvoiceNum>
-        <PONum>{yourPONumber}</PONum>
-        <CustomerAccountCode>{customerCode}</CustomerAccountCode>
-        <TaxAmount>{taxAmount}</TaxAmount>
+        <InvoiceNum>INV-1234</InvoiceNum>
+        <PONum>PO-4321</PONum>
+        <CustomerAccountCode>CID-9876</CustomerAccountCode>
+        <TaxAmount>110</TaxAmount>
         <TaxIndicator>P</TaxIndicator>
         <ItemCount>1</ItemCount>
         <Item>
-          <ItemCode>{itemSKU}</ItemCode>
-          <ItemCommodityCode>{UNSPSC code or merchantCategoryCode}</ItemCommodityCode>
-          <ItemDescription>{shortDescriptionOfItem}</ItemDescription>
+          <ItemCode>123456</ItemCode>
+          <ItemCommodityCode>5999</ItemCommodityCode>
+          <ItemDescription>Widget</ItemDescription>
           <ItemQuantity>1</ItemQuantity>
-          <ItemUnitCostAmt>{unitCostPerItem}</ItemUnitCostAmt>
+          <ItemUnitCostAmt>1000</ItemUnitCostAmt>
           <ItemUnitMeasure>EA</ItemUnitMeasure>
-          <ItemTotalAmount>{totalAmountForItem}</ItemTotalAmount>
+          <ItemTotalAmount>1110</ItemTotalAmount>
         </Item>
     </requestMessage>
 </requestHeader>
 ```
-
 
 Note that Level III transactions require line-item details from the purchase. You should send one Item array for each line item on a given invoice; many integrators will dynamically map these required fields into their existing inventory, order management, or ERP systems. Alternatively, if you only sell one type of item, you may consider creating a static mapping of these fields, or "hard-coding" the values specific to your business.
 
@@ -670,33 +1086,100 @@ In general, for most card brands and card issuers, the presence of a value in th
 
 ## ACH and eChecks
 
+```php
+$bpRequest = new BridgeCommRequest();
+$bpRequest->$requestMessage = new RequestMessage();
+
+$bpRequest->RequestDateTime = DateTime.Now.ToString("yyyyMMddHHmmss");
+$bpRequest->User = "xxxxxx";
+$bpRequest->Password = "xxxxxx";
+$bpRequest->RequestType = "004";
+$bpRequest->TransactionID = "00000000-0000-0000-0000-000000000000";
+$bpRequest->$requestMessage->MerchantCode = "123456";
+$bpRequest->$requestMessage->MerchantAccountCode = "789123";
+$bpRequest->$requestMessage->Amount = "1200";
+$bpRequest->$requestMessage->TransactionType = "SALE";
+$bpRequest->$requestMessage->TransIndustryType = "WEB";
+$bpRequest->$requestMessage->AcctType = "C";
+$bpRequest->$requestMessage->SoftwareVendor = "YourSoftwareName 1.0";
+$bpRequest->$requestMessage->RoutingNum = "021000021";
+$bpRequest->$requestMessage->BankAccountNum = "4099999992";
+```
+
+Processing an eCheck/ACH transaction is very similar to processing a credit card transaction. Instead of passing a token to the webservice, you can directly pass the bank's routing/transit number and the bank account number. These data elements are not considered sensitive to the same degree as card data, and are not covered by the scope of PCI DSS. You should still encrypt said data elements whether at rest or in motion, but they will not impact your scope of PCI compliance.
+
+```csharp
+BridgeCommRequest bcRequest = new BridgeCommRequest();
+bcRequest.User = "xxxxxx";
+bcRequest.Password = "xxxxxx";
+bcRequest.RequestType = "004";
+bcRequest.TransactionID = "00000000-0000-0000-0000-000000000000";
+bcRequest.RequestDateTime = DateTime.Now.ToString("yyyyMMddHHmmss");
+
+ResponseMessage rsMessage = bcResponse.responseMessage;
+rqMessage.MerchantCode = "123456";
+rqMessage.MerchantAccountCode = "789123";
+rqMessage.TransactionType = "SALE";
+rqMessage.Amount = "1200";
+rqMessage.TransIndustryType = "WEB";
+rqMessage.AcctType = "C";
+rqMessage.SoftwareVendor = "YourSoftwareName 1.0";
+rqMessage.RoutingNum = "021000021";
+rqMessage.BankAccountNum = "4099999992";
+```
+
+```java
+BridgeCommRequest bcRequest = new BridgeCommRequest();
+RequestMessage rqMessage = new RequestMessage();
+
+bcRequest.setUser("xxxxxx");
+bcRequest.setPassword("xxxxxx");
+bcRequest.setRequestType("012");
+bcRequest.setTransactionID("00000000-0000-0000-0000-000000000000");
+bcRequest.setRequestDateTime(DateTime.Now.ToString("yyyyMMddHHmmss"));
+bcRequest.setRequestMessage(new rqMessage);
+
+rqMessage.setMerchantCode("123456");
+rqMessage.setMerchantAccountCode("789123");
+rqMessage.setTransactionType("SALE");
+rqMessage.setAcctType("C");
+rqMessage.setTransIndustryType("WEB");
+rqMessage.setSoftwareVendor("YourSoftwareName 1.0");
+rqMessage.setRoutingNumber("021000021");
+rqMessage.setBankAccountNumber("4099999992");
+```
+> Or, in the raw XML:
+
 ```xml
 <requestHeader>
     <ClientIdentifier>SOAP</ClientIdentifier>
-    <TransactionID>{transactionId}</TransactionID>
+    <TransactionID>00000000-0000-0000-0000-000000000000</TransactionID>
     <RequestType>004</RequestType>
-    <RequestDateTime>{requestDateTime}</RequestDateTime>
-    <User>{Beyond-assigned username}</User>
-    <Password>{Beyond-assigned password}</Password>
+    <RequestDateTime>yyyyMMddHHmmss</RequestDateTime>
+    <User>xxxxxx</User>
+    <Password>xxxxxx</Password>
     <requestMessage>
-        <SoftwareVendor>{yourSoftwareName}</SoftwareVendor>
+        <SoftwareVendor>YourSoftwareName 1.0</SoftwareVendor>
         <TransactionType>sale</TransactionType>
-        <TransIndustryType>{Standard Entry Class code; see below}</TransIndustryType>
-        <RoutingNum>{bankRoutingNumber}</RoutingNum>
-        <BankAccountNum>{bankAccountNumber}</BankAccountNum>
-        <AcctType>{'S' for savings account; 'C' for checking account}</AcctType>
-        <Amount>{amountInCents}</Amount>
+        <TransIndustryType>WEB</TransIndustryType>
+        <RoutingNum>021000021</RoutingNum>
+        <BankAccountNum>4099999992</BankAccountNum>
+        <AcctType>C</AcctType>
+        <Amount>1200</Amount>
     </requestMessage>
 </requestHeader>
 ```
-Processing an eCheck/ACH transaction is very similar to processing a credit card transaction. Instead of passing a token to the webservice, you can directly pass the bank's routing/transit number and the bank account number. These data elements are not considered sensitive to the same degree as card data, and are not covered by the scope of PCI DSS. You should still encrypt said data elements whether at rest or in motion, but they will not impact your scope of PCI compliance.
+
+> Sample Response
+
+
 
 In addition to passing the routing and account number, you also need to specify whether the bank account is a checking or savings account, as well as the "Standard Entry Class" code as defined by NACHA.
 
-`WEB` - Internet-Initiated Entry
-`PPD` - Prearranged Payment and Deposit - for consumer checks (requires written authorization from customer)
-`CCD` - Corporate Credit or Debit - for business checks (requires written authorization from customer)
-`TEL` - Telephone-Initiated Entry
+<br>`WEB` - Internet-Initiated Entry
+<br>`PPD` - Prearranged Payment and Deposit - for consumer checks (requires written authorization from customer)
+<br>`CCD` - Corporate Credit or Debit - for business checks (requires written authorization from customer)
+<br>`TEL` - Telephone-Initiated Entry
 
 <aside class="notice">
 Different NACHA SEC codes require different types of authorizations from or disclosure to your customer:
