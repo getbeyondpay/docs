@@ -23,8 +23,6 @@ meta:
   - name: keywords
     content: GetBeyond,Beyond,BeyondPay,Gateway,API,Payments,Credit,Debit,Plugin,SDK
 ---
-<a href="#"></a>
-
 Welcome to Beyond Pay: an omnichannel payment suite that enables a secure and embedded payment experience within your solution.
 
 > <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=Q9V6UxGq3USJSkGsz2Jk78Ytw0d6hJlNsDOCAUz-XBhURUJXWFhEMDlDTUs3OVlROEMxOExJQzZGNS4u" target="_blank" class="beyond-button">Get Your Sandbox API Keys</a> and get coding now!
