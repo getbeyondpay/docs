@@ -550,6 +550,10 @@ html, body {
   }
 }
 
+.beyond-button:a {
+  text-decoration: none;
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 // RESPONSIVE DESIGN
 ////////////////////////////////////////////////////////////////////////////////
@@ -613,3 +617,22 @@ html, body {
 .highlight, .highlight .w {
   background-color: $code-bg;
 }
+
+.beyond-button {
+  background-color: #ff8f1c;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 2px;
+  transition-duration: 0.4s;
+}
+
+.beyond-button:hover {
+  background-color: #ff781c;
+  color: white;
+}
+

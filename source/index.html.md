@@ -7,27 +7,27 @@ language_tabs:
   - java
 
 toc_footers:
-  - <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=Q9V6UxGq3USJSkGsz2Jk78Ytw0d6hJlNsDOCAUz-XBhURUJXWFhEMDlDTUs3OVlROEMxOExJQzZGNS4u" class="button" target="_blank">Get API Keys</a>
+  - <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=Q9V6UxGq3USJSkGsz2Jk78Ytw0d6hJlNsDOCAUz-XBhURUJXWFhEMDlDTUs3OVlROEMxOExJQzZGNS4u" class="beyond-button" target="_blank">Get API Keys</a>
   - ______________
-  - <a href='https://www.getbeyond.com/'>www.getbeyond.com</a>
+  - <a href='https://www.getbeyond.com/' target="_blank">www.getbeyond.com</a>
   - ©2021 Beyond
   - ______________
-  - <a href='https://www.getbeyond.com/privacy-policy/'>Privacy Policy</a>
-  - <a href='https://www.getbeyond.com/ccpa/'>CCPA Consumer Privacy</a>
+  - <a href='https://www.getbeyond.com/privacy-policy/' target="_blank">Privacy Policy</a>
+  - <a href='https://www.getbeyond.com/ccpa/' target="_blank">CCPA Consumer Privacy</a>
 
 search: true
 
-code_clipboard: true
-
 meta:
   - name: description
-    content: Beyond Pay API Documentation
+    content: Beyond Pay Gateway API Documentation
   - name: keywords
     content: GetBeyond,Beyond,BeyondPay,Gateway,API,Payments,Credit,Debit,Plugin,SDK
 ---
+<a href="#"></a>
+
 Welcome to Beyond Pay: an omnichannel payment suite that enables a secure and embedded payment experience within your solution.
 
-> <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=Q9V6UxGq3USJSkGsz2Jk78Ytw0d6hJlNsDOCAUz-XBhURUJXWFhEMDlDTUs3OVlROEMxOExJQzZGNS4u" target="_blank" class="button">Get Your Sandbox API Keys</a> and get coding now!
+> <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=Q9V6UxGq3USJSkGsz2Jk78Ytw0d6hJlNsDOCAUz-XBhURUJXWFhEMDlDTUs3OVlROEMxOExJQzZGNS4u" target="_blank" class="beyond-button">Get Your Sandbox API Keys</a> and get coding now!
 
 # Integration Options
 
@@ -41,7 +41,7 @@ Why reinvent the wheel? We've done the heavy lifting to build robust integration
 
 ### WooCommerce
 
-> <a href="https://wordpress.org/plugins/beyond-pay-for-woocommerce" target="_blank">
+> <a href="https://wordpress.org/plugins/beyond-pay-for-woocommerce" target="_blank" style=>
 ```
 https://wordpress.org/plugins/beyond-pay-for-woocommerce
 ```
@@ -55,6 +55,8 @@ https://github.com/getbeyond/beyondpay_woocommerce
 
 <a href="https://wordpress.org/plugins/beyond-pay-for-woocommerce/"  target="_blank"><img src="/images/256x256_woo_icon.png" width="100" />
 
+Get Beyond Pay for WooCommerce</a>
+
 ```html
 === Beyond Pay for WooCommerce ===
 Contributors: beyondpay
@@ -66,8 +68,6 @@ Requires PHP: 7.0
 License: MIT
 License URI: https://opensource.org/licenses/MIT
 ```
-
-Get Beyond Pay for WooCommerce</a>
 
 Beyond Pay for <a href="woocommerce.com" target="_blank">WooCommerce</a> enables secure payment card acceptance right from within your WooCommerce store. 
 
@@ -344,13 +344,14 @@ $bpRequest->$requestMessage->SoftwareVendor = "YourSoftwareName 1.0";
 
 ```csharp
 BridgeCommRequest bcRequest = new BridgeCommRequest();
+RequestMessage rqMessage = new RequestMessage();
+
 bcRequest.RequestType = "004";
 bcRequest.TransactionID = "00000000-0000-0000-0000-000000000000";
 bcRequest.PrivateKey = "YourPrivateKey";
 bcRequest.AuthenticationTokenId = "00000000-0000-0000-0000-000000000000";
 bcRequest.RequestDateTime = DateTime.Now.ToString("yyyyMMddHHmmss");
 
-ResponseMessage rsMessage = bcResponse.responseMessage;
 rqMessage.MerchantCode = "123456";
 rqMessage.MerchantAccountCode = "789123";
 rqMessage.TransactionType = "SALE";
@@ -433,6 +434,125 @@ Now submit the token and parameters according to the example XML request, with t
 * `{amountInCents}` - transaction amount in cents ($1.25 would be 125)
 * `{yourSoftwareName}` - the name and version number of your software application
 
+> Beyond Pay Sample Approved Sale Response
+
+```php
+$bcResponse->TransactionID = "635693706433821501<";
+$bcResponse->RequestType = "004";
+$bcResponse->ResponseCode = "00000";
+$bcResponse->ResponseDescription = "Successful Request";
+$rsMessage = $bcResponse->responseMessage;
+$rsMessage->AuthenticationTokenId = "735333";
+$rsMessage->Token = "100000007470001";
+$rsMessage->PublicKey = "";
+$rsMessage->ExpirationDate = "1022";
+$rsMessage->AuthorizationCode = "735333";
+```
+
+```csharp
+BridgeCommConnection connection = new BridgeCommConnection();
+BridgeCommResponse bcResponse = connection.processRequest(URL, bcRequest);
+ResponseMessage rsMessage = bcResponse.responseMessage;
+
+bcResponse.BridgeCommResponseType = "Auth";
+bcResponse.RequestType = "004";
+bcResponse.ResponseCode = "00000";
+bcResponse.ResponseDescription = "Successful Request";
+bcResponse.TransactionID = "20190709092529";
+
+rsMessage.GatewayMessage = "A01 - Approved";
+rsMessage.GatewayResult = "00000";
+rsMessage.GatewayTransID = "3710636504";
+rsMessage.TransactionCode = "20190709092529";
+rsMessage.TransactionDate = "20190709";
+rsMessage.AuthorizationCode = "537977";
+rsMessage.AuthorizedAmount = "1200";
+rsMessage.InternalMessage = "Approved: 537977 (approval code)";
+rsMessage.isCommercialCard = "False";
+rsMessage.IsoCountryCode = "840";
+rsMessage.IsoCurrencyCode = "USD";
+rsMessage.IsoRequestDate = "2019-07-09 09:25:30.663";
+rsMessage.IsoTransactionDate = "2019-07-09 09:25:30.663";
+rsMessage.MaskedPan = "1***********1234";
+rsMessage.ExpirationDate = "1234";
+rsMessage.CardClass = "Credit";
+rsMessage.CardType = "Visa";
+rsMessage.OriginalAmount = "1200";
+rsMessage.ProviderResponseMessage = "Approved";
+rsMessage.Token = "11110000000375160150";
+```
+
+```java
+BridgeCommResponse bcResponse = connection.processRequest(URL, bcRequest);
+bcResponse.RequestType = "004";
+bcResponse.ResponseCode = "00000";
+bcResponse.ResponseDescription = "Successful Request";
+bcResponse.TransactionID = "635693706433821501";
+
+ResponseMessage rsMessage = bcResponse.responseMessage;
+rsMessage.Token = "1000000074700016";
+rsMessage.ExpirationDate = "1022";
+rsMessage.AuthrorizationCode = "735333";
+```
+
+> Raw XML response
+
+```xml
+<?xml version="1.0" encoding="utf-16"?>
+<Auth>
+  <TransactionID>123456789</TransactionID>
+  <RequestType>004</RequestType>
+  <ResponseCode>00000</ResponseCode>
+  <ResponseDescription>Successful Request</ResponseDescription>
+  <responseMessage>
+    <Token>1000000010261111</Token>
+    <AuthorizationCode>642973</AuthorizationCode>
+    <ReferenceNumber></ReferenceNumber>
+    <GatwayResult>00000</GatewayResult>
+    <AuthorizedAmount>700</AuthorizedAmount>
+    <OriginalAmount>700</OriginalAmount>
+    <ExpirationDate>1224</ExpirationDate>
+    <AVSMessage>Street address and ZIP match</AVSMessage>
+    <AVSResult>4F</AVSResult>
+    <StreetMatchMessage></StreetMatchMessage>
+    <ZipMatchMessage></ZipMatchMessage>
+    <CVMessage>Matches</CVMessage>
+    <CVResult>M</CVResult>
+    <IsCommercialCard>False</IsCommercialCard>
+    <GatewayTransID>1235539604</GatewayTransID>
+    <GatewayMessage>A01 - Approved</GatewayMessage>
+    <InternalMessage>Approved: 642973 (approval Code)</InternalMessage>
+    <Balance></Balance>
+    <CashBackAmount></CashBackAmount>
+    <TransactionCode>123456789</TransactionCode>
+    <TransactionDate>20200528</TransactionDate>
+    <RemainingAmount>0</RemainingAmount>
+    <IsoCountryCode>840</IsoCountryCode>
+    <IsoCurrencyCode>USD</IsoCurrencyCode>
+    <IsoTransactionDate>2020-05-28 12:41:33.587</IsoTransactionDate>
+    <IsoRequestDate>2020-05-28 12:41:33.587</IsoRequestDate>
+    <NetworkReferenceNumber></NetworkReferenceNumber>
+    <NetworkMerchantId></NetworkMerchantId>
+    <NetworkTerminalId></NetworkTerminalId>
+    <CardClass>Credit</CardClass>
+    <CardType>Visa</CardType>
+    <CardHolderName>Test card</CardHolderName>
+    <CardModifier>None</CardModifier>
+    <ProviderResponseCode></ProviderResponseCode>
+    <ProviderResponseMessage>Approved</ProviderResponseMessage>
+    <MaskedPan></MaskedPan>
+    <WalletID></WalletID>
+    <WalletPaymentMethodID></WalletPaymentID>
+    <WalletResponseMessage></WalletResponseMessage>
+    <WalletResponseCode></WalletResponseCode>
+    <MerchantCategoryCode></MerchantCategoryCode>
+    <ResponseTypeDescription>sale</ResponseTypeDescription>
+    <ReceiptTagData></ReceiptTagData>
+    <IssuerTagData></IssuerTagData>
+  </responseMessage>
+</Auth>
+```
+
 After your transaction has been successfully submitted to the gateway, make sure you inspect the response message. Specifically, look at:
  
 * `ResponseCode` - a 5 digit response code indicating the status of the transaction request
@@ -444,6 +564,114 @@ After your transaction has been successfully submitted to the gateway, make sure
 * `CVResult` - a code indicating the status of the Card Security Code (aka CVV2, CID) sent in the request message
 * `CVMessage` - a verbose description of the CVResult code meaning
 * `Token` - a non-sensitive representation of the card number used in the transaction. The last four digits are the same as the last four digits of the card number. This value can be persisted and used for <a href="#repeat-sales-and-cards-on-file">future recurring transactions from the same cardholder</a>. 
+
+> Beyond Pay Sample Declined Sale Response
+
+```php
+$bcResponse->TransactionID = "635693706433821501<";
+$bcResponse->RequestType = "004";
+$bcResponse->ResponseCode = "30032";
+$bcResponse->ResponseDescription = "Denied by customer's bank";
+```
+
+```csharp
+BridgeCommConnection connection = new BridgeCommConnection();
+BridgeCommResponse bcResponse = connection.processRequest(URL, bcRequest);
+ResponseMessage rsMessage = bcResponse.responseMessage;
+
+bcResponse.BridgeCommResponseType = "Auth";
+bcResponse.RequestType = "004";
+bcResponse.ResponseCode = "30032";
+bcResponse.ResponseDescription = "Denied by customer's bank";
+bcResponse.TransactionID = "20190709092529";
+
+rsMessage.GatewayMessage = "D01 - Denied by customer's bank (Issuer Unavailable)";
+rsMessage.GatewayResult = "30032";
+rsMessage.GatewayTransID = "3710636804";
+rsMessage.TransactionCode = "20190709094426";
+rsMessage.TransactionDate = "20190709";
+rsMessage.AuthorizationCode = "537977";
+rsMessage.AuthorizedAmount = "1200";
+rsMessage.InternalMessage = "Denied by customer's bank";
+rsMessage.ResponseTypeDescription = "denied";
+rsMessage.isCommercialCard = "False";
+rsMessage.IsoCountryCode = "840";
+rsMessage.IsoCurrencyCode = "USD";
+rsMessage.IsoRequestDate = "2019-07-09 09:25:30.663";
+rsMessage.IsoTransactionDate = "2019-07-09 09:25:30.663";
+rsMessage.MaskedPan = "1***********1234";
+rsMessage.ExpirationDate = "1234";
+rsMessage.CardClass = "Credit";
+rsMessage.CardType = "Visa";
+rsMessage.OriginalAmount = "1200";
+rsMessage.ProviderResponseMessage = "Declined";
+```
+
+```java
+BridgeCommResponse bcResponse = connection.processRequest(URL, bcRequest);
+bcResponse.RequestType = "004";
+bcResponse.ResponseCode = "30032";
+bcResponse.ResponseDescription = "Denied by customer's bank";
+bcResponse.TransactionID = "635693706433821501";
+
+ResponseMessage rsMessage = bcResponse.responseMessage;
+rsMessage.CardType = "Visa";
+rsMessage.CardClass = "Credit";
+rsMessage.ProviderResponseMessage = "735333";
+```
+
+> Raw XML response
+
+```xml
+<Auth>
+	<TransactionID>123</TransactionID>
+	<RequestType>004</RequestType>
+	<ResponseCode>30032</ResponseCode>
+	<ResponseDescription>Denied by customer's bank</ResponseDescription>
+	<responseMessage>
+		<Token>1000000010532376</Token>
+		<ExpirationDate>1224</ExpirationDate>
+		<OrganizationId>1706</OrganizationId>
+		<AuthorizationCode />
+		<ReferenceNumber>960406639</ReferenceNumber>
+		<AuthorizedAmount>0</AuthorizedAmount>
+		<OriginalAmount>20</OriginalAmount>
+		<GatewayTransID>4011311504</GatewayTransID>
+		<GatewayMessage>D01 - Denied by customer's bank (Issuer Unavailable)</GatewayMessage>
+		<InternalMessage>Denied by customer's bank</InternalMessage>
+		<GatewayResult>30032</GatewayResult>
+		<AVSMessage />
+		<AVSResult />
+		<CVMessage />
+		<CVResult />
+		<TransactionCode>123</TransactionCode>
+		<TransactionDate>20210831</TransactionDate>
+		<RemainingAmount>0</RemainingAmount>
+		<IsoCountryCode>840</IsoCountryCode>
+		<IsoCurrencyCode>USD</IsoCurrencyCode>
+		<IsoTransactionDate>2021-08-31 21:33:09.537</IsoTransactionDate>
+		<IsoRequestDate>2021-08-31 21:33:09.537</IsoRequestDate>
+		<NetworkReferenceNumber />
+		<MerchantCategoryCode />
+		<NetworkMerchantId />
+		<NetworkTerminalId />
+		<CardClass>Credit</CardClass>
+		<CardType>Amex</CardType>
+		<CardHolderName />
+		<CardModifier>None</CardModifier>
+		<ProviderResponseCode />
+		<ProviderResponseMessage>Denied by customer's bank (Issuer Unavailable)</ProviderResponseMessage>
+		<MaskedPan>3**********2376</MaskedPan>
+		<ResponseTypeDescription>decline</ResponseTypeDescription>
+		<IsCommercialCard>False</IsCommercialCard>
+		<StreetMatchMessage />
+		<WalletID />
+		<WalletPaymentMethodID />
+		<WalletResponseCode />
+		<WalletResponseMessage />
+	</responseMessage>
+</Auth>
+```
 
 <aside class="warning">
 You should always inspect the AVSResult and CVResult fields as these can be good indicators of potential fraud. If you see a AVSResult or CVResult code that you do not want to accept because it may be too risky (such as "No Match" on the submitted Zip code), then you should submit a void transaction to cancel the authorization and advise the cardholder that their transaction has been declined.
@@ -479,13 +707,14 @@ $bpRequest->$requestMessage->SoftwareVendor = "YourSoftwareName 1.0";
 
 ```csharp
 BridgeCommRequest bcRequest = new BridgeCommRequest();
+RequestMessage rqMessage = new RequestMessage();
+
 bcRequest.RequestType = "004";
 bcRequest.TransactionID = "00000000-0000-0000-0000-000000000000";
 bcRequest.PrivateKey = "YourPrivateKey";
 bcRequest.AuthenticationTokenId = "00000000-0000-0000-0000-000000000000";
 bcRequest.RequestDateTime = DateTime.Now.ToString("yyyyMMddHHmmss");
 
-ResponseMessage rsMessage = bcResponse.responseMessage;
 rqMessage.MerchantCode = "123456";
 rqMessage.MerchantAccountCode = "789123";
 rqMessage.TransactionType = "SALE-AUTH";
@@ -543,6 +772,84 @@ rqMessage.setSoftwareVendor("YourSoftwareName 1.0");
 
 ```
 
+> Beyond Pay Sample Authorization Response
+
+```php
+$bcResponse->TransactionID = "635693706433821501";
+$bcResponse->RequestType = "004";
+$bcResponse->ResponseCode = "00000";
+$bcResponse->ResponseDescription = "Successful Request";
+$rsMessage = $bcResponse->responseMessage;
+$rsMessage->AuthenticationTokenId = "735333";
+$rsMessage->Token = "100000007470001";
+$rsMessage->PublicKey = "";
+$rsMessage->ExpirationDate = "1022";
+$rsMessage->AuthorizationCode = "735333";
+```
+
+```csharp
+BridgeCommConnection connection = new BridgeCommConnection();
+BridgeCommResponse bcResponse = connection.processRequest(URL, bcRequest);
+ResponseMessage rsMessage = bcResponse.responseMessage;
+
+bcResponse.BridgeCommResponseType = "Auth";
+bcResponse.RequestType = "004";
+bcResponse.ResponseCode = "00000";
+bcResponse.ResponseDescription = "Successful Request";
+bcResponse.TransactionID = "20190709092529";
+
+rsMessage.GatewayMessage = "A01 - Approved";
+rsMessage.GatewayResult = "00000";
+rsMessage.GatewayTransID = "3710636504";
+rsMessage.TransactionCode = "20190709092529";
+rsMessage.TransactionDate = "20190709";
+rsMessage.AuthorizationCode = "537977";
+rsMessage.AuthorizedAmount = "1200";
+rsMessage.InternalMessage = "Approved: 537977 (approval code)";
+rsMessage.isCommercialCard = "False";
+rsMessage.IsoCountryCode = "840";
+rsMessage.IsoCurrencyCode = "USD";
+rsMessage.IsoRequestDate = "2019-07-09 09:25:30.663";
+rsMessage.IsoTransactionDate = "2019-07-09 09:25:30.663";
+rsMessage.MaskedPan = "1***********1234";
+rsMessage.ExpirationDate = "1234";
+rsMessage.CardClass = "Credit";
+rsMessage.CardType = "Visa";
+rsMessage.OriginalAmount = "1200";
+rsMessage.ProviderResponseMessage = "Approved";
+rsMessage.Token = "11110000000375160150";
+```
+
+```java
+BridgeCommResponse bcResponse = connection.processRequest(URL, bcRequest);
+bcResponse.RequestType = "004";
+bcResponse.ResponseCode = "00000";
+bcResponse.ResponseDescription = "Successful Request";
+bcResponse.TransactionID = "635693706433821501";
+
+ResponseMessage rsMessage = bcResponse.responseMessage;
+rsMessage.Token = "1000000074700016";
+rsMessage.ExpirationDate = "1022";
+rsMessage.AuthrorizationCode = "735333";
+```
+
+> Raw XML response
+
+```xml
+<Auth>
+ <TransactionID>635693706433821501</TransactionID>
+    <RequestType>004</RequestType>
+    <ResponseCode>00000</ResponseCode>
+    <ResponseDescription>Successful Request</ResponseDescription>
+        <responseMessage>
+            <Token>1000000074700016</Token>
+            <ExpirationDate>1022</ExpirationDate>
+            <OrganizationId>3538</OrganizationId>
+            <AuthorizationCode>735333</AuthorizationCode>
+        </responseMessage>
+</Auth>
+```
+
 The `SettlementDelay` tag can be added for sale-auth transactions, and designates the number of batch cycles that the authorization remains "open" (or uncaptured). If the sale-auth transaction is not captured before completion of the designated number of batches, then the original authorization will be automatically voided and not captured. This value cannot exceed "30" (batch cycles).
 
 > In order to capture that authorization and charge the card, you must submit 019 capture `RequestType`, passing the original sale-auth `ReferenceNumber`, and using the `User` and `Password` credentials instead of `AuthenticationTokenId` and `PrivateKey` to authenticate:
@@ -571,13 +878,14 @@ $bpRequest->$requestMessage->SoftwareVendor = "YourSoftwareName 1.0";
 
 ```csharp
 BridgeCommRequest bcRequest = new BridgeCommRequest();
+RequestMessage rqMessage = new RequestMessage();
+
 bcRequest.User = "xxxxxx";
 bcRequest.Password = "xxxxxx";
 bcRequest.RequestType = "019";
 bcRequest.TransactionID = "00000000-0000-0000-0000-000000000000";
 bcRequest.RequestDateTime = DateTime.Now.ToString("yyyyMMddHHmmss");
 
-ResponseMessage rsMessage = bcResponse.responseMessage;
 rqMessage.MerchantCode = "123456";
 rqMessage.MerchantAccountCode = "789123";
 rqMessage.TransactionType = "CAPTURE";
@@ -631,6 +939,73 @@ rqMessage.setSoftwareVendor("YourSoftwareName 1.0");
 This capture request and several other API requests described here may take differing credentials in order to authenticate the client. All such credentials will be provided by Beyond for testing and production.
 </aside>
 
+> Beyond Pay Sample Capture Response
+
+```php
+$bcResponse->TransactionID = "635693706433821501";
+$bcResponse->RequestType = "019";
+$bcResponse->ResponseCode = "00000";
+$bcResponse->ResponseDescription = "Successful Request";
+$rsMessage = $bcResponse->responseMessage;
+$rsMessage->ReferenceNumber = "735333";
+$rsMessage->GatewayResult = "00000";
+$rsMessage->GatewayTransID = "3710636504";
+$rsMessage->GatewayMessage = "A01 - Approved";
+$rsMessage->TransactionCode = "";
+```
+
+```csharp
+BridgeCommConnection connection = new BridgeCommConnection();
+BridgeCommResponse bcResponse = connection.processRequest(URL, bcRequest);
+ResponseMessage rsMessage = bcResponse.responseMessage;
+
+bcResponse.BridgeCommResponseType = "Auth";
+bcResponse.RequestType = "019";
+bcResponse.ResponseCode = "00000";
+bcResponse.ResponseDescription = "Successful Request";
+bcResponse.TransactionID = "20190709092529";
+
+rsMessage.GatewayMessage = "A01 - Approved";
+rsMessage.GatewayResult = "00000";
+rsMessage.GatewayTransID = "3710636504";
+rsMessage.TransactionCode = "20190709092529";
+```
+
+```java
+BridgeCommConnection connection = new BridgeCommConnection();
+BridgeCommResponse bcResponse = connection.processRequest(URL, bcRequest);
+ResponseMessage rsMessage = bcResponse.responseMessage;
+
+bcResponse.BridgeCommResponseType = "Auth";
+bcResponse.RequestType = "019";
+bcResponse.ResponseCode = "00000";
+bcResponse.ResponseDescription = "Successful Request";
+bcResponse.TransactionID = "20190709092529";
+
+rsMessage.GatewayMessage = "A01 - Approved";
+rsMessage.GatewayResult = "00000";
+rsMessage.GatewayTransID = "3710636504";
+rsMessage.TransactionCode = "20190709092529";
+```
+
+> Raw XML response
+
+```xml
+<?xml version="1.0" encoding="utf-16"?>
+<Capture>
+  <TransactionID>20190709092529</TransactionID>
+  <RequestType>019</RequestType>
+  <ResponseCode>00000</ResponseCode>
+  <responseMessage>
+    <ReferenceNumber></ReferenceNumber>
+    <GatewayResult>00000</GatewayResult>
+    <GatewayTransID>3710636504</GatewayTransID>
+    <GatewayMessage>A01 - Approved</GatewayMessage>
+    <TransactionCode></TransactionCode>
+  </responseMessage>
+</Capture>
+```
+
 ## Repeat Sales and Cards-on-File
 
 > The `Token` element represents a card number, can be used multiple times, and does not expire. It may be used as input in a transaction in lieu of the `PaymentAccountNumber` or the `AuthenticationTokenId`, and also requires the `ExpirationDate` field to be submitted with it.
@@ -661,13 +1036,14 @@ $bpRequest->requestMessage->StoredCredential = "recurring";
 
 ```csharp
 BridgeCommRequest bcRequest = new BridgeCommRequest();
+RequestMessage rqMessage = new RequestMessage();
+
 bcRequest.User = "xxxxxx";
 bcRequest.Password = "xxxxxx";
 bcRequest.RequestType = "004";
 bcRequest.TransactionID = "00000000-0000-0000-0000-000000000000";
 bcRequest.RequestDateTime = DateTime.Now.ToString("yyyyMMddHHmmss");
 
-ResponseMessage rsMessage = bcResponse.responseMessage;
 rqMessage.MerchantCode = "123456";
 rqMessage.MerchantAccountCode = "789123";
 rqMessage.TransactionType = "SALE";
@@ -759,13 +1135,14 @@ $bpRequest->$requestMessage->ReferenceNumber = "12345678";
 
 ```csharp
 BridgeCommRequest bcRequest = new BridgeCommRequest();
+RequestMessage rqMessage = new RequestMessage();
+
 bcRequest.User = "xxxxxx";
 bcRequest.Password = "xxxxxx";
 bcRequest.RequestType = "012";
 bcRequest.TransactionID = "00000000-0000-0000-0000-000000000000";
 bcRequest.RequestDateTime = DateTime.Now.ToString("yyyyMMddHHmmss");
 
-ResponseMessage rsMessage = bcResponse.responseMessage;
 rqMessage.MerchantCode = "123456";
 rqMessage.MerchantAccountCode = "789123";
 rqMessage.TransactionType = "REFUND";
@@ -818,6 +1195,37 @@ rqMessage.setReferenceNumber("12345678");
 You may refund/void the full amount of an original transaction or only part of the amount (a "partial refund" or "partial reversal"). If the transaction is in the current open (unsettled) batch, then only a single void (for the full amount or partial amount) may be performed. If the transaction has settled, the refund request transaction may be repeated for multiple partial refunds up to the amount of the original transaction.
 </aside>
 
+> Raw XML response
+
+```xml
+<?xml version="1.0" encoding="utf-16"?>
+<VoidRefund>
+  <TransactionID>12345</TransactionID>
+  <RequestType>012</RequestType>
+  <ResponseCode>00000</ResponseCode>
+  <ResponseDescription>Successful Request</ResponseDescription>
+  <responseMessage>
+    <ReferenceNumber />
+    <GatewayTransID>3807822104</GatewayTransID>
+    <GatewayMessage>A08 - Partial Refund Posted</GatewayMessage>
+    <InternalMessage>Approved: 945466 (approval code)</InternalMessage>
+    <GatewayResult>00000</GatewayResult>
+    <TransactionCode>12345</TransactionCode>
+    <RemainingAmount>3000</RemainingAmount>
+    <OrganizationId>2380</OrganizationId>
+    <MerchantAccountCode />
+    <ResponseType>refund</ResponseType>
+    <ResponseTypeDescription>refund</ResponseTypeDescription>
+    <CardClass />
+    <CardType />
+    <CardHolderName />
+    <ProviderResponseCode />
+    <ProviderResponseMessage />
+  </responseMessage>
+</VoidRefund>
+
+```
+
 ## Level II and Level III Data
 
 Some business cards may be eligible for lower interchange rates if you send additional data with the transaction. Beyond Pay supports these additional data fields and can help you or your clients secure <a href="https://www.getbeyond.com/b2b-payment-solutions/" target="_blank">these significantly reduced rates and other B2B benefits</a>.
@@ -852,13 +1260,14 @@ $bpRequest->$requestMessage->TaxIndicator = "P";
 
 ```csharp
 BridgeCommRequest bcRequest = new BridgeCommRequest();
+RequestMessage rqMessage = new RequestMessage();
+
 bcRequest.RequestType = "004";
 bcRequest.TransactionID = "00000000-0000-0000-0000-000000000000";
 bcRequest.PrivateKey = "YourPrivateKey";
 bcRequest.AuthenticationTokenId = "00000000-0000-0000-0000-000000000000";
 bcRequest.RequestDateTime = DateTime.Now.ToString("yyyyMMddHHmmss");
 
-ResponseMessage rsMessage = bcResponse.responseMessage;
 rqMessage.MerchantCode = "123456";
 rqMessage.MerchantAccountCode = "789123";
 rqMessage.TransactionType = "SALE";
@@ -972,13 +1381,14 @@ $requestMessage->$rqItem->ItemTotalAmount = "1110";
 
 ```csharp
 BridgeCommRequest bcRequest = new BridgeCommRequest();
+RequestMessage rqMessage = new RequestMessage();
+
 bcRequest.RequestType = "004";
 bcRequest.TransactionID = "00000000-0000-0000-0000-000000000000";
 bcRequest.PrivateKey = "YourPrivateKey";
 bcRequest.AuthenticationTokenId = "00000000-0000-0000-0000-000000000000";
 bcRequest.RequestDateTime = DateTime.Now.ToString("yyyyMMddHHmmss");
 
-ResponseMessage rsMessage = bcResponse.responseMessage;
 rqMessage.MerchantCode = "123456";
 rqMessage.MerchantAccountCode = "789123";
 rqMessage.TransactionType = "SALE";
@@ -1110,13 +1520,14 @@ Processing an eCheck/ACH transaction is very similar to processing a credit card
 
 ```csharp
 BridgeCommRequest bcRequest = new BridgeCommRequest();
+RequestMessage rqMessage = new RequestMessage();
+
 bcRequest.User = "xxxxxx";
 bcRequest.Password = "xxxxxx";
 bcRequest.RequestType = "004";
 bcRequest.TransactionID = "00000000-0000-0000-0000-000000000000";
 bcRequest.RequestDateTime = DateTime.Now.ToString("yyyyMMddHHmmss");
 
-ResponseMessage rsMessage = bcResponse.responseMessage;
 rqMessage.MerchantCode = "123456";
 rqMessage.MerchantAccountCode = "789123";
 rqMessage.TransactionType = "SALE";
@@ -1169,10 +1580,6 @@ rqMessage.setBankAccountNumber("4099999992");
     </requestMessage>
 </requestHeader>
 ```
-
-> Sample Response
-
-
 
 In addition to passing the routing and account number, you also need to specify whether the bank account is a checking or savings account, as well as the "Standard Entry Class" code as defined by NACHA.
 
@@ -1729,7 +2136,7 @@ The data used to query on these parameters must be transformed before the filter
 
 NOTE: `ExcludeTransResults` must be used with `TransResults`. It modifies the behavior of the TransResults field.
 
-> Return all transactions where <a href="#gateway-result-codes">Gateway Result code</a> code is NOT equal to 00000, 00001, or 10012::
+> Return all transactions where <a href="#gateway-result-codes">Gateway Result code</a> code is NOT equal to 00000, 00001, or 10012:
 
 ```xml
 <TransResults>00000,00001,10012</TransResults>
