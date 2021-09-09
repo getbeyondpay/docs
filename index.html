@@ -295,7 +295,7 @@
                     <a href="#getting-started-2" class="toc-h2 toc-link" data-title="Getting Started">Getting Started</a>
                   </li>
                   <li>
-                    <a href="#basic-sale-options" class="toc-h2 toc-link" data-title="Basic Sale Options">Basic Sale Options</a>
+                    <a href="#basic-sale" class="toc-h2 toc-link" data-title="Basic Sale">Basic Sale</a>
                   </li>
                   <li>
                     <a href="#tips-amp-gratuities" class="toc-h2 toc-link" data-title="Tips &amp; Gratuities">Tips &amp; Gratuities</a>
@@ -358,7 +358,7 @@
           </li>
       </ul>
         <ul class="toc-footer">
-            <li><a href="https://forms.office.com/Pages/ResponsePage.aspx?id=Q9V6UxGq3USJSkGsz2Jk78Ytw0d6hJlNsDOCAUz-XBhURUJXWFhEMDlDTUs3OVlROEMxOExJQzZGNS4u" class="beyond-button" target="_blank">Get API Keys</a></li>
+            <li><a href="https://forms.office.com/Pages/ResponsePage.aspx?id=Q9V6UxGq3USJSkGsz2Jk78Ytw0d6hJlNsDOCAUz-XBhURUJXWFhEMDlDTUs3OVlROEMxOExJQzZGNS4u" class="beyond-button" target="_blank" style="text-decoration:none;color:white;">Get API Keys</a></li>
             <li>______________</li>
             <li><a href='https://www.getbeyond.com/' target="_blank">www.getbeyond.com</a></li>
             <li>©2021 Beyond</li>
@@ -370,10 +370,10 @@
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <p>Welcome to Beyond Pay: an omnichannel payment suite that enables a secure and embedded payment experience within your solution.</p>
+        <p><a href="#"></a><br><br>Welcome to Beyond Pay: an omnichannel payment suite that enables a secure and embedded purchasing experience within your solution.</p>
 
 <blockquote>
-<p><a href="https://forms.office.com/Pages/ResponsePage.aspx?id=Q9V6UxGq3USJSkGsz2Jk78Ytw0d6hJlNsDOCAUz-XBhURUJXWFhEMDlDTUs3OVlROEMxOExJQzZGNS4u" target="_blank" class="beyond-button">Get Your Sandbox API Keys</a> and get coding now!</p>
+<p><a href="https://forms.office.com/Pages/ResponsePage.aspx?id=Q9V6UxGq3USJSkGsz2Jk78Ytw0d6hJlNsDOCAUz-XBhURUJXWFhEMDlDTUs3OVlROEMxOExJQzZGNS4u" target="_blank" class="beyond-button" style="border-bottom:0px;font-weight:700;">Get Sandbox API Keys</a> and get coding now!</p>
 </blockquote>
 <h1 id='integration-options'>Integration Options</h1>
 <blockquote>
@@ -1547,7 +1547,7 @@ You may refund/void the full amount of an original transaction or only part of t
 <ul>
 <li><code>PONum</code> - the customer&#39;s Purchase Order number; may be up to 24 alphanumeric characters and hyphens</li>
 <li><code>TaxAmount</code> - applicable tax amount in cents (implied decimal); must be less than the total transaction <code>Amount</code></li>
-<li><code>TaxIndicator</code> - may be <code>P</code> (Provided), <code>N</code> (Not Provided), or <code>E</code> (Exempt). Use P if you are sending a value in <code>LocalTaxAmount</code>, or E if you are tax-exempt</li>
+<li><code>TaxIndicator</code> - may be <code>P</code> (Provided), <code>N</code> (Not Provided), or <code>E</code> (Exempt). Use P if you are sending a value in <code>TaxAmount</code>, or E if you are tax-exempt</li>
 </ul>
 
 <blockquote>
@@ -1927,18 +1927,20 @@ Different NACHA SEC codes require different types of authorizations from or disc
 
 <p>If the card is magnetic stripe only and capable of being processed as either a debit or a credit transaction, then it will be processed as whatever tender type is sent in the request. If <code>UNKNOWN</code> is selected, the cardholder will likewise be prompted to make the selection.</p>
 
-<p>Transaction types may be defined as follows:</p>
+<p>Transaction types are defined as follows:</p>
 
-<p><code>SALE</code> - authorizes a card and captures it, placing it in the batch for settlement
-<code>SALE_AUTH</code> - authorizes a card but does not capture it, holding the cardholder&#39;s funds until the capture transaction is performed (or until 7 days at which time the authorization is voided)
-<code>REFUND</code> - this is the preferred transaction for both refunding and voiding; if the original transaction is still in an unsettled batch, the gateway will perform a void/reversal transaction; if the original transaction has already settled, then the gateway will perform a refund to the original card. See below notice.
-<code>TOKENADD</code> - this transaction only tokenizes a given card number and does not perform any financial adjustments to the account
-<code>CAPTURE</code> - used to capture a previous <code>SALE_AUTH</code> transaction and add it to the batch for settlement</p>
+<ul>
+<li><code>SALE</code> - authorizes a card and captures it, placing it in the batch for settlement</li>
+<li><code>SALE_AUTH</code> - authorizes a card but does not capture it, holding the cardholder&#39;s funds until the capture transaction is performed (or until 7 days at which time the authorization is voided)</li>
+<li><code>REFUND</code> - this is the preferred transaction for both refunding and voiding; if the original transaction is still in an unsettled batch, the gateway will perform a void/reversal transaction; if the original transaction has already settled, then the gateway will perform a refund to the original card. See below notice.</li>
+<li><code>TOKENADD</code> - this transaction only tokenizes a given card number and does not perform any financial adjustments to the account</li>
+<li><code>CAPTURE</code> - used to capture a previous <code>SALE_AUTH</code> transaction and add it to the batch for settlement</li>
+</ul>
 
 <aside class="notice">
 Additional data elements are presented in the following sections that cover industry-specific use cases and provide more detailed workflows.
 </aside>
-<h2 id='basic-sale-options'>Basic Sale Options</h2><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+<h2 id='basic-sale'>Basic Sale</h2><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
 </span><span class="nl">"locationID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"91552FCB-01A7-4BA2-B00A-EA33FC660307"</span><span class="p">,</span><span class="w">
 </span><span class="nl">"mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UAT"</span><span class="p">,</span><span class="w">
 </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#####.##"</span><span class="p">,</span><span class="w">
@@ -2036,13 +2038,11 @@ Partial authorization support is required for some merchant types and strongly e
 </span><span class="nl">"tenderType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CREDIT"</span><span class="p">,</span><span class="w">
 </span><span class="nl">"transType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SALE"</span><span class="p">,</span><span class="w">
 </span><span class="nl">"extData"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span><span class="err">/*</span><span class="w"> </span><span class="err">Lodging</span><span class="w"> </span><span class="err">fields</span><span class="w"> </span><span class="err">*/</span><span class="w">
 </span><span class="nl">"checkInDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Actual or anticipated check in date."</span><span class="p">,</span><span class="w">
 </span><span class="nl">"checkOutDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Actual or anticipated check out date."</span><span class="p">,</span><span class="w">
 </span><span class="nl">"departureAdjAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Additional amount charged after cardholder left the hotel."</span><span class="p">,</span><span class="w">
 </span><span class="nl">"folioNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hotel folio number"</span><span class="p">,</span><span class="w">
 </span><span class="nl">"lodgingChargeType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"H (Hotel)|R (Restaurant)|G (Gift Shop)|S (Health Spa)|B (Beauty Shop)|F (Convention Fee)|T (Tennis)|O (Golf)"</span><span class="p">,</span><span class="w">
-</span><span class="err">/*Collection</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">lodging</span><span class="w"> </span><span class="err">item</span><span class="w"> </span><span class="err">records.*/</span><span class="w">
 </span><span class="nl">"lodgingItem"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
 </span><span class="nl">"lodgingItemAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Amount (in cents) for lodging extra charge item. Implied (no) decimal."</span><span class="p">,</span><span class="w">
 </span><span class="nl">"lodgingItemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -2064,7 +2064,6 @@ Partial authorization support is required for some merchant types and strongly e
 </span><span class="nl">"softwareVendor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your_POS_name"</span><span class="p">,</span><span class="w">
 </span><span class="nl">"tenderType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CREDIT"</span><span class="p">,</span><span class="w">
 </span><span class="nl">"transType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SALE"</span><span class="p">,</span><span class="w">
-</span><span class="err">/*</span><span class="w"> </span><span class="err">Healthcare</span><span class="w"> </span><span class="err">related</span><span class="w"> </span><span class="err">fields</span><span class="w"> </span><span class="err">*/</span><span class="w">
 </span><span class="nl">"isQualifiedIIAS"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Indicates whether purchase items are verified against IIAS. Can be t|f"</span><span class="p">,</span><span class="w">
 </span><span class="nl">"healthCareAmt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Amount (in cents) of the total Healthcare Amount."</span><span class="p">,</span><span class="w">
 </span><span class="nl">"clinicAmt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Amount (in cents) of the portion of the Healthcare Amount spent on hospitalization."</span><span class="p">,</span><span class="w">
