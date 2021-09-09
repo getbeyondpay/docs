@@ -7,7 +7,7 @@ language_tabs:
   - java
 
 toc_footers:
-  - <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=Q9V6UxGq3USJSkGsz2Jk78Ytw0d6hJlNsDOCAUz-XBhURUJXWFhEMDlDTUs3OVlROEMxOExJQzZGNS4u" class="beyond-button" target="_blank">Get API Keys</a>
+  - <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=Q9V6UxGq3USJSkGsz2Jk78Ytw0d6hJlNsDOCAUz-XBhURUJXWFhEMDlDTUs3OVlROEMxOExJQzZGNS4u" class="beyond-button" target="_blank" style="text-decoration:none;color:white;">Get API Keys</a>
   - ______________
   - <a href='https://www.getbeyond.com/' target="_blank">www.getbeyond.com</a>
   - ©2021 Beyond
@@ -23,9 +23,9 @@ meta:
   - name: keywords
     content: GetBeyond,Beyond,BeyondPay,Gateway,API,Payments,Credit,Debit,Plugin,SDK
 ---
-Welcome to Beyond Pay: an omnichannel payment suite that enables a secure and embedded payment experience within your solution.
+<a href="#"></a><br><br>Welcome to Beyond Pay: an omnichannel payment suite that enables a secure and embedded purchasing experience within your solution.
 
-> <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=Q9V6UxGq3USJSkGsz2Jk78Ytw0d6hJlNsDOCAUz-XBhURUJXWFhEMDlDTUs3OVlROEMxOExJQzZGNS4u" target="_blank" class="beyond-button">Get Your Sandbox API Keys</a> and get coding now!
+> <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=Q9V6UxGq3USJSkGsz2Jk78Ytw0d6hJlNsDOCAUz-XBhURUJXWFhEMDlDTUs3OVlROEMxOExJQzZGNS4u" target="_blank" class="beyond-button" style="border-bottom:0px;font-weight:700;">Get Sandbox API Keys</a> and get coding now!
 
 # Integration Options
 
@@ -1308,7 +1308,7 @@ In order for a transaction to qualify at reduced "Level II" interchange rates, a
 
 - `PONum` - the customer's Purchase Order number; may be up to 24 alphanumeric characters and hyphens
 - `TaxAmount` - applicable tax amount in cents (implied decimal); must be less than the total transaction `Amount`
-- `TaxIndicator` - may be `P` (Provided), `N` (Not Provided), or `E` (Exempt). Use P if you are sending a value in `LocalTaxAmount`, or E if you are tax-exempt
+- `TaxIndicator` - may be `P` (Provided), `N` (Not Provided), or `E` (Exempt). Use P if you are sending a value in `TaxAmount`, or E if you are tax-exempt
 
 > Or, in the raw XML:
 
@@ -1711,26 +1711,23 @@ Initiating a card present transaction is as simple as POSTing just a few lines o
 }
 ```
 
-
-
-
 If the card is an EMV/chip card, then the user will be presented with an option to select whichever Applications reside on the chip (that is, they can select an Application ID associated with either Credit or Debit, depending on their card) regardless of what tender type is sent in the request. If the `UNKNOWN` tender type is used, the cardholder will similarly be prompted to select either the credit or debit application on the chip.
 
 If the card is magnetic stripe only and capable of being processed as either a debit or a credit transaction, then it will be processed as whatever tender type is sent in the request. If `UNKNOWN` is selected, the cardholder will likewise be prompted to make the selection.
 
-Transaction types may be defined as follows:
+Transaction types are defined as follows:
 
-`SALE` - authorizes a card and captures it, placing it in the batch for settlement
-`SALE_AUTH` - authorizes a card but does not capture it, holding the cardholder's funds until the capture transaction is performed (or until 7 days at which time the authorization is voided)
-`REFUND` - this is the preferred transaction for both refunding and voiding; if the original transaction is still in an unsettled batch, the gateway will perform a void/reversal transaction; if the original transaction has already settled, then the gateway will perform a refund to the original card. See below notice.
-`TOKENADD` - this transaction only tokenizes a given card number and does not perform any financial adjustments to the account
-`CAPTURE` - used to capture a previous `SALE_AUTH` transaction and add it to the batch for settlement
+- `SALE` - authorizes a card and captures it, placing it in the batch for settlement
+- `SALE_AUTH` - authorizes a card but does not capture it, holding the cardholder's funds until the capture transaction is performed (or until 7 days at which time the authorization is voided)
+- `REFUND` - this is the preferred transaction for both refunding and voiding; if the original transaction is still in an unsettled batch, the gateway will perform a void/reversal transaction; if the original transaction has already settled, then the gateway will perform a refund to the original card. See below notice.
+- `TOKENADD` - this transaction only tokenizes a given card number and does not perform any financial adjustments to the account
+- `CAPTURE` - used to capture a previous `SALE_AUTH` transaction and add it to the batch for settlement
 
 <aside class="notice">
 Additional data elements are presented in the following sections that cover industry-specific use cases and provide more detailed workflows.
 </aside>
 
-## Basic Sale Options
+## Basic Sale
 
 ```json
 {
@@ -1838,13 +1835,11 @@ If successful, the response will contain the new total approved amount: (initial
 "tenderType": "CREDIT",
 "transType": "SALE",
 "extData": {
-/* Lodging fields */
 "checkInDate": "Actual or anticipated check in date.",
 "checkOutDate": "Actual or anticipated check out date.",
 "departureAdjAmount": "Additional amount charged after cardholder left the hotel.",
 "folioNumber": "Hotel folio number",
 "lodgingChargeType": "H (Hotel)|R (Restaurant)|G (Gift Shop)|S (Health Spa)|B (Beauty Shop)|F (Convention Fee)|T (Tennis)|O (Golf)",
-/*Collection of lodging item records.*/
 "lodgingItem": [{
 "lodgingItemAmount": "Amount (in cents) for lodging extra charge item. Implied (no) decimal.",
 "lodgingItemCode": "",
@@ -1871,7 +1866,6 @@ The extended data fields required for lodging transactions can easily be passed 
 "softwareVendor": "your_POS_name",
 "tenderType": "CREDIT",
 "transType": "SALE",
-/* Healthcare related fields */
 "isQualifiedIIAS": "Indicates whether purchase items are verified against IIAS. Can be t|f",
 "healthCareAmt": "Amount (in cents) of the total Healthcare Amount.",
 "clinicAmt": "Amount (in cents) of the portion of the Healthcare Amount spent on hospitalization.",
@@ -2051,15 +2045,6 @@ Most of the parameters in the filter are DBQuery filters that are used directly 
 Filters that are processed directly against the data store also have specific comparison modes that can be utilized for easier queries. Review the comparison modes listed in the <a href"#transactionrowfilter">TransactionRowFilter</a> table for a full list.
 
 ### Comparison Types
-
-
-
-
-
-
-
-
-
 
 ### Post-Query Filters
 
