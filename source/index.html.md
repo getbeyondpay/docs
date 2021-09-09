@@ -7,7 +7,7 @@ language_tabs:
   - java
 
 toc_footers:
-  - <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=Q9V6UxGq3USJSkGsz2Jk78Ytw0d6hJlNsDOCAUz-XBhURUJXWFhEMDlDTUs3OVlROEMxOExJQzZGNS4u" class="beyond-button" target="_blank" style="text-decoration:none;color:white;">Get API Keys</a>
+  - <a href="https://forms.office.com/r/0PjKcTGH5D" class="beyond-button" target="_blank" style="text-decoration:none;color:white;">Get API Keys</a>
   - ______________
   - <a href='https://www.getbeyond.com/' target="_blank">www.getbeyond.com</a>
   - ©2021 Beyond
@@ -23,9 +23,9 @@ meta:
   - name: keywords
     content: GetBeyond,Beyond,BeyondPay,Gateway,API,Payments,Credit,Debit,Plugin,SDK
 ---
-<a href="#"></a><br><br>Welcome to Beyond Pay: an omnichannel payment suite that enables a secure and embedded purchasing experience within your solution.
+<br><br>Welcome to Beyond Pay: an omnichannel payment suite that enables a secure and embedded purchasing experience within your solution.
 
-> <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=Q9V6UxGq3USJSkGsz2Jk78Ytw0d6hJlNsDOCAUz-XBhURUJXWFhEMDlDTUs3OVlROEMxOExJQzZGNS4u" target="_blank" class="beyond-button" style="border-bottom:0px;font-weight:700;">Get Sandbox API Keys</a> and get coding now!
+> <a href="https://forms.office.com/r/0PjKcTGH5D" target="_blank" class="beyond-button" style="border-bottom:0px;font-weight:700;">Get Sandbox API Keys</a> and get coding now!
 
 # Integration Options
 
