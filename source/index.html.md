@@ -320,7 +320,7 @@ The token is stored as a hidden input value and passed to your server on form su
 Once you have securely collected and tokenized your user’s card data using TokenPay.js you can now use the single-use token to submit a transaction. Authorization or sale requests using single-use tokens must *ONLY* made from your server and not from the client.
 
 ```php
-$bpRequest = new BridgeCommRequest();
+$bpRequest = new BeyondPayRequest();
 $bpRequest->$requestMessage = new RequestMessage();
 
 $bpRequest->RequestDateTime = DateTime.Now.ToString("yyyyMMddHHmmss");
@@ -328,6 +328,7 @@ $bpRequest->RequestType = "004";
 $bpRequest->PrivateKey = "YourPrivateKey";
 $bpRequest->AuthenticationTokenId = "00000000-0000-0000-0000-000000000000";
 $bpRequest->TransactionID = "00000000-0000-0000-0000-000000000000";
+
 $bpRequest->$requestMessage->MerchantCode = "123456";
 $bpRequest->$requestMessage->MerchantAccountCode = "789123";
 $bpRequest->$requestMessage->Amount = "1200";
@@ -342,13 +343,14 @@ $bpRequest->$requestMessage->SoftwareVendor = "YourSoftwareName 1.0";
 
 ```csharp
 BridgeCommRequest bcRequest = new BridgeCommRequest();
-RequestMessage rqMessage = new RequestMessage();
 
 bcRequest.RequestType = "004";
 bcRequest.TransactionID = "00000000-0000-0000-0000-000000000000";
 bcRequest.PrivateKey = "YourPrivateKey";
 bcRequest.AuthenticationTokenId = "00000000-0000-0000-0000-000000000000";
 bcRequest.RequestDateTime = DateTime.Now.ToString("yyyyMMddHHmmss");
+
+RequestMessage rqMessage = new RequestMessage();
 
 rqMessage.MerchantCode = "123456";
 rqMessage.MerchantAccountCode = "789123";
@@ -359,6 +361,13 @@ rqMessage.HolderType = "O";
 rqMessage.AcctType = "R";
 rqMessage.IsoCurrencyCode = "USD";
 rqMessage.SoftwareVendor = "YourSoftwareName 1.0";
+
+bcRequest.requestMessage = rqMessage ();
+ 
+BridgeCommConnection BCConnect = new BridgeCommConnection();
+BridgeCommResponse response = await BCConnect.processRequestAsync(bridgeCommURL: URL, bcRequest);
+
+string string_response = BridgeCommConnection.Serialize<BridgeCommResponse>(response);
 ```
 
 ```java
@@ -682,7 +691,7 @@ You should always inspect the AVSResult and CVResult fields as these can be good
 Sometimes you may not want to accept payment right away for a transaction, such as when shipping physical goods. The normal practice in this scenario is to first authorize a card which will place a hold on the funds, and then to later "capture" that authorization when the order is fulfilled.
 
 ```php
-$bpRequest = new BridgeCommRequest();
+$bpRequest = new BeyondPayRequest();
 $bpRequest->$requestMessage = new RequestMessage();
 
 $bpRequest->RequestDateTime = DateTime.Now.ToString("yyyyMMddHHmmss");
@@ -855,7 +864,7 @@ The `SettlementDelay` tag can be added for sale-auth transactions, and designate
 To capture an authorization, simply submit a `RequestType` of `019` for capture, along with passing the reference number of the original authorization as shown here.
 
 ```php
-$bpRequest = new BridgeCommRequest();
+$bpRequest = new BeyondPayRequest();
 $bpRequest->$requestMessage = new RequestMessage();
 
 $bpRequest->RequestDateTime = DateTime.Now.ToString("yyyyMMddHHmmss");
@@ -1011,7 +1020,7 @@ rsMessage.TransactionCode = "20190709092529";
 Every sale or authorization response from Beyond Pay contains a `Token` element. This Token represents the card number used in the original transaction, but is not considered a sensitive data element per the PCI DSS. To ease in identifying the original card, however, the last four digits of the `Token` are the same as the last four digits of the card number.
 
 ```php
-$bpRequest = new BridgeCommRequest();
+$bpRequest = new BeyondPayRequest();
 $bpRequest->$requestMessage = new RequestMessage();
 
 $bpRequest->RequestDateTime = DateTime.Now.ToString("yyyyMMddHHmmss");
@@ -1113,7 +1122,7 @@ In order to refund or void a previous sale or sale-auth transaction, simply cons
 > The `GatewayTransId` is returned in the response to a previous sale or sale-auth request and may be used as input to refund or void that original transaction.
 
 ```php
-$bpRequest = new BridgeCommRequest();
+$bpRequest = new BeyondPayRequest();
 $bpRequest->$requestMessage = new RequestMessage();
 
 $bpRequest->RequestDateTime = DateTime.Now.ToString("yyyyMMddHHmmss");
@@ -1495,7 +1504,7 @@ In general, for most card brands and card issuers, the presence of a value in th
 ## ACH and eChecks
 
 ```php
-$bpRequest = new BridgeCommRequest();
+$bpRequest = new BeyondPayRequest();
 $bpRequest->$requestMessage = new RequestMessage();
 
 $bpRequest->RequestDateTime = DateTime.Now.ToString("yyyyMMddHHmmss");
