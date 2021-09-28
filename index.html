@@ -645,7 +645,7 @@ You should always submit the ZIP or Postal code in order to ensure the best chan
 </blockquote>
 
 <p>Once you have securely collected and tokenized your user’s card data using TokenPay.js you can now use the single-use token to submit a transaction. Authorization or sale requests using single-use tokens must <em>ONLY</em> made from your server and not from the client.</p>
-<div class="highlight"><pre class="highlight php tab-php"><code><span class="nv">$bpRequest</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BridgeCommRequest</span><span class="p">();</span>
+<div class="highlight"><pre class="highlight php tab-php"><code><span class="nv">$bpRequest</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BeyondPayRequest</span><span class="p">();</span>
 <span class="nv">$bpRequest</span><span class="o">-&gt;</span><span class="nv">$requestMessage</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">RequestMessage</span><span class="p">();</span>
 
 <span class="nv">$bpRequest</span><span class="o">-&gt;</span><span class="nc">RequestDateTime</span> <span class="o">=</span> <span class="nc">DateTime</span><span class="mf">.</span><span class="nc">Now</span><span class="mf">.</span><span class="nf">ToString</span><span class="p">(</span><span class="s2">"yyyyMMddHHmmss"</span><span class="p">);</span>
@@ -653,6 +653,7 @@ You should always submit the ZIP or Postal code in order to ensure the best chan
 <span class="nv">$bpRequest</span><span class="o">-&gt;</span><span class="nc">PrivateKey</span> <span class="o">=</span> <span class="s2">"YourPrivateKey"</span><span class="p">;</span>
 <span class="nv">$bpRequest</span><span class="o">-&gt;</span><span class="nc">AuthenticationTokenId</span> <span class="o">=</span> <span class="s2">"00000000-0000-0000-0000-000000000000"</span><span class="p">;</span>
 <span class="nv">$bpRequest</span><span class="o">-&gt;</span><span class="nc">TransactionID</span> <span class="o">=</span> <span class="s2">"00000000-0000-0000-0000-000000000000"</span><span class="p">;</span>
+
 <span class="nv">$bpRequest</span><span class="o">-&gt;</span><span class="nv">$requestMessage</span><span class="o">-&gt;</span><span class="nc">MerchantCode</span> <span class="o">=</span> <span class="s2">"123456"</span><span class="p">;</span>
 <span class="nv">$bpRequest</span><span class="o">-&gt;</span><span class="nv">$requestMessage</span><span class="o">-&gt;</span><span class="nc">MerchantAccountCode</span> <span class="o">=</span> <span class="s2">"789123"</span><span class="p">;</span>
 <span class="nv">$bpRequest</span><span class="o">-&gt;</span><span class="nv">$requestMessage</span><span class="o">-&gt;</span><span class="nc">Amount</span> <span class="o">=</span> <span class="s2">"1200"</span><span class="p">;</span>
@@ -664,13 +665,14 @@ You should always submit the ZIP or Postal code in order to ensure the best chan
 <span class="nv">$bpRequest</span><span class="o">-&gt;</span><span class="nv">$requestMessage</span><span class="o">-&gt;</span><span class="nc">IsoCurrencyCode</span> <span class="o">=</span> <span class="s2">"USD"</span><span class="p">;</span>
 <span class="nv">$bpRequest</span><span class="o">-&gt;</span><span class="nv">$requestMessage</span><span class="o">-&gt;</span><span class="nc">SoftwareVendor</span> <span class="o">=</span> <span class="s2">"YourSoftwareName 1.0"</span><span class="p">;</span>
 </code></pre></div><div class="highlight"><pre class="highlight csharp tab-csharp"><code><span class="n">BridgeCommRequest</span> <span class="n">bcRequest</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">BridgeCommRequest</span><span class="p">();</span>
-<span class="n">RequestMessage</span> <span class="n">rqMessage</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">RequestMessage</span><span class="p">();</span>
 
 <span class="n">bcRequest</span><span class="p">.</span><span class="n">RequestType</span> <span class="p">=</span> <span class="s">"004"</span><span class="p">;</span>
 <span class="n">bcRequest</span><span class="p">.</span><span class="n">TransactionID</span> <span class="p">=</span> <span class="s">"00000000-0000-0000-0000-000000000000"</span><span class="p">;</span>
 <span class="n">bcRequest</span><span class="p">.</span><span class="n">PrivateKey</span> <span class="p">=</span> <span class="s">"YourPrivateKey"</span><span class="p">;</span>
 <span class="n">bcRequest</span><span class="p">.</span><span class="n">AuthenticationTokenId</span> <span class="p">=</span> <span class="s">"00000000-0000-0000-0000-000000000000"</span><span class="p">;</span>
 <span class="n">bcRequest</span><span class="p">.</span><span class="n">RequestDateTime</span> <span class="p">=</span> <span class="n">DateTime</span><span class="p">.</span><span class="n">Now</span><span class="p">.</span><span class="nf">ToString</span><span class="p">(</span><span class="s">"yyyyMMddHHmmss"</span><span class="p">);</span>
+
+<span class="n">RequestMessage</span> <span class="n">rqMessage</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">RequestMessage</span><span class="p">();</span>
 
 <span class="n">rqMessage</span><span class="p">.</span><span class="n">MerchantCode</span> <span class="p">=</span> <span class="s">"123456"</span><span class="p">;</span>
 <span class="n">rqMessage</span><span class="p">.</span><span class="n">MerchantAccountCode</span> <span class="p">=</span> <span class="s">"789123"</span><span class="p">;</span>
@@ -681,6 +683,13 @@ You should always submit the ZIP or Postal code in order to ensure the best chan
 <span class="n">rqMessage</span><span class="p">.</span><span class="n">AcctType</span> <span class="p">=</span> <span class="s">"R"</span><span class="p">;</span>
 <span class="n">rqMessage</span><span class="p">.</span><span class="n">IsoCurrencyCode</span> <span class="p">=</span> <span class="s">"USD"</span><span class="p">;</span>
 <span class="n">rqMessage</span><span class="p">.</span><span class="n">SoftwareVendor</span> <span class="p">=</span> <span class="s">"YourSoftwareName 1.0"</span><span class="p">;</span>
+
+<span class="n">bcRequest</span><span class="p">.</span><span class="n">requestMessage</span> <span class="p">=</span> <span class="nf">rqMessage</span> <span class="p">();</span>
+
+<span class="n">BridgeCommConnection</span> <span class="n">BCConnect</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">BridgeCommConnection</span><span class="p">();</span>
+<span class="n">BridgeCommResponse</span> <span class="n">response</span> <span class="p">=</span> <span class="k">await</span> <span class="n">BCConnect</span><span class="p">.</span><span class="nf">processRequestAsync</span><span class="p">(</span><span class="n">bridgeCommURL</span><span class="p">:</span> <span class="n">URL</span><span class="p">,</span> <span class="n">bcRequest</span><span class="p">);</span>
+
+<span class="kt">string</span> <span class="n">string_response</span> <span class="p">=</span> <span class="n">BridgeCommConnection</span><span class="p">.</span><span class="n">Serialize</span><span class="p">&lt;</span><span class="n">BridgeCommResponse</span><span class="p">&gt;(</span><span class="n">response</span><span class="p">);</span>
 </code></pre></div><div class="highlight"><pre class="highlight java tab-java"><code><span class="nc">BridgeCommRequest</span> <span class="n">bcRequest</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BridgeCommRequest</span><span class="o">();</span>
 <span class="nc">RequestMessage</span> <span class="n">rqMessage</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">RequestMessage</span><span class="o">();</span>
 
@@ -731,23 +740,23 @@ You should always submit the ZIP or Postal code in order to ensure the best chan
 
 <p>On your server, collect the token information and the form POST parameters submitted by your form.</p>
 <div class="highlight"><pre class="highlight xml tab-xml"><code><span class="nt">&lt;soapenv:Envelope</span> <span class="na">xmlns:soapenv=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> <span class="na">xmlns:req=</span><span class="s">"http://bridgepaynetsecuretx.com/requesthandler"</span><span class="nt">&gt;</span>
-                    <span class="nt">&lt;soapenv:Header/&gt;</span>
-                        <span class="nt">&lt;soapenv:Body&gt;</span>
-                            <span class="nt">&lt;req:ProcessRequest&gt;</span>
-                                <span class="nt">&lt;req:requestMsg&gt;</span>{Base-64 encoded XML payload}<span class="nt">&lt;/req:requestMsg&gt;</span>
-                            <span class="nt">&lt;/req:ProcessRequest&gt;</span>
-                        <span class="nt">&lt;/soapenv:Body&gt;</span>
-                    <span class="nt">&lt;/soapenv:Envelope&gt;</span>
+  <span class="nt">&lt;soapenv:Header/&gt;</span>
+      <span class="nt">&lt;soapenv:Body&gt;</span>
+          <span class="nt">&lt;req:ProcessRequest&gt;</span>
+              <span class="nt">&lt;req:requestMsg&gt;</span>{Base-64 encoded XML payload}<span class="nt">&lt;/req:requestMsg&gt;</span>
+          <span class="nt">&lt;/req:ProcessRequest&gt;</span>
+      <span class="nt">&lt;/soapenv:Body&gt;</span>
+<span class="nt">&lt;/soapenv:Envelope&gt;</span>
 </code></pre></div>
-<p>Now submit the token and parameters according to the example XML request, with the following substitutions:</p>
+<p>Now submit the token and parameters according to the example XML requests:</p>
 
 <ul>
-<li><code>{transactionId}</code> - unique transaction ID generated by your application for tracking purposes</li>
-<li><code>{requestDateTime}</code> - date and time of the transaction in <code>yyyyMMddHHmmss</code> format</li>
-<li><code>{yourPrivateKey}</code> - your private API key</li>
-<li><code>{token}</code> - token delivered in the submission of your payment form</li>
-<li><code>{amountInCents}</code> - transaction amount in cents ($1.25 would be 125)</li>
-<li><code>{yourSoftwareName}</code> - the name and version number of your software application</li>
+<li><code>TransactionID</code> - unique transaction ID generated by your application for tracking purposes</li>
+<li><code>RequestDateTime</code> - date and time of the transaction in <code>yyyyMMddHHmmss</code> format</li>
+<li><code>PrivateKey</code> - your private API key</li>
+<li><code>AuthenticationTokenId</code> - single-use token delivered in the submission of your payment form (not to be confused with the multi-use <code>&lt;Token&gt;</code> in the response message)</li>
+<li><code>Amount</code> - transaction amount in cents ($1.25 would be 125)</li>
+<li><code>SoftwareVendor</code> - the name and version number of your software application</li>
 </ul>
 
 <blockquote>
@@ -765,13 +774,14 @@ You should always submit the ZIP or Postal code in order to ensure the best chan
 <span class="nv">$rsMessage</span><span class="o">-&gt;</span><span class="nc">AuthorizationCode</span> <span class="o">=</span> <span class="s2">"735333"</span><span class="p">;</span>
 </code></pre></div><div class="highlight"><pre class="highlight csharp tab-csharp"><code><span class="n">BridgeCommConnection</span> <span class="n">connection</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">BridgeCommConnection</span><span class="p">();</span>
 <span class="n">BridgeCommResponse</span> <span class="n">bcResponse</span> <span class="p">=</span> <span class="n">connection</span><span class="p">.</span><span class="nf">processRequest</span><span class="p">(</span><span class="n">URL</span><span class="p">,</span> <span class="n">bcRequest</span><span class="p">);</span>
-<span class="n">ResponseMessage</span> <span class="n">rsMessage</span> <span class="p">=</span> <span class="n">bcResponse</span><span class="p">.</span><span class="n">responseMessage</span><span class="p">;</span>
 
 <span class="n">bcResponse</span><span class="p">.</span><span class="n">BridgeCommResponseType</span> <span class="p">=</span> <span class="s">"Auth"</span><span class="p">;</span>
 <span class="n">bcResponse</span><span class="p">.</span><span class="n">RequestType</span> <span class="p">=</span> <span class="s">"004"</span><span class="p">;</span>
 <span class="n">bcResponse</span><span class="p">.</span><span class="n">ResponseCode</span> <span class="p">=</span> <span class="s">"00000"</span><span class="p">;</span>
 <span class="n">bcResponse</span><span class="p">.</span><span class="n">ResponseDescription</span> <span class="p">=</span> <span class="s">"Successful Request"</span><span class="p">;</span>
 <span class="n">bcResponse</span><span class="p">.</span><span class="n">TransactionID</span> <span class="p">=</span> <span class="s">"20190709092529"</span><span class="p">;</span>
+
+<span class="n">ResponseMessage</span> <span class="n">rsMessage</span> <span class="p">=</span> <span class="n">bcResponse</span><span class="p">.</span><span class="n">responseMessage</span><span class="p">;</span>
 
 <span class="n">rsMessage</span><span class="p">.</span><span class="n">GatewayMessage</span> <span class="p">=</span> <span class="s">"A01 - Approved"</span><span class="p">;</span>
 <span class="n">rsMessage</span><span class="p">.</span><span class="n">GatewayResult</span> <span class="p">=</span> <span class="s">"00000"</span><span class="p">;</span>
@@ -786,7 +796,7 @@ You should always submit the ZIP or Postal code in order to ensure the best chan
 <span class="n">rsMessage</span><span class="p">.</span><span class="n">IsoCurrencyCode</span> <span class="p">=</span> <span class="s">"USD"</span><span class="p">;</span>
 <span class="n">rsMessage</span><span class="p">.</span><span class="n">IsoRequestDate</span> <span class="p">=</span> <span class="s">"2019-07-09 09:25:30.663"</span><span class="p">;</span>
 <span class="n">rsMessage</span><span class="p">.</span><span class="n">IsoTransactionDate</span> <span class="p">=</span> <span class="s">"2019-07-09 09:25:30.663"</span><span class="p">;</span>
-<span class="n">rsMessage</span><span class="p">.</span><span class="n">MaskedPan</span> <span class="p">=</span> <span class="s">"1***********1234"</span><span class="p">;</span>
+<span class="n">rsMessage</span><span class="p">.</span><span class="n">MaskedPan</span> <span class="p">=</span> <span class="s">"4***********1234"</span><span class="p">;</span>
 <span class="n">rsMessage</span><span class="p">.</span><span class="n">ExpirationDate</span> <span class="p">=</span> <span class="s">"1234"</span><span class="p">;</span>
 <span class="n">rsMessage</span><span class="p">.</span><span class="n">CardClass</span> <span class="p">=</span> <span class="s">"Credit"</span><span class="p">;</span>
 <span class="n">rsMessage</span><span class="p">.</span><span class="n">CardType</span> <span class="p">=</span> <span class="s">"Visa"</span><span class="p">;</span>
@@ -878,19 +888,20 @@ You should always submit the ZIP or Postal code in order to ensure the best chan
 <blockquote>
 <p>Beyond Pay Sample Declined Sale Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight php tab-php"><code><span class="nv">$bcResponse</span><span class="o">-&gt;</span><span class="nc">TransactionID</span> <span class="o">=</span> <span class="s2">"635693706433821501&lt;"</span><span class="p">;</span>
-<span class="nv">$bcResponse</span><span class="o">-&gt;</span><span class="nc">RequestType</span> <span class="o">=</span> <span class="s2">"004"</span><span class="p">;</span>
-<span class="nv">$bcResponse</span><span class="o">-&gt;</span><span class="nc">ResponseCode</span> <span class="o">=</span> <span class="s2">"30032"</span><span class="p">;</span>
-<span class="nv">$bcResponse</span><span class="o">-&gt;</span><span class="nc">ResponseDescription</span> <span class="o">=</span> <span class="s2">"Denied by customer's bank"</span><span class="p">;</span>
+<div class="highlight"><pre class="highlight php tab-php"><code><span class="nv">$bpResponse</span><span class="o">-&gt;</span><span class="nc">TransactionID</span> <span class="o">=</span> <span class="s2">"635693706433821501"</span><span class="p">;</span>
+<span class="nv">$bpResponse</span><span class="o">-&gt;</span><span class="nc">RequestType</span> <span class="o">=</span> <span class="s2">"004"</span><span class="p">;</span>
+<span class="nv">$bpResponse</span><span class="o">-&gt;</span><span class="nc">ResponseCode</span> <span class="o">=</span> <span class="s2">"30032"</span><span class="p">;</span>
+<span class="nv">$bpResponse</span><span class="o">-&gt;</span><span class="nc">ResponseDescription</span> <span class="o">=</span> <span class="s2">"Denied by customer's bank"</span><span class="p">;</span>
 </code></pre></div><div class="highlight"><pre class="highlight csharp tab-csharp"><code><span class="n">BridgeCommConnection</span> <span class="n">connection</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">BridgeCommConnection</span><span class="p">();</span>
 <span class="n">BridgeCommResponse</span> <span class="n">bcResponse</span> <span class="p">=</span> <span class="n">connection</span><span class="p">.</span><span class="nf">processRequest</span><span class="p">(</span><span class="n">URL</span><span class="p">,</span> <span class="n">bcRequest</span><span class="p">);</span>
-<span class="n">ResponseMessage</span> <span class="n">rsMessage</span> <span class="p">=</span> <span class="n">bcResponse</span><span class="p">.</span><span class="n">responseMessage</span><span class="p">;</span>
 
 <span class="n">bcResponse</span><span class="p">.</span><span class="n">BridgeCommResponseType</span> <span class="p">=</span> <span class="s">"Auth"</span><span class="p">;</span>
 <span class="n">bcResponse</span><span class="p">.</span><span class="n">RequestType</span> <span class="p">=</span> <span class="s">"004"</span><span class="p">;</span>
 <span class="n">bcResponse</span><span class="p">.</span><span class="n">ResponseCode</span> <span class="p">=</span> <span class="s">"30032"</span><span class="p">;</span>
 <span class="n">bcResponse</span><span class="p">.</span><span class="n">ResponseDescription</span> <span class="p">=</span> <span class="s">"Denied by customer's bank"</span><span class="p">;</span>
 <span class="n">bcResponse</span><span class="p">.</span><span class="n">TransactionID</span> <span class="p">=</span> <span class="s">"20190709092529"</span><span class="p">;</span>
+
+<span class="n">ResponseMessage</span> <span class="n">rsMessage</span> <span class="p">=</span> <span class="n">bcResponse</span><span class="p">.</span><span class="n">responseMessage</span><span class="p">;</span>
 
 <span class="n">rsMessage</span><span class="p">.</span><span class="n">GatewayMessage</span> <span class="p">=</span> <span class="s">"D01 - Denied by customer's bank (Issuer Unavailable)"</span><span class="p">;</span>
 <span class="n">rsMessage</span><span class="p">.</span><span class="n">GatewayResult</span> <span class="p">=</span> <span class="s">"30032"</span><span class="p">;</span>
@@ -984,7 +995,7 @@ You should always inspect the AVSResult and CVResult fields as these can be good
 </blockquote>
 
 <p>Sometimes you may not want to accept payment right away for a transaction, such as when shipping physical goods. The normal practice in this scenario is to first authorize a card which will place a hold on the funds, and then to later &quot;capture&quot; that authorization when the order is fulfilled.</p>
-<div class="highlight"><pre class="highlight php tab-php"><code><span class="nv">$bpRequest</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BridgeCommRequest</span><span class="p">();</span>
+<div class="highlight"><pre class="highlight php tab-php"><code><span class="nv">$bpRequest</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BeyondPayRequest</span><span class="p">();</span>
 <span class="nv">$bpRequest</span><span class="o">-&gt;</span><span class="nv">$requestMessage</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">RequestMessage</span><span class="p">();</span>
 
 <span class="nv">$bpRequest</span><span class="o">-&gt;</span><span class="nc">RequestDateTime</span> <span class="o">=</span> <span class="nc">DateTime</span><span class="mf">.</span><span class="nc">Now</span><span class="mf">.</span><span class="nf">ToString</span><span class="p">(</span><span class="s2">"yyyyMMddHHmmss"</span><span class="p">);</span>
@@ -1004,13 +1015,14 @@ You should always inspect the AVSResult and CVResult fields as these can be good
 <span class="nv">$bpRequest</span><span class="o">-&gt;</span><span class="nv">$requestMessage</span><span class="o">-&gt;</span><span class="nc">SettlementDelay</span> <span class="o">=</span> <span class="s2">"30"</span><span class="p">;</span>
 <span class="nv">$bpRequest</span><span class="o">-&gt;</span><span class="nv">$requestMessage</span><span class="o">-&gt;</span><span class="nc">SoftwareVendor</span> <span class="o">=</span> <span class="s2">"YourSoftwareName 1.0"</span><span class="p">;</span>
 </code></pre></div><div class="highlight"><pre class="highlight csharp tab-csharp"><code><span class="n">BridgeCommRequest</span> <span class="n">bcRequest</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">BridgeCommRequest</span><span class="p">();</span>
-<span class="n">RequestMessage</span> <span class="n">rqMessage</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">RequestMessage</span><span class="p">();</span>
 
 <span class="n">bcRequest</span><span class="p">.</span><span class="n">RequestType</span> <span class="p">=</span> <span class="s">"004"</span><span class="p">;</span>
 <span class="n">bcRequest</span><span class="p">.</span><span class="n">TransactionID</span> <span class="p">=</span> <span class="s">"00000000-0000-0000-0000-000000000000"</span><span class="p">;</span>
 <span class="n">bcRequest</span><span class="p">.</span><span class="n">PrivateKey</span> <span class="p">=</span> <span class="s">"YourPrivateKey"</span><span class="p">;</span>
 <span class="n">bcRequest</span><span class="p">.</span><span class="n">AuthenticationTokenId</span> <span class="p">=</span> <span class="s">"00000000-0000-0000-0000-000000000000"</span><span class="p">;</span>
 <span class="n">bcRequest</span><span class="p">.</span><span class="n">RequestDateTime</span> <span class="p">=</span> <span class="n">DateTime</span><span class="p">.</span><span class="n">Now</span><span class="p">.</span><span class="nf">ToString</span><span class="p">(</span><span class="s">"yyyyMMddHHmmss"</span><span class="p">);</span>
+
+<span class="n">RequestMessage</span> <span class="n">rqMessage</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">RequestMessage</span><span class="p">();</span>
 
 <span class="n">rqMessage</span><span class="p">.</span><span class="n">MerchantCode</span> <span class="p">=</span> <span class="s">"123456"</span><span class="p">;</span>
 <span class="n">rqMessage</span><span class="p">.</span><span class="n">MerchantAccountCode</span> <span class="p">=</span> <span class="s">"789123"</span><span class="p">;</span>
@@ -1022,6 +1034,13 @@ You should always inspect the AVSResult and CVResult fields as these can be good
 <span class="n">rqMessage</span><span class="p">.</span><span class="n">IsoCurrencyCode</span> <span class="p">=</span> <span class="s">"USD"</span><span class="p">;</span>
 <span class="n">rqMessage</span><span class="p">.</span><span class="n">SettlementDelay</span> <span class="p">=</span> <span class="s">"30"</span><span class="p">;</span>
 <span class="n">rqMessage</span><span class="p">.</span><span class="n">SoftwareVendor</span> <span class="p">=</span> <span class="s">"YourSoftwareName 1.0"</span><span class="p">;</span>
+
+<span class="n">bcRequest</span><span class="p">.</span><span class="n">requestMessage</span> <span class="p">=</span> <span class="nf">rqMessage</span> <span class="p">();</span>
+
+<span class="n">BridgeCommConnection</span> <span class="n">BCConnect</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">BridgeCommConnection</span><span class="p">();</span>
+<span class="n">BridgeCommResponse</span> <span class="n">response</span> <span class="p">=</span> <span class="k">await</span> <span class="n">BCConnect</span><span class="p">.</span><span class="nf">processRequestAsync</span><span class="p">(</span><span class="n">bridgeCommURL</span><span class="p">:</span> <span class="n">URL</span><span class="p">,</span> <span class="n">bcRequest</span><span class="p">);</span>
+
+<span class="kt">string</span> <span class="n">string_response</span> <span class="p">=</span> <span class="n">BridgeCommConnection</span><span class="p">.</span><span class="n">Serialize</span><span class="p">&lt;</span><span class="n">BridgeCommResponse</span><span class="p">&gt;(</span><span class="n">response</span><span class="p">);</span>
 </code></pre></div><div class="highlight"><pre class="highlight java tab-java"><code><span class="nc">BridgeCommRequest</span> <span class="n">bcRequest</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BridgeCommRequest</span><span class="o">();</span>
 <span class="nc">RequestMessage</span> <span class="n">rqMessage</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">RequestMessage</span><span class="o">();</span>
 
@@ -1067,10 +1086,10 @@ You should always inspect the AVSResult and CVResult fields as these can be good
 <blockquote>
 <p>Beyond Pay Sample Authorization Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight php tab-php"><code><span class="nv">$bcResponse</span><span class="o">-&gt;</span><span class="nc">TransactionID</span> <span class="o">=</span> <span class="s2">"635693706433821501"</span><span class="p">;</span>
-<span class="nv">$bcResponse</span><span class="o">-&gt;</span><span class="nc">RequestType</span> <span class="o">=</span> <span class="s2">"004"</span><span class="p">;</span>
-<span class="nv">$bcResponse</span><span class="o">-&gt;</span><span class="nc">ResponseCode</span> <span class="o">=</span> <span class="s2">"00000"</span><span class="p">;</span>
-<span class="nv">$bcResponse</span><span class="o">-&gt;</span><span class="nc">ResponseDescription</span> <span class="o">=</span> <span class="s2">"Successful Request"</span><span class="p">;</span>
+<div class="highlight"><pre class="highlight php tab-php"><code><span class="nv">$bpResponse</span><span class="o">-&gt;</span><span class="nc">TransactionID</span> <span class="o">=</span> <span class="s2">"635693706433821501"</span><span class="p">;</span>
+<span class="nv">$bpResponse</span><span class="o">-&gt;</span><span class="nc">RequestType</span> <span class="o">=</span> <span class="s2">"004"</span><span class="p">;</span>
+<span class="nv">$bpResponse</span><span class="o">-&gt;</span><span class="nc">ResponseCode</span> <span class="o">=</span> <span class="s2">"00000"</span><span class="p">;</span>
+<span class="nv">$bpResponse</span><span class="o">-&gt;</span><span class="nc">ResponseDescription</span> <span class="o">=</span> <span class="s2">"Successful Request"</span><span class="p">;</span>
 <span class="nv">$rsMessage</span> <span class="o">=</span> <span class="nv">$bcResponse</span><span class="o">-&gt;</span><span class="n">responseMessage</span><span class="p">;</span>
 <span class="nv">$rsMessage</span><span class="o">-&gt;</span><span class="nc">AuthenticationTokenId</span> <span class="o">=</span> <span class="s2">"735333"</span><span class="p">;</span>
 <span class="nv">$rsMessage</span><span class="o">-&gt;</span><span class="nc">Token</span> <span class="o">=</span> <span class="s2">"100000007470001"</span><span class="p">;</span>
@@ -1079,13 +1098,14 @@ You should always inspect the AVSResult and CVResult fields as these can be good
 <span class="nv">$rsMessage</span><span class="o">-&gt;</span><span class="nc">AuthorizationCode</span> <span class="o">=</span> <span class="s2">"735333"</span><span class="p">;</span>
 </code></pre></div><div class="highlight"><pre class="highlight csharp tab-csharp"><code><span class="n">BridgeCommConnection</span> <span class="n">connection</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">BridgeCommConnection</span><span class="p">();</span>
 <span class="n">BridgeCommResponse</span> <span class="n">bcResponse</span> <span class="p">=</span> <span class="n">connection</span><span class="p">.</span><span class="nf">processRequest</span><span class="p">(</span><span class="n">URL</span><span class="p">,</span> <span class="n">bcRequest</span><span class="p">);</span>
-<span class="n">ResponseMessage</span> <span class="n">rsMessage</span> <span class="p">=</span> <span class="n">bcResponse</span><span class="p">.</span><span class="n">responseMessage</span><span class="p">;</span>
 
 <span class="n">bcResponse</span><span class="p">.</span><span class="n">BridgeCommResponseType</span> <span class="p">=</span> <span class="s">"Auth"</span><span class="p">;</span>
 <span class="n">bcResponse</span><span class="p">.</span><span class="n">RequestType</span> <span class="p">=</span> <span class="s">"004"</span><span class="p">;</span>
 <span class="n">bcResponse</span><span class="p">.</span><span class="n">ResponseCode</span> <span class="p">=</span> <span class="s">"00000"</span><span class="p">;</span>
 <span class="n">bcResponse</span><span class="p">.</span><span class="n">ResponseDescription</span> <span class="p">=</span> <span class="s">"Successful Request"</span><span class="p">;</span>
 <span class="n">bcResponse</span><span class="p">.</span><span class="n">TransactionID</span> <span class="p">=</span> <span class="s">"20190709092529"</span><span class="p">;</span>
+
+<span class="n">ResponseMessage</span> <span class="n">rsMessage</span> <span class="p">=</span> <span class="n">bcResponse</span><span class="p">.</span><span class="n">responseMessage</span><span class="p">;</span>
 
 <span class="n">rsMessage</span><span class="p">.</span><span class="n">GatewayMessage</span> <span class="p">=</span> <span class="s">"A01 - Approved"</span><span class="p">;</span>
 <span class="n">rsMessage</span><span class="p">.</span><span class="n">GatewayResult</span> <span class="p">=</span> <span class="s">"00000"</span><span class="p">;</span>
@@ -1141,7 +1161,7 @@ You should always inspect the AVSResult and CVResult fields as these can be good
 </blockquote>
 
 <p>To capture an authorization, simply submit a <code>RequestType</code> of <code>019</code> for capture, along with passing the reference number of the original authorization as shown here.</p>
-<div class="highlight"><pre class="highlight php tab-php"><code><span class="nv">$bpRequest</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BridgeCommRequest</span><span class="p">();</span>
+<div class="highlight"><pre class="highlight php tab-php"><code><span class="nv">$bpRequest</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BeyondPayRequest</span><span class="p">();</span>
 <span class="nv">$bpRequest</span><span class="o">-&gt;</span><span class="nv">$requestMessage</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">RequestMessage</span><span class="p">();</span>
 
 <span class="nv">$bpRequest</span><span class="o">-&gt;</span><span class="nc">RequestDateTime</span> <span class="o">=</span> <span class="nc">DateTime</span><span class="mf">.</span><span class="nc">Now</span><span class="mf">.</span><span class="nf">ToString</span><span class="p">(</span><span class="s2">"yyyyMMddHHmmss"</span><span class="p">);</span>
@@ -1159,13 +1179,14 @@ You should always inspect the AVSResult and CVResult fields as these can be good
 <span class="nv">$bpRequest</span><span class="o">-&gt;</span><span class="nv">$requestMessage</span><span class="o">-&gt;</span><span class="nc">ReferenceNumber</span> <span class="o">=</span> <span class="s2">"12345678"</span><span class="p">;</span>
 <span class="nv">$bpRequest</span><span class="o">-&gt;</span><span class="nv">$requestMessage</span><span class="o">-&gt;</span><span class="nc">SoftwareVendor</span> <span class="o">=</span> <span class="s2">"YourSoftwareName 1.0"</span><span class="p">;</span>
 </code></pre></div><div class="highlight"><pre class="highlight csharp tab-csharp"><code><span class="n">BridgeCommRequest</span> <span class="n">bcRequest</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">BridgeCommRequest</span><span class="p">();</span>
-<span class="n">RequestMessage</span> <span class="n">rqMessage</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">RequestMessage</span><span class="p">();</span>
 
 <span class="n">bcRequest</span><span class="p">.</span><span class="n">User</span> <span class="p">=</span> <span class="s">"xxxxxx"</span><span class="p">;</span>
 <span class="n">bcRequest</span><span class="p">.</span><span class="n">Password</span> <span class="p">=</span> <span class="s">"xxxxxx"</span><span class="p">;</span>
 <span class="n">bcRequest</span><span class="p">.</span><span class="n">RequestType</span> <span class="p">=</span> <span class="s">"019"</span><span class="p">;</span>
 <span class="n">bcRequest</span><span class="p">.</span><span class="n">TransactionID</span> <span class="p">=</span> <span class="s">"00000000-0000-0000-0000-000000000000"</span><span class="p">;</span>
 <span class="n">bcRequest</span><span class="p">.</span><span class="n">RequestDateTime</span> <span class="p">=</span> <span class="n">DateTime</span><span class="p">.</span><span class="n">Now</span><span class="p">.</span><span class="nf">ToString</span><span class="p">(</span><span class="s">"yyyyMMddHHmmss"</span><span class="p">);</span>
+
+<span class="n">RequestMessage</span> <span class="n">rqMessage</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">RequestMessage</span><span class="p">();</span>
 
 <span class="n">rqMessage</span><span class="p">.</span><span class="n">MerchantCode</span> <span class="p">=</span> <span class="s">"123456"</span><span class="p">;</span>
 <span class="n">rqMessage</span><span class="p">.</span><span class="n">MerchantAccountCode</span> <span class="p">=</span> <span class="s">"789123"</span><span class="p">;</span>
@@ -1176,6 +1197,13 @@ You should always inspect the AVSResult and CVResult fields as these can be good
 <span class="n">rqMessage</span><span class="p">.</span><span class="n">AcctType</span> <span class="p">=</span> <span class="s">"R"</span><span class="p">;</span>
 <span class="n">rqMessage</span><span class="p">.</span><span class="n">ReferenceNumber</span> <span class="p">=</span> <span class="s">"12345678"</span><span class="p">;</span>
 <span class="n">rqMessage</span><span class="p">.</span><span class="n">SoftwareVendor</span> <span class="p">=</span> <span class="s">"YourSoftwareName 1.0"</span><span class="p">;</span>
+
+<span class="n">bcRequest</span><span class="p">.</span><span class="n">requestMessage</span> <span class="p">=</span> <span class="nf">rqMessage</span> <span class="p">();</span>
+
+<span class="n">BridgeCommConnection</span> <span class="n">BCConnect</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">BridgeCommConnection</span><span class="p">();</span>
+<span class="n">BridgeCommResponse</span> <span class="n">response</span> <span class="p">=</span> <span class="k">await</span> <span class="n">BCConnect</span><span class="p">.</span><span class="nf">processRequestAsync</span><span class="p">(</span><span class="n">bridgeCommURL</span><span class="p">:</span> <span class="n">URL</span><span class="p">,</span> <span class="n">bcRequest</span><span class="p">);</span>
+
+<span class="kt">string</span> <span class="n">string_response</span> <span class="p">=</span> <span class="n">BridgeCommConnection</span><span class="p">.</span><span class="n">Serialize</span><span class="p">&lt;</span><span class="n">BridgeCommResponse</span><span class="p">&gt;(</span><span class="n">response</span><span class="p">);</span>
 </code></pre></div><div class="highlight"><pre class="highlight java tab-java"><code><span class="nc">BridgeCommRequest</span> <span class="n">bcRequest</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BridgeCommRequest</span><span class="o">();</span>
 <span class="nc">RequestMessage</span> <span class="n">rqMessage</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">RequestMessage</span><span class="o">();</span>
 
@@ -1230,13 +1258,14 @@ This capture request and several other API requests described here may take diff
 <span class="nv">$rsMessage</span><span class="o">-&gt;</span><span class="nc">TransactionCode</span> <span class="o">=</span> <span class="s2">""</span><span class="p">;</span>
 </code></pre></div><div class="highlight"><pre class="highlight csharp tab-csharp"><code><span class="n">BridgeCommConnection</span> <span class="n">connection</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">BridgeCommConnection</span><span class="p">();</span>
 <span class="n">BridgeCommResponse</span> <span class="n">bcResponse</span> <span class="p">=</span> <span class="n">connection</span><span class="p">.</span><span class="nf">processRequest</span><span class="p">(</span><span class="n">URL</span><span class="p">,</span> <span class="n">bcRequest</span><span class="p">);</span>
-<span class="n">ResponseMessage</span> <span class="n">rsMessage</span> <span class="p">=</span> <span class="n">bcResponse</span><span class="p">.</span><span class="n">responseMessage</span><span class="p">;</span>
 
 <span class="n">bcResponse</span><span class="p">.</span><span class="n">BridgeCommResponseType</span> <span class="p">=</span> <span class="s">"Auth"</span><span class="p">;</span>
 <span class="n">bcResponse</span><span class="p">.</span><span class="n">RequestType</span> <span class="p">=</span> <span class="s">"019"</span><span class="p">;</span>
 <span class="n">bcResponse</span><span class="p">.</span><span class="n">ResponseCode</span> <span class="p">=</span> <span class="s">"00000"</span><span class="p">;</span>
 <span class="n">bcResponse</span><span class="p">.</span><span class="n">ResponseDescription</span> <span class="p">=</span> <span class="s">"Successful Request"</span><span class="p">;</span>
 <span class="n">bcResponse</span><span class="p">.</span><span class="n">TransactionID</span> <span class="p">=</span> <span class="s">"20190709092529"</span><span class="p">;</span>
+
+<span class="n">ResponseMessage</span> <span class="n">rsMessage</span> <span class="p">=</span> <span class="n">bcResponse</span><span class="p">.</span><span class="n">responseMessage</span><span class="p">;</span>
 
 <span class="n">rsMessage</span><span class="p">.</span><span class="n">GatewayMessage</span> <span class="p">=</span> <span class="s">"A01 - Approved"</span><span class="p">;</span>
 <span class="n">rsMessage</span><span class="p">.</span><span class="n">GatewayResult</span> <span class="p">=</span> <span class="s">"00000"</span><span class="p">;</span>
@@ -1279,7 +1308,7 @@ This capture request and several other API requests described here may take diff
 </blockquote>
 
 <p>Every sale or authorization response from Beyond Pay contains a <code>Token</code> element. This Token represents the card number used in the original transaction, but is not considered a sensitive data element per the PCI DSS. To ease in identifying the original card, however, the last four digits of the <code>Token</code> are the same as the last four digits of the card number.</p>
-<div class="highlight"><pre class="highlight php tab-php"><code><span class="nv">$bpRequest</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BridgeCommRequest</span><span class="p">();</span>
+<div class="highlight"><pre class="highlight php tab-php"><code><span class="nv">$bpRequest</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BeyondPayRequest</span><span class="p">();</span>
 <span class="nv">$bpRequest</span><span class="o">-&gt;</span><span class="nv">$requestMessage</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">RequestMessage</span><span class="p">();</span>
 
 <span class="nv">$bpRequest</span><span class="o">-&gt;</span><span class="nc">RequestDateTime</span> <span class="o">=</span> <span class="nc">DateTime</span><span class="mf">.</span><span class="nc">Now</span><span class="mf">.</span><span class="nf">ToString</span><span class="p">(</span><span class="s2">"yyyyMMddHHmmss"</span><span class="p">);</span>
@@ -1371,7 +1400,7 @@ This capture request and several other API requests described here may take diff
 <blockquote>
 <p>The <code>GatewayTransId</code> is returned in the response to a previous sale or sale-auth request and may be used as input to refund or void that original transaction.</p>
 </blockquote>
-<div class="highlight"><pre class="highlight php tab-php"><code><span class="nv">$bpRequest</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BridgeCommRequest</span><span class="p">();</span>
+<div class="highlight"><pre class="highlight php tab-php"><code><span class="nv">$bpRequest</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BeyondPayRequest</span><span class="p">();</span>
 <span class="nv">$bpRequest</span><span class="o">-&gt;</span><span class="nv">$requestMessage</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">RequestMessage</span><span class="p">();</span>
 
 <span class="nv">$bpRequest</span><span class="o">-&gt;</span><span class="nc">RequestDateTime</span> <span class="o">=</span> <span class="nc">DateTime</span><span class="mf">.</span><span class="nc">Now</span><span class="mf">.</span><span class="nf">ToString</span><span class="p">(</span><span class="s2">"yyyyMMddHHmmss"</span><span class="p">);</span>
@@ -1722,7 +1751,7 @@ You may refund/void the full amount of an original transaction or only part of t
 <aside class="success">
 In general, for most card brands and card issuers, the presence of a value in the appropriate Level III field is enough to qualify for the reduced interchange rate. The accuracy of these values is not validated by the card brands in most cases, but may impact the reporting received by the administrator of a given corporate purchasing card program.
 </aside>
-<h2 id='ach-and-echecks'>ACH and eChecks</h2><div class="highlight"><pre class="highlight php tab-php"><code><span class="nv">$bpRequest</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BridgeCommRequest</span><span class="p">();</span>
+<h2 id='ach-and-echecks'>ACH and eChecks</h2><div class="highlight"><pre class="highlight php tab-php"><code><span class="nv">$bpRequest</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BeyondPayRequest</span><span class="p">();</span>
 <span class="nv">$bpRequest</span><span class="o">-&gt;</span><span class="nv">$requestMessage</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">RequestMessage</span><span class="p">();</span>
 
 <span class="nv">$bpRequest</span><span class="o">-&gt;</span><span class="nc">RequestDateTime</span> <span class="o">=</span> <span class="nc">DateTime</span><span class="mf">.</span><span class="nc">Now</span><span class="mf">.</span><span class="nf">ToString</span><span class="p">(</span><span class="s2">"yyyyMMddHHmmss"</span><span class="p">);</span>
