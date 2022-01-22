@@ -272,13 +272,13 @@
                     <a href="#repeat-sales-and-cards-on-file" class="toc-h2 toc-link" data-title="Repeat Sales and Cards-on-File">Repeat Sales and Cards-on-File</a>
                   </li>
                   <li>
-                    <a href="#refunds-and-voids" class="toc-h2 toc-link" data-title="Refunds and Voids">Refunds and Voids</a>
+                    <a href="#refunds-amp-voids" class="toc-h2 toc-link" data-title="Refunds &amp; Voids">Refunds &amp; Voids</a>
                   </li>
                   <li>
-                    <a href="#level-ii-and-level-iii-data" class="toc-h2 toc-link" data-title="Level II and Level III Data">Level II and Level III Data</a>
+                    <a href="#level-ii-amp-level-iii-data" class="toc-h2 toc-link" data-title="Level II &amp; Level III Data">Level II &amp; Level III Data</a>
                   </li>
                   <li>
-                    <a href="#ach-and-echecks" class="toc-h2 toc-link" data-title="ACH and eChecks">ACH and eChecks</a>
+                    <a href="#ach-amp-echecks" class="toc-h2 toc-link" data-title="ACH &amp; eChecks">ACH &amp; eChecks</a>
                   </li>
               </ul>
           </li>
@@ -296,6 +296,9 @@
                   </li>
                   <li>
                     <a href="#basic-sale" class="toc-h2 toc-link" data-title="Basic Sale">Basic Sale</a>
+                  </li>
+                  <li>
+                    <a href="#refunds-amp-voids-2" class="toc-h2 toc-link" data-title="Refunds &amp; Voids">Refunds &amp; Voids</a>
                   </li>
                   <li>
                     <a href="#tips-amp-gratuities" class="toc-h2 toc-link" data-title="Tips &amp; Gratuities">Tips &amp; Gratuities</a>
@@ -405,7 +408,7 @@ https://github.com/getbeyond/beyondpay_woocommerce
 Contributors: beyondpay
 Tags: credit card, payment, woocommerce, payment gateway, subscriptions, subscription payments, recurring billing
 Requires at least: 4.7
-Tested up to: 5.7.2
+Tested up to: 5.8
 Stable tag: trunk
 Requires PHP: 7.0
 License: MIT
@@ -537,7 +540,11 @@ If your payment application stores, processes, or transmits sensitive cardholder
 
 <blockquote>
 <p>TokenPay.js Hosted Scripts</p>
+</blockquote>
 
+<p>The hosted TokenPay script has different versions for test and production.</p>
+
+<blockquote>
 <p><b>Sandbox:</b></p>
 </blockquote>
 <div class="highlight"><pre class="highlight html tab-html"><code>https://api-test.getbeyondpay.com/Bridgepay.WebSecurity/TokenPay/js/tokenPay.js
@@ -547,11 +554,13 @@ If your payment application stores, processes, or transmits sensitive cardholder
 </blockquote>
 <div class="highlight"><pre class="highlight html tab-html"><code>https://api.getbeyondpay.com/WebSecurity/TokenPay/js/tokenPay.js
 </code></pre></div>
-<p>The hosted TokenPay script has different versions for test and production.</p>
-
 <blockquote>
 <p>Beyond Pay SOAP API Endpoints</p>
+</blockquote>
 
+<p>A WSDL is available for Beyond Pay SOAP API by appending &quot;?wsdl&quot; to these endpoints.</p>
+
+<blockquote>
 <p><b>Sandbox:</b></p>
 </blockquote>
 <div class="highlight"><pre class="highlight html tab-html"><code>https://api-test.getbeyondpay.com/PaymentService/RequestHandler.svc
@@ -560,9 +569,7 @@ If your payment application stores, processes, or transmits sensitive cardholder
 <p><b>Production:</b></p>
 </blockquote>
 <div class="highlight"><pre class="highlight html tab-html"><code>https://api.getbeyondpay.com/PaymentService/RequestHandler.svc
-</code></pre></div>
-<p>A WSDL is available for Beyond Pay SOAP API by appending &quot;?wsdl&quot; to these endpoints.</p>
-<h2 id='create-a-payment-form'>Create a Payment Form</h2>
+</code></pre></div><h2 id='create-a-payment-form'>Create a Payment Form</h2>
 <blockquote>
 <p>To determine where to insert the UI components, create empty DOM elements with unique IDs within your payment form.</p>
 </blockquote>
@@ -740,23 +747,23 @@ You should always submit the ZIP or Postal code in order to ensure the best chan
 
 <p>On your server, collect the token information and the form POST parameters submitted by your form.</p>
 <div class="highlight"><pre class="highlight xml tab-xml"><code><span class="nt">&lt;soapenv:Envelope</span> <span class="na">xmlns:soapenv=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> <span class="na">xmlns:req=</span><span class="s">"http://bridgepaynetsecuretx.com/requesthandler"</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;soapenv:Header/&gt;</span>
-      <span class="nt">&lt;soapenv:Body&gt;</span>
-          <span class="nt">&lt;req:ProcessRequest&gt;</span>
-              <span class="nt">&lt;req:requestMsg&gt;</span>{Base-64 encoded XML payload}<span class="nt">&lt;/req:requestMsg&gt;</span>
-          <span class="nt">&lt;/req:ProcessRequest&gt;</span>
-      <span class="nt">&lt;/soapenv:Body&gt;</span>
-<span class="nt">&lt;/soapenv:Envelope&gt;</span>
+                    <span class="nt">&lt;soapenv:Header/&gt;</span>
+                        <span class="nt">&lt;soapenv:Body&gt;</span>
+                            <span class="nt">&lt;req:ProcessRequest&gt;</span>
+                                <span class="nt">&lt;req:requestMsg&gt;</span>{Base-64 encoded XML payload}<span class="nt">&lt;/req:requestMsg&gt;</span>
+                            <span class="nt">&lt;/req:ProcessRequest&gt;</span>
+                        <span class="nt">&lt;/soapenv:Body&gt;</span>
+                    <span class="nt">&lt;/soapenv:Envelope&gt;</span>
 </code></pre></div>
-<p>Now submit the token and parameters according to the example XML requests:</p>
+<p>Now submit the token and parameters according to the example XML request, with the following substitutions:</p>
 
 <ul>
-<li><code>TransactionID</code> - unique transaction ID generated by your application for tracking purposes</li>
-<li><code>RequestDateTime</code> - date and time of the transaction in <code>yyyyMMddHHmmss</code> format</li>
-<li><code>PrivateKey</code> - your private API key</li>
-<li><code>AuthenticationTokenId</code> - single-use token delivered in the submission of your payment form (not to be confused with the multi-use <code>&lt;Token&gt;</code> in the response message)</li>
-<li><code>Amount</code> - transaction amount in cents ($1.25 would be 125)</li>
-<li><code>SoftwareVendor</code> - the name and version number of your software application</li>
+<li><code>{transactionId}</code> - unique transaction ID generated by your application for tracking purposes</li>
+<li><code>{requestDateTime}</code> - date and time of the transaction in <code>yyyyMMddHHmmss</code> format</li>
+<li><code>{yourPrivateKey}</code> - your private API key</li>
+<li><code>{token}</code> - token delivered in the submission of your payment form</li>
+<li><code>{amountInCents}</code> - transaction amount in cents ($1.25 would be 125)</li>
+<li><code>{yourSoftwareName}</code> - the name and version number of your software application</li>
 </ul>
 
 <blockquote>
@@ -774,14 +781,13 @@ You should always submit the ZIP or Postal code in order to ensure the best chan
 <span class="nv">$rsMessage</span><span class="o">-&gt;</span><span class="nc">AuthorizationCode</span> <span class="o">=</span> <span class="s2">"735333"</span><span class="p">;</span>
 </code></pre></div><div class="highlight"><pre class="highlight csharp tab-csharp"><code><span class="n">BridgeCommConnection</span> <span class="n">connection</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">BridgeCommConnection</span><span class="p">();</span>
 <span class="n">BridgeCommResponse</span> <span class="n">bcResponse</span> <span class="p">=</span> <span class="n">connection</span><span class="p">.</span><span class="nf">processRequest</span><span class="p">(</span><span class="n">URL</span><span class="p">,</span> <span class="n">bcRequest</span><span class="p">);</span>
+<span class="n">ResponseMessage</span> <span class="n">rsMessage</span> <span class="p">=</span> <span class="n">bcResponse</span><span class="p">.</span><span class="n">responseMessage</span><span class="p">;</span>
 
 <span class="n">bcResponse</span><span class="p">.</span><span class="n">BridgeCommResponseType</span> <span class="p">=</span> <span class="s">"Auth"</span><span class="p">;</span>
 <span class="n">bcResponse</span><span class="p">.</span><span class="n">RequestType</span> <span class="p">=</span> <span class="s">"004"</span><span class="p">;</span>
 <span class="n">bcResponse</span><span class="p">.</span><span class="n">ResponseCode</span> <span class="p">=</span> <span class="s">"00000"</span><span class="p">;</span>
 <span class="n">bcResponse</span><span class="p">.</span><span class="n">ResponseDescription</span> <span class="p">=</span> <span class="s">"Successful Request"</span><span class="p">;</span>
 <span class="n">bcResponse</span><span class="p">.</span><span class="n">TransactionID</span> <span class="p">=</span> <span class="s">"20190709092529"</span><span class="p">;</span>
-
-<span class="n">ResponseMessage</span> <span class="n">rsMessage</span> <span class="p">=</span> <span class="n">bcResponse</span><span class="p">.</span><span class="n">responseMessage</span><span class="p">;</span>
 
 <span class="n">rsMessage</span><span class="p">.</span><span class="n">GatewayMessage</span> <span class="p">=</span> <span class="s">"A01 - Approved"</span><span class="p">;</span>
 <span class="n">rsMessage</span><span class="p">.</span><span class="n">GatewayResult</span> <span class="p">=</span> <span class="s">"00000"</span><span class="p">;</span>
@@ -796,7 +802,7 @@ You should always submit the ZIP or Postal code in order to ensure the best chan
 <span class="n">rsMessage</span><span class="p">.</span><span class="n">IsoCurrencyCode</span> <span class="p">=</span> <span class="s">"USD"</span><span class="p">;</span>
 <span class="n">rsMessage</span><span class="p">.</span><span class="n">IsoRequestDate</span> <span class="p">=</span> <span class="s">"2019-07-09 09:25:30.663"</span><span class="p">;</span>
 <span class="n">rsMessage</span><span class="p">.</span><span class="n">IsoTransactionDate</span> <span class="p">=</span> <span class="s">"2019-07-09 09:25:30.663"</span><span class="p">;</span>
-<span class="n">rsMessage</span><span class="p">.</span><span class="n">MaskedPan</span> <span class="p">=</span> <span class="s">"4***********1234"</span><span class="p">;</span>
+<span class="n">rsMessage</span><span class="p">.</span><span class="n">MaskedPan</span> <span class="p">=</span> <span class="s">"1***********1234"</span><span class="p">;</span>
 <span class="n">rsMessage</span><span class="p">.</span><span class="n">ExpirationDate</span> <span class="p">=</span> <span class="s">"1234"</span><span class="p">;</span>
 <span class="n">rsMessage</span><span class="p">.</span><span class="n">CardClass</span> <span class="p">=</span> <span class="s">"Credit"</span><span class="p">;</span>
 <span class="n">rsMessage</span><span class="p">.</span><span class="n">CardType</span> <span class="p">=</span> <span class="s">"Visa"</span><span class="p">;</span>
@@ -888,20 +894,19 @@ You should always submit the ZIP or Postal code in order to ensure the best chan
 <blockquote>
 <p>Beyond Pay Sample Declined Sale Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight php tab-php"><code><span class="nv">$bpResponse</span><span class="o">-&gt;</span><span class="nc">TransactionID</span> <span class="o">=</span> <span class="s2">"635693706433821501"</span><span class="p">;</span>
-<span class="nv">$bpResponse</span><span class="o">-&gt;</span><span class="nc">RequestType</span> <span class="o">=</span> <span class="s2">"004"</span><span class="p">;</span>
-<span class="nv">$bpResponse</span><span class="o">-&gt;</span><span class="nc">ResponseCode</span> <span class="o">=</span> <span class="s2">"30032"</span><span class="p">;</span>
-<span class="nv">$bpResponse</span><span class="o">-&gt;</span><span class="nc">ResponseDescription</span> <span class="o">=</span> <span class="s2">"Denied by customer's bank"</span><span class="p">;</span>
+<div class="highlight"><pre class="highlight php tab-php"><code><span class="nv">$bcResponse</span><span class="o">-&gt;</span><span class="nc">TransactionID</span> <span class="o">=</span> <span class="s2">"635693706433821501&lt;"</span><span class="p">;</span>
+<span class="nv">$bcResponse</span><span class="o">-&gt;</span><span class="nc">RequestType</span> <span class="o">=</span> <span class="s2">"004"</span><span class="p">;</span>
+<span class="nv">$bcResponse</span><span class="o">-&gt;</span><span class="nc">ResponseCode</span> <span class="o">=</span> <span class="s2">"30032"</span><span class="p">;</span>
+<span class="nv">$bcResponse</span><span class="o">-&gt;</span><span class="nc">ResponseDescription</span> <span class="o">=</span> <span class="s2">"Denied by customer's bank"</span><span class="p">;</span>
 </code></pre></div><div class="highlight"><pre class="highlight csharp tab-csharp"><code><span class="n">BridgeCommConnection</span> <span class="n">connection</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">BridgeCommConnection</span><span class="p">();</span>
 <span class="n">BridgeCommResponse</span> <span class="n">bcResponse</span> <span class="p">=</span> <span class="n">connection</span><span class="p">.</span><span class="nf">processRequest</span><span class="p">(</span><span class="n">URL</span><span class="p">,</span> <span class="n">bcRequest</span><span class="p">);</span>
+<span class="n">ResponseMessage</span> <span class="n">rsMessage</span> <span class="p">=</span> <span class="n">bcResponse</span><span class="p">.</span><span class="n">responseMessage</span><span class="p">;</span>
 
 <span class="n">bcResponse</span><span class="p">.</span><span class="n">BridgeCommResponseType</span> <span class="p">=</span> <span class="s">"Auth"</span><span class="p">;</span>
 <span class="n">bcResponse</span><span class="p">.</span><span class="n">RequestType</span> <span class="p">=</span> <span class="s">"004"</span><span class="p">;</span>
 <span class="n">bcResponse</span><span class="p">.</span><span class="n">ResponseCode</span> <span class="p">=</span> <span class="s">"30032"</span><span class="p">;</span>
 <span class="n">bcResponse</span><span class="p">.</span><span class="n">ResponseDescription</span> <span class="p">=</span> <span class="s">"Denied by customer's bank"</span><span class="p">;</span>
 <span class="n">bcResponse</span><span class="p">.</span><span class="n">TransactionID</span> <span class="p">=</span> <span class="s">"20190709092529"</span><span class="p">;</span>
-
-<span class="n">ResponseMessage</span> <span class="n">rsMessage</span> <span class="p">=</span> <span class="n">bcResponse</span><span class="p">.</span><span class="n">responseMessage</span><span class="p">;</span>
 
 <span class="n">rsMessage</span><span class="p">.</span><span class="n">GatewayMessage</span> <span class="p">=</span> <span class="s">"D01 - Denied by customer's bank (Issuer Unavailable)"</span><span class="p">;</span>
 <span class="n">rsMessage</span><span class="p">.</span><span class="n">GatewayResult</span> <span class="p">=</span> <span class="s">"30032"</span><span class="p">;</span>
@@ -1015,14 +1020,13 @@ You should always inspect the AVSResult and CVResult fields as these can be good
 <span class="nv">$bpRequest</span><span class="o">-&gt;</span><span class="nv">$requestMessage</span><span class="o">-&gt;</span><span class="nc">SettlementDelay</span> <span class="o">=</span> <span class="s2">"30"</span><span class="p">;</span>
 <span class="nv">$bpRequest</span><span class="o">-&gt;</span><span class="nv">$requestMessage</span><span class="o">-&gt;</span><span class="nc">SoftwareVendor</span> <span class="o">=</span> <span class="s2">"YourSoftwareName 1.0"</span><span class="p">;</span>
 </code></pre></div><div class="highlight"><pre class="highlight csharp tab-csharp"><code><span class="n">BridgeCommRequest</span> <span class="n">bcRequest</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">BridgeCommRequest</span><span class="p">();</span>
+<span class="n">RequestMessage</span> <span class="n">rqMessage</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">RequestMessage</span><span class="p">();</span>
 
 <span class="n">bcRequest</span><span class="p">.</span><span class="n">RequestType</span> <span class="p">=</span> <span class="s">"004"</span><span class="p">;</span>
 <span class="n">bcRequest</span><span class="p">.</span><span class="n">TransactionID</span> <span class="p">=</span> <span class="s">"00000000-0000-0000-0000-000000000000"</span><span class="p">;</span>
 <span class="n">bcRequest</span><span class="p">.</span><span class="n">PrivateKey</span> <span class="p">=</span> <span class="s">"YourPrivateKey"</span><span class="p">;</span>
 <span class="n">bcRequest</span><span class="p">.</span><span class="n">AuthenticationTokenId</span> <span class="p">=</span> <span class="s">"00000000-0000-0000-0000-000000000000"</span><span class="p">;</span>
 <span class="n">bcRequest</span><span class="p">.</span><span class="n">RequestDateTime</span> <span class="p">=</span> <span class="n">DateTime</span><span class="p">.</span><span class="n">Now</span><span class="p">.</span><span class="nf">ToString</span><span class="p">(</span><span class="s">"yyyyMMddHHmmss"</span><span class="p">);</span>
-
-<span class="n">RequestMessage</span> <span class="n">rqMessage</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">RequestMessage</span><span class="p">();</span>
 
 <span class="n">rqMessage</span><span class="p">.</span><span class="n">MerchantCode</span> <span class="p">=</span> <span class="s">"123456"</span><span class="p">;</span>
 <span class="n">rqMessage</span><span class="p">.</span><span class="n">MerchantAccountCode</span> <span class="p">=</span> <span class="s">"789123"</span><span class="p">;</span>
@@ -1034,13 +1038,6 @@ You should always inspect the AVSResult and CVResult fields as these can be good
 <span class="n">rqMessage</span><span class="p">.</span><span class="n">IsoCurrencyCode</span> <span class="p">=</span> <span class="s">"USD"</span><span class="p">;</span>
 <span class="n">rqMessage</span><span class="p">.</span><span class="n">SettlementDelay</span> <span class="p">=</span> <span class="s">"30"</span><span class="p">;</span>
 <span class="n">rqMessage</span><span class="p">.</span><span class="n">SoftwareVendor</span> <span class="p">=</span> <span class="s">"YourSoftwareName 1.0"</span><span class="p">;</span>
-
-<span class="n">bcRequest</span><span class="p">.</span><span class="n">requestMessage</span> <span class="p">=</span> <span class="nf">rqMessage</span> <span class="p">();</span>
-
-<span class="n">BridgeCommConnection</span> <span class="n">BCConnect</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">BridgeCommConnection</span><span class="p">();</span>
-<span class="n">BridgeCommResponse</span> <span class="n">response</span> <span class="p">=</span> <span class="k">await</span> <span class="n">BCConnect</span><span class="p">.</span><span class="nf">processRequestAsync</span><span class="p">(</span><span class="n">bridgeCommURL</span><span class="p">:</span> <span class="n">URL</span><span class="p">,</span> <span class="n">bcRequest</span><span class="p">);</span>
-
-<span class="kt">string</span> <span class="n">string_response</span> <span class="p">=</span> <span class="n">BridgeCommConnection</span><span class="p">.</span><span class="n">Serialize</span><span class="p">&lt;</span><span class="n">BridgeCommResponse</span><span class="p">&gt;(</span><span class="n">response</span><span class="p">);</span>
 </code></pre></div><div class="highlight"><pre class="highlight java tab-java"><code><span class="nc">BridgeCommRequest</span> <span class="n">bcRequest</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BridgeCommRequest</span><span class="o">();</span>
 <span class="nc">RequestMessage</span> <span class="n">rqMessage</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">RequestMessage</span><span class="o">();</span>
 
@@ -1086,10 +1083,10 @@ You should always inspect the AVSResult and CVResult fields as these can be good
 <blockquote>
 <p>Beyond Pay Sample Authorization Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight php tab-php"><code><span class="nv">$bpResponse</span><span class="o">-&gt;</span><span class="nc">TransactionID</span> <span class="o">=</span> <span class="s2">"635693706433821501"</span><span class="p">;</span>
-<span class="nv">$bpResponse</span><span class="o">-&gt;</span><span class="nc">RequestType</span> <span class="o">=</span> <span class="s2">"004"</span><span class="p">;</span>
-<span class="nv">$bpResponse</span><span class="o">-&gt;</span><span class="nc">ResponseCode</span> <span class="o">=</span> <span class="s2">"00000"</span><span class="p">;</span>
-<span class="nv">$bpResponse</span><span class="o">-&gt;</span><span class="nc">ResponseDescription</span> <span class="o">=</span> <span class="s2">"Successful Request"</span><span class="p">;</span>
+<div class="highlight"><pre class="highlight php tab-php"><code><span class="nv">$bcResponse</span><span class="o">-&gt;</span><span class="nc">TransactionID</span> <span class="o">=</span> <span class="s2">"635693706433821501"</span><span class="p">;</span>
+<span class="nv">$bcResponse</span><span class="o">-&gt;</span><span class="nc">RequestType</span> <span class="o">=</span> <span class="s2">"004"</span><span class="p">;</span>
+<span class="nv">$bcResponse</span><span class="o">-&gt;</span><span class="nc">ResponseCode</span> <span class="o">=</span> <span class="s2">"00000"</span><span class="p">;</span>
+<span class="nv">$bcResponse</span><span class="o">-&gt;</span><span class="nc">ResponseDescription</span> <span class="o">=</span> <span class="s2">"Successful Request"</span><span class="p">;</span>
 <span class="nv">$rsMessage</span> <span class="o">=</span> <span class="nv">$bcResponse</span><span class="o">-&gt;</span><span class="n">responseMessage</span><span class="p">;</span>
 <span class="nv">$rsMessage</span><span class="o">-&gt;</span><span class="nc">AuthenticationTokenId</span> <span class="o">=</span> <span class="s2">"735333"</span><span class="p">;</span>
 <span class="nv">$rsMessage</span><span class="o">-&gt;</span><span class="nc">Token</span> <span class="o">=</span> <span class="s2">"100000007470001"</span><span class="p">;</span>
@@ -1098,14 +1095,13 @@ You should always inspect the AVSResult and CVResult fields as these can be good
 <span class="nv">$rsMessage</span><span class="o">-&gt;</span><span class="nc">AuthorizationCode</span> <span class="o">=</span> <span class="s2">"735333"</span><span class="p">;</span>
 </code></pre></div><div class="highlight"><pre class="highlight csharp tab-csharp"><code><span class="n">BridgeCommConnection</span> <span class="n">connection</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">BridgeCommConnection</span><span class="p">();</span>
 <span class="n">BridgeCommResponse</span> <span class="n">bcResponse</span> <span class="p">=</span> <span class="n">connection</span><span class="p">.</span><span class="nf">processRequest</span><span class="p">(</span><span class="n">URL</span><span class="p">,</span> <span class="n">bcRequest</span><span class="p">);</span>
+<span class="n">ResponseMessage</span> <span class="n">rsMessage</span> <span class="p">=</span> <span class="n">bcResponse</span><span class="p">.</span><span class="n">responseMessage</span><span class="p">;</span>
 
 <span class="n">bcResponse</span><span class="p">.</span><span class="n">BridgeCommResponseType</span> <span class="p">=</span> <span class="s">"Auth"</span><span class="p">;</span>
 <span class="n">bcResponse</span><span class="p">.</span><span class="n">RequestType</span> <span class="p">=</span> <span class="s">"004"</span><span class="p">;</span>
 <span class="n">bcResponse</span><span class="p">.</span><span class="n">ResponseCode</span> <span class="p">=</span> <span class="s">"00000"</span><span class="p">;</span>
 <span class="n">bcResponse</span><span class="p">.</span><span class="n">ResponseDescription</span> <span class="p">=</span> <span class="s">"Successful Request"</span><span class="p">;</span>
 <span class="n">bcResponse</span><span class="p">.</span><span class="n">TransactionID</span> <span class="p">=</span> <span class="s">"20190709092529"</span><span class="p">;</span>
-
-<span class="n">ResponseMessage</span> <span class="n">rsMessage</span> <span class="p">=</span> <span class="n">bcResponse</span><span class="p">.</span><span class="n">responseMessage</span><span class="p">;</span>
 
 <span class="n">rsMessage</span><span class="p">.</span><span class="n">GatewayMessage</span> <span class="p">=</span> <span class="s">"A01 - Approved"</span><span class="p">;</span>
 <span class="n">rsMessage</span><span class="p">.</span><span class="n">GatewayResult</span> <span class="p">=</span> <span class="s">"00000"</span><span class="p">;</span>
@@ -1179,14 +1175,13 @@ You should always inspect the AVSResult and CVResult fields as these can be good
 <span class="nv">$bpRequest</span><span class="o">-&gt;</span><span class="nv">$requestMessage</span><span class="o">-&gt;</span><span class="nc">ReferenceNumber</span> <span class="o">=</span> <span class="s2">"12345678"</span><span class="p">;</span>
 <span class="nv">$bpRequest</span><span class="o">-&gt;</span><span class="nv">$requestMessage</span><span class="o">-&gt;</span><span class="nc">SoftwareVendor</span> <span class="o">=</span> <span class="s2">"YourSoftwareName 1.0"</span><span class="p">;</span>
 </code></pre></div><div class="highlight"><pre class="highlight csharp tab-csharp"><code><span class="n">BridgeCommRequest</span> <span class="n">bcRequest</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">BridgeCommRequest</span><span class="p">();</span>
+<span class="n">RequestMessage</span> <span class="n">rqMessage</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">RequestMessage</span><span class="p">();</span>
 
 <span class="n">bcRequest</span><span class="p">.</span><span class="n">User</span> <span class="p">=</span> <span class="s">"xxxxxx"</span><span class="p">;</span>
 <span class="n">bcRequest</span><span class="p">.</span><span class="n">Password</span> <span class="p">=</span> <span class="s">"xxxxxx"</span><span class="p">;</span>
 <span class="n">bcRequest</span><span class="p">.</span><span class="n">RequestType</span> <span class="p">=</span> <span class="s">"019"</span><span class="p">;</span>
 <span class="n">bcRequest</span><span class="p">.</span><span class="n">TransactionID</span> <span class="p">=</span> <span class="s">"00000000-0000-0000-0000-000000000000"</span><span class="p">;</span>
 <span class="n">bcRequest</span><span class="p">.</span><span class="n">RequestDateTime</span> <span class="p">=</span> <span class="n">DateTime</span><span class="p">.</span><span class="n">Now</span><span class="p">.</span><span class="nf">ToString</span><span class="p">(</span><span class="s">"yyyyMMddHHmmss"</span><span class="p">);</span>
-
-<span class="n">RequestMessage</span> <span class="n">rqMessage</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">RequestMessage</span><span class="p">();</span>
 
 <span class="n">rqMessage</span><span class="p">.</span><span class="n">MerchantCode</span> <span class="p">=</span> <span class="s">"123456"</span><span class="p">;</span>
 <span class="n">rqMessage</span><span class="p">.</span><span class="n">MerchantAccountCode</span> <span class="p">=</span> <span class="s">"789123"</span><span class="p">;</span>
@@ -1197,13 +1192,6 @@ You should always inspect the AVSResult and CVResult fields as these can be good
 <span class="n">rqMessage</span><span class="p">.</span><span class="n">AcctType</span> <span class="p">=</span> <span class="s">"R"</span><span class="p">;</span>
 <span class="n">rqMessage</span><span class="p">.</span><span class="n">ReferenceNumber</span> <span class="p">=</span> <span class="s">"12345678"</span><span class="p">;</span>
 <span class="n">rqMessage</span><span class="p">.</span><span class="n">SoftwareVendor</span> <span class="p">=</span> <span class="s">"YourSoftwareName 1.0"</span><span class="p">;</span>
-
-<span class="n">bcRequest</span><span class="p">.</span><span class="n">requestMessage</span> <span class="p">=</span> <span class="nf">rqMessage</span> <span class="p">();</span>
-
-<span class="n">BridgeCommConnection</span> <span class="n">BCConnect</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">BridgeCommConnection</span><span class="p">();</span>
-<span class="n">BridgeCommResponse</span> <span class="n">response</span> <span class="p">=</span> <span class="k">await</span> <span class="n">BCConnect</span><span class="p">.</span><span class="nf">processRequestAsync</span><span class="p">(</span><span class="n">bridgeCommURL</span><span class="p">:</span> <span class="n">URL</span><span class="p">,</span> <span class="n">bcRequest</span><span class="p">);</span>
-
-<span class="kt">string</span> <span class="n">string_response</span> <span class="p">=</span> <span class="n">BridgeCommConnection</span><span class="p">.</span><span class="n">Serialize</span><span class="p">&lt;</span><span class="n">BridgeCommResponse</span><span class="p">&gt;(</span><span class="n">response</span><span class="p">);</span>
 </code></pre></div><div class="highlight"><pre class="highlight java tab-java"><code><span class="nc">BridgeCommRequest</span> <span class="n">bcRequest</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BridgeCommRequest</span><span class="o">();</span>
 <span class="nc">RequestMessage</span> <span class="n">rqMessage</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">RequestMessage</span><span class="o">();</span>
 
@@ -1258,14 +1246,13 @@ This capture request and several other API requests described here may take diff
 <span class="nv">$rsMessage</span><span class="o">-&gt;</span><span class="nc">TransactionCode</span> <span class="o">=</span> <span class="s2">""</span><span class="p">;</span>
 </code></pre></div><div class="highlight"><pre class="highlight csharp tab-csharp"><code><span class="n">BridgeCommConnection</span> <span class="n">connection</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">BridgeCommConnection</span><span class="p">();</span>
 <span class="n">BridgeCommResponse</span> <span class="n">bcResponse</span> <span class="p">=</span> <span class="n">connection</span><span class="p">.</span><span class="nf">processRequest</span><span class="p">(</span><span class="n">URL</span><span class="p">,</span> <span class="n">bcRequest</span><span class="p">);</span>
+<span class="n">ResponseMessage</span> <span class="n">rsMessage</span> <span class="p">=</span> <span class="n">bcResponse</span><span class="p">.</span><span class="n">responseMessage</span><span class="p">;</span>
 
 <span class="n">bcResponse</span><span class="p">.</span><span class="n">BridgeCommResponseType</span> <span class="p">=</span> <span class="s">"Auth"</span><span class="p">;</span>
 <span class="n">bcResponse</span><span class="p">.</span><span class="n">RequestType</span> <span class="p">=</span> <span class="s">"019"</span><span class="p">;</span>
 <span class="n">bcResponse</span><span class="p">.</span><span class="n">ResponseCode</span> <span class="p">=</span> <span class="s">"00000"</span><span class="p">;</span>
 <span class="n">bcResponse</span><span class="p">.</span><span class="n">ResponseDescription</span> <span class="p">=</span> <span class="s">"Successful Request"</span><span class="p">;</span>
 <span class="n">bcResponse</span><span class="p">.</span><span class="n">TransactionID</span> <span class="p">=</span> <span class="s">"20190709092529"</span><span class="p">;</span>
-
-<span class="n">ResponseMessage</span> <span class="n">rsMessage</span> <span class="p">=</span> <span class="n">bcResponse</span><span class="p">.</span><span class="n">responseMessage</span><span class="p">;</span>
 
 <span class="n">rsMessage</span><span class="p">.</span><span class="n">GatewayMessage</span> <span class="p">=</span> <span class="s">"A01 - Approved"</span><span class="p">;</span>
 <span class="n">rsMessage</span><span class="p">.</span><span class="n">GatewayResult</span> <span class="p">=</span> <span class="s">"00000"</span><span class="p">;</span>
@@ -1394,7 +1381,7 @@ This capture request and several other API requests described here may take diff
 <p>This Token value may be persisted and, with the cardholder&#39;s permission, associated with their user account in your application in order to make future purchases with the same card (&quot;card-on-file&quot;).</p>
 
 <p>Submitting a sale or sale-auth transaction with the Token as input requires use of the <code>User</code> and <code>Password</code> credentials in the request message, and also requires that the card <code>ExpirationDate</code> value be persisted and stored with the <code>Token</code> (the <code>ExpirationDate</code> value is returned in the original response message along with the <code>Token</code>).</p>
-<h2 id='refunds-and-voids'>Refunds and Voids</h2>
+<h2 id='refunds-amp-voids'>Refunds &amp; Voids</h2>
 <p>In order to refund or void a previous sale or sale-auth transaction, simply construct an XML message with <code>RequestType</code> of <code>012</code> and <code>TransactionType</code> of <code>refund</code>. Note that if the original transaction is still in an unsettled batch, the gateway will perform a void/reversal transaction. If the original transaction has already settled, then the gateway will perform a refund to the original card.</p>
 
 <blockquote>
@@ -1450,6 +1437,10 @@ This capture request and several other API requests described here may take diff
 <span class="n">rqMessage</span><span class="o">.</span><span class="na">setSoftwareVendor</span><span class="o">(</span><span class="s">"YourSoftwareName 1.0"</span><span class="o">);</span>
 <span class="n">rqMessage</span><span class="o">.</span><span class="na">setReferenceNumber</span><span class="o">(</span><span class="s">"12345678"</span><span class="o">);</span>
 </code></pre></div>
+<aside class="notice">
+You may refund/void the full amount of an original transaction or only part of the amount (a "partial refund" or "partial reversal"). If the transaction is in the current open (unsettled) batch, then only a single void (for the full amount or partial amount) may be performed. If the transaction has settled, the refund request transaction may be repeated for multiple partial refunds up to the amount of the original transaction.
+</aside>
+
 <blockquote>
 <p>Or, in the raw XML:</p>
 </blockquote>
@@ -1468,10 +1459,6 @@ This capture request and several other API requests described here may take diff
     <span class="nt">&lt;/requestMessage&gt;</span>
 <span class="nt">&lt;/requestHeader&gt;</span>
 </code></pre></div>
-<aside class="notice">
-You may refund/void the full amount of an original transaction or only part of the amount (a "partial refund" or "partial reversal"). If the transaction is in the current open (unsettled) batch, then only a single void (for the full amount or partial amount) may be performed. If the transaction has settled, the refund request transaction may be repeated for multiple partial refunds up to the amount of the original transaction.
-</aside>
-
 <blockquote>
 <p>Raw XML response</p>
 </blockquote>
@@ -1501,12 +1488,24 @@ You may refund/void the full amount of an original transaction or only part of t
   <span class="nt">&lt;/responseMessage&gt;</span>
 <span class="nt">&lt;/VoidRefund&gt;</span>
 
-</code></pre></div><h2 id='level-ii-and-level-iii-data'>Level II and Level III Data</h2>
+</code></pre></div><h2 id='level-ii-amp-level-iii-data'>Level II &amp; Level III Data</h2>
 <p>Some business cards may be eligible for lower interchange rates if you send additional data with the transaction. Beyond Pay supports these additional data fields and can help you or your clients secure <a href="https://www.getbeyond.com/b2b-payment-solutions/" target="_blank">these significantly reduced rates and other B2B benefits</a>.</p>
 <h3 id='level-ii-data'>Level II Data</h3>
 <blockquote>
 <p>Sample transaction with Level II data:</p>
 </blockquote>
+
+<p>In order for a transaction to qualify at reduced &quot;Level II&quot; interchange rates, assuming the card is eligible for such, the following fields should be provided in the XML message to the gateway in addition to the basic required fields given in the <a href="#token-sale">instructions for processing a basic sale transaction</a>:</p>
+
+<ul>
+<li><code>PONum</code> - the customer&#39;s Purchase Order number; may be up to 24 alphanumeric characters and hyphens</li>
+<li><code>TaxAmount</code> - applicable tax amount in cents (implied decimal); must be less than the total transaction <code>Amount</code></li>
+<li><code>TaxIndicator</code> - may be <code>P</code> (Provided), <code>N</code> (Not Provided), or <code>E</code> (Exempt). Use P if you are sending a value in <code>TaxAmount</code>, or E if you are tax-exempt</li>
+</ul>
+
+<aside class="notice">
+Tax exempt transactions are not eligible for Level II interchange, but they are eligible for Level III rates.
+</aside>
 <div class="highlight"><pre class="highlight php tab-php"><code><span class="nv">$bpRequest</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BeyondPayRequest</span><span class="p">();</span>
 <span class="nv">$bpRequest</span><span class="o">-&gt;</span><span class="nv">$requestMessage</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">RequestMessage</span><span class="p">();</span>
 
@@ -1571,14 +1570,6 @@ You may refund/void the full amount of an original transaction or only part of t
 <span class="n">rqMessage</span><span class="o">.</span><span class="na">setTaxAmount</span><span class="o">(</span><span class="s">"110"</span><span class="o">);</span>
 <span class="n">rqMessage</span><span class="o">.</span><span class="na">setTaxIndicator</span><span class="o">(</span><span class="s">"P"</span><span class="o">);</span>
 </code></pre></div>
-<p>In order for a transaction to qualify at reduced &quot;Level II&quot; interchange rates, assuming the card is eligible for such, the following fields should be provided in the XML message to the gateway in addition to the basic required fields given in the <a href="#token-sale">instructions for processing a basic sale transaction</a>:</p>
-
-<ul>
-<li><code>PONum</code> - the customer&#39;s Purchase Order number; may be up to 24 alphanumeric characters and hyphens</li>
-<li><code>TaxAmount</code> - applicable tax amount in cents (implied decimal); must be less than the total transaction <code>Amount</code></li>
-<li><code>TaxIndicator</code> - may be <code>P</code> (Provided), <code>N</code> (Not Provided), or <code>E</code> (Exempt). Use P if you are sending a value in <code>TaxAmount</code>, or E if you are tax-exempt</li>
-</ul>
-
 <blockquote>
 <p>Or, in the raw XML:</p>
 </blockquote>
@@ -1608,6 +1599,26 @@ You may refund/void the full amount of an original transaction or only part of t
 <blockquote>
 <p>Sample sale transaction via <a href="/getting-started">TokenPay.js</a> with Level III line-item details:</p>
 </blockquote>
+
+<p>Note that Level III transactions require line-item details from the purchase. You should send one Item array for each line item on a given invoice; many integrators will dynamically map these required fields into their existing inventory, order management, or ERP systems. Alternatively, if you only sell one type of item, you may consider creating a static mapping of these fields, or &quot;hard-coding&quot; the values specific to your business.</p>
+
+<ul>
+<li><code>CommodityCode</code> - a summary commodity code - 4 character maximum; many integrators and merchants use the Merchant Category Code (MCC); not to be confused with the <code>ItemCommodityCode</code>.</li>
+<li><code>ItemCount</code> - the total number of line items being submitted in this request</li>
+<li><code>Item</code> - an array representing each line item in the request, consisting of:</li>
+<li><code>ItemCode</code> - a unique identifier assigned to this item in the merchant&#39;s inventory system (typically a SKU, SKID, or UPC) - 12 character maximum</li>
+<li><code>ItemCommodityCode</code> - a standardized code that classifies the item, such as the <a href="https://www.unspsc.org/" target="_blank">UN Standard Products and Services Code (UNSPSC)</a>; many integrators and merchants use the MCC in this field; not to be confused with the summary <code>CommodityCode</code>.</li>
+<li><code>ItemDescription</code> - A short textual description of the item, limited to 35 characters</li>
+<li><code>ItemQuantity</code> - quantity of item units purchased as part of this transaction; supports up to 4 decimal places</li>
+<li><code>ItemUnitCostAmt</code> - cost of a single unit of the item in cents (implied decimal)</li>
+<li><code>ItemUnitMeasure</code> - unit of measure used to quantify the items purchased (e.g.: kg, lb, in, etc.); &quot;EA&quot; for &quot;each&quot; is most commonly used and recommended for single-item merchants</li>
+<li><code>ItemTaxAmount</code> - tax for a single item</li>
+<li><code>ItemTotalAmount</code> - total amount paid for the item (including tax and any discount)</li>
+</ul>
+
+<aside class="success">
+In general, for most card brands and card issuers, the presence of a value in the appropriate Level III field is enough to qualify for the reduced interchange rate. The accuracy of these values is not validated by the card brands in most cases, but may impact the reporting received by the administrator of a given corporate purchasing card program.
+</aside>
 <div class="highlight"><pre class="highlight php tab-php"><code><span class="nv">$bpRequest</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BeyondPayRequest</span><span class="p">();</span>
 <span class="nv">$bpRequest</span><span class="o">-&gt;</span><span class="nv">$requestMessage</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">RequestMessage</span><span class="p">();</span>
 
@@ -1631,6 +1642,7 @@ You may refund/void the full amount of an original transaction or only part of t
 <span class="nv">$bpRequest</span><span class="o">-&gt;</span><span class="nv">$requestMessage</span><span class="o">-&gt;</span><span class="nc">CustomerAccountCode</span> <span class="o">=</span> <span class="s2">"CID-9876"</span><span class="p">;</span>
 <span class="nv">$bpRequest</span><span class="o">-&gt;</span><span class="nv">$requestMessage</span><span class="o">-&gt;</span><span class="nc">TaxAmount</span> <span class="o">=</span> <span class="s2">"110"</span><span class="p">;</span>
 <span class="nv">$bpRequest</span><span class="o">-&gt;</span><span class="nv">$requestMessage</span><span class="o">-&gt;</span><span class="nc">TaxIndicator</span> <span class="o">=</span> <span class="s2">"P"</span><span class="p">;</span>
+<span class="nv">$bpRequest</span><span class="o">-&gt;</span><span class="nv">$requestMessage</span><span class="o">-&gt;</span><span class="nc">CommodityCode</span> <span class="o">=</span> <span class="s2">"5999"</span><span class="p">;</span>
 <span class="nv">$bpRequest</span><span class="o">-&gt;</span><span class="nv">$requestMessage</span><span class="o">-&gt;</span><span class="nc">ItemCount</span> <span class="o">=</span> <span class="s2">"1"</span><span class="p">;</span>
 
 <span class="nv">$requestMessage</span><span class="o">-&gt;</span><span class="nv">$rqItem</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Item</span><span class="p">();</span>
@@ -1640,6 +1652,7 @@ You may refund/void the full amount of an original transaction or only part of t
 <span class="nv">$requestMessage</span><span class="o">-&gt;</span><span class="nv">$rqItem</span><span class="o">-&gt;</span><span class="nc">ItemQuantity</span> <span class="o">=</span> <span class="s2">"1"</span><span class="p">;</span>
 <span class="nv">$requestMessage</span><span class="o">-&gt;</span><span class="nv">$rqItem</span><span class="o">-&gt;</span><span class="nc">ItemUnitCostAmt</span> <span class="o">=</span> <span class="s2">"1000"</span><span class="p">;</span>
 <span class="nv">$requestMessage</span><span class="o">-&gt;</span><span class="nv">$rqItem</span><span class="o">-&gt;</span><span class="nc">ItemUnitMeasure</span> <span class="o">=</span> <span class="s2">"EA"</span><span class="p">;</span>
+<span class="nv">$requestMessage</span><span class="o">-&gt;</span><span class="nv">$rqItem</span><span class="o">-&gt;</span><span class="nc">ItemTaxAmount</span> <span class="o">=</span> <span class="s2">"10"</span><span class="p">;</span>
 <span class="nv">$requestMessage</span><span class="o">-&gt;</span><span class="nv">$rqItem</span><span class="o">-&gt;</span><span class="nc">ItemTotalAmount</span> <span class="o">=</span> <span class="s2">"1110"</span><span class="p">;</span>
 </code></pre></div><div class="highlight"><pre class="highlight csharp tab-csharp"><code><span class="n">BridgeCommRequest</span> <span class="n">bcRequest</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">BridgeCommRequest</span><span class="p">();</span>
 <span class="n">RequestMessage</span> <span class="n">rqMessage</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">RequestMessage</span><span class="p">();</span>
@@ -1664,6 +1677,18 @@ You may refund/void the full amount of an original transaction or only part of t
 <span class="n">rqMessage</span><span class="p">.</span><span class="n">CustomerAccountCode</span> <span class="p">=</span> <span class="s">"CID-9876"</span><span class="p">;</span>
 <span class="n">rqMessage</span><span class="p">.</span><span class="n">TaxAmount</span> <span class="p">=</span> <span class="s">"110"</span><span class="p">;</span>
 <span class="n">rqMessage</span><span class="p">.</span><span class="n">TaxIndicator</span> <span class="p">=</span> <span class="s">"P"</span><span class="p">;</span>
+<span class="n">rqMessage</span><span class="p">.</span><span class="n">CommodityCode</span> <span class="p">=</span> <span class="s">"5999"</span><span class="p">;</span>
+<span class="n">rqMessage</span><span class="p">.</span><span class="n">ItemCount</span> <span class="p">=</span> <span class="s">"1"</span><span class="p">;</span>
+
+<span class="n">Item</span> <span class="n">rqItem</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Item</span><span class="p">();</span>
+<span class="n">rqItem</span><span class="p">.</span><span class="n">ItemCode</span> <span class="p">=</span> <span class="s">"123456"</span><span class="p">;</span>
+<span class="n">rqItem</span><span class="p">.</span><span class="n">ItemCommodityCode</span> <span class="p">=</span> <span class="s">"5999"</span><span class="p">;</span>
+<span class="n">rqItem</span><span class="p">.</span><span class="n">ItemDescription</span> <span class="p">=</span> <span class="s">"Widget"</span><span class="p">;</span>
+<span class="n">rqItem</span><span class="p">.</span><span class="n">ItemQuantity</span> <span class="p">=</span> <span class="s">"1"</span><span class="p">;</span>
+<span class="n">rqItem</span><span class="p">.</span><span class="n">ItemUnitCostAmt</span> <span class="p">=</span> <span class="s">"1000"</span><span class="p">;</span>
+<span class="n">rqItem</span><span class="p">.</span><span class="n">ItemUnitMeasure</span> <span class="p">=</span><span class="s">"EA"</span><span class="p">;</span>
+<span class="n">rqItem</span><span class="p">.</span><span class="n">ItemTaxAmount</span> <span class="p">=</span> <span class="s">"10"</span><span class="p">;</span>
+<span class="n">rqItem</span><span class="p">.</span><span class="n">ItemTotalAmount</span> <span class="p">=</span> <span class="s">"1110"</span><span class="p">;</span>
 </code></pre></div><div class="highlight"><pre class="highlight java tab-java"><code><span class="nc">BridgeCommRequest</span> <span class="n">bcRequest</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BridgeCommRequest</span><span class="o">();</span>
 <span class="nc">RequestMessage</span> <span class="n">rqMessage</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">RequestMessage</span><span class="o">();</span>
 
@@ -1687,15 +1712,17 @@ You may refund/void the full amount of an original transaction or only part of t
 <span class="n">rqMessage</span><span class="o">.</span><span class="na">setCustomerAccountCode</span><span class="o">(</span><span class="s">"CID-9876"</span><span class="o">);</span>
 <span class="n">rqMessage</span><span class="o">.</span><span class="na">setTaxAmount</span><span class="o">(</span><span class="s">"110"</span><span class="o">);</span>
 <span class="n">rqMessage</span><span class="o">.</span><span class="na">setTaxIndicator</span><span class="o">(</span><span class="s">"P"</span><span class="o">);</span>
+<span class="n">rqMessage</span><span class="o">.</span><span class="na">setCommodityCode</span><span class="o">(</span><span class="s">"5999"</span><span class="o">);</span>
 <span class="n">rqMessage</span><span class="o">.</span><span class="na">setItemCount</span><span class="o">(</span><span class="s">"1"</span><span class="o">);</span>
-<span class="n">rqMessage</span><span class="o">.</span><span class="na">setItem</span><span class="o">(</span><span class="k">new</span> <span class="n">rqItem</span><span class="o">);</span>
 
+<span class="n">rqMessage</span><span class="o">.</span><span class="na">setItem</span><span class="o">(</span><span class="k">new</span> <span class="n">rqItem</span><span class="o">);</span>
 <span class="n">rqItem</span><span class="o">.</span><span class="na">setItemCode</span><span class="o">(</span><span class="s">"123456"</span><span class="o">);</span>
 <span class="n">rqItem</span><span class="o">.</span><span class="na">setItemCommodityCode</span><span class="o">(</span><span class="s">"5999"</span><span class="o">);</span>
 <span class="n">rqItem</span><span class="o">.</span><span class="na">setItemDescription</span><span class="o">(</span><span class="s">"Widget"</span><span class="o">);</span>
 <span class="n">rqItem</span><span class="o">.</span><span class="na">setItemQuantity</span><span class="o">(</span><span class="s">"1"</span><span class="o">);</span>
 <span class="n">rqItem</span><span class="o">.</span><span class="na">setItemUnitCostAmt</span><span class="o">(</span><span class="s">"1000"</span><span class="o">);</span>
 <span class="n">rqItem</span><span class="o">.</span><span class="na">setItemUnitMeasure</span><span class="o">(</span><span class="s">"EA"</span><span class="o">);</span>
+<span class="n">rqItem</span><span class="o">.</span><span class="na">setItemTaxAmount</span><span class="o">(</span><span class="s">"10"</span><span class="o">);</span>
 <span class="n">rqItem</span><span class="o">.</span><span class="na">setItemTotalAmount</span><span class="o">(</span><span class="s">"1110"</span><span class="o">);</span>
 </code></pre></div>
 <blockquote>
@@ -1721,6 +1748,7 @@ You may refund/void the full amount of an original transaction or only part of t
         <span class="nt">&lt;CustomerAccountCode&gt;</span>CID-9876<span class="nt">&lt;/CustomerAccountCode&gt;</span>
         <span class="nt">&lt;TaxAmount&gt;</span>110<span class="nt">&lt;/TaxAmount&gt;</span>
         <span class="nt">&lt;TaxIndicator&gt;</span>P<span class="nt">&lt;/TaxIndicator&gt;</span>
+        <span class="nt">&lt;CommodityCode&gt;</span>5999<span class="nt">&lt;/CommodityCode&gt;</span>
         <span class="nt">&lt;ItemCount&gt;</span>1<span class="nt">&lt;/ItemCount&gt;</span>
         <span class="nt">&lt;Item&gt;</span>
           <span class="nt">&lt;ItemCode&gt;</span>123456<span class="nt">&lt;/ItemCode&gt;</span>
@@ -1729,29 +1757,12 @@ You may refund/void the full amount of an original transaction or only part of t
           <span class="nt">&lt;ItemQuantity&gt;</span>1<span class="nt">&lt;/ItemQuantity&gt;</span>
           <span class="nt">&lt;ItemUnitCostAmt&gt;</span>1000<span class="nt">&lt;/ItemUnitCostAmt&gt;</span>
           <span class="nt">&lt;ItemUnitMeasure&gt;</span>EA<span class="nt">&lt;/ItemUnitMeasure&gt;</span>
+          <span class="nt">&lt;ItemTaxAmount&gt;</span>10<span class="nt">&lt;/ItemTaxAmount&gt;</span>
           <span class="nt">&lt;ItemTotalAmount&gt;</span>1110<span class="nt">&lt;/ItemTotalAmount&gt;</span>
         <span class="nt">&lt;/Item&gt;</span>
     <span class="nt">&lt;/requestMessage&gt;</span>
 <span class="nt">&lt;/requestHeader&gt;</span>
-</code></pre></div>
-<p>Note that Level III transactions require line-item details from the purchase. You should send one Item array for each line item on a given invoice; many integrators will dynamically map these required fields into their existing inventory, order management, or ERP systems. Alternatively, if you only sell one type of item, you may consider creating a static mapping of these fields, or &quot;hard-coding&quot; the values specific to your business.</p>
-
-<ul>
-<li><code>ItemCount</code> - the total number of line items being submitted in this request</li>
-<li><code>Item</code> - an array representing each line item in the request, consisting of:</li>
-<li><code>ItemCode</code> - a unique identifier assigned to this item in the merchant&#39;s inventory system (typically a SKU, SKID, or UPC) - 12 character maximum</li>
-<li><code>ItemCommodityCode</code> - a standardized code that classifies the item, such as the <a href="https://www.unspsc.org/" target="_blank">UN Standard Products and Services Code (UNSPSC)</a>; many integrators and merchants use the Merchant Category Code in this field</li>
-<li><code>ItemDescription</code> - A short textual description of the item, limited to 35 characters</li>
-<li><code>ItemQuantity</code> - quantity of item units purchased as part of this transaction; supports up to 4 decimal places</li>
-<li><code>ItemUnitCostAmt</code> - cost of a single unit of the item in cents (implied decimal)</li>
-<li><code>ItemUnitMeasure</code> - unit of measure used to quantify the items purchased (e.g.: kg, lb, in, etc.); &quot;EA&quot; for &quot;each&quot; is most commonly used and recommended for single-item merchants</li>
-<li><code>ItemTotalAmount</code> - total amount paid for the item (including tax and any discount)</li>
-</ul>
-
-<aside class="success">
-In general, for most card brands and card issuers, the presence of a value in the appropriate Level III field is enough to qualify for the reduced interchange rate. The accuracy of these values is not validated by the card brands in most cases, but may impact the reporting received by the administrator of a given corporate purchasing card program.
-</aside>
-<h2 id='ach-and-echecks'>ACH and eChecks</h2><div class="highlight"><pre class="highlight php tab-php"><code><span class="nv">$bpRequest</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BeyondPayRequest</span><span class="p">();</span>
+</code></pre></div><h2 id='ach-amp-echecks'>ACH &amp; eChecks</h2><div class="highlight"><pre class="highlight php tab-php"><code><span class="nv">$bpRequest</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BeyondPayRequest</span><span class="p">();</span>
 <span class="nv">$bpRequest</span><span class="o">-&gt;</span><span class="nv">$requestMessage</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">RequestMessage</span><span class="p">();</span>
 
 <span class="nv">$bpRequest</span><span class="o">-&gt;</span><span class="nc">RequestDateTime</span> <span class="o">=</span> <span class="nc">DateTime</span><span class="mf">.</span><span class="nc">Now</span><span class="mf">.</span><span class="nf">ToString</span><span class="p">(</span><span class="s2">"yyyyMMddHHmmss"</span><span class="p">);</span>
@@ -1770,6 +1781,20 @@ In general, for most card brands and card issuers, the presence of a value in th
 <span class="nv">$bpRequest</span><span class="o">-&gt;</span><span class="nv">$requestMessage</span><span class="o">-&gt;</span><span class="nc">BankAccountNum</span> <span class="o">=</span> <span class="s2">"4099999992"</span><span class="p">;</span>
 </code></pre></div>
 <p>Processing an eCheck/ACH transaction is very similar to processing a credit card transaction. Instead of passing a token to the webservice, you can directly pass the bank&#39;s routing/transit number and the bank account number. These data elements are not considered sensitive to the same degree as card data, and are not covered by the scope of PCI DSS. You should still encrypt said data elements whether at rest or in motion, but they will not impact your scope of PCI compliance.</p>
+
+<p>In addition to passing the routing and account number, you also need to specify whether the bank account is a checking or savings account, as well as the &quot;Standard Entry Class&quot; code as defined by NACHA.</p>
+
+<p><br><code>WEB</code> - Internet-Initiated Entry
+<br><code>PPD</code> - Prearranged Payment and Deposit - for consumer checks (requires written authorization from customer)
+<br><code>CCD</code> - Corporate Credit or Debit - for business checks (requires written authorization from customer)
+<br><code>TEL</code> - Telephone-Initiated Entry</p>
+
+<aside class="notice">
+Different NACHA SEC codes require different types of authorizations from or disclosure to your customer:
+<br><b>WEB</b> - <a href="https://www.nacha.org/system/files/resources/Authorization_0.pdf" target="_blank">best practices for authorization and sample language</a>
+<br><b>CCD</b> and <b>PPD</b> - <a href="http://www.checktraining.com/docs/general/Programs/ACH%20Debit/ACH_Debit_auth_form.pdf" target="_blank">sample consumer authorization form</a>
+<br><b>TEL</b> - <a href="http://www.checktraining.com/docs/general/Programs/Check%20By%20Phone/Checks-By-Phone_sample_script.pdf" target="_blank">sample script for IVR</a> or <a href="http://www.checktraining.com/docs/general/Programs/Check%20By%20Phone/Checks-By-Phone_written_auth.pdf" target="_blank">sample written authorization form</a>
+</aside>
 <div class="highlight"><pre class="highlight csharp tab-csharp"><code><span class="n">BridgeCommRequest</span> <span class="n">bcRequest</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">BridgeCommRequest</span><span class="p">();</span>
 <span class="n">RequestMessage</span> <span class="n">rqMessage</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">RequestMessage</span><span class="p">();</span>
 
@@ -1827,21 +1852,7 @@ In general, for most card brands and card issuers, the presence of a value in th
         <span class="nt">&lt;Amount&gt;</span>1200<span class="nt">&lt;/Amount&gt;</span>
     <span class="nt">&lt;/requestMessage&gt;</span>
 <span class="nt">&lt;/requestHeader&gt;</span>
-</code></pre></div>
-<p>In addition to passing the routing and account number, you also need to specify whether the bank account is a checking or savings account, as well as the &quot;Standard Entry Class&quot; code as defined by NACHA.</p>
-
-<p><br><code>WEB</code> - Internet-Initiated Entry
-<br><code>PPD</code> - Prearranged Payment and Deposit - for consumer checks (requires written authorization from customer)
-<br><code>CCD</code> - Corporate Credit or Debit - for business checks (requires written authorization from customer)
-<br><code>TEL</code> - Telephone-Initiated Entry</p>
-
-<aside class="notice">
-Different NACHA SEC codes require different types of authorizations from or disclosure to your customer:
-<br><b>WEB</b> - <a href="https://www.nacha.org/system/files/resources/Authorization_0.pdf" target="_blank">best practices for authorization and sample language</a>
-<br><b>CCD</b> and <b>PPD</b> - <a href="http://www.checktraining.com/docs/general/Programs/ACH%20Debit/ACH_Debit_auth_form.pdf" target="_blank">sample consumer authorization form</a>
-<br><b>TEL</b> - <a href="http://www.checktraining.com/docs/general/Programs/Check%20By%20Phone/Checks-By-Phone_sample_script.pdf" target="_blank">sample script for IVR</a> or <a href="http://www.checktraining.com/docs/general/Programs/Check%20By%20Phone/Checks-By-Phone_written_auth.pdf" target="_blank">sample written authorization form</a>
-</aside>
-<h1 id='in-person-payments'>In-Person Payments</h1><h2 id='overview'>Overview</h2>
+</code></pre></div><h1 id='in-person-payments'>In-Person Payments</h1><h2 id='overview'>Overview</h2>
 <p>If you are developing a payment application or point of sale (POS) system for use by only your business, then that application falls in your scope of PCI DSS compliance as a merchant. </p>
 
 <p>If you are developing a POS to sell or license to other businesses, that application is in scope for PCI Payment Application Data Security Standard (PA-DSS) if it interacts with card data. </p>
@@ -1977,7 +1988,6 @@ Additional data elements are presented in the following sections that cover indu
 </span><span class="nl">"tenderType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CREDIT"</span><span class="p">,</span><span class="w">
 </span><span class="nl">"transType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SALE"</span><span class="p">,</span><span class="w">
 </span><span class="nl">"invNum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Invoice number"</span><span class="p">,</span><span class="w">
-</span><span class="nl">"pnRefNum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Reference number from a previous transaction"</span><span class="p">,</span><span class="w">
 </span><span class="nl">"poNum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Purchase order number"</span><span class="p">,</span><span class="w">
 </span><span class="nl">"taxAmt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#####.##"</span><span class="p">,</span><span class="w">
 </span><span class="nl">"allowPartialApproval"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true|false"</span><span class="p">,</span><span class="w">
@@ -1997,6 +2007,27 @@ Additional data elements are presented in the following sections that cover indu
 
 <aside class="notice">
 Partial authorization support is required for some merchant types and strongly encouraged for all others in order to reduce declines on prepaid open-loop (branded) cards when there are insufficient funds to cover the total amount of the transaction. See the <a href="https://usa.visa.com/dam/VCOM/global/support-legal/documents/visa-partial-authorization-service.pdf" target="_blank">Visa Partial Authorization Service Guide</a> for more details.
+</aside>
+<h2 id='refunds-amp-voids-2'>Refunds &amp; Voids</h2>
+<blockquote>
+<p>The <code>pnRefNum</code> is returned in the response to a previous sale or sale-auth request and may be used as input to refund or void that original transaction.
+You may also want to send these additional fields on some transactions:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="nl">"locationID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"91552FCB-01A7-4BA2-B00A-EA33FC660307"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UAT"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#####.##"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"softwareVendor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"My POS 1.0"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"tenderType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CREDIT"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"transType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"REFUND"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"invNum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Invoice number"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"pnRefNum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Reference number from the transaction to be returned"</span><span class="p">,</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>In order to refund or void a previous sale or sale-auth transaction, simply construct an JSON message with <code>tenderType</code> of <code>CREDIT</code> and <code>transType</code> of <code>REFUND</code>. Note that if the original transaction is still in an unsettled batch, the gateway will perform a void/reversal transaction. If the original transaction has already settled, then the gateway will perform a refund to the original card.</p>
+
+<aside class="notice">
+You may refund/void the full amount of an original transaction or only part of the amount (a "partial refund" or "partial reversal"). If the transaction is in the current open (unsettled) batch, then only a single void (for the full amount or partial amount) may be performed. If the transaction has settled, the refund request transaction may be repeated for multiple partial refunds up to the amount of the original transaction.
 </aside>
 <h2 id='tips-amp-gratuities'>Tips &amp; Gratuities</h2>
 <p><code>tenderType</code>=<code>CREDIT</code> and <code>transType</code>=<code>ADJUSTMENT</code> will adjust a previous <code>SALE</code> or <code>SALE_AUTH</code> adding a tip amount based on a <code>pnRefNum</code> (previous transaction reference number). This action can only be performed on unsettled transactions in an open batch. </p>
@@ -2104,16 +2135,24 @@ Partial authorization support is required for some merchant types and strongly e
 </span></code></pre></div>
 <p>Payment systems and Points of Sale for pharmacy merchants are required to pass some of these additional data fields in conjunction with their implementation of &quot;auto-substantiation&quot; using an &quot;inventory information approval system&quot; (IIAS). See <a href="https://sig-is.org/">sig-is.org</a> for more information.</p>
 <h1 id='transaction-reporting'>Transaction Reporting</h1>
+<p>The Beyond Pay Reporting API provides integrators with the ability to request transaction data via a SOAP request made to the service.  The user must provide data they wish to use as a filter in the parameter to the SOAP method and will receive a response containing the data they requested.</p>
+
+<p>The Reporting API provides three data contracts.  One for the incoming request and two for the response to the request.  When making a request, the consumer must provide a TransctionRowFilter object. When receiving the response, the consumer will get a TransactionSet object which will contain a collection of TransactionRow objects.  The data contracts are described in more detail below.</p>
+
 <blockquote>
-<p><a href='https://www.dropbox.com/s/h7ih2g47w8b8v39/BridgePay%20Public%20Reporting%20API%20v1%200%201.pdf?dl=0'>Reporting Developer Guide</a></p>
-
-<p><a href='https://www.dropbox.com/s/epf9jhj5swi5q68/BridgePay_Reporting%20_API.zip?dl=0'>Reporting API (Visual Studio)</a></p>
-
-<p>Service: <a href='https://www.bridgepaynetsecuretest.com/Bridgepay.Reporting.API/ReportingAPI.svc'>https://www.bridgepaynetsecuretest.com/Bridgepay.Reporting.API/ReportingAPI.svc</a></p>
-
+<p><b>Sandbox:</b></p>
+</blockquote>
+<div class="highlight"><pre class="highlight html tab-html"><code>https://api-test.getbeyondpay.com/Bridgepay.Reporting.API/ReportingAPI.svc
+</code></pre></div>
+<blockquote>
+<p><b>Production:</b></p>
+</blockquote>
+<div class="highlight"><pre class="highlight html tab-html"><code>https://api.getbeyondpay.com/Reporting.API/ReportingAPI.svc
+</code></pre></div>
+<blockquote>
 <p>C# sample implementation:</p>
 </blockquote>
-<div class="highlight"><pre class="highlight csharp"><code><span class="k">class</span> <span class="nc">Program</span>
+<div class="highlight"><pre class="highlight csharp tab-csharp"><code><span class="k">class</span> <span class="nc">Program</span>
 <span class="p">{</span>
   <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
   <span class="p">{</span>
@@ -2154,11 +2193,7 @@ Partial authorization support is required for some merchant types and strongly e
     <span class="p">}</span>
   <span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div>
-<p>The Beyond Pay Reporting API provides integrators with the ability to request transaction data via a SOAP request made to the service.  The user must provide data they wish to use as a filter in the parameter to the SOAP method and will receive a response containing the data they requested.</p>
-
-<p>The Reporting API provides three data contracts.  One for the incoming request and two for the response to the request.  When making a request, the consumer must provide a TransctionRowFilter object. When receiving the response, the consumer will get a TransactionSet object which will contain a collection of TransactionRow objects.  The data contracts are described in more detail below.</p>
-<h3 id='transactionrowfilter'>TransactionRowFilter</h3>
+</code></pre></div><h3 id='transactionrowfilter'>TransactionRowFilter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -2595,6 +2630,17 @@ Partial authorization support is required for some merchant types and strongly e
 
 <p>The data used to query on these parameters must be transformed before the filter can be applied. The data store resources are too time-consuming for these filters and they are therefore added after the data store query is completed. <b>You should never use a Post-Query Filter without first limiting the data store query with some DBQuery filters such as a date range and/or the merchant account information.</b></p>
 
+<ul>
+<li><p>GTE = Greater Than or Equal. The query will look for data that is greater than or equal to the data provided in the filter parameter.</p></li>
+<li><p>LTE = Less Than or Equal. The query will look for data that is less than or equal to the data provided in the filter parameter.</p></li>
+<li><p>EQUIV = Equals. The query will look for data that exactly matches the data provided in the filter parameter.</p></li>
+<li><p>CONTAINS = The query will look for data that contains the data provided in the filter parameter.</p></li>
+<li><p>INLIST = The query will look for data where the stored data matches one of the comma-delimited entries in the data provided in the filter parameter.</p></li>
+<li><p>N/A = The parameter is either a Boolean parameter or does not affect the data filtering process.</p></li>
+</ul>
+
+<p>NOTE: <code>ExcludeTransResults</code> must be used with <code>TransResults</code>. It modifies the behavior of the TransResults field.</p>
+
 <blockquote>
 <p>Examples:</p>
 
@@ -2602,55 +2648,31 @@ Partial authorization support is required for some merchant types and strongly e
 </blockquote>
 <div class="highlight"><pre class="highlight xml tab-xml"><code><span class="nt">&lt;AmountRangeFrom&gt;</span>100<span class="nt">&lt;/AmountRangeFrom&gt;</span>
 </code></pre></div>
-<ul>
-<li>GTE = Greater Than or Equal. The query will look for data that is greater than or equal to the data provided in the filter parameter.</li>
-</ul>
-
 <blockquote>
 <p>Returns all transactions of $2.00 or less:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight xml tab-xml"><code><span class="nt">&lt;AmountRangeTo&gt;</span>100<span class="nt">&lt;/AmountRangeTo&gt;</span>
 </code></pre></div>
-<ul>
-<li>LTE = Less Than or Equal. The query will look for data that is less than or equal to the data provided in the filter parameter.</li>
-</ul>
-
 <blockquote>
 <p>Returns all transactions with Invoice Number 2001:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight xml tab-xml"><code><span class="nt">&lt;InoviceNumber&gt;</span>2001<span class="nt">&lt;/InvoiceNumber&gt;</span>
 </code></pre></div>
-<ul>
-<li>EQUIV = Equals. The query will look for data that exactly matches the data provided in the filter parameter.</li>
-</ul>
-
 <blockquote>
 <p>Returns all declined transactions:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight xml tab-xml"><code><span class="nt">&lt;ResponseCode&gt;</span>D<span class="nt">&lt;/ResponseCode&gt;</span>
 </code></pre></div>
-<ul>
-<li>CONTAINS = The query will look for data that contains the data provided in the filter parameter.</li>
-</ul>
-
 <blockquote>
 <p>Returns all declined transactions with <a href="#gateway-message-codes">Gateway Message</a> codes D01-D09:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight xml tab-xml"><code><span class="nt">&lt;ResponseCode&gt;</span>D0<span class="nt">&lt;/ResponseCode&gt;</span>
 </code></pre></div>
-<ul>
-<li>INLIST = The query will look for data where the stored data matches one of the comma-delimited entries in the data provided in the filter parameter.</li>
-</ul>
-
 <blockquote>
 <p>Returns only those transactions that were declined with <a href="#gateway-message-codes">Gateway Message</a> code D01:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight xml tab-xml"><code><span class="nt">&lt;ResponseCode&gt;</span>D01<span class="nt">&lt;/ResponseCode&gt;</span>
 </code></pre></div>
-<ul>
-<li>N/A = The parameter is either a Boolean parameter or does not affect the data filtering process.</li>
-</ul>
-
 <blockquote>
 <p>Returns only those transactions that were declined with <a href="#gateway-message-codes">Gateway Message</a> code D01:</p>
 </blockquote>
@@ -2661,8 +2683,6 @@ Partial authorization support is required for some merchant types and strongly e
 </blockquote>
 <div class="highlight"><pre class="highlight xml tab-xml"><code><span class="nt">&lt;TransResults&gt;</span>00000,00001,10012<span class="nt">&lt;/TransResults&gt;</span>
 </code></pre></div>
-<p>NOTE: <code>ExcludeTransResults</code> must be used with <code>TransResults</code>. It modifies the behavior of the TransResults field.</p>
-
 <blockquote>
 <p>Return all transactions where <a href="#gateway-result-codes">Gateway Result code</a> code is NOT equal to 00000, 00001, or 10012:</p>
 </blockquote>
