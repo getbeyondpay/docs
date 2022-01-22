@@ -60,7 +60,7 @@ Get Beyond Pay for WooCommerce</a>
 Contributors: beyondpay
 Tags: credit card, payment, woocommerce, payment gateway, subscriptions, subscription payments, recurring billing
 Requires at least: 4.7
-Tested up to: 5.7.2
+Tested up to: 5.8
 Stable tag: trunk
 Requires PHP: 7.0
 License: MIT
@@ -199,6 +199,8 @@ Only <a href="#test-cards-and-triggers">test cards</a> should be used in sandbox
 
 > TokenPay.js Hosted Scripts
 
+The hosted TokenPay script has different versions for test and production.
+
 > <b>Sandbox:</b>
 
 ```html
@@ -211,9 +213,9 @@ https://api-test.getbeyondpay.com/Bridgepay.WebSecurity/TokenPay/js/tokenPay.js
 https://api.getbeyondpay.com/WebSecurity/TokenPay/js/tokenPay.js
 ```
 
-The hosted TokenPay script has different versions for test and production.
-
 > Beyond Pay SOAP API Endpoints
+
+A WSDL is available for Beyond Pay SOAP API by appending "?wsdl" to these endpoints.
 
 > <b>Sandbox:</b>
 
@@ -227,7 +229,6 @@ https://api-test.getbeyondpay.com/PaymentService/RequestHandler.svc
 https://api.getbeyondpay.com/PaymentService/RequestHandler.svc
 ```
 
-A WSDL is available for Beyond Pay SOAP API by appending "?wsdl" to these endpoints.
 
 ## Create a Payment Form
 
@@ -1115,7 +1116,7 @@ This Token value may be persisted and, with the cardholder's permission, associa
 
 Submitting a sale or sale-auth transaction with the Token as input requires use of the `User` and `Password` credentials in the request message, and also requires that the card `ExpirationDate` value be persisted and stored with the `Token` (the `ExpirationDate` value is returned in the original response message along with the `Token`).
 
-## Refunds and Voids
+## Refunds & Voids
 
 In order to refund or void a previous sale or sale-auth transaction, simply construct an XML message with `RequestType` of `012` and `TransactionType` of `refund`. Note that if the original transaction is still in an unsettled batch, the gateway will perform a void/reversal transaction. If the original transaction has already settled, then the gateway will perform a refund to the original card.
 
@@ -1179,6 +1180,10 @@ rqMessage.setSoftwareVendor("YourSoftwareName 1.0");
 rqMessage.setReferenceNumber("12345678");
 ```
 
+<aside class="notice">
+You may refund/void the full amount of an original transaction or only part of the amount (a "partial refund" or "partial reversal"). If the transaction is in the current open (unsettled) batch, then only a single void (for the full amount or partial amount) may be performed. If the transaction has settled, the refund request transaction may be repeated for multiple partial refunds up to the amount of the original transaction.
+</aside>
+
 > Or, in the raw XML:
 
 ```xml
@@ -1197,10 +1202,6 @@ rqMessage.setReferenceNumber("12345678");
     </requestMessage>
 </requestHeader>
 ```
-
-<aside class="notice">
-You may refund/void the full amount of an original transaction or only part of the amount (a "partial refund" or "partial reversal"). If the transaction is in the current open (unsettled) batch, then only a single void (for the full amount or partial amount) may be performed. If the transaction has settled, the refund request transaction may be repeated for multiple partial refunds up to the amount of the original transaction.
-</aside>
 
 > Raw XML response
 
@@ -1233,13 +1234,24 @@ You may refund/void the full amount of an original transaction or only part of t
 
 ```
 
-## Level II and Level III Data
+## Level II & Level III Data
 
 Some business cards may be eligible for lower interchange rates if you send additional data with the transaction. Beyond Pay supports these additional data fields and can help you or your clients secure <a href="https://www.getbeyond.com/b2b-payment-solutions/" target="_blank">these significantly reduced rates and other B2B benefits</a>.
 
 ### Level II Data
 
 > Sample transaction with Level II data:
+
+
+In order for a transaction to qualify at reduced "Level II" interchange rates, assuming the card is eligible for such, the following fields should be provided in the XML message to the gateway in addition to the basic required fields given in the <a href="#token-sale">instructions for processing a basic sale transaction</a>:
+
+- `PONum` - the customer's Purchase Order number; may be up to 24 alphanumeric characters and hyphens
+- `TaxAmount` - applicable tax amount in cents (implied decimal); must be less than the total transaction `Amount`
+- `TaxIndicator` - may be `P` (Provided), `N` (Not Provided), or `E` (Exempt). Use P if you are sending a value in `TaxAmount`, or E if you are tax-exempt
+
+<aside class="notice">
+Tax exempt transactions are not eligible for Level II interchange, but they are eligible for Level III rates.
+</aside>
 
 ```php
 $bpRequest = new BeyondPayRequest();
@@ -1312,12 +1324,6 @@ rqMessage.setPONum("PO-4321");
 rqMessage.setTaxAmount("110");
 rqMessage.setTaxIndicator("P");
 ```
-
-In order for a transaction to qualify at reduced "Level II" interchange rates, assuming the card is eligible for such, the following fields should be provided in the XML message to the gateway in addition to the basic required fields given in the <a href="#token-sale">instructions for processing a basic sale transaction</a>:
-
-- `PONum` - the customer's Purchase Order number; may be up to 24 alphanumeric characters and hyphens
-- `TaxAmount` - applicable tax amount in cents (implied decimal); must be less than the total transaction `Amount`
-- `TaxIndicator` - may be `P` (Provided), `N` (Not Provided), or `E` (Exempt). Use P if you are sending a value in `TaxAmount`, or E if you are tax-exempt
 
 > Or, in the raw XML:
 
@@ -1350,6 +1356,24 @@ Cards that are eligible for Level III interchange rates are typically corporate 
 
 > Sample sale transaction via <a href="/getting-started">TokenPay.js</a> with Level III line-item details:
 
+Note that Level III transactions require line-item details from the purchase. You should send one Item array for each line item on a given invoice; many integrators will dynamically map these required fields into their existing inventory, order management, or ERP systems. Alternatively, if you only sell one type of item, you may consider creating a static mapping of these fields, or "hard-coding" the values specific to your business.
+
+- `CommodityCode` - a summary commodity code - 4 character maximum; many integrators and merchants use the Merchant Category Code (MCC); not to be confused with the `ItemCommodityCode`.
+- `ItemCount` - the total number of line items being submitted in this request
+- `Item` - an array representing each line item in the request, consisting of:
+- `ItemCode` - a unique identifier assigned to this item in the merchant's inventory system (typically a SKU, SKID, or UPC) - 12 character maximum
+- `ItemCommodityCode` - a standardized code that classifies the item, such as the <a href="https://www.unspsc.org/" target="_blank">UN Standard Products and Services Code (UNSPSC)</a>; many integrators and merchants use the MCC in this field; not to be confused with the summary `CommodityCode`.
+- `ItemDescription` - A short textual description of the item, limited to 35 characters
+- `ItemQuantity` - quantity of item units purchased as part of this transaction; supports up to 4 decimal places
+- `ItemUnitCostAmt` - cost of a single unit of the item in cents (implied decimal)
+- `ItemUnitMeasure` - unit of measure used to quantify the items purchased (e.g.: kg, lb, in, etc.); "EA" for "each" is most commonly used and recommended for single-item merchants
+- `ItemTaxAmount` - tax for a single item
+- `ItemTotalAmount` - total amount paid for the item (including tax and any discount)
+
+<aside class="success">
+In general, for most card brands and card issuers, the presence of a value in the appropriate Level III field is enough to qualify for the reduced interchange rate. The accuracy of these values is not validated by the card brands in most cases, but may impact the reporting received by the administrator of a given corporate purchasing card program.
+</aside>
+
 ```php
 $bpRequest = new BeyondPayRequest();
 $bpRequest->$requestMessage = new RequestMessage();
@@ -1374,6 +1398,7 @@ $bpRequest->$requestMessage->PONum = "PO-4321";
 $bpRequest->$requestMessage->CustomerAccountCode = "CID-9876";
 $bpRequest->$requestMessage->TaxAmount = "110";
 $bpRequest->$requestMessage->TaxIndicator = "P";
+$bpRequest->$requestMessage->CommodityCode = "5999";
 $bpRequest->$requestMessage->ItemCount = "1";
 
 $requestMessage->$rqItem = new Item();
@@ -1383,6 +1408,7 @@ $requestMessage->$rqItem->ItemDescription = "Widget";
 $requestMessage->$rqItem->ItemQuantity = "1";
 $requestMessage->$rqItem->ItemUnitCostAmt = "1000";
 $requestMessage->$rqItem->ItemUnitMeasure = "EA";
+$requestMessage->$rqItem->ItemTaxAmount = "10";
 $requestMessage->$rqItem->ItemTotalAmount = "1110";
 ```
 
@@ -1410,6 +1436,18 @@ rqMessage.InvoiceNum = "INV-1234";
 rqMessage.CustomerAccountCode = "CID-9876";
 rqMessage.TaxAmount = "110";
 rqMessage.TaxIndicator = "P";
+rqMessage.CommodityCode = "5999";
+rqMessage.ItemCount = "1";
+
+Item rqItem = new Item();
+rqItem.ItemCode = "123456";
+rqItem.ItemCommodityCode = "5999";
+rqItem.ItemDescription = "Widget";
+rqItem.ItemQuantity = "1";
+rqItem.ItemUnitCostAmt = "1000";
+rqItem.ItemUnitMeasure ="EA";
+rqItem.ItemTaxAmount = "10";
+rqItem.ItemTotalAmount = "1110";
 ```
 
 ```java
@@ -1436,15 +1474,17 @@ rqMessage.setPONum("PO-4321");
 rqMessage.setCustomerAccountCode("CID-9876");
 rqMessage.setTaxAmount("110");
 rqMessage.setTaxIndicator("P");
+rqMessage.setCommodityCode("5999");
 rqMessage.setItemCount("1");
-rqMessage.setItem(new rqItem);
 
+rqMessage.setItem(new rqItem);
 rqItem.setItemCode("123456");
 rqItem.setItemCommodityCode("5999");
 rqItem.setItemDescription("Widget");
 rqItem.setItemQuantity("1");
 rqItem.setItemUnitCostAmt("1000");
 rqItem.setItemUnitMeasure("EA");
+rqItem.setItemTaxAmount("10");
 rqItem.setItemTotalAmount("1110");
 ```
 
@@ -1471,6 +1511,7 @@ rqItem.setItemTotalAmount("1110");
         <CustomerAccountCode>CID-9876</CustomerAccountCode>
         <TaxAmount>110</TaxAmount>
         <TaxIndicator>P</TaxIndicator>
+        <CommodityCode>5999</CommodityCode>
         <ItemCount>1</ItemCount>
         <Item>
           <ItemCode>123456</ItemCode>
@@ -1479,29 +1520,14 @@ rqItem.setItemTotalAmount("1110");
           <ItemQuantity>1</ItemQuantity>
           <ItemUnitCostAmt>1000</ItemUnitCostAmt>
           <ItemUnitMeasure>EA</ItemUnitMeasure>
+          <ItemTaxAmount>10</ItemTaxAmount>
           <ItemTotalAmount>1110</ItemTotalAmount>
         </Item>
     </requestMessage>
 </requestHeader>
 ```
 
-Note that Level III transactions require line-item details from the purchase. You should send one Item array for each line item on a given invoice; many integrators will dynamically map these required fields into their existing inventory, order management, or ERP systems. Alternatively, if you only sell one type of item, you may consider creating a static mapping of these fields, or "hard-coding" the values specific to your business.
-
-- `ItemCount` - the total number of line items being submitted in this request
-- `Item` - an array representing each line item in the request, consisting of:
-- `ItemCode` - a unique identifier assigned to this item in the merchant's inventory system (typically a SKU, SKID, or UPC) - 12 character maximum
-- `ItemCommodityCode` - a standardized code that classifies the item, such as the <a href="https://www.unspsc.org/" target="_blank">UN Standard Products and Services Code (UNSPSC)</a>; many integrators and merchants use the Merchant Category Code in this field
-- `ItemDescription` - A short textual description of the item, limited to 35 characters
-- `ItemQuantity` - quantity of item units purchased as part of this transaction; supports up to 4 decimal places
-- `ItemUnitCostAmt` - cost of a single unit of the item in cents (implied decimal)
-- `ItemUnitMeasure` - unit of measure used to quantify the items purchased (e.g.: kg, lb, in, etc.); "EA" for "each" is most commonly used and recommended for single-item merchants
-- `ItemTotalAmount` - total amount paid for the item (including tax and any discount)
-
-<aside class="success">
-In general, for most card brands and card issuers, the presence of a value in the appropriate Level III field is enough to qualify for the reduced interchange rate. The accuracy of these values is not validated by the card brands in most cases, but may impact the reporting received by the administrator of a given corporate purchasing card program.
-</aside>
-
-## ACH and eChecks
+## ACH & eChecks
 
 ```php
 $bpRequest = new BeyondPayRequest();
@@ -1524,6 +1550,20 @@ $bpRequest->$requestMessage->BankAccountNum = "4099999992";
 ```
 
 Processing an eCheck/ACH transaction is very similar to processing a credit card transaction. Instead of passing a token to the webservice, you can directly pass the bank's routing/transit number and the bank account number. These data elements are not considered sensitive to the same degree as card data, and are not covered by the scope of PCI DSS. You should still encrypt said data elements whether at rest or in motion, but they will not impact your scope of PCI compliance.
+
+In addition to passing the routing and account number, you also need to specify whether the bank account is a checking or savings account, as well as the "Standard Entry Class" code as defined by NACHA.
+
+<br>`WEB` - Internet-Initiated Entry
+<br>`PPD` - Prearranged Payment and Deposit - for consumer checks (requires written authorization from customer)
+<br>`CCD` - Corporate Credit or Debit - for business checks (requires written authorization from customer)
+<br>`TEL` - Telephone-Initiated Entry
+
+<aside class="notice">
+Different NACHA SEC codes require different types of authorizations from or disclosure to your customer:
+<br><b>WEB</b> - <a href="https://www.nacha.org/system/files/resources/Authorization_0.pdf" target="_blank">best practices for authorization and sample language</a>
+<br><b>CCD</b> and <b>PPD</b> - <a href="http://www.checktraining.com/docs/general/Programs/ACH%20Debit/ACH_Debit_auth_form.pdf" target="_blank">sample consumer authorization form</a>
+<br><b>TEL</b> - <a href="http://www.checktraining.com/docs/general/Programs/Check%20By%20Phone/Checks-By-Phone_sample_script.pdf" target="_blank">sample script for IVR</a> or <a href="http://www.checktraining.com/docs/general/Programs/Check%20By%20Phone/Checks-By-Phone_written_auth.pdf" target="_blank">sample written authorization form</a>
+</aside>
 
 ```csharp
 BridgeCommRequest bcRequest = new BridgeCommRequest();
@@ -1587,20 +1627,6 @@ rqMessage.setBankAccountNumber("4099999992");
     </requestMessage>
 </requestHeader>
 ```
-
-In addition to passing the routing and account number, you also need to specify whether the bank account is a checking or savings account, as well as the "Standard Entry Class" code as defined by NACHA.
-
-<br>`WEB` - Internet-Initiated Entry
-<br>`PPD` - Prearranged Payment and Deposit - for consumer checks (requires written authorization from customer)
-<br>`CCD` - Corporate Credit or Debit - for business checks (requires written authorization from customer)
-<br>`TEL` - Telephone-Initiated Entry
-
-<aside class="notice">
-Different NACHA SEC codes require different types of authorizations from or disclosure to your customer:
-<br><b>WEB</b> - <a href="https://www.nacha.org/system/files/resources/Authorization_0.pdf" target="_blank">best practices for authorization and sample language</a>
-<br><b>CCD</b> and <b>PPD</b> - <a href="http://www.checktraining.com/docs/general/Programs/ACH%20Debit/ACH_Debit_auth_form.pdf" target="_blank">sample consumer authorization form</a>
-<br><b>TEL</b> - <a href="http://www.checktraining.com/docs/general/Programs/Check%20By%20Phone/Checks-By-Phone_sample_script.pdf" target="_blank">sample script for IVR</a> or <a href="http://www.checktraining.com/docs/general/Programs/Check%20By%20Phone/Checks-By-Phone_written_auth.pdf" target="_blank">sample written authorization form</a>
-</aside>
 
 # In-Person Payments
 
@@ -1747,7 +1773,6 @@ Additional data elements are presented in the following sections that cover indu
 "tenderType": "CREDIT",
 "transType": "SALE",
 "invNum": "Invoice number",
-"pnRefNum": "Reference number from a previous transaction",
 "poNum": "Purchase order number",
 "taxAmt": "#####.##",
 "allowPartialApproval": "true|false",
@@ -1766,6 +1791,29 @@ You may also want to send these additional fields on some transactions:
 
 <aside class="notice">
 Partial authorization support is required for some merchant types and strongly encouraged for all others in order to reduce declines on prepaid open-loop (branded) cards when there are insufficient funds to cover the total amount of the transaction. See the <a href="https://usa.visa.com/dam/VCOM/global/support-legal/documents/visa-partial-authorization-service.pdf" target="_blank">Visa Partial Authorization Service Guide</a> for more details.
+</aside>
+
+## Refunds & Voids
+
+> The `pnRefNum` is returned in the response to a previous sale or sale-auth request and may be used as input to refund or void that original transaction.
+You may also want to send these additional fields on some transactions:
+
+```json
+{
+"locationID": "91552FCB-01A7-4BA2-B00A-EA33FC660307",
+"mode": "UAT",
+"amount": "#####.##",
+"softwareVendor": "My POS 1.0",
+"tenderType": "CREDIT",
+"transType": "REFUND",
+"invNum": "Invoice number",
+"pnRefNum": "Reference number from the transaction to be returned",
+}
+```
+In order to refund or void a previous sale or sale-auth transaction, simply construct an JSON message with `tenderType` of `CREDIT` and `transType` of `REFUND`. Note that if the original transaction is still in an unsettled batch, the gateway will perform a void/reversal transaction. If the original transaction has already settled, then the gateway will perform a refund to the original card.
+
+<aside class="notice">
+You may refund/void the full amount of an original transaction or only part of the amount (a "partial refund" or "partial reversal"). If the transaction is in the current open (unsettled) batch, then only a single void (for the full amount or partial amount) may be performed. If the transaction has settled, the refund request transaction may be repeated for multiple partial refunds up to the amount of the original transaction.
 </aside>
 
 ## Tips & Gratuities
@@ -1889,15 +1937,25 @@ Payment systems and Points of Sale for pharmacy merchants are required to pass s
 
 # Transaction Reporting
 
-> <a href='https://www.dropbox.com/s/h7ih2g47w8b8v39/BridgePay%20Public%20Reporting%20API%20v1%200%201.pdf?dl=0'>Reporting Developer Guide</a>
+The Beyond Pay Reporting API provides integrators with the ability to request transaction data via a SOAP request made to the service.  The user must provide data they wish to use as a filter in the parameter to the SOAP method and will receive a response containing the data they requested.
 
-> <a href='https://www.dropbox.com/s/epf9jhj5swi5q68/BridgePay_Reporting%20_API.zip?dl=0'>Reporting API (Visual Studio)</a>
+The Reporting API provides three data contracts.  One for the incoming request and two for the response to the request.  When making a request, the consumer must provide a TransctionRowFilter object. When receiving the response, the consumer will get a TransactionSet object which will contain a collection of TransactionRow objects.  The data contracts are described in more detail below.
 
-> Service: <a href='https://www.bridgepaynetsecuretest.com/Bridgepay.Reporting.API/ReportingAPI.svc'>https://www.bridgepaynetsecuretest.com/Bridgepay.Reporting.API/ReportingAPI.svc</a>
+> <b>Sandbox:</b>
+
+```html
+https://api-test.getbeyondpay.com/Bridgepay.Reporting.API/ReportingAPI.svc
+```
+
+> <b>Production:</b>
+
+```html
+https://api.getbeyondpay.com/Reporting.API/ReportingAPI.svc
+```
 
 > C# sample implementation:
 
-```c#
+```csharp
 class Program
 {
   static void Main(string[] args)
@@ -1940,10 +1998,6 @@ class Program
   }
 }
 ```
-
-The Beyond Pay Reporting API provides integrators with the ability to request transaction data via a SOAP request made to the service.  The user must provide data they wish to use as a filter in the parameter to the SOAP method and will receive a response containing the data they requested.
-
-The Reporting API provides three data contracts.  One for the incoming request and two for the response to the request.  When making a request, the consumer must provide a TransctionRowFilter object. When receiving the response, the consumer will get a TransactionSet object which will contain a collection of TransactionRow objects.  The data contracts are described in more detail below.
 
 ### TransactionRowFilter
 
@@ -2064,6 +2118,20 @@ The following fields are Post-Query filters. They will not process until after t
 
 The data used to query on these parameters must be transformed before the filter can be applied. The data store resources are too time-consuming for these filters and they are therefore added after the data store query is completed. <b>You should never use a Post-Query Filter without first limiting the data store query with some DBQuery filters such as a date range and/or the merchant account information.</b>
 
+- GTE = Greater Than or Equal. The query will look for data that is greater than or equal to the data provided in the filter parameter.
+
+- LTE = Less Than or Equal. The query will look for data that is less than or equal to the data provided in the filter parameter.
+
+- EQUIV = Equals. The query will look for data that exactly matches the data provided in the filter parameter.
+
+- CONTAINS = The query will look for data that contains the data provided in the filter parameter.
+
+- INLIST = The query will look for data where the stored data matches one of the comma-delimited entries in the data provided in the filter parameter.
+
+- N/A = The parameter is either a Boolean parameter or does not affect the data filtering process.
+
+NOTE: `ExcludeTransResults` must be used with `TransResults`. It modifies the behavior of the TransResults field.
+
 > Examples:
 
 > Returns all transactions of $1.00 or more:
@@ -2072,15 +2140,11 @@ The data used to query on these parameters must be transformed before the filter
 <AmountRangeFrom>100</AmountRangeFrom>
 ```
 
-- GTE = Greater Than or Equal. The query will look for data that is greater than or equal to the data provided in the filter parameter.
-
 > Returns all transactions of $2.00 or less:
 
 ```xml
 <AmountRangeTo>100</AmountRangeTo>
 ```
-
-- LTE = Less Than or Equal. The query will look for data that is less than or equal to the data provided in the filter parameter.
 
 > Returns all transactions with Invoice Number 2001:
 
@@ -2088,15 +2152,11 @@ The data used to query on these parameters must be transformed before the filter
 <InoviceNumber>2001</InvoiceNumber>
 ```
 
-- EQUIV = Equals. The query will look for data that exactly matches the data provided in the filter parameter.
-
 > Returns all declined transactions:
 
 ```xml
 <ResponseCode>D</ResponseCode>
 ```
-
-- CONTAINS = The query will look for data that contains the data provided in the filter parameter.
 
 > Returns all declined transactions with <a href="#gateway-message-codes">Gateway Message</a> codes D01-D09:
 
@@ -2104,15 +2164,11 @@ The data used to query on these parameters must be transformed before the filter
 <ResponseCode>D0</ResponseCode>
 ```
 
-- INLIST = The query will look for data where the stored data matches one of the comma-delimited entries in the data provided in the filter parameter.
-
 > Returns only those transactions that were declined with <a href="#gateway-message-codes">Gateway Message</a> code D01:
 
 ```xml
 <ResponseCode>D01</ResponseCode>
 ```
-
-- N/A = The parameter is either a Boolean parameter or does not affect the data filtering process.
 
 > Returns only those transactions that were declined with <a href="#gateway-message-codes">Gateway Message</a> code D01:
 
@@ -2125,8 +2181,6 @@ The data used to query on these parameters must be transformed before the filter
 ```xml
 <TransResults>00000,00001,10012</TransResults>
 ```
-
-NOTE: `ExcludeTransResults` must be used with `TransResults`. It modifies the behavior of the TransResults field.
 
 > Return all transactions where <a href="#gateway-result-codes">Gateway Result code</a> code is NOT equal to 00000, 00001, or 10012:
 
