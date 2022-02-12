@@ -315,6 +315,12 @@
             <a href="#transaction-reporting" class="toc-h1 toc-link" data-title="Transaction Reporting">Transaction Reporting</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#reporting-api-user-authorization-scopes" class="toc-h2 toc-link" data-title="Reporting API User Authorization Scopes">Reporting API User Authorization Scopes</a>
+                  </li>
+                  <li>
+                    <a href="#required-fields" class="toc-h2 toc-link" data-title="Required Fields">Required Fields</a>
+                  </li>
+                  <li>
                     <a href="#transactionrowfilter" class="toc-h2 toc-link" data-title="TransactionRowFilter">TransactionRowFilter</a>
                   </li>
                   <li>
@@ -324,7 +330,13 @@
                     <a href="#transactionrow" class="toc-h2 toc-link" data-title="TransactionRow">TransactionRow</a>
                   </li>
                   <li>
-                    <a href="#operation-contract" class="toc-h2 toc-link" data-title="Operation Contract">Operation Contract</a>
+                    <a href="#orgbatchlistfilter" class="toc-h2 toc-link" data-title="OrgBatchListFilter">OrgBatchListFilter</a>
+                  </li>
+                  <li>
+                    <a href="#orgbatchlistset" class="toc-h2 toc-link" data-title="OrgBatchListSet">OrgBatchListSet</a>
+                  </li>
+                  <li>
+                    <a href="#orgbatchlistdetail" class="toc-h2 toc-link" data-title="OrgBatchListDetail">OrgBatchListDetail</a>
                   </li>
                   <li>
                     <a href="#reporting-tips-amp-examples" class="toc-h2 toc-link" data-title="Reporting Tips &amp; Examples">Reporting Tips &amp; Examples</a>
@@ -364,7 +376,7 @@
             <li><a href="https://forms.office.com/r/0PjKcTGH5D" class="beyond-button" target="_blank" style="text-decoration:none;color:white;">Get API Keys</a></li>
             <li>______________</li>
             <li><a href='https://www.getbeyond.com/' target="_blank">www.getbeyond.com</a></li>
-            <li>©2021 Beyond</li>
+            <li>©2022 Beyond</li>
             <li>______________</li>
             <li><a href='https://www.getbeyond.com/privacy-policy/' target="_blank">Privacy Policy</a></li>
             <li><a href='https://www.getbeyond.com/ccpa/' target="_blank">CCPA Consumer Privacy</a></li>
@@ -464,7 +476,9 @@ License URI: https://opensource.org/licenses/MIT
 <h2 id='payment-sdks'>Payment SDKs</h2>
 <p>We offer several client libraries (or software development kits) which consume the Beyond Pay APIs, making it even easier for you to integrate with your project.</p>
 
-<p>Click the respective language tab to see SDK usage examples. SDKs coming soon to Github; contact <a href="mailto:BeyondPayIntegrations@getbeyond.com">BeyondPayIntegrations@getbeyond.com</a> to request access until then.</p>
+<p>Click the respective language tab to see SDK usage examples. </p>
+
+<p>Beyond Pay SDKs are coming soon to Github; contact <a href="mailto:BeyondPayIntegrations@getbeyond.com">BeyondPayIntegrations@getbeyond.com</a> to request access until then.</p>
 
 <ul>
 <li>PHP</li>
@@ -547,7 +561,7 @@ If your payment application stores, processes, or transmits sensitive cardholder
 <blockquote>
 <p><b>Sandbox:</b></p>
 </blockquote>
-<div class="highlight"><pre class="highlight html tab-html"><code>https://api-test.getbeyondpay.com/Bridgepay.WebSecurity/TokenPay/js/tokenPay.js
+<div class="highlight"><pre class="highlight html tab-html"><code>https://api-test.getbeyondpay.com/WebSecurity/TokenPay/js/tokenPay.js
 </code></pre></div>
 <blockquote>
 <p><b>Production:</b></p>
@@ -556,11 +570,7 @@ If your payment application stores, processes, or transmits sensitive cardholder
 </code></pre></div>
 <blockquote>
 <p>Beyond Pay SOAP API Endpoints</p>
-</blockquote>
 
-<p>A WSDL is available for Beyond Pay SOAP API by appending &quot;?wsdl&quot; to these endpoints.</p>
-
-<blockquote>
 <p><b>Sandbox:</b></p>
 </blockquote>
 <div class="highlight"><pre class="highlight html tab-html"><code>https://api-test.getbeyondpay.com/PaymentService/RequestHandler.svc
@@ -569,7 +579,9 @@ If your payment application stores, processes, or transmits sensitive cardholder
 <p><b>Production:</b></p>
 </blockquote>
 <div class="highlight"><pre class="highlight html tab-html"><code>https://api.getbeyondpay.com/PaymentService/RequestHandler.svc
-</code></pre></div><h2 id='create-a-payment-form'>Create a Payment Form</h2>
+</code></pre></div>
+<p>A WSDL is available for Beyond Pay SOAP API by appending &quot;?wsdl&quot; to these endpoints.</p>
+<h2 id='create-a-payment-form'>Create a Payment Form</h2>
 <blockquote>
 <p>To determine where to insert the UI components, create empty DOM elements with unique IDs within your payment form.</p>
 </blockquote>
@@ -880,19 +892,19 @@ You should always submit the ZIP or Postal code in order to ensure the best chan
 <p>After your transaction has been successfully submitted to the gateway, make sure you inspect the response message. Specifically, look at:</p>
 
 <ul>
-<li><code>ResponseCode</code> - a 5 digit response code indicating the status of the transaction request</li>
+<li><code>ResponseCode</code> - a 5 digit response code indicating the status of the transaction request; see see <a href="#response-codes">Response Codes</a></li>
 <li><code>ResponseDescription</code>- a verbose description of the ResponseCode</li>
-<li><code>GatewayResult</code> - an additional response code that may provide additional information on the status of the transaction</li>
-<li><code>GatewayMessage</code> - a verbose description of the GatewayResult</li>
-<li><code>AVSResult</code> - a code indicating the status of the Address Verification System request, if any</li>
+<li><code>GatewayResult</code> - an additional response code that may provide additional information on the status of the transaction; see <a href="#gateway-result-codes">Gateway Result Codes</a></li>
+<li><code>GatewayMessage</code> - a verbose description of the GatewayResult; see <a href="#gateway-message-codes">Gateway Message Codes</a></li>
+<li><code>AVSResult</code> - a code indicating the status of the Address Verification System request, if any; see <a href="#avs-response-codes">AVS Response Codes</a></li>
 <li><code>AVSMessage</code> - a verbose description of the AVSResult code meaning</li>
-<li><code>CVResult</code> - a code indicating the status of the Card Security Code (aka CVV2, CID) sent in the request message</li>
+<li><code>CVResult</code> - a code indicating the status of the Card Security Code (aka CVV2, CID) sent in the request message; see <a href="#cvv-response-codes">CVV Response Codes</a></li>
 <li><code>CVMessage</code> - a verbose description of the CVResult code meaning</li>
 <li><code>Token</code> - a non-sensitive representation of the card number used in the transaction. The last four digits are the same as the last four digits of the card number. This value can be persisted and used for <a href="#repeat-sales-and-cards-on-file">future recurring transactions from the same cardholder</a>. </li>
 </ul>
 
 <blockquote>
-<p>Beyond Pay Sample Declined Sale Response</p>
+<p>Declined Sale Response Sample</p>
 </blockquote>
 <div class="highlight"><pre class="highlight php tab-php"><code><span class="nv">$bcResponse</span><span class="o">-&gt;</span><span class="nc">TransactionID</span> <span class="o">=</span> <span class="s2">"635693706433821501&lt;"</span><span class="p">;</span>
 <span class="nv">$bcResponse</span><span class="o">-&gt;</span><span class="nc">RequestType</span> <span class="o">=</span> <span class="s2">"004"</span><span class="p">;</span>
@@ -1290,10 +1302,6 @@ This capture request and several other API requests described here may take diff
   <span class="nt">&lt;/responseMessage&gt;</span>
 <span class="nt">&lt;/Capture&gt;</span>
 </code></pre></div><h2 id='repeat-sales-and-cards-on-file'>Repeat Sales and Cards-on-File</h2>
-<blockquote>
-<p>The <code>Token</code> element represents a card number, can be used multiple times, and does not expire. It may be used as input in a transaction in lieu of the <code>PaymentAccountNumber</code> or the <code>AuthenticationTokenId</code>, and also requires the <code>ExpirationDate</code> field to be submitted with it.</p>
-</blockquote>
-
 <p>Every sale or authorization response from Beyond Pay contains a <code>Token</code> element. This Token represents the card number used in the original transaction, but is not considered a sensitive data element per the PCI DSS. To ease in identifying the original card, however, the last four digits of the <code>Token</code> are the same as the last four digits of the card number.</p>
 <div class="highlight"><pre class="highlight php tab-php"><code><span class="nv">$bpRequest</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BeyondPayRequest</span><span class="p">();</span>
 <span class="nv">$bpRequest</span><span class="o">-&gt;</span><span class="nv">$requestMessage</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">RequestMessage</span><span class="p">();</span>
@@ -1378,6 +1386,8 @@ This capture request and several other API requests described here may take diff
     <span class="nt">&lt;/requestMessage&gt;</span>
 <span class="nt">&lt;/requestHeader&gt;</span>
 </code></pre></div>
+<p>The <code>Token</code> element represents a card number, can be used multiple times, and does not expire. It may be used as input in a transaction in lieu of the <code>PaymentAccountNumber</code> or the <code>AuthenticationTokenId</code>, and also requires the <code>ExpirationDate</code> field to be submitted with it.</p>
+
 <p>This Token value may be persisted and, with the cardholder&#39;s permission, associated with their user account in your application in order to make future purchases with the same card (&quot;card-on-file&quot;).</p>
 
 <p>Submitting a sale or sale-auth transaction with the Token as input requires use of the <code>User</code> and <code>Password</code> credentials in the request message, and also requires that the card <code>ExpirationDate</code> value be persisted and stored with the <code>Token</code> (the <code>ExpirationDate</code> value is returned in the original response message along with the <code>Token</code>).</p>
@@ -1603,6 +1613,10 @@ Tax exempt transactions are not eligible for Level II interchange, but they are 
 <p>Note that Level III transactions require line-item details from the purchase. You should send one Item array for each line item on a given invoice; many integrators will dynamically map these required fields into their existing inventory, order management, or ERP systems. Alternatively, if you only sell one type of item, you may consider creating a static mapping of these fields, or &quot;hard-coding&quot; the values specific to your business.</p>
 
 <ul>
+<li><code>LocalTaxAmount</code> - applicable local tax amount in cents (implied decimal); must be less than the total transaction <code>Amount</code></li>
+<li><code>LocalTaxIndicator</code> - may be <code>P</code> (Provided), <code>N</code> (Not Provided), or <code>E</code> (Exempt). Use P if you are sending a value in <code>TaxAmount</code>, or E if you are tax-exempt</li>
+<li><code>NationalTaxAmount</code> - applicable national tax amount in cents (implied decimal); must be less than the total transaction <code>Amount</code></li>
+<li><code>NationalTaxIndicator</code> - may be <code>P</code> (Provided), <code>N</code> (Not Provided), or <code>E</code> (Exempt). Use <code>P</code> if you are sending a value in <code>TaxAmount</code>, or <code>E</code> if you are tax-exempt</li>
 <li><code>CommodityCode</code> - a summary commodity code - 4 character maximum; many integrators and merchants use the Merchant Category Code (MCC); not to be confused with the <code>ItemCommodityCode</code>.</li>
 <li><code>ItemCount</code> - the total number of line items being submitted in this request</li>
 <li><code>Item</code> - an array representing each line item in the request, consisting of:</li>
@@ -1642,6 +1656,10 @@ In general, for most card brands and card issuers, the presence of a value in th
 <span class="nv">$bpRequest</span><span class="o">-&gt;</span><span class="nv">$requestMessage</span><span class="o">-&gt;</span><span class="nc">CustomerAccountCode</span> <span class="o">=</span> <span class="s2">"CID-9876"</span><span class="p">;</span>
 <span class="nv">$bpRequest</span><span class="o">-&gt;</span><span class="nv">$requestMessage</span><span class="o">-&gt;</span><span class="nc">TaxAmount</span> <span class="o">=</span> <span class="s2">"110"</span><span class="p">;</span>
 <span class="nv">$bpRequest</span><span class="o">-&gt;</span><span class="nv">$requestMessage</span><span class="o">-&gt;</span><span class="nc">TaxIndicator</span> <span class="o">=</span> <span class="s2">"P"</span><span class="p">;</span>
+<span class="nv">$bpRequest</span><span class="o">-&gt;</span><span class="nv">$requestMessage</span><span class="o">-&gt;</span><span class="nc">LocalTaxAmount</span> <span class="o">=</span> <span class="s2">"110"</span><span class="p">;</span>
+<span class="nv">$bpRequest</span><span class="o">-&gt;</span><span class="nv">$requestMessage</span><span class="o">-&gt;</span><span class="nc">LocalTaxIndicator</span> <span class="o">=</span> <span class="s2">"P"</span><span class="p">;</span>
+<span class="nv">$bpRequest</span><span class="o">-&gt;</span><span class="nv">$requestMessage</span><span class="o">-&gt;</span><span class="nc">NationalTaxAmount</span> <span class="o">=</span> <span class="s2">"110"</span><span class="p">;</span>
+<span class="nv">$bpRequest</span><span class="o">-&gt;</span><span class="nv">$requestMessage</span><span class="o">-&gt;</span><span class="nc">NationalTaxIndicator</span> <span class="o">=</span> <span class="s2">"P"</span><span class="p">;</span>
 <span class="nv">$bpRequest</span><span class="o">-&gt;</span><span class="nv">$requestMessage</span><span class="o">-&gt;</span><span class="nc">CommodityCode</span> <span class="o">=</span> <span class="s2">"5999"</span><span class="p">;</span>
 <span class="nv">$bpRequest</span><span class="o">-&gt;</span><span class="nv">$requestMessage</span><span class="o">-&gt;</span><span class="nc">ItemCount</span> <span class="o">=</span> <span class="s2">"1"</span><span class="p">;</span>
 
@@ -1677,6 +1695,10 @@ In general, for most card brands and card issuers, the presence of a value in th
 <span class="n">rqMessage</span><span class="p">.</span><span class="n">CustomerAccountCode</span> <span class="p">=</span> <span class="s">"CID-9876"</span><span class="p">;</span>
 <span class="n">rqMessage</span><span class="p">.</span><span class="n">TaxAmount</span> <span class="p">=</span> <span class="s">"110"</span><span class="p">;</span>
 <span class="n">rqMessage</span><span class="p">.</span><span class="n">TaxIndicator</span> <span class="p">=</span> <span class="s">"P"</span><span class="p">;</span>
+<span class="n">rqMessage</span><span class="p">.</span><span class="n">LocalTaxAmount</span> <span class="p">=</span> <span class="s">"110"</span><span class="p">;</span>
+<span class="n">rqMessage</span><span class="p">.</span><span class="n">LocalTaxIndicator</span> <span class="p">=</span> <span class="s">"P"</span><span class="p">;</span>
+<span class="n">rqMessage</span><span class="p">.</span><span class="n">NationalTaxAmount</span> <span class="p">=</span> <span class="s">"110"</span><span class="p">;</span>
+<span class="n">rqMessage</span><span class="p">.</span><span class="n">NationalTaxIndicator</span> <span class="p">=</span> <span class="s">"P"</span><span class="p">;</span>
 <span class="n">rqMessage</span><span class="p">.</span><span class="n">CommodityCode</span> <span class="p">=</span> <span class="s">"5999"</span><span class="p">;</span>
 <span class="n">rqMessage</span><span class="p">.</span><span class="n">ItemCount</span> <span class="p">=</span> <span class="s">"1"</span><span class="p">;</span>
 
@@ -1712,6 +1734,10 @@ In general, for most card brands and card issuers, the presence of a value in th
 <span class="n">rqMessage</span><span class="o">.</span><span class="na">setCustomerAccountCode</span><span class="o">(</span><span class="s">"CID-9876"</span><span class="o">);</span>
 <span class="n">rqMessage</span><span class="o">.</span><span class="na">setTaxAmount</span><span class="o">(</span><span class="s">"110"</span><span class="o">);</span>
 <span class="n">rqMessage</span><span class="o">.</span><span class="na">setTaxIndicator</span><span class="o">(</span><span class="s">"P"</span><span class="o">);</span>
+<span class="n">rqMessage</span><span class="o">.</span><span class="na">setLocalTaxAmount</span><span class="o">(</span><span class="s">"110"</span><span class="o">);</span>
+<span class="n">rqMessage</span><span class="o">.</span><span class="na">setLocalTaxIndicator</span><span class="o">(</span><span class="s">"P"</span><span class="o">);</span>
+<span class="n">rqMessage</span><span class="o">.</span><span class="na">setNationalTaxAmount</span><span class="o">(</span><span class="s">"110"</span><span class="o">);</span>
+<span class="n">rqMessage</span><span class="o">.</span><span class="na">setNationalTaxIndicator</span><span class="o">(</span><span class="s">"P"</span><span class="o">);</span>
 <span class="n">rqMessage</span><span class="o">.</span><span class="na">setCommodityCode</span><span class="o">(</span><span class="s">"5999"</span><span class="o">);</span>
 <span class="n">rqMessage</span><span class="o">.</span><span class="na">setItemCount</span><span class="o">(</span><span class="s">"1"</span><span class="o">);</span>
 
@@ -1748,6 +1774,10 @@ In general, for most card brands and card issuers, the presence of a value in th
         <span class="nt">&lt;CustomerAccountCode&gt;</span>CID-9876<span class="nt">&lt;/CustomerAccountCode&gt;</span>
         <span class="nt">&lt;TaxAmount&gt;</span>110<span class="nt">&lt;/TaxAmount&gt;</span>
         <span class="nt">&lt;TaxIndicator&gt;</span>P<span class="nt">&lt;/TaxIndicator&gt;</span>
+        <span class="nt">&lt;LocalTaxAmount&gt;</span>110<span class="nt">&lt;/LocalTaxAmount&gt;</span>
+        <span class="nt">&lt;LocalTaxIndicator&gt;</span>P<span class="nt">&lt;/LocalTaxIndicator&gt;</span>
+        <span class="nt">&lt;NationalTaxAmount&gt;</span>110<span class="nt">&lt;/NationalTaxAmount&gt;</span>
+        <span class="nt">&lt;NationalTaxIndicator&gt;</span>P<span class="nt">&lt;/NationalTaxIndicator&gt;</span>
         <span class="nt">&lt;CommodityCode&gt;</span>5999<span class="nt">&lt;/CommodityCode&gt;</span>
         <span class="nt">&lt;ItemCount&gt;</span>1<span class="nt">&lt;/ItemCount&gt;</span>
         <span class="nt">&lt;Item&gt;</span>
@@ -1784,10 +1814,10 @@ In general, for most card brands and card issuers, the presence of a value in th
 
 <p>In addition to passing the routing and account number, you also need to specify whether the bank account is a checking or savings account, as well as the &quot;Standard Entry Class&quot; code as defined by NACHA.</p>
 
-<p><br><code>WEB</code> - Internet-Initiated Entry
+<p><br><code>WEB</code> - Internet-Initiated Entry (for consumer entry via a web form)
 <br><code>PPD</code> - Prearranged Payment and Deposit - for consumer checks (requires written authorization from customer)
 <br><code>CCD</code> - Corporate Credit or Debit - for business checks (requires written authorization from customer)
-<br><code>TEL</code> - Telephone-Initiated Entry</p>
+<br><code>TEL</code> - Telephone-Initiated Entry (for merchant entry with customer voice authorization or IVR systems)</p>
 
 <aside class="notice">
 Different NACHA SEC codes require different types of authorizations from or disclosure to your customer:
@@ -1883,6 +1913,15 @@ Different NACHA SEC codes require different types of authorizations from or disc
 </code></pre></div>
 <p>Initiating a card present transaction is as simple as POSTing just a few lines of JSON to the web service, passing the following arguments:</p>
 
+<ul>
+<li><code>locationID</code> - the UUID from the PayGuardian Cloud app installed on the device</li>
+<li><code>mode</code> - indicates what environment to use; options are: <code>UAT</code> for testing and development and <code>PROD</code> for production/live usage</li>
+<li><code>amount</code> - the amount of the transaction (decimal format)</li>
+<li><code>softwareVendor</code> - the name and version of your POS or application</li>
+<li><code>tenderType</code> - the type of payment to expect; common values are: <code>UNKNOWN</code>, <code>CREDIT</code>, <code>DEBIT</code>, <code>CHECK</code>, <code>GIFT</code></li>
+<li><code>transType</code> - the type of transaction to perform; common values are: <code>SALE</code>, <code>SALE_AUTH</code>, <code>REFUND</code>, <code>VOID</code>, <code>TOKENADD</code>, <code>CAPTURE</code></li>
+</ul>
+
 <blockquote>
 <p>Credit Sale Request</p>
 
@@ -1897,14 +1936,9 @@ Different NACHA SEC codes require different types of authorizations from or disc
 </span><span class="nl">"transType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SALE"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<ul>
-<li><code>locationID</code> - the UUID from the PayGuardian Cloud app installed on the device</li>
-<li><code>mode</code> - indicates what environment to use; options are: UAT for testing and development and PROD for production/live usage</li>
-<li><code>amount</code> - the amount of the transaction
-<code>softwareVendor</code> - the name and version of your POS or application
-<code>tenderType</code> - the type of payment to expect; common values are: <code>UNKNOWN</code>, <code>CREDIT</code>, <code>DEBIT</code>, <code>CHECK</code>, <code>GIFT</code>
-<code>transType</code> - the type of transaction to perform; common values are: <code>SALE</code>, <code>SALE_AUTH</code>, <code>REFUND</code>, <code>VOID</code>, <code>TOKENADD</code>, <code>CAPTURE</code></li>
-</ul>
+<p>If the card is an EMV/chip card, then the user will be presented with an option to select whichever Applications reside on the chip (that is, they can select an Application ID associated with either Credit or Debit, depending on their card) regardless of what tender type is sent in the request. If the <code>UNKNOWN</code> tender type is used, the cardholder will similarly be prompted to select either the credit or debit application on the chip.</p>
+
+<p>If the card is magnetic stripe only and capable of being processed as either a debit or a credit transaction, then it will be processed as whatever tender type is sent in the request. If <code>UNKNOWN</code> is selected, the cardholder will likewise be prompted to make the selection.</p>
 
 <blockquote>
 <p>Credit Sale Response</p>
@@ -1963,17 +1997,13 @@ Different NACHA SEC codes require different types of authorizations from or disc
 </span><span class="nl">"transactionCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"23dbde68c492a6c2c6b5cbe726d40741"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>If the card is an EMV/chip card, then the user will be presented with an option to select whichever Applications reside on the chip (that is, they can select an Application ID associated with either Credit or Debit, depending on their card) regardless of what tender type is sent in the request. If the <code>UNKNOWN</code> tender type is used, the cardholder will similarly be prompted to select either the credit or debit application on the chip.</p>
-
-<p>If the card is magnetic stripe only and capable of being processed as either a debit or a credit transaction, then it will be processed as whatever tender type is sent in the request. If <code>UNKNOWN</code> is selected, the cardholder will likewise be prompted to make the selection.</p>
-
 <p>Transaction types are defined as follows:</p>
 
 <ul>
 <li><code>SALE</code> - authorizes a card and captures it, placing it in the batch for settlement</li>
-<li><code>SALE_AUTH</code> - authorizes a card but does not capture it, holding the cardholder&#39;s funds until the capture transaction is performed (or until 7 days at which time the authorization is voided)</li>
+<li><code>SALE_AUTH</code> - authorizes a card but does not capture it, holding the cardholder&#39;s funds until the capture transaction is performed (or until 7 days at which time the authorization is reversed</li>
 <li><code>REFUND</code> - this is the preferred transaction for both refunding and voiding; if the original transaction is still in an unsettled batch, the gateway will perform a void/reversal transaction; if the original transaction has already settled, then the gateway will perform a refund to the original card. See below notice.</li>
-<li><code>TOKENADD</code> - this transaction only tokenizes a given card number and does not perform any financial adjustments to the account</li>
+<li><code>TOKENADD</code> - this transaction only tokenizes a given card number and does not perform any financial transactions to the card</li>
 <li><code>CAPTURE</code> - used to capture a previous <code>SALE_AUTH</code> transaction and add it to the batch for settlement</li>
 </ul>
 
@@ -2008,30 +2038,26 @@ Additional data elements are presented in the following sections that cover indu
 <aside class="notice">
 Partial authorization support is required for some merchant types and strongly encouraged for all others in order to reduce declines on prepaid open-loop (branded) cards when there are insufficient funds to cover the total amount of the transaction. See the <a href="https://usa.visa.com/dam/VCOM/global/support-legal/documents/visa-partial-authorization-service.pdf" target="_blank">Visa Partial Authorization Service Guide</a> for more details.
 </aside>
-<h2 id='refunds-amp-voids-2'>Refunds &amp; Voids</h2>
-<blockquote>
-<p>The <code>pnRefNum</code> is returned in the response to a previous sale or sale-auth request and may be used as input to refund or void that original transaction.
-You may also want to send these additional fields on some transactions:</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+<h2 id='refunds-amp-voids-2'>Refunds &amp; Voids</h2><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
 </span><span class="nl">"locationID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"91552FCB-01A7-4BA2-B00A-EA33FC660307"</span><span class="p">,</span><span class="w">
 </span><span class="nl">"mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UAT"</span><span class="p">,</span><span class="w">
 </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#####.##"</span><span class="p">,</span><span class="w">
 </span><span class="nl">"softwareVendor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"My POS 1.0"</span><span class="p">,</span><span class="w">
 </span><span class="nl">"tenderType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CREDIT"</span><span class="p">,</span><span class="w">
 </span><span class="nl">"transType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"REFUND"</span><span class="p">,</span><span class="w">
-</span><span class="nl">"invNum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Invoice number"</span><span class="p">,</span><span class="w">
 </span><span class="nl">"pnRefNum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Reference number from the transaction to be returned"</span><span class="p">,</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>In order to refund or void a previous sale or sale-auth transaction, simply construct an JSON message with <code>tenderType</code> of <code>CREDIT</code> and <code>transType</code> of <code>REFUND</code>. Note that if the original transaction is still in an unsettled batch, the gateway will perform a void/reversal transaction. If the original transaction has already settled, then the gateway will perform a refund to the original card.</p>
+<p>In order to refund or void a previous <code>SALE</code> or <code>SALE_AUTH</code> transaction, simply construct an JSON message with <code>tenderType</code> of <code>CREDIT</code> and <code>transType</code> of <code>REFUND</code>.</p>
+
+<p>The <code>pnRefNum</code> is returned in the response to a sale or sale-auth request and may be used as input to refund or void that original transaction.</p>
+
+<p>Note that if the original transaction is still in an unsettled batch, the gateway will perform a void/reversal transaction. If the original transaction has already settled, then the gateway will perform a refund to the original card.</p>
 
 <aside class="notice">
 You may refund/void the full amount of an original transaction or only part of the amount (a "partial refund" or "partial reversal"). If the transaction is in the current open (unsettled) batch, then only a single void (for the full amount or partial amount) may be performed. If the transaction has settled, the refund request transaction may be repeated for multiple partial refunds up to the amount of the original transaction.
 </aside>
 <h2 id='tips-amp-gratuities'>Tips &amp; Gratuities</h2>
-<p><code>tenderType</code>=<code>CREDIT</code> and <code>transType</code>=<code>ADJUSTMENT</code> will adjust a previous <code>SALE</code> or <code>SALE_AUTH</code> adding a tip amount based on a <code>pnRefNum</code> (previous transaction reference number). This action can only be performed on unsettled transactions in an open batch. </p>
-
 <blockquote>
 <p><code>CREDIT</code> + <code>ADJUSTMENT</code> request:</p>
 </blockquote>
@@ -2044,6 +2070,8 @@ You may refund/void the full amount of an original transaction or only part of t
 </span><span class="nl">"transType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ADJUSTMENT"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
+<p>Submitting <code>tenderType</code>=<code>CREDIT</code> and <code>transType</code>=<code>ADJUSTMENT</code> will adjust a previous <code>SALE</code> or <code>SALE_AUTH</code> adding a tip amount based on a <code>pnRefNum</code> (previous transaction reference number). This action can only be performed on unsettled transactions in an open batch. </p>
+
 <blockquote>
 <p><code>CREDIT</code> + <code>ADJUSTMENT</code> response:</p>
 </blockquote>
@@ -2091,7 +2119,7 @@ You may refund/void the full amount of an original transaction or only part of t
 </span></code></pre></div>
 <p>If successful, the response will contain the new total approved amount: (initial amount) + (tip amount).</p>
 <h2 id='lodging-amp-hotels'>Lodging &amp; Hotels</h2><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-</span><span class="nl">"locationID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your-locationID"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"locationID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"C832D913-982C-4256-9895-2DD13BDA5947"</span><span class="p">,</span><span class="w">
 </span><span class="nl">"mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UAT"</span><span class="p">,</span><span class="w">
 </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.00"</span><span class="p">,</span><span class="w">
 </span><span class="nl">"softwareVendor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your_POS_name"</span><span class="p">,</span><span class="w">
@@ -2118,7 +2146,7 @@ You may refund/void the full amount of an original transaction or only part of t
 </span></code></pre></div>
 <p>The extended data fields required for lodging transactions can easily be passed through the semi-integrated device to Beyond Pay Gateway.</p>
 <h2 id='pharmacy-amp-healthcare'>Pharmacy &amp; Healthcare</h2><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-</span><span class="nl">"locationID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your-locationID"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"locationID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"C832D913-982C-4256-9895-2DD13BDA5947"</span><span class="p">,</span><span class="w">
 </span><span class="nl">"mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UAT"</span><span class="p">,</span><span class="w">
 </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.00"</span><span class="p">,</span><span class="w">
 </span><span class="nl">"softwareVendor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your_POS_name"</span><span class="p">,</span><span class="w">
@@ -2133,12 +2161,10 @@ You may refund/void the full amount of an original transaction or only part of t
 </span><span class="nl">"visionAmt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Amount (in cents) of the portion of the Healthcare Amount spent on vision related medical services."</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>Payment systems and Points of Sale for pharmacy merchants are required to pass some of these additional data fields in conjunction with their implementation of &quot;auto-substantiation&quot; using an &quot;inventory information approval system&quot; (IIAS). See <a href="https://sig-is.org/">sig-is.org</a> for more information.</p>
+<p>Payment systems and Points of Sale for pharmacy merchants are required to pass some of these additional data fields in conjunction with their implementation of &quot;auto-substantiation&quot; using an &quot;inventory information approval system&quot; (IIAS). </p>
+
+<p>See <a href="https://sig-is.org/">sig-is.org</a> for more information.</p>
 <h1 id='transaction-reporting'>Transaction Reporting</h1>
-<p>The Beyond Pay Reporting API provides integrators with the ability to request transaction data via a SOAP request made to the service.  The user must provide data they wish to use as a filter in the parameter to the SOAP method and will receive a response containing the data they requested.</p>
-
-<p>The Reporting API provides three data contracts.  One for the incoming request and two for the response to the request.  When making a request, the consumer must provide a TransctionRowFilter object. When receiving the response, the consumer will get a TransactionSet object which will contain a collection of TransactionRow objects.  The data contracts are described in more detail below.</p>
-
 <blockquote>
 <p><b>Sandbox:</b></p>
 </blockquote>
@@ -2150,9 +2176,10 @@ You may refund/void the full amount of an original transaction or only part of t
 <div class="highlight"><pre class="highlight html tab-html"><code>https://api.getbeyondpay.com/Reporting.API/ReportingAPI.svc
 </code></pre></div>
 <blockquote>
-<p>C# sample implementation:</p>
+<p><b>Endpoint Name &amp; Version:</b></p>
 </blockquote>
-<div class="highlight"><pre class="highlight csharp tab-csharp"><code><span class="k">class</span> <span class="nc">Program</span>
+<div class="highlight"><pre class="highlight html tab-html"><code>reportingapi_v2
+</code></pre></div><div class="highlight"><pre class="highlight csharp tab-csharp"><code><span class="k">class</span> <span class="nc">Program</span>
 <span class="p">{</span>
   <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
   <span class="p">{</span>
@@ -2193,187 +2220,320 @@ You may refund/void the full amount of an original transaction or only part of t
     <span class="p">}</span>
   <span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div><h3 id='transactionrowfilter'>TransactionRowFilter</h3>
+</code></pre></div>
+<p>The Beyond Pay Reporting API provides integrators with the ability to request transaction data via a SOAP request made to the service.  The user must provide data they wish to use as a filter in the parameter to the SOAP method and will receive a response containing the data they requested.</p>
+
+<p>The Reporting API provides three data contracts: one for the incoming request and two for the response to the request.  </p>
+
+<p>When making a <code>PublicGetBatchListByFilter</code> request, the consumer must provide an <code>OrgBatchListFilter</code> object. When receiving the response, the consumer will get an <code>OrgBatchListSet</code> object which will contain a collection of <code>OrgBatchListDetail</code> objects.</p>
+
+<p>When making a <code>PublicGetTransactionsByFilterV2</code> request, the consumer must provide a <code>TransctionRowFilterV2</code> object. When receiving the response, the consumer will get a <code>TransactionSet</code> object which will contain a collection of <code>TransactionRow</code> objects.</p>
+
+<p>The differences between V1 and V2 of PublicGetTransactionsByFilter are that a deprecated field (<code>SortBy</code>) has been removed and <code>ContractID</code> has been added.</p>
+
+<p>The data contracts are described in more detail below.</p>
+
+<p>Service definitions are available by appending &quot;?wsdl&quot; to the service URLs.</p>
+<h3 id='reporting-api-user-authorization-scopes'>Reporting API User Authorization Scopes</h3>
+<ul>
+<li>API user accounts at the Merchant Account level of the hierarchy only have access to data within their merchant account.</li>
+<li>API user accounts at the Merchant Group level of the hierarchy have access to data within their merchant group where access has been granted, reporting API results will exclude data associated to merchant accounts where access has not been granted</li>
+</ul>
+<h3 id='required-fields'>Required Fields</h3>
+<p><code>Skip</code> and <code>Take</code> fields are required when calling the Reporting API in order to manage the size of the result set.</p>
+
+<p>Transaction Rows and Batch Details will be limited to 1000 results at a time. By using <code>Take</code> and <code>Skip</code> you can obtain larger data sets over the course of multiple API requests.</p>
+
+<p>For example, if 1500 records are available based on the filter information sent in, the first 1000 records would be obtained by sending in 1000 for <code>Take</code> and 0 for <code>Skip</code>. The next 500 records would be obtained by sending in <code>Take</code> for 500 and <code>Skip</code> for 1000.</p>
+<h3 id='transactionrowfilter'>TransactionRowFilter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
 <th>Data Type</th>
 <th>Validations</th>
+<th>Description</th>
 <th>Comparison Type</th>
 </tr>
 </thead><tbody>
 <tr>
+<td>AccountHolderName</td>
+<td>String</td>
+<td>Optional, Exact Match</td>
+<td>Limit results to transactions that have a cardholder name matching exactly</td>
+<td>EQUIV</td>
+</tr>
+<tr>
+<td>AccountTypeIndicator</td>
+<td>String</td>
+<td>Optional, Exact Match where <code>A</code> = Amex, <code>B</code> = Bank card,<code>C</code>= CUP, <code>D</code>= Discover, <code>E</code>=EBT, <code>G</code>= Gift, <code>M</code>=Mastercard, <code>N</code>=Diners, <code>V</code>=Visa</td>
+<td>Limit results to those transactions using the matching payment account type</td>
+<td>EQUIV</td>
+</tr>
+<tr>
+<td>AccountTypeTransform</td>
+<td>String</td>
+<td>Optional, Exact Match. Valid values: <code>AMEX</code>, <code>FSA VISA</code>, <code>FSA MASTERCARD</code>, <code>VISA</code>, <code>MASTER CARD</code>, <code>DINERS CLUB</code>, <code>BANK CARD DEBIT</code> , <code>PAPER CHECK</code>, <code>CHECKING</code>, <code>SAVINGS</code>, <code>DISCOVER</code>, <code>CASH BENEFIT</code>, <code>FOOD STAMPS</code>, <code>GIFT CARD</code>, <code>CASH</code>, <code>CHINA UNIONPAY</code></td>
+<td>Limit results to matching transformed values</td>
+<td>EQUIV</td>
+</tr>
+<tr>
 <td>AmountRangeFrom</td>
-<td>Implied Integer</td>
+<td>Integer (implied decimal)</td>
 <td>Optional</td>
+<td>Lower amount bounds</td>
 <td>GTE</td>
 </tr>
 <tr>
 <td>AmountRangeTo</td>
-<td>Implied Integer</td>
+<td>Integer (implied decimal)</td>
 <td>Optional</td>
-<td></td>
+<td>Upper amount bounds</td>
+<td>LTE</td>
 </tr>
 <tr>
 <td>AuthorizationCode</td>
 <td>String</td>
 <td>Optional, Exact Match</td>
+<td>Limit to authorizations with the exact matching code</td>
 <td>EQUIV</td>
 </tr>
 <tr>
 <td>BatchID</td>
 <td>Integer</td>
 <td>Optional</td>
+<td>Limit results to transactions within a specific batch</td>
 <td>EQUIV</td>
 </tr>
 <tr>
 <td>CardBrand</td>
 <td>String</td>
-<td>Optional, Must match known card brands</td>
+<td>Optional. Valid Values: <code>AMEX</code>, <code>DISCOVER</code>, <code>MASTERCARD</code>, <code>DINERS</code>, <code>VISA</code></td>
+<td>Limit results to only a specific brand</td>
 <td>EQUIV</td>
 </tr>
 <tr>
 <td>CardholderFirstName</td>
 <td>String</td>
 <td>Optional, Exact Match</td>
+<td></td>
 <td>EQUIV</td>
 </tr>
 <tr>
 <td>CardholderLastName</td>
 <td>String</td>
 <td>Optional, Partial Match</td>
+<td></td>
 <td>CONTAINS</td>
 </tr>
 <tr>
 <td>ClerkId</td>
 <td>String</td>
 <td>Optional, Exact Match</td>
+<td></td>
+<td>EQUIV</td>
+</tr>
+<tr>
+<td>ContractID</td>
+<td>Integer</td>
+<td>Optional, Exact Match</td>
+<td>Limits the results to those transactions where the ContractID used in recurring billing matches</td>
+<td>EQUIV</td>
+</tr>
+<tr>
+<td>CustomFields</td>
+<td>List <code>&lt;KeyValueOfstringstring&gt;</code></td>
+<td>Optional, Exact Match on Key and Value</td>
+<td>When provided limits the results to those transactions where the Key Value pair match exactly the data provided. Attempting to filter by custom fields is only applicable if custom fields were previously defined with Beyond.</td>
 <td>EQUIV</td>
 </tr>
 <tr>
 <td>CustomerNumber</td>
 <td>String</td>
 <td>Optional, Exact Match</td>
+<td></td>
 <td>EQUIV</td>
 </tr>
 <tr>
 <td>DateRangeFrom</td>
 <td>DateTime</td>
 <td>Optional</td>
+<td></td>
 <td>GTE</td>
 </tr>
 <tr>
 <td>DateRangeTo</td>
 <td>DateTime</td>
 <td>Optional</td>
+<td></td>
 <td>LTE</td>
 </tr>
 <tr>
 <td>EndPartialAccountNumber</td>
 <td>String</td>
 <td>Optional</td>
+<td></td>
 <td>EQUIV</td>
+</tr>
+<tr>
+<td>EntryModeTransform</td>
+<td>String</td>
+<td>Optional. Valid values: <code>SWIPE</code>, <code>CHIP</code>, <code>READ</code>, <code>KEYED</code></td>
+<td>Limits results to specific entry mode</td>
+<td>EQUIV</td>
+</tr>
+<tr>
+<td>ExcludePaymentMethod</td>
+<td>String</td>
+<td>Optional</td>
+<td></td>
+<td>EQUIV</td>
+</tr>
+<tr>
+<td>ExcludeResponseCode</td>
+<td>String</td>
+<td>Optional</td>
+<td>Excludes transactions with provided <a href="#gateway-message-codes">Gateway Message Codes</a></td>
+<td></td>
 </tr>
 <tr>
 <td>ExcludeTransResults*</td>
 <td>Boolean</td>
-<td>Optional (1 or 0)</td>
+<td>Optional (1 or 0). Must be used with TransResults</td>
+<td></td>
 <td>N/A</td>
 </tr>
 <tr>
 <td>ExcludeVoid</td>
 <td>Boolean</td>
 <td>Optional (1 or 0)</td>
+<td></td>
 <td>N/A</td>
 </tr>
 <tr>
 <td>ID</td>
 <td>Integer</td>
 <td>Optional, Exact Match</td>
+<td></td>
 <td>EQUIV</td>
 </tr>
 <tr>
 <td>InvoiceNumber</td>
 <td>String</td>
 <td>Optional, Exact Match</td>
+<td></td>
 <td>EQUIV</td>
 </tr>
 <tr>
 <td>MerchantAccountId</td>
 <td>Integer</td>
 <td>Optional</td>
+<td></td>
 <td>EQUIV</td>
 </tr>
 <tr>
 <td>MerchantId</td>
 <td>Integer</td>
 <td>Optional</td>
+<td></td>
+<td>EQUIV</td>
+</tr>
+<tr>
+<td>OrderByList</td>
+<td>List <code>&lt;KeyValueOfstringstring&gt;</code></td>
+<td>Optional, given a Transaction Property as the key, and Ascending or Descending as the value. Ex: Key: <code>AuthorizedAmount</code> Value: <code>Descending</code></td>
+<td>When provided, the results will be sorted by the value in either ‘Ascending’ or ‘Descending’ order. Note: This property replaces <code>SortBy</code>.</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>OrganizationId</td>
+<td>Integer</td>
+<td>Optional, Exact Match</td>
+<td>When provided, limits the results to those transactions whose Organization ID matches the data provided. OrganizationId is returned in the Beyond Pay transaction API response</td>
 <td>EQUIV</td>
 </tr>
 <tr>
 <td>PaymentMethodID</td>
 <td>String</td>
-<td>Optional, Exact Match</td>
+<td>Optional, Exact Match. Valid values: <code>AC</code> (Amex), <code>BC</code> (Bank Checking), <code>BD</code> (Bank Card Debit), <code>BS</code> (Bank Savings), <code>DC</code> (Discover Credit), <code>DD</code> (Discover Debit), <code>EC</code> (EBT Cash Benefit), <code>EF</code> (Food Stamps), <code>FL</code> (Fleet One), <code>GF</code> (Fuelman Fleet Wide), <code>GG</code> (General Gift), <code>MC</code> (Master Card Credit), <code>MD</code> (Master Card Debit), <code>MF</code> (Master Card Fleet), <code>MP</code> (Master Card Prepaid), <code>NC</code> (Diner’s Club), <code>VC</code> (Visa Credit), <code>VD</code> (Visa Debit), <code>VF</code> ( Voyager), <code>VP</code> (Visa Prepaid), <code>VS</code> (Visa Fleet), <code>WX</code> (Wright Express)</td>
+<td>When provided, limits the results to those transactions whose Payment Method ID matches the data provided. Two letter code that identifies the payment method transaction type</td>
+<td>EQUIV</td>
+</tr>
+<tr>
+<td>PaymentMethodIndicator</td>
+<td>String</td>
+<td>Optional, Exact Match. Second character of <code>PaymentMethodID</code> above.</td>
+<td>Limit results to those transactions whose indicator matches</td>
+<td>EQUIV</td>
+</tr>
+<tr>
+<td>PaymentMethodTransform</td>
+<td>String</td>
+<td>Optional, Exact Match. Valid Values: <code>ACH</code>, <code>CASH</code>, <code>CHECK</code>, <code>CREDIT</code>, <code>DEBIT</code>, <code>EBT</code>, <code>GIFT</code></td>
+<td>Limit results to these methods</td>
 <td>EQUIV</td>
 </tr>
 <tr>
 <td>PurchaseOrderNumber</td>
 <td>String</td>
 <td>Optional, Exact Match</td>
-<td>EQUIV</td>
-</tr>
-<tr>
-<td>ResellerID</td>
-<td>Integer</td>
-<td>Optional</td>
+<td></td>
 <td>EQUIV</td>
 </tr>
 <tr>
 <td>ResponseCode</td>
 <td>String</td>
 <td>Optional, Partial Match</td>
+<td></td>
 <td>CONTAINS</td>
 </tr>
 <tr>
 <td>SettlementStatus</td>
 <td>String</td>
 <td>Optional, Exact Match</td>
+<td></td>
 <td>EQUIV</td>
 </tr>
 <tr>
 <td>Skip</td>
 <td>Integer</td>
 <td>Required</td>
+<td></td>
 <td>N/A</td>
 </tr>
 <tr>
 <td>Take</td>
 <td>Integer</td>
 <td>Required</td>
+<td></td>
 <td>N/A</td>
 </tr>
 <tr>
 <td>TransactionSourceIP</td>
 <td>String</td>
 <td>Optional, Exact Match</td>
+<td></td>
 <td>EQUIV</td>
 </tr>
 <tr>
 <td>TransactionStatus</td>
 <td>String</td>
 <td>Optional, Exact Match</td>
+<td></td>
 <td>EQUIV</td>
 </tr>
 <tr>
 <td>TransResults*</td>
 <td>String</td>
 <td>Optional, Multi-Match (comma separated list)</td>
+<td></td>
 <td>INLIST</td>
 </tr>
 </tbody></table>
 
 <p>The TransResults field works by mapping the BridgeComm 5-digit response code back to the gateway response code (the ResponseCode field in this contract).  In some cases, more than one mapping may exist for a given code.  It is recommended that you use the ResponseCode field for more granular filtering. The ExcludeTransResults field can modify the behavior of the TransResults field by establishing a “not in” condition.</p>
 <h3 id='transactionset'>TransactionSet</h3>
+<p>A set of transaction rows returned by the provided filter data.</p>
+
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -2382,17 +2542,29 @@ You may refund/void the full amount of an original transaction or only part of t
 </tr>
 </thead><tbody>
 <tr>
+<td>RecordAuthSum</td>
+<td>Integer</td>
+<td>The total sum of authorized amount of records that match the filter, excluding the <code>Take</code> &amp; <code>Skip</code> fields.</td>
+</tr>
+<tr>
 <td>RecordCount</td>
 <td>Integer</td>
-<td>The total number of records that match the filter, excluding the Take &amp; Skip fields.</td>
+<td>The total number of records that match the filter, excluding the <code>Take</code> &amp; <code>Skip</code> fields.</td>
+</tr>
+<tr>
+<td>RecordSum</td>
+<td>Integer</td>
+<td>The total sum of settlement amount of records that match the filter, excluding the <code>Take</code> &amp; <code>Skip</code> fields.</td>
 </tr>
 <tr>
 <td>TransactionList</td>
 <td>List</td>
-<td>A collection of TransactionRow objects.</td>
+<td>A collection of <code>TransactionRow</code> objects.</td>
 </tr>
 </tbody></table>
 <h3 id='transactionrow'>TransactionRow</h3>
+<p>A transaction returned within a set; can be one or many.</p>
+
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -2401,9 +2573,34 @@ You may refund/void the full amount of an original transaction or only part of t
 </tr>
 </thead><tbody>
 <tr>
+<td>AVSMessage</td>
+<td>String</td>
+<td>AVS response message</td>
+</tr>
+<tr>
+<td>AVSResultCode</td>
+<td>String</td>
+<td><a href="#avs-response-codes">AVS Response Code</a></td>
+</tr>
+<tr>
+<td>AccountHolderName</td>
+<td>String</td>
+<td>Cardholder name</td>
+</tr>
+<tr>
 <td>Account Type</td>
 <td>String</td>
-<td>1 character identifier that determines the type of account. Valid values are R (Branded Credit Card), E (Branded debit checking card), V (Branded debit savings card), D (Unbranded debit checking card), I (Unbranded debit savings card), S (Bank savings account), C (Bank checking account), F (EBT food stamp), H (EBT cash benefit), G (Gift card), L (Fleet), A (Cash), K (Check)</td>
+<td>1 character identifier that determines the type of account. Valid values are <code>R</code> (Branded Credit Card), <code>E</code> (Branded debit checking card), <code>V</code> (Branded debit savings card), <code>D</code> (Unbranded debit checking card), <code>I</code> (Unbranded debit savings card), <code>S</code> (Bank savings account), <code>C</code> (Bank checking account), <code>F</code> (EBT food stamp), <code>H</code> (EBT cash benefit), <code>G</code> (Gift card), <code>L</code> (Fleet), <code>A</code> (Cash), <code>K</code> (Check)</td>
+</tr>
+<tr>
+<td>AccountTypeIndicator</td>
+<td>String</td>
+<td><code>A</code> = Amex, <code>B</code> = Bank card,<code>C</code>= CUP, <code>D</code>= Discover, <code>E</code>=EBT, <code>G</code>= Gift, <code>M</code>=Mastercard, <code>N</code>=Diners, <code>V</code>=Visa</td>
+</tr>
+<tr>
+<td>AccountTypeTransform</td>
+<td>String</td>
+<td>Valid values: <code>AMEX</code>, <code>FSA VISA</code>, <code>FSA MASTERCARD</code>, <code>VISA</code>, <code>MASTER CARD</code>, <code>DINERS CLUB</code>, <code>BANK CARD DEBIT</code> , <code>PAPER CHECK</code>, <code>CHECKING</code>, <code>SAVINGS</code>, <code>DISCOVER</code>, <code>CASH BENEFIT</code>, <code>FOOD STAMPS</code>, <code>GIFT CARD</code>, <code>CASH</code>, <code>CHINA UNIONPAY</code></td>
 </tr>
 <tr>
 <td>AuthCode</td>
@@ -2426,9 +2623,24 @@ You may refund/void the full amount of an original transaction or only part of t
 <td>The gateway Batch ID that contains this transaction</td>
 </tr>
 <tr>
+<td>CVVMessage</td>
+<td>String</td>
+<td>CVV Response Message</td>
+</tr>
+<tr>
+<td>CVVResponseCode</td>
+<td>String</td>
+<td><a href="#cvv-response-codes">CVV Response Code</a></td>
+</tr>
+<tr>
 <td>CardBrand</td>
 <td>String</td>
 <td>Description of the card brand used. Valid values: AMEX, DISCOVER, MASTERCARD, DINERS, and VISA</td>
+</tr>
+<tr>
+<td>CardClass</td>
+<td>String</td>
+<td>Displays the tender type used to process a transaction. Valid values: <code>Credit</code>, <code>Debit</code>, <code>Gift</code>, <code>Prepaid</code>, <code>EBT</code>, <code>Fleet</code>, <code>None</code></td>
 </tr>
 <tr>
 <td>ClerkId</td>
@@ -2463,7 +2675,12 @@ You may refund/void the full amount of an original transaction or only part of t
 <tr>
 <td>EntryModeId</td>
 <td>String</td>
-<td>Identifies how the transaction was processed. Valid valus are T1 (Track 1 Data), T2 (Track 2 Data), T3 (Track 1 and 2 Data), KD (Keyed)</td>
+<td>Identifies how the transaction was processed. Valid valus are T1 (Track 1 Data), T2 (Track 2 Data), T3 (Track 1 and 2 Data), KD (Keyed), CD (Chip)</td>
+</tr>
+<tr>
+<td>EntryModeTransform</td>
+<td>String</td>
+<td>Human readable explanation of EntryModeId such as <code>SWIPE</code>, <code>KEYED</code>, <code>CHIP READ</code></td>
 </tr>
 <tr>
 <td>ExpirationDate</td>
@@ -2511,9 +2728,84 @@ You may refund/void the full amount of an original transaction or only part of t
 <td>The &quot;MerchantAccountCode&quot; for the transaction</td>
 </tr>
 <tr>
-<td>MerchantAccount</td>
+<td>MerchantAddress</td>
+<td>String</td>
+<td></td>
+</tr>
+<tr>
+<td>MerchantAddress2</td>
+<td>String</td>
+<td></td>
+</tr>
+<tr>
+<td>MerchantAddress3</td>
+<td>String</td>
+<td></td>
+</tr>
+<tr>
+<td>MerchantCategoryCode</td>
 <td>Integer</td>
-<td>The &quot;MerchantAccount&quot; for the transaction</td>
+<td></td>
+</tr>
+<tr>
+<td>MerchantCity</td>
+<td>String</td>
+<td></td>
+</tr>
+<tr>
+<td>MerchantEmail</td>
+<td>String</td>
+<td></td>
+</tr>
+<tr>
+<td>MerchantId</td>
+<td>String</td>
+<td>The Beyond Pay MerchantAccountCode</td>
+</tr>
+<tr>
+<td>MerchantName</td>
+<td>String</td>
+<td></td>
+</tr>
+<tr>
+<td>MerchantPhone</td>
+<td>String</td>
+<td></td>
+</tr>
+<tr>
+<td>MerchantState</td>
+<td>String</td>
+<td></td>
+</tr>
+<tr>
+<td>MerchantZip</td>
+<td>String</td>
+<td></td>
+</tr>
+<tr>
+<td>NetAmount</td>
+<td>Integer</td>
+<td><code>NetAmount</code> is the Total Amount – (Tip Amount + Duty Amount + Tax Amount) or if Tax Amount is not present: Total Amount – (Tip Amount + Duty Amount + Local Tax Amount + National Tax Amount) when present for Level III transactions</td>
+</tr>
+<tr>
+<td>NetworkMID</td>
+<td>String</td>
+<td>The Beyond Merchant ID (not the Merchant Account Code)</td>
+</tr>
+<tr>
+<td>NetworkReferenceNumber</td>
+<td>String</td>
+<td>The host processor reference number</td>
+</tr>
+<tr>
+<td>NetworkTerminalId</td>
+<td>String</td>
+<td>The host processor TID</td>
+</tr>
+<tr>
+<td>ParentId</td>
+<td>Integer</td>
+<td>The OrganizationId of the entity above the OrganizationId that the result is from</td>
 </tr>
 <tr>
 <td>PaymentMethodId</td>
@@ -2521,14 +2813,34 @@ You may refund/void the full amount of an original transaction or only part of t
 <td>Two letter code that identifies the payment method transaction type. Valid values: AC (Amex), bp (Bank Checking), BD (Bank Card Debit), BS (Bank Savings), DC (Discover Credit), DD (Discover Debit), EC (EBT Cash Benefit), EF (Food Stamps), FL (Fleet One), GF (Fuelman Fleet Wide), GG (General Gift), MC (Master Card Credit), MD (Master Card Debit), MF (Master Card Fleet), MP (Master Card Prepaid), NC (Diner’s Club), VC (Visa Credit), VD (Visa Debit), VF (Voyager), VP (Visa Prepaid), VS (Visa Fleet), WX (Wright Express)</td>
 </tr>
 <tr>
+<td>PaymentMethodIndicator</td>
+<td>String</td>
+<td>The second position of <code>PaymentMethodId</code></td>
+</tr>
+<tr>
+<td>PaymentMethodTransform</td>
+<td>String</td>
+<td>Valid Values: <code>ACH</code>, <code>CASH</code>, <code>CHECK</code>, <code>CREDIT</code>, <code>DEBIT</code>, <code>EBT</code>, <code>GIFT</code></td>
+</tr>
+<tr>
 <td>ProcessorResponse</td>
 <td>String</td>
 <td>Description of the response provided by the account issuer</td>
 </tr>
 <tr>
+<td>ProcessorResponseCode</td>
+<td>String</td>
+<td>The response code from the host processor</td>
+</tr>
+<tr>
 <td>PurchaseOrderNumber</td>
 <td>String</td>
 <td>The client-provided Purchase Order Number</td>
+</tr>
+<tr>
+<td>ReceiptTagData</td>
+<td>String</td>
+<td>This is the receipt tag data as provided by the original Beyond Pay API response. Example: <code>4F:A000000025010403;95:0000008000;9F10:06020103A0B000;9B:E800;91:;8A:</code></td>
 </tr>
 <tr>
 <td>RemainingAmount</td>
@@ -2539,11 +2851,6 @@ You may refund/void the full amount of an original transaction or only part of t
 <td>RequestedAmount</td>
 <td>Implied Integer</td>
 <td>The amount that was requested to be authorized when the transaction was processed</td>
-</tr>
-<tr>
-<td>ResellerId</td>
-<td>Integer</td>
-<td>The gateway reseller ID for the transaction</td>
 </tr>
 <tr>
 <td>ResponseCode</td>
@@ -2566,14 +2873,24 @@ You may refund/void the full amount of an original transaction or only part of t
 <td>Identifies whether the transaction has been settled yet or not. Valid valuies: Settled, Unsettled</td>
 </tr>
 <tr>
-<td>TerminalId</td>
-<td>String</td>
-<td>Reserved for Future Use</td>
+<td>TipAmount</td>
+<td>Integer</td>
+<td>The portion of the total transaction amount that represents the tip</td>
 </tr>
 <tr>
 <td>Token</td>
 <td>String</td>
 <td>The tokenized account number</td>
+</tr>
+<tr>
+<td>TransactionAux</td>
+<td>Object</td>
+<td>Object containing information on recurring billing <code>ContractId</code>, <code>Id</code>, <code>OriginatingTechnologySource</code>, and <code>SoftwareVendor</code></td>
+</tr>
+<tr>
+<td>TransactionCustomFields</td>
+<td>List <code>&lt;CustomFields&gt;</code></td>
+<td>A collection of provided Custom Fields for the transaction</td>
 </tr>
 <tr>
 <td>TransactionId</td>
@@ -2601,49 +2918,148 @@ You may refund/void the full amount of an original transaction or only part of t
 <td>Identifies the type of transaction that was requested. Valid values: Sale, Sale-Auth (authorization only), Credit, Void, Refund, Increment (incremental authorization).</td>
 </tr>
 <tr>
+<td>TransactionTypeTransform</td>
+<td>String</td>
+<td>Valid Values: <code>Auth Only</code>, <code>Sale</code>, <code>Refund</code>, <code>Activate</code>, <code>Deactivate</code>, <code>Reactivate</code>, <code>Inquiry</code>, <code>Unknown</code>, <code>Error</code>, <code>Decline</code>, <code>Void</code>, <code>Verification</code></td>
+</tr>
+<tr>
 <td>VoidIndicator</td>
 <td>Boolean</td>
 <td>Indicates whether or not the transaction was voided before the batch was settled</td>
 </tr>
 </tbody></table>
-<h2 id='operation-contract'>Operation Contract</h2>
-<blockquote>
-<p>This method returns a <code>TransactionSet</code> object as described above:</p>
-</blockquote>
-<div class="highlight"><pre class="highlight csharp tab-csharp"><code><span class="nf">PublicGetTransactionsByFilter</span><span class="p">(</span><span class="n">Credentials</span> <span class="n">credentials</span><span class="p">,</span> <span class="n">TransactionRowFilter</span> <span class="n">filterObject</span><span class="p">)</span>
-
+<h2 id='orgbatchlistfilter'>OrgBatchListFilter</h2>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Data Type</th>
+<th>Validations</th>
+<th>Description</th>
+<th>Comparison Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>BatchId</td>
+<td>String</td>
+<td>Optional, Exact Match</td>
+<td>Limit results to Batch ID provided</td>
+<td>EQUIV</td>
+</tr>
+<tr>
+<td>DateRangeFrom</td>
+<td>DateTime</td>
+<td>Optional, YYYY-MM-DDTHH:MM:SS</td>
+<td></td>
+<td>GTE</td>
+</tr>
+<tr>
+<td>DateRangeTo</td>
+<td>DateTime</td>
+<td>Optional, YYYY-MM-DDTHH:MM:SS</td>
+<td></td>
+<td>LTE</td>
+</tr>
+<tr>
+<td>IsProcessed</td>
+<td>Boolean</td>
+<td>true or fales</td>
+<td>Limits results to batches that have been settled if true</td>
+<td>EQUIV</td>
+</tr>
+<tr>
+<td>OrderByList</td>
+<td>List <code>&lt;KeyValueOfstringOrderByEnum&gt;</code></td>
+<td>Optional, given a Proprty as the Key and Ascending or Descending as the value</td>
+<td>When provided, results will be sorted by the value in either ascending or descending order</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>OrganizationId</td>
+<td>Integer</td>
+<td>Optional, Exact Match</td>
+<td>Limit results to the provided org ID</td>
+<td>EQUIV</td>
+</tr>
+</tbody></table>
+<h2 id='orgbatchlistset'>OrgBatchListSet</h2>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Data Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>BatchList</td>
+<td>List <code>&lt;OrgBatchListDetail&gt;</code></td>
+<td>A collection of OrgBatchListDetail objects. See below.</td>
+</tr>
+<tr>
+<td>RecordCount</td>
+<td>Integer</td>
+<td>The total number of records that match the filter</td>
+</tr>
+</tbody></table>
+<h2 id='orgbatchlistdetail'>OrgBatchListDetail</h2>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Data Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>BatchCount</td>
+<td>Integer (Nullable)</td>
+<td>Number of transactions in Detail record\</td>
+</tr>
+<tr>
+<td>BatchDateTime</td>
+<td>DateTime</td>
+<td>DateTime stamp of the Batch Record</td>
+</tr>
+<tr>
+<td>BatchId</td>
+<td>Long</td>
+<td>Batch ID</td>
+</tr>
+<tr>
+<td>BatchTotal</td>
+<td>Long (Nullable)</td>
+<td>Dollar Amount Total in Batch Record</td>
+</tr>
+<tr>
+<td>GatewayObjectId</td>
+<td>Integer (Nullable)</td>
+<td>Merchant Account Code</td>
+</tr>
+<tr>
+<td>IsProcessed</td>
+<td>Boolean</td>
+<td>True if the batch has been settled</td>
+</tr>
+<tr>
+<td>OrganizationId</td>
+<td>Integer</td>
+<td>The organization that owns the batch record</td>
+</tr>
+<tr>
+<td>OrganizationName</td>
+<td>String</td>
+<td>The organization name for the batch record owner</td>
+</tr>
+<tr>
+<td>ParentId</td>
+<td>Integer (Nullable)</td>
+<td>Organization ID for the parent of the batch record owner</td>
+</tr>
+</tbody></table>
+<h3 id='operation-contracts'>Operation Contracts</h3><div class="highlight"><pre class="highlight csharp tab-csharp"><code><span class="nf">PublicGetBatchListByFilter</span><span class="p">(</span><span class="n">Credentials</span> <span class="n">credentials</span><span class="p">,</span> <span class="n">BatchListFilter</span> <span class="n">filterObject</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight csharp tab-csharp"><code><span class="nf">PublicGetTransactionsByFilterV2</span><span class="p">(</span><span class="n">Credentials</span> <span class="n">credentials</span><span class="p">,</span> <span class="n">TransactionRowFilterV2</span> <span class="n">filterObject</span><span class="p">)</span>
 </code></pre></div>
-<p>At this time, the Reporting API provides only one operation contract for retrieving transactional data.</p>
+<p>At this time, the Reporting API provides two operation contracts for retrieving transactional and batch details. These methods return <code>BatchSet</code> and <code>TransactionSet</code> objects as described above.</p>
 <h2 id='reporting-tips-amp-examples'>Reporting Tips &amp; Examples</h2>
-<p>There are two types of parameters in the TransactionRowFilter object: DBQuery Filters and Post-Query Filters.</p>
-
-<p>Most of the parameters in the filter are DBQuery filters that are used directly against the persisted data store that contains the transactional data. However, some of the filters are Post-Query filters, meaning the filters are not applied until after the persisted data is retrieved. Post-Query filters have transformational logic that is better suited after the bulk of the query has been processed by the data store.</p>
-
-<p>Filters that are processed directly against the data store also have specific comparison modes that can be utilized for easier queries. Review the comparison modes listed in the <a href"#transactionrowfilter">TransactionRowFilter</a> table for a full list.</p>
-<h3 id='comparison-types'>Comparison Types</h3><h3 id='post-query-filters'>Post-Query Filters</h3>
-<p>The following fields are Post-Query filters. They will not process until after the initial data store query has completed.</p>
-
-<ul>
-<li>TransactionStatus</li>
-<li>CardBrand</li>
-</ul>
-
-<p>The data used to query on these parameters must be transformed before the filter can be applied. The data store resources are too time-consuming for these filters and they are therefore added after the data store query is completed. <b>You should never use a Post-Query Filter without first limiting the data store query with some DBQuery filters such as a date range and/or the merchant account information.</b></p>
-
-<ul>
-<li><p>GTE = Greater Than or Equal. The query will look for data that is greater than or equal to the data provided in the filter parameter.</p></li>
-<li><p>LTE = Less Than or Equal. The query will look for data that is less than or equal to the data provided in the filter parameter.</p></li>
-<li><p>EQUIV = Equals. The query will look for data that exactly matches the data provided in the filter parameter.</p></li>
-<li><p>CONTAINS = The query will look for data that contains the data provided in the filter parameter.</p></li>
-<li><p>INLIST = The query will look for data where the stored data matches one of the comma-delimited entries in the data provided in the filter parameter.</p></li>
-<li><p>N/A = The parameter is either a Boolean parameter or does not affect the data filtering process.</p></li>
-</ul>
-
-<p>NOTE: <code>ExcludeTransResults</code> must be used with <code>TransResults</code>. It modifies the behavior of the TransResults field.</p>
-
 <blockquote>
-<p>Examples:</p>
-
 <p>Returns all transactions of $1.00 or more:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight xml tab-xml"><code><span class="nt">&lt;AmountRangeFrom&gt;</span>100<span class="nt">&lt;/AmountRangeFrom&gt;</span>
@@ -2688,7 +3104,35 @@ You may refund/void the full amount of an original transaction or only part of t
 </blockquote>
 <div class="highlight"><pre class="highlight xml tab-xml"><code><span class="nt">&lt;TransResults&gt;</span>00000,00001,10012<span class="nt">&lt;/TransResults&gt;</span>
 <span class="nt">&lt;ExcludeTransResults&gt;</span>1<span class="nt">&lt;/ExcludeTransResults&gt;</span>
-</code></pre></div><h1 id='response-codes'>Response Codes</h1><h2 id='avs-response-codes'>AVS Response Codes</h2>
+</code></pre></div>
+<p>There are two types of parameters in the <code>TransactionRowFilter</code> object: DBQuery Filters and Post-Query Filters.</p>
+
+<p>Most of the parameters in the filter are DBQuery filters that are used directly against the persisted data store that contains the transactional data. However, some of the filters are Post-Query filters, meaning the filters are not applied until after the persisted data is retrieved. Post-Query filters have transformational logic that is better suited after the bulk of the query has been processed by the data store.</p>
+
+<p>Filters that are processed directly against the data store also have specific comparison modes that can be utilized for easier queries. Review the comparison modes listed in the <a href="#transactionrowfilter">TransactionRowFilter</a> table for a full list.</p>
+
+<p>NOTE: <code>ExcludeTransResults</code> must be used with <code>TransResults</code>. It modifies the behavior of the TransResults field.</p>
+<h3 id='comparison-types'>Comparison Types</h3>
+<ul>
+<li><p><code>GTE</code> = Greater Than or Equal. The query will look for data that is greater than or equal to the data provided in the filter parameter.</p></li>
+<li><p><code>LTE</code> = Less Than or Equal. The query will look for data that is less than or equal to the data provided in the filter parameter.</p></li>
+<li><p><code>EQUIV</code> = Equals. The query will look for data that exactly matches the data provided in the filter parameter.</p></li>
+<li><p><code>NOTEQUIV</code> = Not Equal. The query will look for data that does not exactly match the data provided in the filter parameter.</p></li>
+<li><p><code>CONTAINS</code> = The query will look for data that contains the data provided in the filter parameter.</p></li>
+<li><p><code>NOTCONTAINS</code> = The query will look for data that does not contain the data provided in the filter parameter.</p></li>
+<li><p><code>INLIST</code> = The query will look for data where the stored data matches one of the comma-delimited entries in the data provided in the filter parameter.</p></li>
+<li><p><code>N/A</code> = The parameter is either a Boolean parameter or does not affect the data filtering process.</p></li>
+</ul>
+<h3 id='post-query-filters'>Post-Query Filters</h3>
+<p>The following fields are Post-Query filters. They will not process until after the initial data store query has completed.</p>
+
+<ul>
+<li><code>TransactionStatus</code></li>
+<li><code>CardBrand</code></li>
+</ul>
+
+<p>The data used to query on these parameters must be transformed before the filter can be applied. The data store resources are too time-consuming for these filters and they are therefore added after the data store query is completed. <b>You should never use a Post-Query Filter without first limiting the data store query with some DBQuery filters such as a date range and/or the merchant account information.</b></p>
+<h1 id='response-codes'>Response Codes</h1><h2 id='avs-response-codes'>AVS Response Codes</h2>
 <aside class="warning">
  You should always inspect the AVSResult and CVResult fields as these can be good indicators of potential fraud. If you see a AVSResult or CVResult code that you do not want to accept because it may be too risky (such as "No Match" on the submitted Zip code), then you should submit a void transaction to cancel the authorization and advise the cardholder that their transaction has been declined.
 </aside>
