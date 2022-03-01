@@ -315,31 +315,19 @@
             <a href="#transaction-reporting" class="toc-h1 toc-link" data-title="Transaction Reporting">Transaction Reporting</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#reporting-api-user-authorization-scopes" class="toc-h2 toc-link" data-title="Reporting API User Authorization Scopes">Reporting API User Authorization Scopes</a>
+                    <a href="#transaction-reporting-2" class="toc-h2 toc-link" data-title="Transaction Reporting">Transaction Reporting</a>
                   </li>
                   <li>
-                    <a href="#required-fields" class="toc-h2 toc-link" data-title="Required Fields">Required Fields</a>
-                  </li>
-                  <li>
-                    <a href="#transactionrowfilter" class="toc-h2 toc-link" data-title="TransactionRowFilter">TransactionRowFilter</a>
-                  </li>
-                  <li>
-                    <a href="#transactionset" class="toc-h2 toc-link" data-title="TransactionSet">TransactionSet</a>
-                  </li>
-                  <li>
-                    <a href="#transactionrow" class="toc-h2 toc-link" data-title="TransactionRow">TransactionRow</a>
-                  </li>
-                  <li>
-                    <a href="#orgbatchlistfilter" class="toc-h2 toc-link" data-title="OrgBatchListFilter">OrgBatchListFilter</a>
-                  </li>
-                  <li>
-                    <a href="#orgbatchlistset" class="toc-h2 toc-link" data-title="OrgBatchListSet">OrgBatchListSet</a>
-                  </li>
-                  <li>
-                    <a href="#orgbatchlistdetail" class="toc-h2 toc-link" data-title="OrgBatchListDetail">OrgBatchListDetail</a>
+                    <a href="#batch-reporting" class="toc-h2 toc-link" data-title="Batch Reporting">Batch Reporting</a>
                   </li>
                   <li>
                     <a href="#reporting-tips-amp-examples" class="toc-h2 toc-link" data-title="Reporting Tips &amp; Examples">Reporting Tips &amp; Examples</a>
+                  </li>
+                  <li>
+                    <a href="#comparison-types" class="toc-h2 toc-link" data-title="Comparison Types">Comparison Types</a>
+                  </li>
+                  <li>
+                    <a href="#post-query-filters" class="toc-h2 toc-link" data-title="Post-Query Filters">Post-Query Filters</a>
                   </li>
               </ul>
           </li>
@@ -2234,18 +2222,18 @@ You may refund/void the full amount of an original transaction or only part of t
 <p>The data contracts are described in more detail below.</p>
 
 <p>Service definitions are available by appending &quot;?wsdl&quot; to the service URLs.</p>
-<h3 id='reporting-api-user-authorization-scopes'>Reporting API User Authorization Scopes</h3>
+<h4 id='reporting-api-user-authorization-scopes'>Reporting API User Authorization Scopes</h4>
 <ul>
 <li>API user accounts at the Merchant Account level of the hierarchy only have access to data within their merchant account.</li>
 <li>API user accounts at the Merchant Group level of the hierarchy have access to data within their merchant group where access has been granted, reporting API results will exclude data associated to merchant accounts where access has not been granted</li>
 </ul>
-<h3 id='required-fields'>Required Fields</h3>
+<h4 id='required-pagination-fields'>Required Pagination Fields</h4>
 <p><code>Skip</code> and <code>Take</code> fields are required when calling the Reporting API in order to manage the size of the result set.</p>
 
 <p>Transaction Rows and Batch Details will be limited to 1000 results at a time. By using <code>Take</code> and <code>Skip</code> you can obtain larger data sets over the course of multiple API requests.</p>
 
 <p>For example, if 1500 records are available based on the filter information sent in, the first 1000 records would be obtained by sending in 1000 for <code>Take</code> and 0 for <code>Skip</code>. The next 500 records would be obtained by sending in <code>Take</code> for 500 and <code>Skip</code> for 1000.</p>
-<h3 id='transactionrowfilter'>TransactionRowFilter</h3>
+<h3 id='transaction-reporting-2'>Transaction Reporting</h3><h4 id='transactionrowfilter'>TransactionRowFilter</h4>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -2531,7 +2519,7 @@ You may refund/void the full amount of an original transaction or only part of t
 </tbody></table>
 
 <p>The TransResults field works by mapping the BridgeComm 5-digit response code back to the gateway response code (the ResponseCode field in this contract).  In some cases, more than one mapping may exist for a given code.  It is recommended that you use the ResponseCode field for more granular filtering. The ExcludeTransResults field can modify the behavior of the TransResults field by establishing a “not in” condition.</p>
-<h3 id='transactionset'>TransactionSet</h3>
+<h4 id='transactionset'>TransactionSet</h4>
 <p>A set of transaction rows returned by the provided filter data.</p>
 
 <table><thead>
@@ -2562,7 +2550,7 @@ You may refund/void the full amount of an original transaction or only part of t
 <td>A collection of <code>TransactionRow</code> objects.</td>
 </tr>
 </tbody></table>
-<h3 id='transactionrow'>TransactionRow</h3>
+<h4 id='transactionrow'>TransactionRow</h4>
 <p>A transaction returned within a set; can be one or many.</p>
 
 <table><thead>
@@ -2928,7 +2916,7 @@ You may refund/void the full amount of an original transaction or only part of t
 <td>Indicates whether or not the transaction was voided before the batch was settled</td>
 </tr>
 </tbody></table>
-<h2 id='orgbatchlistfilter'>OrgBatchListFilter</h2>
+<h3 id='batch-reporting'>Batch Reporting</h3><h4 id='orgbatchlistfilter'>OrgBatchListFilter</h4>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -2981,7 +2969,7 @@ You may refund/void the full amount of an original transaction or only part of t
 <td>EQUIV</td>
 </tr>
 </tbody></table>
-<h2 id='orgbatchlistset'>OrgBatchListSet</h2>
+<h4 id='orgbatchlistset'>OrgBatchListSet</h4>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -3000,7 +2988,7 @@ You may refund/void the full amount of an original transaction or only part of t
 <td>The total number of records that match the filter</td>
 </tr>
 </tbody></table>
-<h2 id='orgbatchlistdetail'>OrgBatchListDetail</h2>
+<h4 id='orgbatchlistdetail'>OrgBatchListDetail</h4>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -3054,11 +3042,11 @@ You may refund/void the full amount of an original transaction or only part of t
 <td>Organization ID for the parent of the batch record owner</td>
 </tr>
 </tbody></table>
-<h3 id='operation-contracts'>Operation Contracts</h3><div class="highlight"><pre class="highlight csharp tab-csharp"><code><span class="nf">PublicGetBatchListByFilter</span><span class="p">(</span><span class="n">Credentials</span> <span class="n">credentials</span><span class="p">,</span> <span class="n">BatchListFilter</span> <span class="n">filterObject</span><span class="p">)</span>
+<h4 id='operation-contracts'>Operation Contracts</h4><div class="highlight"><pre class="highlight csharp tab-csharp"><code><span class="nf">PublicGetBatchListByFilter</span><span class="p">(</span><span class="n">Credentials</span> <span class="n">credentials</span><span class="p">,</span> <span class="n">BatchListFilter</span> <span class="n">filterObject</span><span class="p">)</span>
 </code></pre></div><div class="highlight"><pre class="highlight csharp tab-csharp"><code><span class="nf">PublicGetTransactionsByFilterV2</span><span class="p">(</span><span class="n">Credentials</span> <span class="n">credentials</span><span class="p">,</span> <span class="n">TransactionRowFilterV2</span> <span class="n">filterObject</span><span class="p">)</span>
 </code></pre></div>
 <p>At this time, the Reporting API provides two operation contracts for retrieving transactional and batch details. These methods return <code>BatchSet</code> and <code>TransactionSet</code> objects as described above.</p>
-<h2 id='reporting-tips-amp-examples'>Reporting Tips &amp; Examples</h2><div class="highlight"><pre class="highlight xml tab-xml"><code><span class="c">&lt;!-- Returns all transactions of $1.00 or more: --&gt;</span>
+<h3 id='reporting-tips-amp-examples'>Reporting Tips &amp; Examples</h3><div class="highlight"><pre class="highlight xml tab-xml"><code><span class="c">&lt;!-- Returns all transactions of $1.00 or more: --&gt;</span>
 <span class="nt">&lt;AmountRangeFrom&gt;</span>100<span class="nt">&lt;/AmountRangeFrom&gt;</span>
 
 <span class="c">&lt;!-- Returns all transactions of $2.00 or less: --&gt;</span>
