@@ -2480,16 +2480,6 @@ Amount | Response Code | Response Message
 170.00 - 181.99 | A01 | Approved
 182.00 - 1999.99 | D01 | Denied by customer's bank (Do Not Honor)
 
-<!### ACH/eCheck Response Triggers
-Amount | Response Code | Response Message
--------------- | --------- | ----------- 
-170.00 - 171.99 | C01 | Customer's account number is incorrect
-172.00 - 173.99 | C02 | Customer's routing number is incorrect
-174.00 - 175.99 | C03 | Customer's routing number and DFI account numbers are incorrect
-176.00 - 177.99 | C04 | Customer's name is incorrect
-178.00 - 179.00 | C05 | Customer's account type (Savings/Checking) is incorrect
-180.00 - 181.99 | C06 | Account number is incorrect and transaction is being routed to the wrong type of account>
-
 ### AVS Response Triggers
 ZIP Code | AVS Response Code | AVS Response Message
 -------------- | --------- | ----------- 
